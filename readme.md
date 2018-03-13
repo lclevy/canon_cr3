@@ -18,6 +18,14 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
 
 
 
+#### About C-RAW
+
+"Supports the next-generation CR3 RAW format and the new C-RAW compression format. The C – RAW format is 40% smaller in file size than conventional RAW, and it corresponds to in – camera RAW development and digital lens optimizer"
+
+See this related patent : http://patents.com/us-20170359471.html, US Patent 20170359471 (December 14th, 2017)
+
+
+
 
 ## Structure ##
 - **ftyp**: File Type Box
@@ -175,7 +183,7 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 
 from **uuid** = eaf42b5e 1c98 4b88 b9fb b7dc406e4d16
 
-size = 1620x1008
+size = 1620x1080
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |

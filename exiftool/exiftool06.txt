@@ -1,0 +1,2494 @@
+  ExifToolVersion = 10.82
+  FileName = canon_eos_m50_06.cr3
+  Directory = .
+  FileSize = 42212405
+  FileModifyDate = 1519771662
+  FileAccessDate = 1519801360
+  FileCreateDate = 1519801361.66
+  FilePermissions = 33206
+  FileType = CR3
+  FileTypeExtension = CR3
+  MIMEType = image/x-canon-cr3
+  FileType (SubDirectory) -->
+  - Tag 'ftyp' (16 bytes):
+      0008: 63 72 78 20 00 00 00 01 63 72 78 20 69 73 6f 6d [crx ....crx isom]
+  + [BinaryData directory, 16 bytes]
+  | MajorBrand = crx 
+  | - Tag 0x0000 (4 bytes, undef[4]):
+  |     0008: 63 72 78 20                                     [crx ]
+  | MinorVersion = .
+  | - Tag 0x0001 (4 bytes, undef[4]):
+  |     000c: 00 00 00 01                                     [....]
+  | CompatibleBrands = crx isom
+  | - Tag 0x0002 (8 bytes, undef[8]):
+  |     0010: 63 72 78 20 69 73 6f 6d                         [crx isom]
+  Movie (SubDirectory) -->
+  - Tag 'moov' (29624 bytes):
+      0020: 00 00 6b 10 75 75 69 64 85 c0 b6 87 82 0f 11 e0 [..k.uuid........]
+      0030: 81 11 f4 ce 46 2b 6a 48 00 00 00 26 43 4e 43 56 [....F+jH...&CNCV]
+      0040: 43 61 6e 6f 6e 43 52 33 5f 30 30 31 2f 30 30 2e [CanonCR3_001/00.]
+      0050: 30 39 2e 30 30 2f 30 30 2e 30 30 2e 30 30 00 00 [09.00/00.00.00..]
+      0060: 00 5c 43 43 54 50 00 00 00 00 00 00 00 01 00 00 [.\CCTP..........]
+      [snip 29544 bytes]
+  + [Movie directory]
+  | UUID-Canon (SubDirectory) -->
+  | - Tag 'uuid' (27400 bytes):
+  |     0028: 85 c0 b6 87 82 0f 11 e0 81 11 f4 ce 46 2b 6a 48 [............F+jH]
+  |     0038: 00 00 00 26 43 4e 43 56 43 61 6e 6f 6e 43 52 33 [...&CNCVCanonCR3]
+  |     0048: 5f 30 30 31 2f 30 30 2e 30 39 2e 30 30 2f 30 30 [_001/00.09.00/00]
+  |     0058: 2e 30 30 2e 30 30 00 00 00 5c 43 43 54 50 00 00 [.00.00...\CCTP..]
+  |     0068: 00 00 00 00 00 01 00 00 00 03 00 00 00 18 43 43 [..............CC]
+  |     [snip 27320 bytes]
+  | + [UUID-Canon directory]
+  | | CompressorVersion = CanonCR3_001/00.09.00/00.00.00
+  | | - Tag 'CNCV' (30 bytes):
+  | |     0040: 43 61 6e 6f 6e 43 52 33 5f 30 30 31 2f 30 30 2e [CanonCR3_001/00.]
+  | |     0050: 30 39 2e 30 30 2f 30 30 2e 30 30 2e 30 30       [09.00/00.00.00]
+  | | CanonCCTP (SubDirectory) -->
+  | | - Tag 'CCTP' (84 bytes):
+  | |     0066: 00 00 00 00 00 00 00 01 00 00 00 03 00 00 00 18 [................]
+  | |     0076: 43 43 44 54 00 00 00 00 00 00 00 10 00 00 00 00 [CCDT............]
+  | |     0086: 00 00 00 01 00 00 00 18 43 43 44 54 00 00 00 00 [........CCDT....]
+  | |     0096: 00 00 00 01 00 00 00 00 00 00 00 02 00 00 00 18 [................]
+  | |     00a6: 43 43 44 54 00 00 00 00 00 00 00 00 00 00 00 00 [CCDT............]
+  | |     00b6: 00 00 00 03                                     [....]
+  | | + [CanonCCTP directory]
+  | | | Unknown_CCDT = ..
+  | | | - Tag 'CCDT' (16 bytes):
+  | | |     007a: 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00 01 [................]
+  | | | Unknown_CCDT = ..
+  | | | - Tag 'CCDT' (16 bytes):
+  | | |     0092: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 02 [................]
+  | | | Unknown_CCDT = .
+  | | | - Tag 'CCDT' (16 bytes):
+  | | |     00aa: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 [................]
+  | | Unknown_CTBO = ..s.....s......Q..z.p.
+  | | - Tag 'CTBO' (84 bytes):
+  | |     00c2: 00 00 00 04 00 00 00 01 00 00 00 00 00 00 73 d8 [..............s.]
+  | |     00d2: 00 00 00 00 00 01 00 18 00 00 00 02 00 00 00 00 [................]
+  | |     00e2: 00 01 73 f0 00 00 00 00 00 07 dd d5 00 00 00 03 [..s.............]
+  | |     00f2: 00 00 00 00 00 09 51 c5 00 00 00 00 02 7a ca 70 [......Q......z.p]
+  | |     0102: 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | |     0112: 00 00 00 00                                     [....]
+  | | Unknown_free = 
+  | | - Tag 'free' (2 bytes):
+  | |     011e: 00 00                                           [..]
+  | | CMT1 (SubDirectory) -->
+  | | - Tag 'CMT1' (384 bytes):
+  | |     0128: 49 49 2a 00 08 00 00 00 0d 00 00 01 03 00 01 00 [II*.............]
+  | |     0138: 00 00 70 17 00 00 01 01 03 00 01 00 00 00 a0 0f [..p.............]
+  | |     0148: 00 00 02 01 03 00 03 00 00 00 aa 00 00 00 03 01 [................]
+  | |     0158: 03 00 01 00 00 00 06 00 00 00 0f 01 02 00 06 00 [................]
+  | |     0168: 00 00 b0 00 00 00 10 01 02 00 0e 00 00 00 b6 00 [................]
+  | |     [snip 304 bytes]
+  | | + [TIFF directory]
+  | | | ExifByteOrder = II
+  | | | + [IFD0 directory with 13 entries]
+  | | | | 0)  ImageWidth = 6000
+  | | | |     - Tag 0x0100 (2 bytes, int16u[1]):
+  | | | |         013a: 70 17                                           [p.]
+  | | | | 1)  ImageHeight = 4000
+  | | | |     - Tag 0x0101 (2 bytes, int16u[1]):
+  | | | |         0146: a0 0f                                           [..]
+  | | | | 2)  BitsPerSample = 8 8 8
+  | | | |     - Tag 0x0102 (6 bytes, int16u[3]):
+  | | | |         01d2: 08 00 08 00 08 00                               [......]
+  | | | | 3)  Compression = 6
+  | | | |     - Tag 0x0103 (2 bytes, int16u[1]):
+  | | | |         015e: 06 00                                           [..]
+  | | | | 4)  Make = Canon
+  | | | |     - Tag 0x010f (6 bytes, string[6]):
+  | | | |         01d8: 43 61 6e 6f 6e 00                               [Canon.]
+  | | | | 5)  Model = Canon EOS M50
+  | | | |     - Tag 0x0110 (14 bytes, string[14]):
+  | | | |         01de: 43 61 6e 6f 6e 20 45 4f 53 20 4d 35 30 00       [Canon EOS M50.]
+  | | | | 6)  Orientation = 1
+  | | | |     - Tag 0x0112 (2 bytes, int16u[1]):
+  | | | |         0182: 01 00                                           [..]
+  | | | | 7)  XResolution = 72 (72/1)
+  | | | |     - Tag 0x011a (8 bytes, rational64u[1]):
+  | | | |         01fe: 48 00 00 00 01 00 00 00                         [H.......]
+  | | | | 8)  YResolution = 72 (72/1)
+  | | | |     - Tag 0x011b (8 bytes, rational64u[1]):
+  | | | |         0206: 48 00 00 00 01 00 00 00                         [H.......]
+  | | | | 9)  ResolutionUnit = 2
+  | | | |     - Tag 0x0128 (2 bytes, int16u[1]):
+  | | | |         01a6: 02 00                                           [..]
+  | | | | 10) ModifyDate = 2018:02:21 12:03:08
+  | | | |     - Tag 0x0132 (20 bytes, string[20]):
+  | | | |         020e: 32 30 31 38 3a 30 32 3a 32 31 20 31 32 3a 30 33 [2018:02:21 12:03]
+  | | | |         021e: 3a 30 38 00                                     [:08.]
+  | | | | 11) Artist = 
+  | | | |     - Tag 0x013b (1 bytes, string[1]):
+  | | | |         01be: 00                                              [.]
+  | | | | 12) Copyright = 
+  | | | |     - Tag 0x8298 (1 bytes, string[1] read as undef[1]):
+  | | | |         01ca: 00                                              [.]
+  | | CMT2 (SubDirectory) -->
+  | | - Tag 'CMT2' (1056 bytes):
+  | |     02b0: 49 49 2a 00 08 00 00 00 27 00 9a 82 05 00 01 00 [II*.....'.......]
+  | |     02c0: 00 00 e2 01 00 00 9d 82 05 00 01 00 00 00 ea 01 [................]
+  | |     02d0: 00 00 22 88 03 00 01 00 00 00 03 00 00 00 27 88 [.."...........'.]
+  | |     02e0: 03 00 01 00 00 00 00 64 00 00 30 88 03 00 01 00 [.......d..0.....]
+  | |     02f0: 00 00 02 00 00 00 32 88 04 00 01 00 00 00 00 64 [......2........d]
+  | |     [snip 976 bytes]
+  | | + [TIFF directory]
+  | | | ExifByteOrder = II
+  | | | + [IFD0 directory with 39 entries]
+  | | | | 0)  ExposureTime = 0.025 (1/40)
+  | | | |     - Tag 0x829a (8 bytes, rational64u[1]):
+  | | | |         0492: 01 00 00 00 28 00 00 00                         [....(...]
+  | | | | 1)  FNumber = 6.3 (63/10)
+  | | | |     - Tag 0x829d (8 bytes, rational64u[1]):
+  | | | |         049a: 3f 00 00 00 0a 00 00 00                         [?.......]
+  | | | | 2)  ExposureProgram = 3
+  | | | |     - Tag 0x8822 (2 bytes, int16u[1]):
+  | | | |         02da: 03 00                                           [..]
+  | | | | 3)  ISO = 25600
+  | | | |     - Tag 0x8827 (2 bytes, int16u[1]):
+  | | | |         02e6: 00 64                                           [.d]
+  | | | | 4)  SensitivityType = 2
+  | | | |     - Tag 0x8830 (2 bytes, int16u[1]):
+  | | | |         02f2: 02 00                                           [..]
+  | | | | 5)  RecommendedExposureIndex = 25600
+  | | | |     - Tag 0x8832 (4 bytes, int32u[1]):
+  | | | |         02fe: 00 64 00 00                                     [.d..]
+  | | | | 6)  ExifVersion = 0231
+  | | | |     - Tag 0x9000 (4 bytes, undef[4]):
+  | | | |         030a: 30 32 33 31                                     [0231]
+  | | | | 7)  DateTimeOriginal = 2018:02:21 12:03:08
+  | | | |     - Tag 0x9003 (20 bytes, string[20]):
+  | | | |         04a2: 32 30 31 38 3a 30 32 3a 32 31 20 31 32 3a 30 33 [2018:02:21 12:03]
+  | | | |         04b2: 3a 30 38 00                                     [:08.]
+  | | | | 8)  CreateDate = 2018:02:21 12:03:08
+  | | | |     - Tag 0x9004 (20 bytes, string[20]):
+  | | | |         04b6: 32 30 31 38 3a 30 32 3a 32 31 20 31 32 3a 30 33 [2018:02:21 12:03]
+  | | | |         04c6: 3a 30 38 00                                     [:08.]
+  | | | | 9)  OffsetTime = +00:00
+  | | | |     - Tag 0x9010 (7 bytes, string[7]):
+  | | | |         06b8: 2b 30 30 3a 30 30 00                            [+00:00.]
+  | | | | 10) OffsetTimeOriginal = +00:00
+  | | | |     - Tag 0x9011 (7 bytes, string[7]):
+  | | | |         06bf: 2b 30 30 3a 30 30 00                            [+00:00.]
+  | | | | 11) OffsetTimeDigitized = +00:00
+  | | | |     - Tag 0x9012 (7 bytes, string[7]):
+  | | | |         06c6: 2b 30 30 3a 30 30 00                            [+00:00.]
+  | | | | 12) ComponentsConfiguration = 1 2 3 0
+  | | | |     - Tag 0x9101 (4 bytes, undef[4] read as int8u[4]):
+  | | | |         0352: 01 02 03 00                                     [....]
+  | | | | 13) ShutterSpeedValue = 5.375 (352256/65536)
+  | | | |     - Tag 0x9201 (8 bytes, rational64s[1]):
+  | | | |         04ca: 00 60 05 00 00 00 01 00                         [.`......]
+  | | | | 14) ApertureValue = 5.375 (352256/65536)
+  | | | |     - Tag 0x9202 (8 bytes, rational64u[1]):
+  | | | |         04d2: 00 60 05 00 00 00 01 00                         [.`......]
+  | | | | 15) ExposureCompensation = 0 (0/1)
+  | | | |     - Tag 0x9204 (8 bytes, rational64s[1]):
+  | | | |         04da: 00 00 00 00 01 00 00 00                         [........]
+  | | | | 16) MeteringMode = 5
+  | | | |     - Tag 0x9207 (2 bytes, int16u[1]):
+  | | | |         0382: 05 00                                           [..]
+  | | | | 17) Flash = 0
+  | | | |     - Tag 0x9209 (2 bytes, int16u[1]):
+  | | | |         038e: 00 00                                           [..]
+  | | | | 18) FocalLength = 15 (15/1)
+  | | | |     - Tag 0x920a (8 bytes, rational64u[1]):
+  | | | |         04e2: 0f 00 00 00 01 00 00 00                         [........]
+  | | | | 19) UserComment = 
+  | | | |     - Tag 0x9286 (264 bytes, undef[264]):
+  | | | |         04ea: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         04fa: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         050a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         051a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         052a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         [snip 184 bytes]
+  | | | | 20) SubSecTime = 65
+  | | | |     - Tag 0x9290 (3 bytes, string[3]):
+  | | | |         03b2: 36 35 00                                        [65.]
+  | | | | 21) SubSecTimeOriginal = 65
+  | | | |     - Tag 0x9291 (3 bytes, string[3]):
+  | | | |         03be: 36 35 00                                        [65.]
+  | | | | 22) SubSecTimeDigitized = 65
+  | | | |     - Tag 0x9292 (3 bytes, string[3]):
+  | | | |         03ca: 36 35 00                                        [65.]
+  | | | | 23) FlashpixVersion = 0100
+  | | | |     - Tag 0xa000 (4 bytes, undef[4]):
+  | | | |         03d6: 30 31 30 30                                     [0100]
+  | | | | 24) ColorSpace = 1
+  | | | |     - Tag 0xa001 (2 bytes, int16u[1]):
+  | | | |         03e2: 01 00                                           [..]
+  | | | | 25) ExifImageWidth = 6000
+  | | | |     - Tag 0xa002 (2 bytes, int16u[1]):
+  | | | |         03ee: 70 17                                           [p.]
+  | | | | 26) ExifImageHeight = 4000
+  | | | |     - Tag 0xa003 (2 bytes, int16u[1]):
+  | | | |         03fa: a0 0f                                           [..]
+  | | | | 27) FocalPlaneXResolution = 6514.65798 (6000000/921)
+  | | | |     - Tag 0xa20e (8 bytes, rational64u[1]):
+  | | | |         05f2: 80 8d 5b 00 99 03 00 00                         [..[.....]
+  | | | | 28) FocalPlaneYResolution = 6734.006734 (4000000/594)
+  | | | |     - Tag 0xa20f (8 bytes, rational64u[1]):
+  | | | |         05fa: 00 09 3d 00 52 02 00 00                         [..=.R...]
+  | | | | 29) FocalPlaneResolutionUnit = 2
+  | | | |     - Tag 0xa210 (2 bytes, int16u[1]):
+  | | | |         041e: 02 00                                           [..]
+  | | | | 30) CustomRendered = 0
+  | | | |     - Tag 0xa401 (2 bytes, int16u[1]):
+  | | | |         042a: 00 00                                           [..]
+  | | | | 31) ExposureMode = 0
+  | | | |     - Tag 0xa402 (2 bytes, int16u[1]):
+  | | | |         0436: 00 00                                           [..]
+  | | | | 32) WhiteBalance = 0
+  | | | |     - Tag 0xa403 (2 bytes, int16u[1]):
+  | | | |         0442: 00 00                                           [..]
+  | | | | 33) SceneCaptureType = 0
+  | | | |     - Tag 0xa406 (2 bytes, int16u[1]):
+  | | | |         044e: 00 00                                           [..]
+  | | | | 34) OwnerName = 
+  | | | |     - Tag 0xa430 (1 bytes, string[1]):
+  | | | |         045a: 00                                              [.]
+  | | | | 35) SerialNumber = 613040000565
+  | | | |     - Tag 0xa431 (13 bytes, string[13]):
+  | | | |         0622: 36 31 33 30 34 30 30 30 30 35 36 35 00          [613040000565.]
+  | | | | 36) LensInfo = 15 45 0 0 (15/1 45/1 0/1 0/1)
+  | | | |     - Tag 0xa432 (32 bytes, rational64u[4]):
+  | | | |         0642: 0f 00 00 00 01 00 00 00 2d 00 00 00 01 00 00 00 [........-.......]
+  | | | |         0652: 00 00 00 00 01 00 00 00 00 00 00 00 01 00 00 00 [................]
+  | | | | 37) LensModel = EF-M15-45mm f/3.5-6.3 IS STM
+  | | | |     - Tag 0xa434 (29 bytes, string[29]):
+  | | | |         0662: 45 46 2d 4d 31 35 2d 34 35 6d 6d 20 66 2f 33 2e [EF-M15-45mm f/3.]
+  | | | |         0672: 35 2d 36 2e 33 20 49 53 20 53 54 4d 00          [5-6.3 IS STM.]
+  | | | | 38) LensSerialNumber = 0000000000
+  | | | |     - Tag 0xa435 (11 bytes, string[11]):
+  | | | |         06ac: 30 30 30 30 30 30 30 30 30 30 00                [0000000000.]
+  | | CMT3 (SubDirectory) -->
+  | | - Tag 'CMT3' (5168 bytes):
+  | |     06d8: 49 49 2a 00 08 00 00 00 2f 00 01 00 03 00 31 00 [II*...../.....1.]
+  | |     06e8: 00 00 42 02 00 00 02 00 03 00 04 00 00 00 a4 02 [..B.............]
+  | |     06f8: 00 00 03 00 03 00 04 00 00 00 ac 02 00 00 04 00 [................]
+  | |     0708: 03 00 22 00 00 00 b4 02 00 00 06 00 02 00 0e 00 [..".............]
+  | |     0718: 00 00 f8 02 00 00 07 00 02 00 18 00 00 00 18 03 [................]
+  | |     [snip 5088 bytes]
+  | | + [TIFF directory]
+  | | | + [Canon directory with 47 entries]
+  | | | | 0)  CanonCameraSettings (SubDirectory) -->
+  | | | |     - Tag 0x0001 (98 bytes, int16u[49] read as undef[98]):
+  | | | |         091a: 62 00 02 00 00 00 04 00 00 00 00 00 00 00 00 01 [b...............]
+  | | | |         092a: 00 00 0d 00 00 00 01 00 00 00 00 00 00 00 ff 7f [................]
+  | | | |         093a: 0f 00 03 00 02 00 00 00 03 00 ff ff 39 10 2d 00 [............9.-.]
+  | | | |         094a: 0f 00 01 00 74 00 20 01 00 00 08 00 00 00 00 00 [....t. .........]
+  | | | |         095a: ff ff ff ff ff ff 00 00 00 00 00 00 00 00 ff ff [................]
+  | | | |         [snip 18 bytes]
+  | | | | + [BinaryData directory, 98 bytes]
+  | | | | | MacroMode = 2
+  | | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+  | | | | |     091c: 02 00                                           [..]
+  | | | | | SelfTimer = 0
+  | | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+  | | | | |     091e: 00 00                                           [..]
+  | | | | | Quality = 4
+  | | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+  | | | | |     0920: 04 00                                           [..]
+  | | | | | CanonFlashMode = 0
+  | | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+  | | | | |     0922: 00 00                                           [..]
+  | | | | | ContinuousDrive = 0
+  | | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+  | | | | |     0924: 00 00                                           [..]
+  | | | | | FocusMode = 256
+  | | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+  | | | | |     0928: 00 01                                           [..]
+  | | | | | RecordMode = 13
+  | | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+  | | | | |     092c: 0d 00                                           [..]
+  | | | | | CanonImageSize = 0
+  | | | | | - Tag 0x000a (2 bytes, int16s[1]):
+  | | | | |     092e: 00 00                                           [..]
+  | | | | | EasyMode = 1
+  | | | | | - Tag 0x000b (2 bytes, int16s[1]):
+  | | | | |     0930: 01 00                                           [..]
+  | | | | | DigitalZoom = 0
+  | | | | | - Tag 0x000c (2 bytes, int16s[1]):
+  | | | | |     0932: 00 00                                           [..]
+  | | | | | Contrast = 0
+  | | | | | - Tag 0x000d (2 bytes, int16s[1]):
+  | | | | |     0934: 00 00                                           [..]
+  | | | | | Saturation = 0
+  | | | | | - Tag 0x000e (2 bytes, int16s[1]):
+  | | | | |     0936: 00 00                                           [..]
+  | | | | | Sharpness = 32767
+  | | | | | - Tag 0x000f (2 bytes, int16s[1]):
+  | | | | |     0938: ff 7f                                           [..]
+  | | | | | CameraISO = 15
+  | | | | | - Tag 0x0010 (2 bytes, int16s[1]):
+  | | | | |     093a: 0f 00                                           [..]
+  | | | | | MeteringMode = 3
+  | | | | | - Tag 0x0011 (2 bytes, int16s[1]):
+  | | | | |     093c: 03 00                                           [..]
+  | | | | | FocusRange = 2
+  | | | | | - Tag 0x0012 (2 bytes, int16s[1]):
+  | | | | |     093e: 02 00                                           [..]
+  | | | | | AFPoint = 0
+  | | | | | - Tag 0x0013 (2 bytes, int16s[1]):
+  | | | | |     0940: 00 00                                           [..]
+  | | | | | CanonExposureMode = 3
+  | | | | | - Tag 0x0014 (2 bytes, int16s[1]):
+  | | | | |     0942: 03 00                                           [..]
+  | | | | | LensType = 4153
+  | | | | | - Tag 0x0016 (2 bytes, int16u[1]):
+  | | | | |     0946: 39 10                                           [9.]
+  | | | | | MaxFocalLength = 45
+  | | | | | - Tag 0x0017 (2 bytes, int16u[1]):
+  | | | | |     0948: 2d 00                                           [-.]
+  | | | | | MinFocalLength = 15
+  | | | | | - Tag 0x0018 (2 bytes, int16u[1]):
+  | | | | |     094a: 0f 00                                           [..]
+  | | | | | FocalUnits = 1
+  | | | | | - Tag 0x0019 (2 bytes, int16s[1]):
+  | | | | |     094c: 01 00                                           [..]
+  | | | | | MaxAperture = 116
+  | | | | | - Tag 0x001a (2 bytes, int16s[1]):
+  | | | | |     094e: 74 00                                           [t.]
+  | | | | | MinAperture = 288
+  | | | | | - Tag 0x001b (2 bytes, int16s[1]):
+  | | | | |     0950: 20 01                                           [ .]
+  | | | | | FlashActivity = 0
+  | | | | | - Tag 0x001c (2 bytes, int16s[1]):
+  | | | | |     0952: 00 00                                           [..]
+  | | | | | FlashBits = 8
+  | | | | | - Tag 0x001d (2 bytes, int16s[1]):
+  | | | | |     0954: 08 00                                           [..]
+  | | | | | FocusContinuous = -1
+  | | | | | - Tag 0x0020 (2 bytes, int16s[1]):
+  | | | | |     095a: ff ff                                           [..]
+  | | | | | AESetting = -1
+  | | | | | - Tag 0x0021 (2 bytes, int16s[1]):
+  | | | | |     095c: ff ff                                           [..]
+  | | | | | ImageStabilization = -1
+  | | | | | - Tag 0x0022 (2 bytes, int16s[1]):
+  | | | | |     095e: ff ff                                           [..]
+  | | | | | DisplayAperture = 0
+  | | | | | - Tag 0x0023 (2 bytes, int16s[1]):
+  | | | | |     0960: 00 00                                           [..]
+  | | | | | ZoomSourceWidth = 0
+  | | | | | - Tag 0x0024 (2 bytes, int16s[1]):
+  | | | | |     0962: 00 00                                           [..]
+  | | | | | ZoomTargetWidth = 0
+  | | | | | - Tag 0x0025 (2 bytes, int16s[1]):
+  | | | | |     0964: 00 00                                           [..]
+  | | | | | SpotMeteringMode = -1
+  | | | | | - Tag 0x0027 (2 bytes, int16s[1]):
+  | | | | |     0968: ff ff                                           [..]
+  | | | | | PhotoEffect = -1
+  | | | | | - Tag 0x0028 (2 bytes, int16s[1]):
+  | | | | |     096a: ff ff                                           [..]
+  | | | | | ManualFlashOutput = 0
+  | | | | | - Tag 0x0029 (2 bytes, int16s[1]):
+  | | | | |     096c: 00 00                                           [..]
+  | | | | | ColorTone = 0
+  | | | | | - Tag 0x002a (2 bytes, int16s[1]):
+  | | | | |     096e: 00 00                                           [..]
+  | | | | | SRAWQuality = 0
+  | | | | | - Tag 0x002e (2 bytes, int16s[1]):
+  | | | | |     0976: 00 00                                           [..]
+  | | | | 1)  CanonFocalLength (SubDirectory) -->
+  | | | |     - Tag 0x0002 (8 bytes, int16u[4] read as undef[8]):
+  | | | |         097c: 00 00 0f 00 ae 63 1d 48                         [.....c.H]
+  | | | | + [BinaryData directory, 8 bytes]
+  | | | | | FocalType = 0
+  | | | | | - Tag 0x0000 (2 bytes, int16u[1]):
+  | | | | |     097c: 00 00                                           [..]
+  | | | | | FocalLength = 15
+  | | | | | - Tag 0x0001 (2 bytes, int16u[1]):
+  | | | | |     097e: 0f 00                                           [..]
+  | | | | 2)  CanonFlashInfo = 100 0 0 0
+  | | | |     - Tag 0x0003 (8 bytes, int16u[4]):
+  | | | |         0984: 64 00 00 00 00 00 00 00                         [d.......]
+  | | | | 3)  CanonShotInfo (SubDirectory) -->
+  | | | |     - Tag 0x0004 (68 bytes, int16u[34] read as undef[68]):
+  | | | |         098c: 44 00 00 00 a0 01 b8 ff ac 00 ac 00 00 00 00 00 [D...............]
+  | | | |         099c: 03 00 00 00 08 00 08 00 a2 00 00 00 00 00 00 00 [................]
+  | | | |         09ac: 00 00 00 00 01 00 00 00 00 00 ac 00 ac 00 45 00 [..............E.]
+  | | | |         09bc: 00 00 00 00 f8 00 00 00 ff ff ff ff ff ff 00 00 [................]
+  | | | |         09cc: 00 00 00 00                                     [....]
+  | | | | + [BinaryData directory, 68 bytes]
+  | | | | | AutoISO = 0
+  | | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+  | | | | |     098e: 00 00                                           [..]
+  | | | | | BaseISO = 416
+  | | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+  | | | | |     0990: a0 01                                           [..]
+  | | | | | MeasuredEV = -72
+  | | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+  | | | | |     0992: b8 ff                                           [..]
+  | | | | | TargetAperture = 172
+  | | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+  | | | | |     0994: ac 00                                           [..]
+  | | | | | TargetExposureTime = 172
+  | | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+  | | | | |     0996: ac 00                                           [..]
+  | | | | | ExposureCompensation = 0
+  | | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+  | | | | |     0998: 00 00                                           [..]
+  | | | | | WhiteBalance = 0
+  | | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+  | | | | |     099a: 00 00                                           [..]
+  | | | | | SlowShutter = 3
+  | | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+  | | | | |     099c: 03 00                                           [..]
+  | | | | | SequenceNumber = 0
+  | | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+  | | | | |     099e: 00 00                                           [..]
+  | | | | | OpticalZoomCode = 8
+  | | | | | - Tag 0x000a (2 bytes, int16s[1]):
+  | | | | |     09a0: 08 00                                           [..]
+  | | | | | CameraTemperature = 162
+  | | | | | - Tag 0x000c (2 bytes, int16s[1]):
+  | | | | |     09a4: a2 00                                           [..]
+  | | | | | FlashGuideNumber = 0
+  | | | | | - Tag 0x000d (2 bytes, int16s[1]):
+  | | | | |     09a6: 00 00                                           [..]
+  | | | | | AFPointsInFocus = 0
+  | | | | | - Tag 0x000e (2 bytes, int16s[1]):
+  | | | | |     09a8: 00 00                                           [..]
+  | | | | | FlashExposureComp = 0
+  | | | | | - Tag 0x000f (2 bytes, int16s[1]):
+  | | | | |     09aa: 00 00                                           [..]
+  | | | | | AutoExposureBracketing = 0
+  | | | | | - Tag 0x0010 (2 bytes, int16s[1]):
+  | | | | |     09ac: 00 00                                           [..]
+  | | | | | AEBBracketValue = 0
+  | | | | | - Tag 0x0011 (2 bytes, int16s[1]):
+  | | | | |     09ae: 00 00                                           [..]
+  | | | | | ControlMode = 1
+  | | | | | - Tag 0x0012 (2 bytes, int16s[1]):
+  | | | | |     09b0: 01 00                                           [..]
+  | | | | | FocusDistanceUpper = 0
+  | | | | | - Tag 0x0013 (2 bytes, int16u[1]):
+  | | | | |     09b2: 00 00                                           [..]
+  | | | | | FNumber = 172
+  | | | | | - Tag 0x0015 (2 bytes, int16s[1]):
+  | | | | |     09b6: ac 00                                           [..]
+  | | | | | ExposureTime = 172
+  | | | | | - Tag 0x0016 (2 bytes, int16s[1]):
+  | | | | |     09b8: ac 00                                           [..]
+  | | | | | MeasuredEV2 = 69
+  | | | | | - Tag 0x0017 (2 bytes, int16s[1]):
+  | | | | |     09ba: 45 00                                           [E.]
+  | | | | | BulbDuration = 0
+  | | | | | - Tag 0x0018 (2 bytes, int16s[1]):
+  | | | | |     09bc: 00 00                                           [..]
+  | | | | | CameraType = 248
+  | | | | | - Tag 0x001a (2 bytes, int16s[1]):
+  | | | | |     09c0: f8 00                                           [..]
+  | | | | | AutoRotate = 0
+  | | | | | - Tag 0x001b (2 bytes, int16s[1]):
+  | | | | |     09c2: 00 00                                           [..]
+  | | | | | NDFilter = -1
+  | | | | | - Tag 0x001c (2 bytes, int16s[1]):
+  | | | | |     09c4: ff ff                                           [..]
+  | | | | | SelfTimer2 = -1
+  | | | | | - Tag 0x001d (2 bytes, int16s[1]):
+  | | | | |     09c6: ff ff                                           [..]
+  | | | | | FlashOutput = 0
+  | | | | | - Tag 0x0021 (2 bytes, int16s[1]):
+  | | | | |     09ce: 00 00                                           [..]
+  | | | | 4)  CanonImageType = Canon EOS M50
+  | | | |     - Tag 0x0006 (14 bytes, string[14]):
+  | | | |         09d0: 43 61 6e 6f 6e 20 45 4f 53 20 4d 35 30 00       [Canon EOS M50.]
+  | | | | 5)  CanonFirmwareVersion = Firmware Version 1.0.0
+  | | | |     - Tag 0x0007 (24 bytes, string[24]):
+  | | | |         09f0: 46 69 72 6d 77 61 72 65 20 56 65 72 73 69 6f 6e [Firmware Version]
+  | | | |         0a00: 20 31 2e 30 2e 30 00 00                         [ 1.0.0..]
+  | | | | 6)  OwnerName = 
+  | | | |     - Tag 0x0009 (32 bytes, string[32]):
+  | | | |         0a08: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         0a18: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | 7)  CanonModelID = 1042
+  | | | |     - Tag 0x0010 (4 bytes, int32u[1]):
+  | | | |         073e: 12 04 00 00                                     [....]
+  | | | | 8)  ThumbnailImageValidArea = 0 159 6 113
+  | | | |     - Tag 0x0013 (8 bytes, int16u[4]):
+  | | | |         0a28: 00 00 9f 00 06 00 71 00                         [......q.]
+  | | | | 9)  Canon_0x0019 = 1
+  | | | |     - Tag 0x0019 (2 bytes, int16u[1]):
+  | | | |         0756: 01 00                                           [..]
+  | | | | 10) CanonAFInfo2 (SubDirectory) -->
+  | | | |     - Tag 0x0026 (1216 bytes, int16u[608] read as undef[1216]):
+  | | | |         0a30: c0 04 06 00 8f 00 63 00 70 17 a0 0f 70 17 a0 0f [......c.p...p...]
+  | | | |         0a40: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | |         0a50: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | |         0a60: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | |         0a70: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | |         [snip 1136 bytes]
+  | | | | + [SerialData directory, 1216 bytes]
+  | | | | | 0)  AFInfoSize = 1216
+  | | | | |     - Tag 0x0000 (2 bytes, int16u[1]):
+  | | | | |         0a30: c0 04                                           [..]
+  | | | | | 1)  AFAreaMode = 6
+  | | | | |     - Tag 0x0001 (2 bytes, int16u[1]):
+  | | | | |         0a32: 06 00                                           [..]
+  | | | | | 2)  NumAFPoints = 143
+  | | | | |     - Tag 0x0002 (2 bytes, int16u[1]):
+  | | | | |         0a34: 8f 00                                           [..]
+  | | | | | 3)  ValidAFPoints = 99
+  | | | | |     - Tag 0x0003 (2 bytes, int16u[1]):
+  | | | | |         0a36: 63 00                                           [c.]
+  | | | | | 4)  CanonImageWidth = 6000
+  | | | | |     - Tag 0x0004 (2 bytes, int16u[1]):
+  | | | | |         0a38: 70 17                                           [p.]
+  | | | | | 5)  CanonImageHeight = 4000
+  | | | | |     - Tag 0x0005 (2 bytes, int16u[1]):
+  | | | | |         0a3a: a0 0f                                           [..]
+  | | | | | 6)  AFImageWidth = 6000
+  | | | | |     - Tag 0x0006 (2 bytes, int16u[1]):
+  | | | | |         0a3c: 70 17                                           [p.]
+  | | | | | 7)  AFImageHeight = 4000
+  | | | | |     - Tag 0x0007 (2 bytes, int16u[1]):
+  | | | | |         0a3e: a0 0f                                           [..]
+  | | | | | 8)  AFAreaWidths = 360 360 360 360 360 360 360 360 360 360 360 360 360 360 [snip]
+  | | | | |     - Tag 0x0008 (286 bytes, int16s[143]):
+  | | | | |         0a40: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | | |         0a50: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | | |         0a60: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | | |         0a70: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | | |         0a80: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+  | | | | |         [snip 206 bytes]
+  | | | | | 9)  AFAreaHeights = 300 300 300 300 300 300 300 300 300 300 300 300 300 300[snip]
+  | | | | |     - Tag 0x0009 (286 bytes, int16s[143]):
+  | | | | |         0b5e: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+  | | | | |         0b6e: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+  | | | | |         0b7e: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+  | | | | |         0b8e: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+  | | | | |         0b9e: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+  | | | | |         [snip 206 bytes]
+  | | | | | 10) AFAreaXPositions = -1940 -1552 -1164 -776 -388 0 388 776 1164 1552 1940[snip]
+  | | | | |     - Tag 0x000a (286 bytes, int16s[143]):
+  | | | | |         0c7c: 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 08 03 [l...t...|.......]
+  | | | | |         0c8c: 8c 04 10 06 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe [......l...t...|.]
+  | | | | |         0c9c: 00 00 84 01 08 03 8c 04 10 06 94 07 6c f8 f0 f9 [............l...]
+  | | | | |         0cac: 74 fb f8 fc 7c fe 00 00 84 01 08 03 8c 04 10 06 [t...|...........]
+  | | | | |         0cbc: 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 [..l...t...|.....]
+  | | | | |         [snip 206 bytes]
+  | | | | | 11) AFAreaYPositions = 1360 1360 1360 1360 1360 1360 1360 1360 1360 1360 13[snip]
+  | | | | |     - Tag 0x000b (286 bytes, int16s[143]):
+  | | | | |         0d9a: 50 05 50 05 50 05 50 05 50 05 50 05 50 05 50 05 [P.P.P.P.P.P.P.P.]
+  | | | | |         0daa: 50 05 50 05 50 05 fc 03 fc 03 fc 03 fc 03 fc 03 [P.P.P...........]
+  | | | | |         0dba: fc 03 fc 03 fc 03 fc 03 fc 03 fc 03 a8 02 a8 02 [................]
+  | | | | |         0dca: a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 [................]
+  | | | | |         0dda: a8 02 54 01 54 01 54 01 54 01 54 01 54 01 54 01 [..T.T.T.T.T.T.T.]
+  | | | | |         [snip 206 bytes]
+  | | | | | 12) AFPointsInFocus = 0 7936 -15368 32271 0 0 0 0 0
+  | | | | |     - Tag 0x000c (18 bytes, int16s[9]):
+  | | | | |         0eb8: 00 00 00 1f f8 c3 0f 7e 00 00 00 00 00 00 00 00 [.......~........]
+  | | | | |         0ec8: 00 00                                           [..]
+  | | | | | 13) AFPointsSelected = -1 -1 -1 -1 -1 -1 7 0 0
+  | | | | |     - Tag 0x000d (18 bytes, int16s[9]):
+  | | | | |         0eca: ff ff ff ff ff ff ff ff ff ff ff ff 07 00 00 00 [................]
+  | | | | |         0eda: 00 00                                           [..]
+  | | | | 11) ImageUniqueID = g./.k........Q.)
+  | | | |     - Tag 0x0028 (16 bytes, int8u[16] read as undef[16]):
+  | | | |         0ef0: 67 7f 2f e2 6b f5 d5 e1 b6 0c a2 b2 f0 51 a0 29 [g./.k........Q.)]
+  | | | | 12) Canon_0x0033 = 1574403960 3788849265 2996964534 698372592
+  | | | |     - Tag 0x0033 (16 bytes, int32u[4]):
+  | | | |         0f00: 78 7f d7 5d 71 40 d5 e1 b6 0c a2 b2 f0 51 a0 29 [x..]q@.......Q.)]
+  | | | | 13) TimeInfo (SubDirectory) -->
+  | | | |     - Tag 0x0035 (16 bytes, int32u[4] read as undef[16]):
+  | | | |         0f10: 10 00 00 00 00 00 00 00 14 00 00 00 00 00 00 00 [................]
+  | | | | + [BinaryData directory, 16 bytes]
+  | | | | | TimeZone = 0
+  | | | | | - Tag 0x0001 (4 bytes, int32s[1]):
+  | | | | |     0f14: 00 00 00 00                                     [....]
+  | | | | | TimeZoneCity = 20
+  | | | | | - Tag 0x0002 (4 bytes, int32s[1]):
+  | | | | |     0f18: 14 00 00 00                                     [....]
+  | | | | | DaylightSavings = 0
+  | | | | | - Tag 0x0003 (4 bytes, int32s[1]):
+  | | | | |     0f1c: 00 00 00 00                                     [....]
+  | | | | 14) Canon_0x0038 = LLP-E12.
+  | | | |     - Tag 0x0038 (76 bytes, undef[76]):
+  | | | |         0f20: 4c 00 00 00 4c 50 2d 45 31 32 00 00 00 00 00 00 [L...LP-E12......]
+  | | | |         0f30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         0f40: 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 [................]
+  | | | |         0f50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         0f60: 00 00 00 00 00 00 00 00 00 00 00 00             [............]
+  | | | | 15) Canon_0x003d = 48 1 3 0 0 0 0 0 0 0 0 1
+  | | | |     - Tag 0x003d (48 bytes, int32u[12]):
+  | | | |         0f6c: 30 00 00 00 01 00 00 00 03 00 00 00 00 00 00 00 [0...............]
+  | | | |         0f7c: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         0f8c: 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 [................]
+  | | | | 16) Canon_0x003f = 17
+  | | | |     - Tag 0x003f (4 bytes, int32u[1]):
+  | | | |         07aa: 11 00 00 00                                     [....]
+  | | | | 17) CanonFileInfo (SubDirectory) -->
+  | | | |     - Tag 0x0093 (132 bytes, int16u[66] read as undef[132]):
+  | | | |         0f9c: 84 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         0fac: ff ff 00 00 00 00 00 00 00 00 00 00 ff ff ff ff [................]
+  | | | |         0fbc: 16 01 ff ff 01 00 01 00 22 00 1f 00 00 00 01 00 [........".......]
+  | | | |         0fcc: 00 00 00 00 ff ff 00 00 3f 00 3f 00 1a 00 1f 00 [........?.?.....]
+  | | | |         0fdc: 00 00 74 00 00 00 00 00 00 00 00 00 00 00 00 00 [..t.............]
+  | | | |         [snip 52 bytes]
+  | | | | + [BinaryData directory, 132 bytes]
+  | | | | | BracketMode = 0
+  | | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+  | | | | |     0fa2: 00 00                                           [..]
+  | | | | | BracketValue = 0
+  | | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+  | | | | |     0fa4: 00 00                                           [..]
+  | | | | | BracketShotNumber = 0
+  | | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+  | | | | |     0fa6: 00 00                                           [..]
+  | | | | | RawJpgQuality = 0
+  | | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+  | | | | |     0fa8: 00 00                                           [..]
+  | | | | | RawJpgSize = 0
+  | | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+  | | | | |     0faa: 00 00                                           [..]
+  | | | | | LongExposureNoiseReduction2 = -1
+  | | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+  | | | | |     0fac: ff ff                                           [..]
+  | | | | | WBBracketMode = 0
+  | | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+  | | | | |     0fae: 00 00                                           [..]
+  | | | | | WBBracketValueAB = 0
+  | | | | | - Tag 0x000c (2 bytes, int16s[1]):
+  | | | | |     0fb4: 00 00                                           [..]
+  | | | | | WBBracketValueGM = 0
+  | | | | | - Tag 0x000d (2 bytes, int16s[1]):
+  | | | | |     0fb6: 00 00                                           [..]
+  | | | | | FilterEffect = -1
+  | | | | | - Tag 0x000e (2 bytes, int16s[1]):
+  | | | | |     0fb8: ff ff                                           [..]
+  | | | | | ToningEffect = -1
+  | | | | | - Tag 0x000f (2 bytes, int16s[1]):
+  | | | | |     0fba: ff ff                                           [..]
+  | | | | | LiveViewShooting = 1
+  | | | | | - Tag 0x0013 (2 bytes, int16s[1]):
+  | | | | |     0fc2: 01 00                                           [..]
+  | | | | | FocusDistanceUpper = 34
+  | | | | | - Tag 0x0014 (2 bytes, int16u[1]):
+  | | | | |     0fc4: 22 00                                           [".]
+  | | | | | FocusDistanceLower = 31
+  | | | | | - Tag 0x0015 (2 bytes, int16u[1]):
+  | | | | |     0fc6: 1f 00                                           [..]
+  | | | | | FlashExposureLock = 0
+  | | | | | - Tag 0x0019 (2 bytes, int16s[1]):
+  | | | | |     0fce: 00 00                                           [..]
+  | | | | 18) LensModel = EF-M15-45mm f/3.5-6.3 IS STM
+  | | | |     - Tag 0x0095 (74 bytes, string[74]):
+  | | | |         1020: 45 46 2d 4d 31 35 2d 34 35 6d 6d 20 66 2f 33 2e [EF-M15-45mm f/3.]
+  | | | |         1030: 35 2d 36 2e 33 20 49 53 20 53 54 4d 00 00 00 00 [5-6.3 IS STM....]
+  | | | |         1040: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         1050: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         1060: 00 00 00 00 00 00 00 00 00 00                   [..........]
+  | | | | 19) InternalSerialNumber = CG0156580
+  | | | |     - Tag 0x0096 (16 bytes, string[16]):
+  | | | |         106a: 43 47 30 31 35 36 35 38 30 00 00 00 00 00 00 00 [CG0156580.......]
+  | | | | 20) DustRemovalData = 
+  | | | |     - Tag 0x0097 (1024 bytes, undef[1024]):
+  | | | |         107a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         108a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         109a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         10aa: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         10ba: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         [snip 944 bytes]
+  | | | | 21) CropInfo (SubDirectory) -->
+  | | | |     - Tag 0x0098 (8 bytes, int16u[4] read as undef[8]):
+  | | | |         147a: 00 00 00 00 00 00 00 00                         [........]
+  | | | | + [BinaryData directory, 8 bytes]
+  | | | | | CropLeftMargin = 0
+  | | | | | - Tag 0x0000 (2 bytes, int16u[1]):
+  | | | | |     147a: 00 00                                           [..]
+  | | | | | CropRightMargin = 0
+  | | | | | - Tag 0x0001 (2 bytes, int16u[1]):
+  | | | | |     147c: 00 00                                           [..]
+  | | | | | CropTopMargin = 0
+  | | | | | - Tag 0x0002 (2 bytes, int16u[1]):
+  | | | | |     147e: 00 00                                           [..]
+  | | | | | CropBottomMargin = 0
+  | | | | | - Tag 0x0003 (2 bytes, int16u[1]):
+  | | | | |     1480: 00 00                                           [..]
+  | | | | 22) CustomFunctions2 (SubDirectory) -->
+  | | | |     - Tag 0x0099 (140 bytes, int32u[35] read as undef[140]):
+  | | | |         1482: 8c 00 00 00 02 00 00 00 01 00 00 00 20 00 00 00 [............ ...]
+  | | | |         1492: 02 00 00 00 03 01 00 00 01 00 00 00 00 00 00 00 [................]
+  | | | |         14a2: 08 01 00 00 01 00 00 00 00 00 00 00 04 00 00 00 [................]
+  | | | |         14b2: 5c 00 00 00 03 00 00 00 11 07 00 00 01 00 00 00 [\...............]
+  | | | |         14c2: 00 00 00 00 14 08 00 00 01 00 00 00 00 00 00 00 [................]
+  | | | |         [snip 60 bytes]
+  | | | | + [CanonCustom2 directory with 2 entries, 140 bytes]
+  | | | | + [CanonCustom2 group 1 directory with 2 entries, 32 bytes]
+  | | | | | 0)  ISOExpansion = 0
+  | | | | |     - Tag 0x0103 (4 bytes, int32u[1])
+  | | | | | 1)  SafetyShift = 0
+  | | | | |     - Tag 0x0108 (4 bytes, int32u[1])
+  | | | | + [CanonCustom2 group 4 directory with 3 entries, 92 bytes]
+  | | | | | 0)  ShutterReleaseWithoutLens = 0
+  | | | | |     - Tag 0x0711 (4 bytes, int32u[1])
+  | | | | | 1)  RetractLensOnPowerOff = 0
+  | | | | |     - Tag 0x0814 (4 bytes, int32u[1])
+  | | | | | 2)  CustomControls = 0 19 3 10 23 73 71 61 29 0 7 3 4
+  | | | | |     - Tag 0x070c (52 bytes, int32u[13])
+  | | | | 23) AspectInfo (SubDirectory) -->
+  | | | |     - Tag 0x009a (20 bytes, int32u[5] read as undef[20]):
+  | | | |         150e: 00 00 00 00 70 17 00 00 a0 0f 00 00 00 00 00 00 [....p...........]
+  | | | |         151e: 00 00 00 00                                     [....]
+  | | | | + [BinaryData directory, 20 bytes]
+  | | | | | AspectRatio = 0
+  | | | | | - Tag 0x0000 (4 bytes, int32u[1]):
+  | | | | |     150e: 00 00 00 00                                     [....]
+  | | | | | CroppedImageWidth = 6000
+  | | | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | | | |     1512: 70 17 00 00                                     [p...]
+  | | | | | CroppedImageHeight = 4000
+  | | | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | | | |     1516: a0 0f 00 00                                     [....]
+  | | | | | CroppedImageLeft = 0
+  | | | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | | | |     151a: 00 00 00 00                                     [....]
+  | | | | | CroppedImageTop = 0
+  | | | | | - Tag 0x0004 (4 bytes, int32u[1]):
+  | | | | |     151e: 00 00 00 00                                     [....]
+  | | | | 24) ProcessingInfo (SubDirectory) -->
+  | | | |     - Tag 0x00a0 (36 bytes, int16u[18] read as undef[36]):
+  | | | |         1522: 24 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 [$...............]
+  | | | |         1532: ff ff 50 14 87 00 00 00 00 00 00 00 02 00 04 00 [..P.............]
+  | | | |         1542: 00 00 ff ff                                     [....]
+  | | | | + [BinaryData directory, 36 bytes]
+  | | | | | ToneCurve = 0
+  | | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+  | | | | |     1524: 00 00                                           [..]
+  | | | | | Sharpness = 4
+  | | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+  | | | | |     1526: 04 00                                           [..]
+  | | | | | SharpnessFrequency = 0
+  | | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+  | | | | |     1528: 00 00                                           [..]
+  | | | | | SensorRedLevel = 0
+  | | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+  | | | | |     152a: 00 00                                           [..]
+  | | | | | SensorBlueLevel = 0
+  | | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+  | | | | |     152c: 00 00                                           [..]
+  | | | | | WhiteBalanceRed = 0
+  | | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+  | | | | |     152e: 00 00                                           [..]
+  | | | | | WhiteBalanceBlue = 0
+  | | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+  | | | | |     1530: 00 00                                           [..]
+  | | | | | WhiteBalance = -1
+  | | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+  | | | | |     1532: ff ff                                           [..]
+  | | | | | ColorTemperature = 5200
+  | | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+  | | | | |     1534: 50 14                                           [P.]
+  | | | | | PictureStyle = 135
+  | | | | | - Tag 0x000a (2 bytes, int16s[1]):
+  | | | | |     1536: 87 00                                           [..]
+  | | | | | DigitalGain = 0
+  | | | | | - Tag 0x000b (2 bytes, int16s[1]):
+  | | | | |     1538: 00 00                                           [..]
+  | | | | | WBShiftAB = 0
+  | | | | | - Tag 0x000c (2 bytes, int16s[1]):
+  | | | | |     153a: 00 00                                           [..]
+  | | | | | WBShiftGM = 0
+  | | | | | - Tag 0x000d (2 bytes, int16s[1]):
+  | | | | |     153c: 00 00                                           [..]
+  | | | | 25) MeasuredColor (SubDirectory) -->
+  | | | |     - Tag 0x00aa (12 bytes, int16u[6] read as undef[12]):
+  | | | |         1546: 0c 00 70 04 00 04 00 04 f9 01 01 00             [..p.........]
+  | | | | + [BinaryData directory, 12 bytes]
+  | | | | | MeasuredRGGB = 1136 1024 1024 505
+  | | | | | - Tag 0x0001 (8 bytes, int16u[4]):
+  | | | | |     1548: 70 04 00 04 00 04 f9 01                         [p.......]
+  | | | | 26) ColorSpace = 1
+  | | | |     - Tag 0x00b4 (2 bytes, int16u[1]):
+  | | | |         0822: 01 00                                           [..]
+  | | | | 27) VRDOffset = 0
+  | | | |     - Tag 0x00d0 (4 bytes, int32u[1]):
+  | | | |         082e: 00 00 00 00                                     [....]
+  | | | | 28) SensorInfo (SubDirectory) -->
+  | | | |     - Tag 0x00e0 (34 bytes, int16u[17] read as undef[34]):
+  | | | |         1552: 22 00 90 18 d8 0f 01 00 01 00 14 01 30 00 83 18 ["...........0...]
+  | | | |         1562: cf 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         1572: 00 00                                           [..]
+  | | | | + [BinaryData directory, 34 bytes]
+  | | | | | SensorWidth = 6288
+  | | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+  | | | | |     1554: 90 18                                           [..]
+  | | | | | SensorHeight = 4056
+  | | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+  | | | | |     1556: d8 0f                                           [..]
+  | | | | | SensorLeftBorder = 276
+  | | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+  | | | | |     155c: 14 01                                           [..]
+  | | | | | SensorTopBorder = 48
+  | | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+  | | | | |     155e: 30 00                                           [0.]
+  | | | | | SensorRightBorder = 6275
+  | | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+  | | | | |     1560: 83 18                                           [..]
+  | | | | | SensorBottomBorder = 4047
+  | | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+  | | | | |     1562: cf 0f                                           [..]
+  | | | | | BlackMaskLeftBorder = 0
+  | | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+  | | | | |     1564: 00 00                                           [..]
+  | | | | | BlackMaskTopBorder = 0
+  | | | | | - Tag 0x000a (2 bytes, int16s[1]):
+  | | | | |     1566: 00 00                                           [..]
+  | | | | | BlackMaskRightBorder = 0
+  | | | | | - Tag 0x000b (2 bytes, int16s[1]):
+  | | | | |     1568: 00 00                                           [..]
+  | | | | | BlackMaskBottomBorder = 0
+  | | | | | - Tag 0x000c (2 bytes, int16s[1]):
+  | | | | |     156a: 00 00                                           [..]
+  | | | | 29) PictureStyleUserDef = 135 135 135
+  | | | |     - Tag 0x4008 (6 bytes, int16u[3]):
+  | | | |         1574: 87 00 87 00 87 00                               [......]
+  | | | | 30) PictureStylePC = 0 0 0
+  | | | |     - Tag 0x4009 (6 bytes, int16u[3]):
+  | | | |         157a: 00 00 00 00 00 00                               [......]
+  | | | | 31) CustomPictureStyleFileName = 
+  | | | |     - Tag 0x4010 (32 bytes, string[32]):
+  | | | |         1580: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         1590: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | 32) Canon_0x4011 = 
+  | | | |     - Tag 0x4011 (252 bytes, undef[252]):
+  | | | |         15a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         15b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         15c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         15d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         15e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         [snip 172 bytes]
+  | | | | 33) Canon_0x4012 = 
+  | | | |     - Tag 0x4012 (32 bytes, string[32]):
+  | | | |         169c: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         16ac: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | 34) AFMicroAdj (SubDirectory) -->
+  | | | |     - Tag 0x4013 (44 bytes, int32u[11] read as undef[44]):
+  | | | |         16bc: 2c 00 00 00 00 00 00 00 00 00 00 00 0a 00 00 00 [,...............]
+  | | | |         16cc: ff ff ff ff 00 00 00 00 0a 00 00 00 00 00 00 00 [................]
+  | | | |         16dc: 0a 00 00 00 00 00 00 00 0a 00 00 00             [............]
+  | | | | + [BinaryData directory, 44 bytes]
+  | | | | | AFMicroAdjMode = 0
+  | | | | | - Tag 0x0001 (4 bytes, int32s[1]):
+  | | | | |     16c0: 00 00 00 00                                     [....]
+  | | | | | AFMicroAdjValue = 0
+  | | | | | - Tag 0x0002 (8 bytes, rational64s[1]):
+  | | | | |     16c4: 00 00 00 00 0a 00 00 00                         [........]
+  | | | | 35) VignettingCorr2 (SubDirectory) -->
+  | | | |     - Tag 0x4016 (40 bytes, int32u[10] read as undef[40]):
+  | | | |         16e8: 28 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 [(...............]
+  | | | |         16f8: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 [................]
+  | | | |         1708: 01 00 00 00 00 00 00 00                         [........]
+  | | | | + [BinaryData directory, 40 bytes]
+  | | | | | PeripheralLightingSetting = 1
+  | | | | | - Tag 0x0005 (4 bytes, int32s[1]):
+  | | | | |     16fc: 01 00 00 00                                     [....]
+  | | | | | ChromaticAberrationSetting = 1
+  | | | | | - Tag 0x0006 (4 bytes, int32s[1]):
+  | | | | |     1700: 01 00 00 00                                     [....]
+  | | | | 36) LightingOpt (SubDirectory) -->
+  | | | |     - Tag 0x4018 (52 bytes, int32u[13] read as undef[52]):
+  | | | |         1710: 34 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [4...............]
+  | | | |         1720: 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 [................]
+  | | | |         1730: 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         1740: 01 00 00 00                                     [....]
+  | | | | + [BinaryData directory, 52 bytes]
+  | | | | | PeripheralIlluminationCorr = 0
+  | | | | | - Tag 0x0001 (4 bytes, int32s[1]):
+  | | | | |     1714: 00 00 00 00                                     [....]
+  | | | | | AutoLightingOptimizer = 0
+  | | | | | - Tag 0x0002 (4 bytes, int32s[1]):
+  | | | | |     1718: 00 00 00 00                                     [....]
+  | | | | | HighlightTonePriority = 0
+  | | | | | - Tag 0x0003 (4 bytes, int32s[1]):
+  | | | | |     171c: 00 00 00 00                                     [....]
+  | | | | | LongExposureNoiseReduction = 0
+  | | | | | - Tag 0x0004 (4 bytes, int32s[1]):
+  | | | | |     1720: 00 00 00 00                                     [....]
+  | | | | | HighISONoiseReduction = 0
+  | | | | | - Tag 0x0005 (4 bytes, int32s[1]):
+  | | | | |     1724: 00 00 00 00                                     [....]
+  | | | | 37) LensInfo (SubDirectory) -->
+  | | | |     - Tag 0x4019 (30 bytes, undef[30]):
+  | | | |         1744: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         1754: 00 00 00 00 00 00 00 00 00 00 00 00 00 00       [..............]
+  | | | | + [BinaryData directory, 30 bytes]
+  | | | | | LensSerialNumber = 
+  | | | | | - Tag 0x0000 (5 bytes, undef[5]):
+  | | | | |     1744: 00 00 00 00 00                                  [.....]
+  | | | | 38) AmbienceInfo (SubDirectory) -->
+  | | | |     - Tag 0x4020 (32 bytes, int32u[8] read as undef[32]):
+  | | | |         1762: 20 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [ ...............]
+  | | | |         1772: ff ff ff 7f 00 00 00 00 01 00 00 00 01 00 00 00 [................]
+  | | | | + [BinaryData directory, 32 bytes]
+  | | | | | AmbienceSelection = 0
+  | | | | | - Tag 0x0001 (4 bytes, int32s[1]):
+  | | | | |     1766: 00 00 00 00                                     [....]
+  | | | | 39) FilterInfo (SubDirectory) -->
+  | | | |     - Tag 0x4024 (212 bytes, int32u[53] read as undef[212]):
+  | | | |         1782: d4 00 00 00 07 00 00 00 01 00 00 00 14 00 00 00 [................]
+  | | | |         1792: 01 00 00 00 01 01 00 00 01 00 00 00 ff ff ff ff [................]
+  | | | |         17a2: 02 00 00 00 14 00 00 00 01 00 00 00 01 02 00 00 [................]
+  | | | |         17b2: 01 00 00 00 ff ff ff ff 03 00 00 00 14 00 00 00 [................]
+  | | | |         17c2: 01 00 00 00 01 03 00 00 01 00 00 00 ff ff ff ff [................]
+  | | | |         [snip 132 bytes]
+  | | | | + [Creative Filter directory with 7 entries]
+  | | | | + [Filter 1 directory with 1 entries, 20 bytes]
+  | | | | | GrainyBWFilter = -1
+  | | | | | - Tag 0x0101 (4 bytes):
+  | | | | |     10c6: ff ff ff ff                                     [....]
+  | | | | + [Filter 2 directory with 1 entries, 20 bytes]
+  | | | | | SoftFocusFilter = -1
+  | | | | | - Tag 0x0201 (4 bytes):
+  | | | | |     10de: ff ff ff ff                                     [....]
+  | | | | + [Filter 3 directory with 1 entries, 20 bytes]
+  | | | | | ToyCameraFilter = -1
+  | | | | | - Tag 0x0301 (4 bytes):
+  | | | | |     10f6: ff ff ff ff                                     [....]
+  | | | | + [Filter 4 directory with 4 entries, 56 bytes]
+  | | | | | MiniatureFilter = -1
+  | | | | | - Tag 0x0401 (4 bytes):
+  | | | | |     110e: ff ff ff ff                                     [....]
+  | | | | | MiniatureFilterOrientation = 0
+  | | | | | - Tag 0x0402 (4 bytes):
+  | | | | |     111a: 00 00 00 00                                     [....]
+  | | | | | MiniatureFilterPosition = 0
+  | | | | | - Tag 0x0403 (4 bytes):
+  | | | | |     1126: 00 00 00 00                                     [....]
+  | | | | | MiniatureFilterParameter = 0
+  | | | | | - Tag 0x0404 (4 bytes):
+  | | | | |     1132: 00 00 00 00                                     [....]
+  | | | | + [Filter 5 directory with 1 entries, 20 bytes]
+  | | | | | FisheyeFilter = -1
+  | | | | | - Tag 0x0501 (4 bytes):
+  | | | | |     114a: ff ff ff ff                                     [....]
+  | | | | + [Filter 6 directory with 1 entries, 20 bytes]
+  | | | | | PaintingFilter = -1
+  | | | | | - Tag 0x0601 (4 bytes):
+  | | | | |     1162: ff ff ff ff                                     [....]
+  | | | | + [Filter 7 directory with 1 entries, 20 bytes]
+  | | | | | WatercolorFilter = -1
+  | | | | | - Tag 0x0701 (4 bytes):
+  | | | | |     117a: ff ff ff ff                                     [....]
+  | | | | 40) HDRInfo (SubDirectory) -->
+  | | | |     - Tag 0x4025 (36 bytes, int32u[9] read as undef[36]):
+  | | | |         1856: 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [$...............]
+  | | | |         1866: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |         1876: 00 00 00 00                                     [....]
+  | | | | + [BinaryData directory, 36 bytes]
+  | | | | | HDR = 0
+  | | | | | - Tag 0x0001 (4 bytes, int32s[1]):
+  | | | | |     185a: 00 00 00 00                                     [....]
+  | | | | | HDREffect = 0
+  | | | | | - Tag 0x0002 (4 bytes, int32s[1]):
+  | | | | |     185e: 00 00 00 00                                     [....]
+  | | | | 41) Canon_0x4027 = 24 393984 872415232 0 13684944 131072
+  | | | |     - Tag 0x4027 (24 bytes, int32u[6]):
+  | | | |         187a: 18 00 00 00 00 03 06 00 00 00 00 34 00 00 00 00 [...........4....]
+  | | | |         188a: d0 d0 d0 00 00 00 02 00                         [........]
+  | | | | 42) Canon_0x402c = 8 0
+  | | | |     - Tag 0x402c (8 bytes, int32u[2]):
+  | | | |         1892: 08 00 00 00 00 00 00 00                         [........]
+  | | | | 43) Canon_0x4035 = 8.5...@.q.........f.L.....4.A.....]...K...q...o.;.M./.....[snip]
+  | | | |     - Tag 0x4035 (556 bytes, undef[556]):
+  | | | |         189a: 38 0c 35 0b fb 0a 40 0a 71 07 86 04 1c 03 90 02 [8.5...@.q.......]
+  | | | |         18aa: e0 01 66 01 4c 11 9f 10 91 0e 34 0b 41 06 e8 02 [..f.L.....4.A...]
+  | | | |         18ba: c3 01 5d 01 14 01 4b 01 a6 15 71 14 ae 10 6f 0b [..]...K...q...o.]
+  | | | |         18ca: 3b 05 4d 02 2f 01 d3 00 b7 00 0e 01 8e 04 bd 04 [;.M./...........]
+  | | | |         18da: a1 04 9a 04 02 0a 0f 17 f7 23 9a 2e 21 29 c1 1f [.........#..!)..]
+  | | | |         [snip 476 bytes]
+  | | | | 44) Canon_0x4037 = .........@.
+  | | | |     - Tag 0x4037 (24 bytes, undef[24]):
+  | | | |         1ac6: 80 02 aa 01 00 00 00 00 02 00 00 00 09 02 13 01 [................]
+  | | | |         1ad6: 40 00 00 00 0a 00 00 00                         [@.......]
+  | | | | 45) Canon_0x4039 = 103 127 47 226 107 245 213 225 182 12 162 178 240 81 160 41
+  | | | |     - Tag 0x4039 (16 bytes, int8u[16]):
+  | | | |         1ade: 67 7f 2f e2 6b f5 d5 e1 b6 0c a2 b2 f0 51 a0 29 [g./.k........Q.)]
+  | | | | 46) Canon_0x403c = 12 1 24
+  | | | |     - Tag 0x403c (12 bytes, int32u[3]):
+  | | | |         1aee: 0c 00 00 00 01 00 00 00 18 00 00 00             [............]
+  | | CMT4 (SubDirectory) -->
+  | | - Tag 'CMT4' (1808 bytes):
+  | |     1b10: 49 49 2a 00 08 00 00 00 01 00 00 00 01 00 04 00 [II*.............]
+  | |     1b20: 00 00 02 03 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | |     1b30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | |     1b40: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | |     1b50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | |     [snip 1728 bytes]
+  | | + [TIFF directory]
+  | | | + [Canon directory with 1 entries]
+  | | | | 0)  Canon_UnknownIFD_0x0000 = 2 3 0 0
+  | | | |     - Tag 0x0000 (4 bytes, int8u[4]):
+  | | | |         1b22: 02 03 00 00                                     [....]
+  | | ThumbnailImage = .xH.............................................................[snip]
+  | | - Tag 'THMB' (18696 bytes):
+  | |     2228: 00 00 00 00 00 a0 00 78 00 00 48 f4 00 01 00 00 [.......x..H.....]
+  | |     2238: ff d8 ff db 00 84 00 01 01 01 01 01 01 01 01 01 [................]
+  | |     2248: 01 01 01 01 01 01 02 01 01 01 01 01 02 02 02 02 [................]
+  | |     2258: 02 03 03 03 03 03 03 03 03 03 04 04 04 03 03 04 [................]
+  | |     2268: 03 03 03 04 05 04 04 05 05 05 05 05 03 04 05 06 [................]
+  | |     [snip 18616 bytes]
+  | MovieHeader (SubDirectory) -->
+  | - Tag 'mvhd' (100 bytes):
+  |     6b38: 00 00 00 00 d6 b3 10 7c d6 b3 10 7c 00 00 00 01 [.......|...|....]
+  |     6b48: 00 00 00 01 00 01 00 00 01 00 00 00 00 00 00 00 [................]
+  |     6b58: 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 [................]
+  |     6b68: 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 [................]
+  |     6b78: 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00 [....@...........]
+  |     [snip 20 bytes]
+  | + [BinaryData directory, 100 bytes]
+  | | MovieHeaderVersion = 0
+  | | - Tag 0x0000 (1 bytes, int8u[1]):
+  | |     6b38: 00                                              [.]
+  | | CreateDate = 3602059388
+  | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | |     6b3c: d6 b3 10 7c                                     [...|]
+  | | ModifyDate = 3602059388
+  | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | |     6b40: d6 b3 10 7c                                     [...|]
+  | | TimeScale = 1
+  | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | |     6b44: 00 00 00 01                                     [....]
+  | | Duration = 1
+  | | - Tag 0x0004 (4 bytes, int32u[1]):
+  | |     6b48: 00 00 00 01                                     [....]
+  | | PreferredRate = 65536
+  | | - Tag 0x0005 (4 bytes, int32u[1]):
+  | |     6b4c: 00 01 00 00                                     [....]
+  | | PreferredVolume = 256
+  | | - Tag 0x0006 (2 bytes, int16u[1]):
+  | |     6b50: 01 00                                           [..]
+  | | MatrixStructure = 1 0 0 0 1 0 0 0 16384
+  | | - Tag 0x0009 (36 bytes, fixed32s[9]):
+  | |     6b5c: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | |     6b6c: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | |     6b7c: 40 00 00 00                                     [@...]
+  | | PreviewTime = 0
+  | | - Tag 0x0012 (4 bytes, int32u[1]):
+  | |     6b80: 00 00 00 00                                     [....]
+  | | PreviewDuration = 0
+  | | - Tag 0x0013 (4 bytes, int32u[1]):
+  | |     6b84: 00 00 00 00                                     [....]
+  | | PosterTime = 0
+  | | - Tag 0x0014 (4 bytes, int32u[1]):
+  | |     6b88: 00 00 00 00                                     [....]
+  | | SelectionTime = 0
+  | | - Tag 0x0015 (4 bytes, int32u[1]):
+  | |     6b8c: 00 00 00 00                                     [....]
+  | | SelectionDuration = 0
+  | | - Tag 0x0016 (4 bytes, int32u[1]):
+  | |     6b90: 00 00 00 00                                     [....]
+  | | CurrentTime = 0
+  | | - Tag 0x0017 (4 bytes, int32u[1]):
+  | |     6b94: 00 00 00 00                                     [....]
+  | | NextTrackID = 5
+  | | - Tag 0x0018 (4 bytes, int32u[1]):
+  | |     6b98: 00 00 00 05                                     [....]
+  | Track (SubDirectory) -->
+  | - Tag 'trak' (476 bytes):
+  |     6ba4: 00 00 00 5c 74 6b 68 64 00 00 00 07 d6 b3 10 7c [...\tkhd.......|]
+  |     6bb4: d6 b3 10 7c 00 00 00 01 00 00 00 00 00 00 00 01 [...|............]
+  |     6bc4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     6bd4: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     6be4: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     [snip 396 bytes]
+  | + [Track directory]
+  | | TrackHeader (SubDirectory) -->
+  | | - Tag 'tkhd' (84 bytes):
+  | |     6bac: 00 00 00 07 d6 b3 10 7c d6 b3 10 7c 00 00 00 01 [.......|...|....]
+  | |     6bbc: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 [................]
+  | |     6bcc: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     6bdc: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     6bec: 00 00 00 00 00 00 00 00 40 00 00 00 17 70 00 00 [........@....p..]
+  | |     6bfc: 0f a0 00 00                                     [....]
+  | | + [BinaryData directory, 84 bytes]
+  | | | TrackHeaderVersion = 0
+  | | | - Tag 0x0000 (1 bytes, int8u[1]):
+  | | |     6bac: 00                                              [.]
+  | | | TrackCreateDate = 3602059388
+  | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | |     6bb0: d6 b3 10 7c                                     [...|]
+  | | | TrackModifyDate = 3602059388
+  | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | |     6bb4: d6 b3 10 7c                                     [...|]
+  | | | TrackID = 1
+  | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | |     6bb8: 00 00 00 01                                     [....]
+  | | | TrackDuration = 1
+  | | | - Tag 0x0005 (4 bytes, int32u[1]):
+  | | |     6bc0: 00 00 00 01                                     [....]
+  | | | TrackLayer = 0
+  | | | - Tag 0x0008 (2 bytes, int16u[1]):
+  | | |     6bcc: 00 00                                           [..]
+  | | | TrackVolume = 0
+  | | | - Tag 0x0009 (2 bytes, int16u[1]):
+  | | |     6bd0: 00 00                                           [..]
+  | | | MatrixStructure = 1 0 0 0 1 0 0 0 16384
+  | | | - Tag 0x000a (36 bytes, fixed32s[9]):
+  | | |     6bd4: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     6be4: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     6bf4: 40 00 00 00                                     [@...]
+  | | | ImageWidth = 393216000
+  | | | - Tag 0x0013 (4 bytes, int32u[1]):
+  | | |     6bf8: 17 70 00 00                                     [.p..]
+  | | | ImageHeight = 262144000
+  | | | - Tag 0x0014 (4 bytes, int32u[1]):
+  | | |     6bfc: 0f a0 00 00                                     [....]
+  | | Media (SubDirectory) -->
+  | | - Tag 'mdia' (376 bytes):
+  | |     6c08: 00 00 00 20 6d 64 68 64 00 00 00 00 d6 b3 10 7c [... mdhd.......|]
+  | |     6c18: d6 b3 10 7c 00 00 00 01 00 00 00 01 15 c7 00 00 [...|............]
+  | |     6c28: 00 00 00 21 68 64 6c 72 00 00 00 00 00 00 00 00 [...!hdlr........]
+  | |     6c38: 76 69 64 65 00 00 00 00 00 00 00 00 00 00 00 00 [vide............]
+  | |     6c48: 00 00 00 01 37 6d 69 6e 66 00 00 00 14 76 6d 68 [....7minf....vmh]
+  | |     [snip 296 bytes]
+  | | + [Media directory]
+  | | | MediaHeader (SubDirectory) -->
+  | | | - Tag 'mdhd' (24 bytes):
+  | | |     6c10: 00 00 00 00 d6 b3 10 7c d6 b3 10 7c 00 00 00 01 [.......|...|....]
+  | | |     6c20: 00 00 00 01 15 c7 00 00                         [........]
+  | | | + [BinaryData directory, 24 bytes]
+  | | | | MediaHeaderVersion = 0
+  | | | | - Tag 0x0000 (4 bytes, int32u[1]):
+  | | | |     6c10: 00 00 00 00                                     [....]
+  | | | | MediaCreateDate = 3602059388
+  | | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | | |     6c14: d6 b3 10 7c                                     [...|]
+  | | | | MediaModifyDate = 3602059388
+  | | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | | |     6c18: d6 b3 10 7c                                     [...|]
+  | | | | MediaTimeScale = 1
+  | | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | | |     6c1c: 00 00 00 01                                     [....]
+  | | | | MediaDuration = 1
+  | | | | - Tag 0x0004 (4 bytes, int32u[1]):
+  | | | |     6c20: 00 00 00 01                                     [....]
+  | | | | MediaLanguageCode = 5575
+  | | | | - Tag 0x0005 (2 bytes, int16u[1]):
+  | | | |     6c24: 15 c7                                           [..]
+  | | | Handler (SubDirectory) -->
+  | | | - Tag 'hdlr' (25 bytes):
+  | | |     6c30: 00 00 00 00 00 00 00 00 76 69 64 65 00 00 00 00 [........vide....]
+  | | |     6c40: 00 00 00 00 00 00 00 00 00                      [.........]
+  | | | + [BinaryData directory, 25 bytes]
+  | | | | HandlerClass = 
+  | | | | - Tag 0x0004 (4 bytes, undef[4]):
+  | | | |     6c34: 00 00 00 00                                     [....]
+  | | | | HandlerType = vide
+  | | | | - Tag 0x0008 (4 bytes, undef[4]):
+  | | | |     6c38: 76 69 64 65                                     [vide]
+  | | | | HandlerVendorID = 
+  | | | | - Tag 0x000c (4 bytes, undef[4]):
+  | | | |     6c3c: 00 00 00 00                                     [....]
+  | | | | HandlerDescription = 
+  | | | | - Tag 0x0018 (1 bytes, string[1]):
+  | | | |     6c48: 00                                              [.]
+  | | | MediaInfo (SubDirectory) -->
+  | | | - Tag 'minf' (303 bytes):
+  | | |     6c51: 00 00 00 14 76 6d 68 64 00 00 00 01 00 00 00 00 [....vmhd........]
+  | | |     6c61: 00 00 00 00 00 00 00 24 64 69 6e 66 00 00 00 1c [.......$dinf....]
+  | | |     6c71: 64 72 65 66 00 00 00 00 00 00 00 01 00 00 00 0c [dref............]
+  | | |     6c81: 75 72 6c 20 00 00 00 01 00 00 00 f7 73 74 62 6c [url ........stbl]
+  | | |     6c91: 00 00 00 80 73 74 73 64 00 00 00 00 00 00 00 01 [....stsd........]
+  | | |     [snip 223 bytes]
+  | | | + [MediaInfo directory]
+  | | | | VideoHeader (SubDirectory) -->
+  | | | | - Tag 'vmhd' (12 bytes):
+  | | | |     6c59: 00 00 00 01 00 00 00 00 00 00 00 00             [............]
+  | | | | + [BinaryData directory, 12 bytes]
+  | | | | | GraphicsMode = 0
+  | | | | | - Tag 0x0002 (2 bytes, int16u[1]):
+  | | | | |     6c5d: 00 00                                           [..]
+  | | | | | OpColor = 0 0 0
+  | | | | | - Tag 0x0003 (6 bytes, int16u[3]):
+  | | | | |     6c5f: 00 00 00 00 00 00                               [......]
+  | | | | DataInfo (SubDirectory) -->
+  | | | | - Tag 'dinf' (28 bytes):
+  | | | |     6c6d: 00 00 00 1c 64 72 65 66 00 00 00 00 00 00 00 01 [....dref........]
+  | | | |     6c7d: 00 00 00 0c 75 72 6c 20 00 00 00 01             [....url ....]
+  | | | | + [DataInfo directory]
+  | | | | | DataRef (SubDirectory) -->
+  | | | | | - Tag 'dref' (20 bytes):
+  | | | | |     6c75: 00 00 00 00 00 00 00 01 00 00 00 0c 75 72 6c 20 [............url ]
+  | | | | |     6c85: 00 00 00 01                                     [....]
+  | | | | | + [DataRef directory]
+  | | | | | | URL = .
+  | | | | | | - Tag 'url ' (4 bytes, undef):
+  | | | | | |     6c85: 00 00 00 01                                     [....]
+  | | | | SampleTable (SubDirectory) -->
+  | | | | - Tag 'stbl' (239 bytes):
+  | | | |     6c91: 00 00 00 80 73 74 73 64 00 00 00 00 00 00 00 01 [....stsd........]
+  | | | |     6ca1: 00 00 00 70 43 52 41 57 00 00 00 00 00 00 00 01 [...pCRAW........]
+  | | | |     6cb1: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |     6cc1: 17 70 0f a0 00 48 00 00 00 48 00 00 00 00 00 00 [.p...H...H......]
+  | | | |     6cd1: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |     [snip 159 bytes]
+  | | | | + [SampleTable directory]
+  | | | | | VideoSampleDesc (SubDirectory) -->
+  | | | | | - Tag 'stsd' (120 bytes):
+  | | | | |     6c99: 00 00 00 00 00 00 00 01 00 00 00 70 43 52 41 57 [...........pCRAW]
+  | | | | |     6ca9: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 [................]
+  | | | | |     6cb9: 00 00 00 00 00 00 00 00 17 70 0f a0 00 48 00 00 [.........p...H..]
+  | | | | |     6cc9: 00 48 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [.H..............]
+  | | | | |     6cd9: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | |     [snip 40 bytes]
+  | | | | | + [BinaryData directory, 98 bytes]
+  | | | | | | CompressorID = CRAW
+  | | | | | | - Tag 0x0002 (4 bytes, string[4]):
+  | | | | | |     6ca5: 43 52 41 57                                     [CRAW]
+  | | | | | | VendorID = 
+  | | | | | | - Tag 0x000a (4 bytes, string[4]):
+  | | | | | |     6cb5: 00 00 00 00                                     [....]
+  | | | | | | SourceImageWidth = 6000
+  | | | | | | - Tag 0x0010 (2 bytes, int16u[1]):
+  | | | | | |     6cc1: 17 70                                           [.p]
+  | | | | | | SourceImageHeight = 4000
+  | | | | | | - Tag 0x0011 (2 bytes, int16u[1]):
+  | | | | | |     6cc3: 0f a0                                           [..]
+  | | | | | | XResolution = 72
+  | | | | | | - Tag 0x0012 (4 bytes, fixed32u[1]):
+  | | | | | |     6cc5: 00 48 00 00                                     [.H..]
+  | | | | | | YResolution = 72
+  | | | | | | - Tag 0x0014 (4 bytes, fixed32u[1]):
+  | | | | | |     6cc9: 00 48 00 00                                     [.H..]
+  | | | | | | CompressorName = 
+  | | | | | | - Tag 0x0019 (32 bytes, string[32]):
+  | | | | | |     6cd3: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | | |     6ce3: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | | | BitDepth = 24
+  | | | | | | - Tag 0x0029 (2 bytes, int16u[1]):
+  | | | | | |     6cf3: 00 18                                           [..]
+  | | | | | + [VideoSampleDesc directory]
+  | | | | | | Unknown_JPEG = 
+  | | | | | | - Tag 'JPEG' (4 bytes):
+  | | | | | |     6d03: 00 00 00 00                                     [....]
+  | | | | | | Unknown_free = 
+  | | | | | | - Tag 'free' (2 bytes):
+  | | | | | |     6d0f: 00 00                                           [..]
+  | | | | | VideoFrameRate = ...
+  | | | | | - Tag 'stts' (16 bytes, undef):
+  | | | | |     6d19: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | | SampleToChunk = ....
+  | | | | | - Tag 'stsc' (20 bytes):
+  | | | | |     6d31: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | |     6d41: 00 00 00 01                                     [....]
+  | | | | | SampleSizes = B...
+  | | | | | - Tag 'stsz' (12 bytes):
+  | | | | |     6d4d: 00 00 00 00 00 42 9c 16 00 00 00 01             [.....B......]
+  | | | | | Unknown_free = 
+  | | | | | - Tag 'free' (7 bytes):
+  | | | | |     6d61: 00 00 00 00 00 00 00                            [.......]
+  | | | | | ChunkOffset64 = ..Q.
+  | | | | | - Tag 'co64' (16 bytes):
+  | | | | |     6d70: 00 00 00 00 00 00 00 01 00 00 00 00 00 09 51 d5 [..............Q.]
+  | Track (SubDirectory) -->
+  | - Tag 'trak' (576 bytes):
+  |     6d88: 00 00 00 5c 74 6b 68 64 00 00 00 07 d6 b3 10 7c [...\tkhd.......|]
+  |     6d98: d6 b3 10 7c 00 00 00 02 00 00 00 00 00 00 00 01 [...|............]
+  |     6da8: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     6db8: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     6dc8: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     [snip 496 bytes]
+  | + [Track directory]
+  | | TrackHeader (SubDirectory) -->
+  | | - Tag 'tkhd' (84 bytes):
+  | |     6d90: 00 00 00 07 d6 b3 10 7c d6 b3 10 7c 00 00 00 02 [.......|...|....]
+  | |     6da0: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 [................]
+  | |     6db0: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     6dc0: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     6dd0: 00 00 00 00 00 00 00 00 40 00 00 00 06 58 00 00 [........@....X..]
+  | |     6de0: 04 38 00 00                                     [.8..]
+  | | + [BinaryData directory, 84 bytes]
+  | | | TrackHeaderVersion = 0
+  | | | - Tag 0x0000 (1 bytes, int8u[1]):
+  | | |     6d90: 00                                              [.]
+  | | | TrackCreateDate = 3602059388
+  | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | |     6d94: d6 b3 10 7c                                     [...|]
+  | | | TrackModifyDate = 3602059388
+  | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | |     6d98: d6 b3 10 7c                                     [...|]
+  | | | TrackID = 2
+  | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | |     6d9c: 00 00 00 02                                     [....]
+  | | | TrackDuration = 1
+  | | | - Tag 0x0005 (4 bytes, int32u[1]):
+  | | |     6da4: 00 00 00 01                                     [....]
+  | | | TrackLayer = 0
+  | | | - Tag 0x0008 (2 bytes, int16u[1]):
+  | | |     6db0: 00 00                                           [..]
+  | | | TrackVolume = 0
+  | | | - Tag 0x0009 (2 bytes, int16u[1]):
+  | | |     6db4: 00 00                                           [..]
+  | | | MatrixStructure = 1 0 0 0 1 0 0 0 16384
+  | | | - Tag 0x000a (36 bytes, fixed32s[9]):
+  | | |     6db8: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     6dc8: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     6dd8: 40 00 00 00                                     [@...]
+  | | | ImageWidth = 106430464
+  | | | - Tag 0x0013 (4 bytes, int32u[1]):
+  | | |     6ddc: 06 58 00 00                                     [.X..]
+  | | | ImageHeight = 70778880
+  | | | - Tag 0x0014 (4 bytes, int32u[1]):
+  | | |     6de0: 04 38 00 00                                     [.8..]
+  | | Media (SubDirectory) -->
+  | | - Tag 'mdia' (476 bytes):
+  | |     6dec: 00 00 00 20 6d 64 68 64 00 00 00 00 d6 b3 10 7c [... mdhd.......|]
+  | |     6dfc: d6 b3 10 7c 00 00 00 01 00 00 00 01 15 c7 00 00 [...|............]
+  | |     6e0c: 00 00 00 21 68 64 6c 72 00 00 00 00 00 00 00 00 [...!hdlr........]
+  | |     6e1c: 76 69 64 65 00 00 00 00 00 00 00 00 00 00 00 00 [vide............]
+  | |     6e2c: 00 00 00 01 9b 6d 69 6e 66 00 00 00 14 76 6d 68 [.....minf....vmh]
+  | |     [snip 396 bytes]
+  | | + [Media directory]
+  | | | MediaHeader (SubDirectory) -->
+  | | | - Tag 'mdhd' (24 bytes):
+  | | |     6df4: 00 00 00 00 d6 b3 10 7c d6 b3 10 7c 00 00 00 01 [.......|...|....]
+  | | |     6e04: 00 00 00 01 15 c7 00 00                         [........]
+  | | | + [BinaryData directory, 24 bytes]
+  | | | | MediaHeaderVersion = 0
+  | | | | - Tag 0x0000 (4 bytes, int32u[1]):
+  | | | |     6df4: 00 00 00 00                                     [....]
+  | | | | MediaCreateDate = 3602059388
+  | | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | | |     6df8: d6 b3 10 7c                                     [...|]
+  | | | | MediaModifyDate = 3602059388
+  | | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | | |     6dfc: d6 b3 10 7c                                     [...|]
+  | | | | MediaTimeScale = 1
+  | | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | | |     6e00: 00 00 00 01                                     [....]
+  | | | | MediaDuration = 1
+  | | | | - Tag 0x0004 (4 bytes, int32u[1]):
+  | | | |     6e04: 00 00 00 01                                     [....]
+  | | | | MediaLanguageCode = 5575
+  | | | | - Tag 0x0005 (2 bytes, int16u[1]):
+  | | | |     6e08: 15 c7                                           [..]
+  | | | Handler (SubDirectory) -->
+  | | | - Tag 'hdlr' (25 bytes):
+  | | |     6e14: 00 00 00 00 00 00 00 00 76 69 64 65 00 00 00 00 [........vide....]
+  | | |     6e24: 00 00 00 00 00 00 00 00 00                      [.........]
+  | | | + [BinaryData directory, 25 bytes]
+  | | | | HandlerClass = 
+  | | | | - Tag 0x0004 (4 bytes, undef[4]):
+  | | | |     6e18: 00 00 00 00                                     [....]
+  | | | | HandlerType = vide
+  | | | | - Tag 0x0008 (4 bytes, undef[4]):
+  | | | |     6e1c: 76 69 64 65                                     [vide]
+  | | | | HandlerVendorID = 
+  | | | | - Tag 0x000c (4 bytes, undef[4]):
+  | | | |     6e20: 00 00 00 00                                     [....]
+  | | | | HandlerDescription = 
+  | | | | - Tag 0x0018 (1 bytes, string[1]):
+  | | | |     6e2c: 00                                              [.]
+  | | | MediaInfo (SubDirectory) -->
+  | | | - Tag 'minf' (403 bytes):
+  | | |     6e35: 00 00 00 14 76 6d 68 64 00 00 00 01 00 00 00 00 [....vmhd........]
+  | | |     6e45: 00 00 00 00 00 00 00 24 64 69 6e 66 00 00 00 1c [.......$dinf....]
+  | | |     6e55: 64 72 65 66 00 00 00 00 00 00 00 01 00 00 00 0c [dref............]
+  | | |     6e65: 75 72 6c 20 00 00 00 01 00 00 01 5b 73 74 62 6c [url .......[stbl]
+  | | |     6e75: 00 00 00 e4 73 74 73 64 00 00 00 00 00 00 00 01 [....stsd........]
+  | | |     [snip 323 bytes]
+  | | | + [MediaInfo directory]
+  | | | | VideoHeader (SubDirectory) -->
+  | | | | - Tag 'vmhd' (12 bytes):
+  | | | |     6e3d: 00 00 00 01 00 00 00 00 00 00 00 00             [............]
+  | | | | + [BinaryData directory, 12 bytes]
+  | | | | | GraphicsMode = 0
+  | | | | | - Tag 0x0002 (2 bytes, int16u[1]):
+  | | | | |     6e41: 00 00                                           [..]
+  | | | | | OpColor = 0 0 0
+  | | | | | - Tag 0x0003 (6 bytes, int16u[3]):
+  | | | | |     6e43: 00 00 00 00 00 00                               [......]
+  | | | | DataInfo (SubDirectory) -->
+  | | | | - Tag 'dinf' (28 bytes):
+  | | | |     6e51: 00 00 00 1c 64 72 65 66 00 00 00 00 00 00 00 01 [....dref........]
+  | | | |     6e61: 00 00 00 0c 75 72 6c 20 00 00 00 01             [....url ....]
+  | | | | + [DataInfo directory]
+  | | | | | DataRef (SubDirectory) -->
+  | | | | | - Tag 'dref' (20 bytes):
+  | | | | |     6e59: 00 00 00 00 00 00 00 01 00 00 00 0c 75 72 6c 20 [............url ]
+  | | | | |     6e69: 00 00 00 01                                     [....]
+  | | | | | + [DataRef directory]
+  | | | | | | URL = .
+  | | | | | | - Tag 'url ' (4 bytes, undef):
+  | | | | | |     6e69: 00 00 00 01                                     [....]
+  | | | | SampleTable (SubDirectory) -->
+  | | | | - Tag 'stbl' (339 bytes):
+  | | | |     6e75: 00 00 00 e4 73 74 73 64 00 00 00 00 00 00 00 01 [....stsd........]
+  | | | |     6e85: 00 00 00 d4 43 52 41 57 00 00 00 00 00 00 00 01 [....CRAW........]
+  | | | |     6e95: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |     6ea5: 06 58 04 38 00 48 00 00 00 48 00 00 00 00 00 00 [.X.8.H...H......]
+  | | | |     6eb5: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |     [snip 259 bytes]
+  | | | | + [SampleTable directory]
+  | | | | | VideoSampleDesc (SubDirectory) -->
+  | | | | | - Tag 'stsd' (220 bytes):
+  | | | | |     6e7d: 00 00 00 00 00 00 00 01 00 00 00 d4 43 52 41 57 [............CRAW]
+  | | | | |     6e8d: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 [................]
+  | | | | |     6e9d: 00 00 00 00 00 00 00 00 06 58 04 38 00 48 00 00 [.........X.8.H..]
+  | | | | |     6ead: 00 48 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [.H..............]
+  | | | | |     6ebd: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | |     [snip 140 bytes]
+  | | | | | + [BinaryData directory, 98 bytes]
+  | | | | | | CompressorID = CRAW
+  | | | | | | - Tag 0x0002 (4 bytes, string[4]):
+  | | | | | |     6e89: 43 52 41 57                                     [CRAW]
+  | | | | | | VendorID = 
+  | | | | | | - Tag 0x000a (4 bytes, string[4]):
+  | | | | | |     6e99: 00 00 00 00                                     [....]
+  | | | | | | SourceImageWidth = 1624
+  | | | | | | - Tag 0x0010 (2 bytes, int16u[1]):
+  | | | | | |     6ea5: 06 58                                           [.X]
+  | | | | | | SourceImageHeight = 1080
+  | | | | | | - Tag 0x0011 (2 bytes, int16u[1]):
+  | | | | | |     6ea7: 04 38                                           [.8]
+  | | | | | | XResolution = 72
+  | | | | | | - Tag 0x0012 (4 bytes, fixed32u[1]):
+  | | | | | |     6ea9: 00 48 00 00                                     [.H..]
+  | | | | | | YResolution = 72
+  | | | | | | - Tag 0x0014 (4 bytes, fixed32u[1]):
+  | | | | | |     6ead: 00 48 00 00                                     [.H..]
+  | | | | | | CompressorName = 
+  | | | | | | - Tag 0x0019 (32 bytes, string[32]):
+  | | | | | |     6eb7: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | | |     6ec7: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | | | BitDepth = 24
+  | | | | | | - Tag 0x0029 (2 bytes, int16u[1]):
+  | | | | | |     6ed7: 00 18                                           [..]
+  | | | | | + [VideoSampleDesc directory]
+  | | | | | | Unknown_CMP1 = .0..X.8.X.8.Ap........
+  | | | | | | - Tag 'CMP1' (52 bytes):
+  | | | | | |     6ee7: ff 00 00 30 01 00 00 00 00 00 06 58 00 00 04 38 [...0.......X...8]
+  | | | | | |     6ef7: 00 00 06 58 00 00 04 38 0e 41 00 00 00 00 00 70 [...X...8.A.....p]
+  | | | | | |     6f07: 00 00 00 00 01 01 00 00 01 01 00 00 01 01 00 00 [................]
+  | | | | | |     6f17: 01 01 00 00                                     [....]
+  | | | | | | CDI1 (SubDirectory) -->
+  | | | | | | - Tag 'CDI1' (44 bytes):
+  | | | | | |     6f23: 00 00 00 00 00 00 00 28 49 41 44 31 00 00 00 00 [.......(IAD1....]
+  | | | | | |     6f33: 06 58 04 38 00 01 00 00 00 01 00 00 00 01 00 00 [.X.8............]
+  | | | | | |     6f43: 06 54 04 37 00 00 00 00 06 57 04 37             [.T.7.....W.7]
+  | | | | | | + [CDI1 directory]
+  | | | | | | | Unknown_IAD1 = .X.8....T.7.W.7
+  | | | | | | | - Tag 'IAD1' (32 bytes):
+  | | | | | | |     6f2f: 00 00 00 00 06 58 04 38 00 01 00 00 00 01 00 00 [.....X.8........]
+  | | | | | | |     6f3f: 00 01 00 00 06 54 04 37 00 00 00 00 06 57 04 37 [.....T.7.....W.7]
+  | | | | | | Unknown_free = 
+  | | | | | | - Tag 'free' (2 bytes):
+  | | | | | |     6f57: 00 00                                           [..]
+  | | | | | VideoFrameRate = ...
+  | | | | | - Tag 'stts' (16 bytes, undef):
+  | | | | |     6f61: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | | SampleToChunk = ....
+  | | | | | - Tag 'stsc' (20 bytes):
+  | | | | |     6f79: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | |     6f89: 00 00 00 01                                     [....]
+  | | | | | SampleSizes = ....
+  | | | | | - Tag 'stsz' (12 bytes):
+  | | | | |     6f95: 00 00 00 00 00 1e dc c0 00 00 00 01             [............]
+  | | | | | Unknown_free = 
+  | | | | | - Tag 'free' (7 bytes):
+  | | | | |     6fa9: 00 00 00 00 00 00 00                            [.......]
+  | | | | | ChunkOffset64 = .K..
+  | | | | | - Tag 'co64' (16 bytes):
+  | | | | |     6fb8: 00 00 00 00 00 00 00 01 00 00 00 00 00 4b ed ed [.............K..]
+  | Track (SubDirectory) -->
+  | - Tag 'trak' (592 bytes):
+  |     6fd0: 00 00 00 5c 74 6b 68 64 00 00 00 07 d6 b3 10 7c [...\tkhd.......|]
+  |     6fe0: d6 b3 10 7c 00 00 00 03 00 00 00 00 00 00 00 01 [...|............]
+  |     6ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     7000: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     7010: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     [snip 512 bytes]
+  | + [Track directory]
+  | | TrackHeader (SubDirectory) -->
+  | | - Tag 'tkhd' (84 bytes):
+  | |     6fd8: 00 00 00 07 d6 b3 10 7c d6 b3 10 7c 00 00 00 03 [.......|...|....]
+  | |     6fe8: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 [................]
+  | |     6ff8: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     7008: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     7018: 00 00 00 00 00 00 00 00 40 00 00 00 18 90 00 00 [........@.......]
+  | |     7028: 0f d8 00 00                                     [....]
+  | | + [BinaryData directory, 84 bytes]
+  | | | TrackHeaderVersion = 0
+  | | | - Tag 0x0000 (1 bytes, int8u[1]):
+  | | |     6fd8: 00                                              [.]
+  | | | TrackCreateDate = 3602059388
+  | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | |     6fdc: d6 b3 10 7c                                     [...|]
+  | | | TrackModifyDate = 3602059388
+  | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | |     6fe0: d6 b3 10 7c                                     [...|]
+  | | | TrackID = 3
+  | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | |     6fe4: 00 00 00 03                                     [....]
+  | | | TrackDuration = 1
+  | | | - Tag 0x0005 (4 bytes, int32u[1]):
+  | | |     6fec: 00 00 00 01                                     [....]
+  | | | TrackLayer = 0
+  | | | - Tag 0x0008 (2 bytes, int16u[1]):
+  | | |     6ff8: 00 00                                           [..]
+  | | | TrackVolume = 0
+  | | | - Tag 0x0009 (2 bytes, int16u[1]):
+  | | |     6ffc: 00 00                                           [..]
+  | | | MatrixStructure = 1 0 0 0 1 0 0 0 16384
+  | | | - Tag 0x000a (36 bytes, fixed32s[9]):
+  | | |     7000: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     7010: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     7020: 40 00 00 00                                     [@...]
+  | | | ImageWidth = 412090368
+  | | | - Tag 0x0013 (4 bytes, int32u[1]):
+  | | |     7024: 18 90 00 00                                     [....]
+  | | | ImageHeight = 265814016
+  | | | - Tag 0x0014 (4 bytes, int32u[1]):
+  | | |     7028: 0f d8 00 00                                     [....]
+  | | Media (SubDirectory) -->
+  | | - Tag 'mdia' (492 bytes):
+  | |     7034: 00 00 00 20 6d 64 68 64 00 00 00 00 d6 b3 10 7c [... mdhd.......|]
+  | |     7044: d6 b3 10 7c 00 00 00 01 00 00 00 01 15 c7 00 00 [...|............]
+  | |     7054: 00 00 00 21 68 64 6c 72 00 00 00 00 00 00 00 00 [...!hdlr........]
+  | |     7064: 76 69 64 65 00 00 00 00 00 00 00 00 00 00 00 00 [vide............]
+  | |     7074: 00 00 00 01 ab 6d 69 6e 66 00 00 00 14 76 6d 68 [.....minf....vmh]
+  | |     [snip 412 bytes]
+  | | + [Media directory]
+  | | | MediaHeader (SubDirectory) -->
+  | | | - Tag 'mdhd' (24 bytes):
+  | | |     703c: 00 00 00 00 d6 b3 10 7c d6 b3 10 7c 00 00 00 01 [.......|...|....]
+  | | |     704c: 00 00 00 01 15 c7 00 00                         [........]
+  | | | + [BinaryData directory, 24 bytes]
+  | | | | MediaHeaderVersion = 0
+  | | | | - Tag 0x0000 (4 bytes, int32u[1]):
+  | | | |     703c: 00 00 00 00                                     [....]
+  | | | | MediaCreateDate = 3602059388
+  | | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | | |     7040: d6 b3 10 7c                                     [...|]
+  | | | | MediaModifyDate = 3602059388
+  | | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | | |     7044: d6 b3 10 7c                                     [...|]
+  | | | | MediaTimeScale = 1
+  | | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | | |     7048: 00 00 00 01                                     [....]
+  | | | | MediaDuration = 1
+  | | | | - Tag 0x0004 (4 bytes, int32u[1]):
+  | | | |     704c: 00 00 00 01                                     [....]
+  | | | | MediaLanguageCode = 5575
+  | | | | - Tag 0x0005 (2 bytes, int16u[1]):
+  | | | |     7050: 15 c7                                           [..]
+  | | | Handler (SubDirectory) -->
+  | | | - Tag 'hdlr' (25 bytes):
+  | | |     705c: 00 00 00 00 00 00 00 00 76 69 64 65 00 00 00 00 [........vide....]
+  | | |     706c: 00 00 00 00 00 00 00 00 00                      [.........]
+  | | | + [BinaryData directory, 25 bytes]
+  | | | | HandlerClass = 
+  | | | | - Tag 0x0004 (4 bytes, undef[4]):
+  | | | |     7060: 00 00 00 00                                     [....]
+  | | | | HandlerType = vide
+  | | | | - Tag 0x0008 (4 bytes, undef[4]):
+  | | | |     7064: 76 69 64 65                                     [vide]
+  | | | | HandlerVendorID = 
+  | | | | - Tag 0x000c (4 bytes, undef[4]):
+  | | | |     7068: 00 00 00 00                                     [....]
+  | | | | HandlerDescription = 
+  | | | | - Tag 0x0018 (1 bytes, string[1]):
+  | | | |     7074: 00                                              [.]
+  | | | MediaInfo (SubDirectory) -->
+  | | | - Tag 'minf' (419 bytes):
+  | | |     707d: 00 00 00 14 76 6d 68 64 00 00 00 01 00 00 00 00 [....vmhd........]
+  | | |     708d: 00 00 00 00 00 00 00 24 64 69 6e 66 00 00 00 1c [.......$dinf....]
+  | | |     709d: 64 72 65 66 00 00 00 00 00 00 00 01 00 00 00 0c [dref............]
+  | | |     70ad: 75 72 6c 20 00 00 00 01 00 00 01 6b 73 74 62 6c [url .......kstbl]
+  | | |     70bd: 00 00 00 f4 73 74 73 64 00 00 00 00 00 00 00 01 [....stsd........]
+  | | |     [snip 339 bytes]
+  | | | + [MediaInfo directory]
+  | | | | VideoHeader (SubDirectory) -->
+  | | | | - Tag 'vmhd' (12 bytes):
+  | | | |     7085: 00 00 00 01 00 00 00 00 00 00 00 00             [............]
+  | | | | + [BinaryData directory, 12 bytes]
+  | | | | | GraphicsMode = 0
+  | | | | | - Tag 0x0002 (2 bytes, int16u[1]):
+  | | | | |     7089: 00 00                                           [..]
+  | | | | | OpColor = 0 0 0
+  | | | | | - Tag 0x0003 (6 bytes, int16u[3]):
+  | | | | |     708b: 00 00 00 00 00 00                               [......]
+  | | | | DataInfo (SubDirectory) -->
+  | | | | - Tag 'dinf' (28 bytes):
+  | | | |     7099: 00 00 00 1c 64 72 65 66 00 00 00 00 00 00 00 01 [....dref........]
+  | | | |     70a9: 00 00 00 0c 75 72 6c 20 00 00 00 01             [....url ....]
+  | | | | + [DataInfo directory]
+  | | | | | DataRef (SubDirectory) -->
+  | | | | | - Tag 'dref' (20 bytes):
+  | | | | |     70a1: 00 00 00 00 00 00 00 01 00 00 00 0c 75 72 6c 20 [............url ]
+  | | | | |     70b1: 00 00 00 01                                     [....]
+  | | | | | + [DataRef directory]
+  | | | | | | URL = .
+  | | | | | | - Tag 'url ' (4 bytes, undef):
+  | | | | | |     70b1: 00 00 00 01                                     [....]
+  | | | | SampleTable (SubDirectory) -->
+  | | | | - Tag 'stbl' (355 bytes):
+  | | | |     70bd: 00 00 00 f4 73 74 73 64 00 00 00 00 00 00 00 01 [....stsd........]
+  | | | |     70cd: 00 00 00 e4 43 52 41 57 00 00 00 00 00 00 00 01 [....CRAW........]
+  | | | |     70dd: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |     70ed: 18 90 0f d8 00 48 00 00 00 48 00 00 00 00 00 00 [.....H...H......]
+  | | | |     70fd: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | |     [snip 275 bytes]
+  | | | | + [SampleTable directory]
+  | | | | | VideoSampleDesc (SubDirectory) -->
+  | | | | | - Tag 'stsd' (236 bytes):
+  | | | | |     70c5: 00 00 00 00 00 00 00 01 00 00 00 e4 43 52 41 57 [............CRAW]
+  | | | | |     70d5: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 [................]
+  | | | | |     70e5: 00 00 00 00 00 00 00 00 18 90 0f d8 00 48 00 00 [.............H..]
+  | | | | |     70f5: 00 48 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [.H..............]
+  | | | | |     7105: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | |     [snip 156 bytes]
+  | | | | | + [BinaryData directory, 98 bytes]
+  | | | | | | CompressorID = CRAW
+  | | | | | | - Tag 0x0002 (4 bytes, string[4]):
+  | | | | | |     70d1: 43 52 41 57                                     [CRAW]
+  | | | | | | VendorID = 
+  | | | | | | - Tag 0x000a (4 bytes, string[4]):
+  | | | | | |     70e1: 00 00 00 00                                     [....]
+  | | | | | | SourceImageWidth = 6288
+  | | | | | | - Tag 0x0010 (2 bytes, int16u[1]):
+  | | | | | |     70ed: 18 90                                           [..]
+  | | | | | | SourceImageHeight = 4056
+  | | | | | | - Tag 0x0011 (2 bytes, int16u[1]):
+  | | | | | |     70ef: 0f d8                                           [..]
+  | | | | | | XResolution = 72
+  | | | | | | - Tag 0x0012 (4 bytes, fixed32u[1]):
+  | | | | | |     70f1: 00 48 00 00                                     [.H..]
+  | | | | | | YResolution = 72
+  | | | | | | - Tag 0x0014 (4 bytes, fixed32u[1]):
+  | | | | | |     70f5: 00 48 00 00                                     [.H..]
+  | | | | | | CompressorName = 
+  | | | | | | - Tag 0x0019 (32 bytes, string[32]):
+  | | | | | |     70ff: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | | |     710f: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | | | | | BitDepth = 24
+  | | | | | | - Tag 0x0029 (2 bytes, int16u[1]):
+  | | | | | |     711f: 00 18                                           [..]
+  | | | | | + [VideoSampleDesc directory]
+  | | | | | | Unknown_CMP1 = .0......H...@.........
+  | | | | | | - Tag 'CMP1' (52 bytes):
+  | | | | | |     712f: ff 00 00 30 01 00 00 00 00 00 18 90 00 00 0f d8 [...0............]
+  | | | | | |     713f: 00 00 0c 48 00 00 0f d8 0e 40 00 00 00 00 00 d8 [...H.....@......]
+  | | | | | |     714f: 00 00 00 00 01 01 00 00 01 01 00 00 01 01 00 00 [................]
+  | | | | | |     715f: 01 01 00 00                                     [....]
+  | | | | | | CDI1 (SubDirectory) -->
+  | | | | | | - Tag 'CDI1' (60 bytes):
+  | | | | | |     716b: 00 00 00 00 00 00 00 38 49 41 44 31 00 00 00 00 [.......8IAD1....]
+  | | | | | |     717b: 18 90 0f d8 00 01 00 02 00 01 00 00 01 14 00 30 [...............0]
+  | | | | | |     718b: 18 83 0f cf 00 00 00 00 01 07 0f d7 01 08 00 00 [................]
+  | | | | | |     719b: 18 8f 00 23 01 08 00 24 18 8f 0f d7             [...#...$....]
+  | | | | | | + [CDI1 directory]
+  | | | | | | | Unknown_IAD1 = .........0............#..$....
+  | | | | | | | - Tag 'IAD1' (48 bytes):
+  | | | | | | |     7177: 00 00 00 00 18 90 0f d8 00 01 00 02 00 01 00 00 [................]
+  | | | | | | |     7187: 01 14 00 30 18 83 0f cf 00 00 00 00 01 07 0f d7 [...0............]
+  | | | | | | |     7197: 01 08 00 00 18 8f 00 23 01 08 00 24 18 8f 0f d7 [.......#...$....]
+  | | | | | | Unknown_free = 
+  | | | | | | - Tag 'free' (2 bytes):
+  | | | | | |     71af: 00 00                                           [..]
+  | | | | | VideoFrameRate = ...
+  | | | | | - Tag 'stts' (16 bytes, undef):
+  | | | | |     71b9: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | | SampleToChunk = ....
+  | | | | | - Tag 'stsc' (20 bytes):
+  | | | | |     71d1: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | |     71e1: 00 00 00 01                                     [....]
+  | | | | | SampleSizes = ...8.
+  | | | | | - Tag 'stsz' (12 bytes):
+  | | | | |     71ed: 00 00 00 00 02 18 b1 38 00 00 00 01             [.......8....]
+  | | | | | Unknown_free = 
+  | | | | | - Tag 'free' (7 bytes):
+  | | | | |     7201: 00 00 00 00 00 00 00                            [.......]
+  | | | | | ChunkOffset64 = .j..
+  | | | | | - Tag 'co64' (16 bytes):
+  | | | | |     7210: 00 00 00 00 00 00 00 01 00 00 00 00 00 6a ca ad [.............j..]
+  | Track (SubDirectory) -->
+  | - Tag 'trak' (432 bytes):
+  |     7228: 00 00 00 5c 74 6b 68 64 00 00 00 07 d6 b3 10 7c [...\tkhd.......|]
+  |     7238: d6 b3 10 7c 00 00 00 04 00 00 00 00 00 00 00 01 [...|............]
+  |     7248: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     7258: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     7268: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  |     [snip 352 bytes]
+  | + [Track directory]
+  | | TrackHeader (SubDirectory) -->
+  | | - Tag 'tkhd' (84 bytes):
+  | |     7230: 00 00 00 07 d6 b3 10 7c d6 b3 10 7c 00 00 00 04 [.......|...|....]
+  | |     7240: 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 [................]
+  | |     7250: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     7260: 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 [................]
+  | |     7270: 00 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 [........@.......]
+  | |     7280: 00 00 00 00                                     [....]
+  | | + [BinaryData directory, 84 bytes]
+  | | | TrackHeaderVersion = 0
+  | | | - Tag 0x0000 (1 bytes, int8u[1]):
+  | | |     7230: 00                                              [.]
+  | | | TrackCreateDate = 3602059388
+  | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | |     7234: d6 b3 10 7c                                     [...|]
+  | | | TrackModifyDate = 3602059388
+  | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | |     7238: d6 b3 10 7c                                     [...|]
+  | | | TrackID = 4
+  | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | |     723c: 00 00 00 04                                     [....]
+  | | | TrackDuration = 1
+  | | | - Tag 0x0005 (4 bytes, int32u[1]):
+  | | |     7244: 00 00 00 01                                     [....]
+  | | | TrackLayer = 0
+  | | | - Tag 0x0008 (2 bytes, int16u[1]):
+  | | |     7250: 00 00                                           [..]
+  | | | TrackVolume = 0
+  | | | - Tag 0x0009 (2 bytes, int16u[1]):
+  | | |     7254: 00 00                                           [..]
+  | | | MatrixStructure = 1 0 0 0 1 0 0 0 16384
+  | | | - Tag 0x000a (36 bytes, fixed32s[9]):
+  | | |     7258: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     7268: 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+  | | |     7278: 40 00 00 00                                     [@...]
+  | | | ImageWidth = 0
+  | | | - Tag 0x0013 (4 bytes, int32u[1]):
+  | | |     727c: 00 00 00 00                                     [....]
+  | | | ImageHeight = 0
+  | | | - Tag 0x0014 (4 bytes, int32u[1]):
+  | | |     7280: 00 00 00 00                                     [....]
+  | | Media (SubDirectory) -->
+  | | - Tag 'mdia' (332 bytes):
+  | |     728c: 00 00 00 20 6d 64 68 64 00 00 00 00 d6 b3 10 7c [... mdhd.......|]
+  | |     729c: d6 b3 10 7c 00 00 00 01 00 00 00 01 15 c7 00 00 [...|............]
+  | |     72ac: 00 00 00 21 68 64 6c 72 00 00 00 00 00 00 00 00 [...!hdlr........]
+  | |     72bc: 6d 65 74 61 00 00 00 00 00 00 00 00 00 00 00 00 [meta............]
+  | |     72cc: 00 00 00 01 0b 6d 69 6e 66 00 00 00 0c 6e 6d 68 [.....minf....nmh]
+  | |     [snip 252 bytes]
+  | | + [Media directory]
+  | | | MediaHeader (SubDirectory) -->
+  | | | - Tag 'mdhd' (24 bytes):
+  | | |     7294: 00 00 00 00 d6 b3 10 7c d6 b3 10 7c 00 00 00 01 [.......|...|....]
+  | | |     72a4: 00 00 00 01 15 c7 00 00                         [........]
+  | | | + [BinaryData directory, 24 bytes]
+  | | | | MediaHeaderVersion = 0
+  | | | | - Tag 0x0000 (4 bytes, int32u[1]):
+  | | | |     7294: 00 00 00 00                                     [....]
+  | | | | MediaCreateDate = 3602059388
+  | | | | - Tag 0x0001 (4 bytes, int32u[1]):
+  | | | |     7298: d6 b3 10 7c                                     [...|]
+  | | | | MediaModifyDate = 3602059388
+  | | | | - Tag 0x0002 (4 bytes, int32u[1]):
+  | | | |     729c: d6 b3 10 7c                                     [...|]
+  | | | | MediaTimeScale = 1
+  | | | | - Tag 0x0003 (4 bytes, int32u[1]):
+  | | | |     72a0: 00 00 00 01                                     [....]
+  | | | | MediaDuration = 1
+  | | | | - Tag 0x0004 (4 bytes, int32u[1]):
+  | | | |     72a4: 00 00 00 01                                     [....]
+  | | | | MediaLanguageCode = 5575
+  | | | | - Tag 0x0005 (2 bytes, int16u[1]):
+  | | | |     72a8: 15 c7                                           [..]
+  | | | Handler (SubDirectory) -->
+  | | | - Tag 'hdlr' (25 bytes):
+  | | |     72b4: 00 00 00 00 00 00 00 00 6d 65 74 61 00 00 00 00 [........meta....]
+  | | |     72c4: 00 00 00 00 00 00 00 00 00                      [.........]
+  | | | + [BinaryData directory, 25 bytes]
+  | | | | HandlerClass = 
+  | | | | - Tag 0x0004 (4 bytes, undef[4]):
+  | | | |     72b8: 00 00 00 00                                     [....]
+  | | | | HandlerType = meta
+  | | | | - Tag 0x0008 (4 bytes, undef[4]):
+  | | | |     72bc: 6d 65 74 61                                     [meta]
+  | | | | HandlerVendorID = 
+  | | | | - Tag 0x000c (4 bytes, undef[4]):
+  | | | |     72c0: 00 00 00 00                                     [....]
+  | | | | HandlerDescription = 
+  | | | | - Tag 0x0018 (1 bytes, string[1]):
+  | | | |     72cc: 00                                              [.]
+  | | | MediaInfo (SubDirectory) -->
+  | | | - Tag 'minf' (259 bytes):
+  | | |     72d5: 00 00 00 0c 6e 6d 68 64 00 00 00 00 00 00 00 24 [....nmhd.......$]
+  | | |     72e5: 64 69 6e 66 00 00 00 1c 64 72 65 66 00 00 00 00 [dinf....dref....]
+  | | |     72f5: 00 00 00 01 00 00 00 0c 75 72 6c 20 00 00 00 01 [........url ....]
+  | | |     7305: 00 00 00 d3 73 74 62 6c 00 00 00 5c 73 74 73 64 [....stbl...\stsd]
+  | | |     7315: 00 00 00 00 00 00 00 01 00 00 00 4c 43 54 4d 44 [...........LCTMD]
+  | | |     [snip 179 bytes]
+  | | | + [MediaInfo directory]
+  | | | | NullMediaHeader = 
+  | | | | - Tag 'nmhd' (4 bytes):
+  | | | |     72dd: 00 00 00 00                                     [....]
+  | | | | DataInfo (SubDirectory) -->
+  | | | | - Tag 'dinf' (28 bytes):
+  | | | |     72e9: 00 00 00 1c 64 72 65 66 00 00 00 00 00 00 00 01 [....dref........]
+  | | | |     72f9: 00 00 00 0c 75 72 6c 20 00 00 00 01             [....url ....]
+  | | | | + [DataInfo directory]
+  | | | | | DataRef (SubDirectory) -->
+  | | | | | - Tag 'dref' (20 bytes):
+  | | | | |     72f1: 00 00 00 00 00 00 00 01 00 00 00 0c 75 72 6c 20 [............url ]
+  | | | | |     7301: 00 00 00 01                                     [....]
+  | | | | | + [DataRef directory]
+  | | | | | | URL = .
+  | | | | | | - Tag 'url ' (4 bytes, undef):
+  | | | | | |     7301: 00 00 00 01                                     [....]
+  | | | | SampleTable (SubDirectory) -->
+  | | | | - Tag 'stbl' (203 bytes):
+  | | | |     730d: 00 00 00 5c 73 74 73 64 00 00 00 00 00 00 00 01 [...\stsd........]
+  | | | |     731d: 00 00 00 4c 43 54 4d 44 00 00 00 00 00 00 00 01 [...LCTMD........]
+  | | | |     732d: 00 00 00 07 00 00 00 01 00 00 00 18 00 00 00 03 [................]
+  | | | |     733d: 00 00 00 10 00 00 00 04 00 00 00 18 00 00 00 05 [................]
+  | | | |     734d: 00 00 00 28 00 00 00 07 00 00 06 ba 00 00 00 08 [...(............]
+  | | | |     [snip 123 bytes]
+  | | | | + [SampleTable directory]
+  | | | | | MetaSampleDesc (SubDirectory) -->
+  | | | | | - Tag 'stsd' (84 bytes):
+  | | | | |     7315: 00 00 00 00 00 00 00 01 00 00 00 4c 43 54 4d 44 [...........LCTMD]
+  | | | | |     7325: 00 00 00 00 00 00 00 01 00 00 00 07 00 00 00 01 [................]
+  | | | | |     7335: 00 00 00 18 00 00 00 03 00 00 00 10 00 00 00 04 [................]
+  | | | | |     7345: 00 00 00 18 00 00 00 05 00 00 00 28 00 00 00 07 [...........(....]
+  | | | | |     7355: 00 00 06 ba 00 00 00 08 00 00 93 56 00 00 00 09 [...........V....]
+  | | | | |     7365: 00 00 05 d4                                     [....]
+  | | | | | + [BinaryData directory, 76 bytes]
+  | | | | | | MetaFormat = CTMD
+  | | | | | | - Tag 0x0004 (4 bytes, undef[4]):
+  | | | | | |     7321: 43 54 4d 44                                     [CTMD]
+  | | | | | TimeToSampleTable = ...
+  | | | | | - Tag 'stts' (16 bytes):
+  | | | | |     7371: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | | SampleToChunk = ....
+  | | | | | - Tag 'stsc' (20 bytes):
+  | | | | |     7389: 00 00 00 00 00 00 00 01 00 00 00 01 00 00 00 01 [................]
+  | | | | |     7399: 00 00 00 01                                     [....]
+  | | | | | SampleSizes = .L.
+  | | | | | - Tag 'stsz' (12 bytes):
+  | | | | |     73a5: 00 00 00 00 00 00 a0 4c 00 00 00 01             [.......L....]
+  | | | | | Unknown_free = 
+  | | | | | - Tag 'free' (7 bytes):
+  | | | | |     73b9: 00 00 00 00 00 00 00                            [.......]
+  | | | | | ChunkOffset64 = ...{.
+  | | | | | - Tag 'co64' (16 bytes):
+  | | | | |     73c8: 00 00 00 00 00 00 00 01 00 00 00 00 02 83 7b e5 [..............{.]
+---- Extract Embedded ----
+Track4 Type='meta' Format='CTMD', Sample 1 of 1 (41036 bytes)
+ 2837be5: 18 00 00 00 01 00 00 00 00 01 00 00 00 00 e2 07 [................]
+ 2837bf5: 02 15 0c 03 08 41 00 00 10 00 00 00 03 00 00 00 [.....A..........]
+ 2837c05: 00 01 00 00 ff ff ff ff 18 00 00 00 04 00 00 00 [................]
+ 2837c15: 00 01 ff ff 0f 00 01 00 ff ff ff ff ff ff ff ff [................]
+ 2837c25: 28 00 00 00 05 00 00 00 00 01 ff ff 3f 00 0a 00 [(...........?...]
+    [snip 40956 bytes]
+SampleTime = 0
+SampleDuration = 1
+CTMD (SubDirectory) -->
+- Tag 'CTMD' (41036 bytes):
+ 2837be5: 18 00 00 00 01 00 00 00 00 01 00 00 00 00 e2 07 [................]
+ 2837bf5: 02 15 0c 03 08 41 00 00 10 00 00 00 03 00 00 00 [.....A..........]
+ 2837c05: 00 01 00 00 ff ff ff ff 18 00 00 00 04 00 00 00 [................]
+ 2837c15: 00 01 ff ff 0f 00 01 00 ff ff ff ff ff ff ff ff [................]
+ 2837c25: 28 00 00 00 05 00 00 00 00 01 ff ff 3f 00 0a 00 [(...........?...]
+    [snip 40956 bytes]
++ [CTMD type 1 directory, 18 bytes]
+|     0006: 00 00 00 01 00 00 00 00 e2 07 02 15 0c 03 08 41 [...............A]
+|     0016: 00 00                                           [..]
++ [CTMD type 3 directory, 10 bytes]
+|     001e: 00 00 00 01 00 00 ff ff ff ff                   [..........]
++ [CTMD type 4 directory, 18 bytes]
+|     002e: 00 00 00 01 ff ff 0f 00 01 00 ff ff ff ff ff ff [................]
+|     003e: ff ff                                           [..]
++ [CTMD type 5 directory, 34 bytes]
+|     0046: 00 00 00 01 ff ff 3f 00 0a 00 01 00 28 00 00 64 [......?.....(..d]
+|     0056: 00 00 01 00 00 00 ff ff ff ff 00 00 00 00 ff ff [................]
+|     0066: ff ff                                           [..]
++ [CTMD type 7 directory, 1716 bytes]
+|     006e: 01 01 00 01 ff ff 1e 00 00 00 69 87 00 00 49 49 [..........i...II]
+|     007e: 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 00 00 [*...............]
+|     008e: 00 00 00 00 90 06 00 00 7c 92 00 00 49 49 2a 00 [........|...II*.]
+|     009e: 08 00 00 00 06 00 01 00 03 00 31 00 00 00 52 00 [..........1...R.]
+|     00ae: 00 00 04 00 03 00 22 00 00 00 b4 00 00 00 26 00 [......".......&.]
+|     [snip 1636 bytes]
+| ExifInfo (SubDirectory) -->
+| - Tag 0x8769 (22 bytes):
+|  2837c61: 49 49 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 [II*.............]
+|  2837c71: 00 00 00 00 00 00                               [......]
+| + [TIFF directory]
+| | ExifByteOrder = II
+| | + [IFD0 directory with 1 entries]
+| | | 0)  SceneCaptureType = 0
+| | |     - Tag 0xa406 (2 bytes, int16u[1]):
+| | |      2837bf7: 00 00                                           [..]
+| MakerNoteCanon (SubDirectory) -->
+| - Tag 0x927c (1672 bytes):
+|  2837c7f: 49 49 2a 00 08 00 00 00 06 00 01 00 03 00 31 00 [II*...........1.]
+|  2837c8f: 00 00 52 00 00 00 04 00 03 00 22 00 00 00 b4 00 [..R.......".....]
+|  2837c9f: 00 00 26 00 03 00 60 02 00 00 f8 00 00 00 93 00 [..&...`.........]
+|  2837caf: 03 00 42 00 00 00 b8 05 00 00 a0 00 03 00 12 00 [..B.............]
+|  2837cbf: 00 00 3c 06 00 00 16 40 04 00 0a 00 00 00 60 06 [..<....@......`.]
+|     [snip 1592 bytes]
+| + [TIFF directory]
+| | + [Canon directory with 6 entries]
+| | | 0)  CanonCameraSettings (SubDirectory) -->
+| | |     - Tag 0x0001 (98 bytes, int16u[49] read as undef[98]):
+| | |      2837c37: 62 00 02 00 00 00 04 00 00 00 00 00 00 00 00 01 [b...............]
+| | |      2837c47: 00 00 0d 00 00 00 01 00 00 00 00 00 00 00 ff 7f [................]
+| | |      2837c57: 0f 00 03 00 02 00 00 00 03 00 ff ff 39 10 2d 00 [............9.-.]
+| | |      2837c67: 0f 00 01 00 74 00 20 01 00 00 08 00 00 00 00 00 [....t. .........]
+| | |      2837c77: ff ff ff ff ff ff 00 00 00 00 00 00 00 00 ff ff [................]
+| | |         [snip 18 bytes]
+| | | + [BinaryData directory, 98 bytes]
+| | | | MacroMode = 2
+| | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | |  2837c39: 02 00                                           [..]
+| | | | SelfTimer = 0
+| | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | |  2837c3b: 00 00                                           [..]
+| | | | Quality = 4
+| | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | |  2837c3d: 04 00                                           [..]
+| | | | CanonFlashMode = 0
+| | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | |  2837c3f: 00 00                                           [..]
+| | | | ContinuousDrive = 0
+| | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | |  2837c41: 00 00                                           [..]
+| | | | FocusMode = 256
+| | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | |  2837c45: 00 01                                           [..]
+| | | | RecordMode = 13
+| | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | |  2837c49: 0d 00                                           [..]
+| | | | CanonImageSize = 0
+| | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | |  2837c4b: 00 00                                           [..]
+| | | | EasyMode = 1
+| | | | - Tag 0x000b (2 bytes, int16s[1]):
+| | | |  2837c4d: 01 00                                           [..]
+| | | | DigitalZoom = 0
+| | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | |  2837c4f: 00 00                                           [..]
+| | | | Contrast = 0
+| | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | |  2837c51: 00 00                                           [..]
+| | | | Saturation = 0
+| | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | |  2837c53: 00 00                                           [..]
+| | | | Sharpness = 32767
+| | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | |  2837c55: ff 7f                                           [..]
+| | | | CameraISO = 15
+| | | | - Tag 0x0010 (2 bytes, int16s[1]):
+| | | |  2837c57: 0f 00                                           [..]
+| | | | MeteringMode = 3
+| | | | - Tag 0x0011 (2 bytes, int16s[1]):
+| | | |  2837c59: 03 00                                           [..]
+| | | | FocusRange = 2
+| | | | - Tag 0x0012 (2 bytes, int16s[1]):
+| | | |  2837c5b: 02 00                                           [..]
+| | | | AFPoint = 0
+| | | | - Tag 0x0013 (2 bytes, int16s[1]):
+| | | |  2837c5d: 00 00                                           [..]
+| | | | CanonExposureMode = 3
+| | | | - Tag 0x0014 (2 bytes, int16s[1]):
+| | | |  2837c5f: 03 00                                           [..]
+| | | | LensType = 4153
+| | | | - Tag 0x0016 (2 bytes, int16u[1]):
+| | | |  2837c63: 39 10                                           [9.]
+| | | | MaxFocalLength = 45
+| | | | - Tag 0x0017 (2 bytes, int16u[1]):
+| | | |  2837c65: 2d 00                                           [-.]
+| | | | MinFocalLength = 15
+| | | | - Tag 0x0018 (2 bytes, int16u[1]):
+| | | |  2837c67: 0f 00                                           [..]
+| | | | FocalUnits = 1
+| | | | - Tag 0x0019 (2 bytes, int16s[1]):
+| | | |  2837c69: 01 00                                           [..]
+| | | | MaxAperture = 116
+| | | | - Tag 0x001a (2 bytes, int16s[1]):
+| | | |  2837c6b: 74 00                                           [t.]
+| | | | MinAperture = 288
+| | | | - Tag 0x001b (2 bytes, int16s[1]):
+| | | |  2837c6d: 20 01                                           [ .]
+| | | | FlashActivity = 0
+| | | | - Tag 0x001c (2 bytes, int16s[1]):
+| | | |  2837c6f: 00 00                                           [..]
+| | | | FlashBits = 8
+| | | | - Tag 0x001d (2 bytes, int16s[1]):
+| | | |  2837c71: 08 00                                           [..]
+| | | | FocusContinuous = -1
+| | | | - Tag 0x0020 (2 bytes, int16s[1]):
+| | | |  2837c77: ff ff                                           [..]
+| | | | AESetting = -1
+| | | | - Tag 0x0021 (2 bytes, int16s[1]):
+| | | |  2837c79: ff ff                                           [..]
+| | | | ImageStabilization = -1
+| | | | - Tag 0x0022 (2 bytes, int16s[1]):
+| | | |  2837c7b: ff ff                                           [..]
+| | | | DisplayAperture = 0
+| | | | - Tag 0x0023 (2 bytes, int16s[1]):
+| | | |  2837c7d: 00 00                                           [..]
+| | | | ZoomSourceWidth = 0
+| | | | - Tag 0x0024 (2 bytes, int16s[1]):
+| | | |  2837c7f: 00 00                                           [..]
+| | | | ZoomTargetWidth = 0
+| | | | - Tag 0x0025 (2 bytes, int16s[1]):
+| | | |  2837c81: 00 00                                           [..]
+| | | | SpotMeteringMode = -1
+| | | | - Tag 0x0027 (2 bytes, int16s[1]):
+| | | |  2837c85: ff ff                                           [..]
+| | | | PhotoEffect = -1
+| | | | - Tag 0x0028 (2 bytes, int16s[1]):
+| | | |  2837c87: ff ff                                           [..]
+| | | | ManualFlashOutput = 0
+| | | | - Tag 0x0029 (2 bytes, int16s[1]):
+| | | |  2837c89: 00 00                                           [..]
+| | | | ColorTone = 0
+| | | | - Tag 0x002a (2 bytes, int16s[1]):
+| | | |  2837c8b: 00 00                                           [..]
+| | | | SRAWQuality = 0
+| | | | - Tag 0x002e (2 bytes, int16s[1]):
+| | | |  2837c93: 00 00                                           [..]
+| | | 1)  CanonShotInfo (SubDirectory) -->
+| | |     - Tag 0x0004 (68 bytes, int16u[34] read as undef[68]):
+| | |      2837c99: 44 00 00 00 a0 01 b8 ff ac 00 ac 00 00 00 00 00 [D...............]
+| | |      2837ca9: 03 00 00 00 08 00 08 00 a2 00 00 00 00 00 00 00 [................]
+| | |      2837cb9: 00 00 00 00 01 00 00 00 00 00 ac 00 ac 00 45 00 [..............E.]
+| | |      2837cc9: 00 00 00 00 f8 00 00 00 ff ff ff ff ff ff 00 00 [................]
+| | |      2837cd9: 00 00 00 00                                     [....]
+| | | + [BinaryData directory, 68 bytes]
+| | | | AutoISO = 0
+| | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | |  2837c9b: 00 00                                           [..]
+| | | | BaseISO = 416
+| | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | |  2837c9d: a0 01                                           [..]
+| | | | MeasuredEV = -72
+| | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | |  2837c9f: b8 ff                                           [..]
+| | | | TargetAperture = 172
+| | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | |  2837ca1: ac 00                                           [..]
+| | | | TargetExposureTime = 172
+| | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | |  2837ca3: ac 00                                           [..]
+| | | | ExposureCompensation = 0
+| | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | |  2837ca5: 00 00                                           [..]
+| | | | WhiteBalance = 0
+| | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | |  2837ca7: 00 00                                           [..]
+| | | | SlowShutter = 3
+| | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | |  2837ca9: 03 00                                           [..]
+| | | | SequenceNumber = 0
+| | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | |  2837cab: 00 00                                           [..]
+| | | | OpticalZoomCode = 8
+| | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | |  2837cad: 08 00                                           [..]
+| | | | CameraTemperature = 162
+| | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | |  2837cb1: a2 00                                           [..]
+| | | | FlashGuideNumber = 0
+| | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | |  2837cb3: 00 00                                           [..]
+| | | | AFPointsInFocus = 0
+| | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | |  2837cb5: 00 00                                           [..]
+| | | | FlashExposureComp = 0
+| | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | |  2837cb7: 00 00                                           [..]
+| | | | AutoExposureBracketing = 0
+| | | | - Tag 0x0010 (2 bytes, int16s[1]):
+| | | |  2837cb9: 00 00                                           [..]
+| | | | AEBBracketValue = 0
+| | | | - Tag 0x0011 (2 bytes, int16s[1]):
+| | | |  2837cbb: 00 00                                           [..]
+| | | | ControlMode = 1
+| | | | - Tag 0x0012 (2 bytes, int16s[1]):
+| | | |  2837cbd: 01 00                                           [..]
+| | | | FocusDistanceUpper = 0
+| | | | - Tag 0x0013 (2 bytes, int16u[1]):
+| | | |  2837cbf: 00 00                                           [..]
+| | | | FNumber = 172
+| | | | - Tag 0x0015 (2 bytes, int16s[1]):
+| | | |  2837cc3: ac 00                                           [..]
+| | | | ExposureTime = 172
+| | | | - Tag 0x0016 (2 bytes, int16s[1]):
+| | | |  2837cc5: ac 00                                           [..]
+| | | | MeasuredEV2 = 69
+| | | | - Tag 0x0017 (2 bytes, int16s[1]):
+| | | |  2837cc7: 45 00                                           [E.]
+| | | | BulbDuration = 0
+| | | | - Tag 0x0018 (2 bytes, int16s[1]):
+| | | |  2837cc9: 00 00                                           [..]
+| | | | CameraType = 248
+| | | | - Tag 0x001a (2 bytes, int16s[1]):
+| | | |  2837ccd: f8 00                                           [..]
+| | | | AutoRotate = 0
+| | | | - Tag 0x001b (2 bytes, int16s[1]):
+| | | |  2837ccf: 00 00                                           [..]
+| | | | NDFilter = -1
+| | | | - Tag 0x001c (2 bytes, int16s[1]):
+| | | |  2837cd1: ff ff                                           [..]
+| | | | SelfTimer2 = -1
+| | | | - Tag 0x001d (2 bytes, int16s[1]):
+| | | |  2837cd3: ff ff                                           [..]
+| | | | FlashOutput = 0
+| | | | - Tag 0x0021 (2 bytes, int16s[1]):
+| | | |  2837cdb: 00 00                                           [..]
+| | | 2)  CanonAFInfo2 (SubDirectory) -->
+| | |     - Tag 0x0026 (1216 bytes, int16u[608] read as undef[1216]):
+| | |      2837cdd: c0 04 06 00 8f 00 63 00 70 17 a0 0f 70 17 a0 0f [......c.p...p...]
+| | |      2837ced: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | |      2837cfd: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | |      2837d0d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | |      2837d1d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | |         [snip 1136 bytes]
+| | | + [SerialData directory, 1216 bytes]
+| | | | 0)  AFInfoSize = 1216
+| | | |     - Tag 0x0000 (2 bytes, int16u[1]):
+| | | |      2837cdd: c0 04                                           [..]
+| | | | 1)  AFAreaMode = 6
+| | | |     - Tag 0x0001 (2 bytes, int16u[1]):
+| | | |      2837cdf: 06 00                                           [..]
+| | | | 2)  NumAFPoints = 143
+| | | |     - Tag 0x0002 (2 bytes, int16u[1]):
+| | | |      2837ce1: 8f 00                                           [..]
+| | | | 3)  ValidAFPoints = 99
+| | | |     - Tag 0x0003 (2 bytes, int16u[1]):
+| | | |      2837ce3: 63 00                                           [c.]
+| | | | 4)  CanonImageWidth = 6000
+| | | |     - Tag 0x0004 (2 bytes, int16u[1]):
+| | | |      2837ce5: 70 17                                           [p.]
+| | | | 5)  CanonImageHeight = 4000
+| | | |     - Tag 0x0005 (2 bytes, int16u[1]):
+| | | |      2837ce7: a0 0f                                           [..]
+| | | | 6)  AFImageWidth = 6000
+| | | |     - Tag 0x0006 (2 bytes, int16u[1]):
+| | | |      2837ce9: 70 17                                           [p.]
+| | | | 7)  AFImageHeight = 4000
+| | | |     - Tag 0x0007 (2 bytes, int16u[1]):
+| | | |      2837ceb: a0 0f                                           [..]
+| | | | 8)  AFAreaWidths = 360 360 360 360 360 360 360 360 360 360 360 360 360 360 360 [snip]
+| | | |     - Tag 0x0008 (286 bytes, int16s[143]):
+| | | |      2837ced: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |      2837cfd: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |      2837d0d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |      2837d1d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |      2837d2d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |         [snip 206 bytes]
+| | | | 9)  AFAreaHeights = 300 300 300 300 300 300 300 300 300 300 300 300 300 300 300[snip]
+| | | |     - Tag 0x0009 (286 bytes, int16s[143]):
+| | | |      2837e0b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | |      2837e1b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | |      2837e2b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | |      2837e3b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | |      2837e4b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | |         [snip 206 bytes]
+| | | | 10) AFAreaXPositions = -1940 -1552 -1164 -776 -388 0 388 776 1164 1552 1940 -19[snip]
+| | | |     - Tag 0x000a (286 bytes, int16s[143]):
+| | | |      2837f29: 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 08 03 [l...t...|.......]
+| | | |      2837f39: 8c 04 10 06 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe [......l...t...|.]
+| | | |      2837f49: 00 00 84 01 08 03 8c 04 10 06 94 07 6c f8 f0 f9 [............l...]
+| | | |      2837f59: 74 fb f8 fc 7c fe 00 00 84 01 08 03 8c 04 10 06 [t...|...........]
+| | | |      2837f69: 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 [..l...t...|.....]
+| | | |         [snip 206 bytes]
+| | | | 11) AFAreaYPositions = 1360 1360 1360 1360 1360 1360 1360 1360 1360 1360 1360 1[snip]
+| | | |     - Tag 0x000b (286 bytes, int16s[143]):
+| | | |      2838047: 50 05 50 05 50 05 50 05 50 05 50 05 50 05 50 05 [P.P.P.P.P.P.P.P.]
+| | | |      2838057: 50 05 50 05 50 05 fc 03 fc 03 fc 03 fc 03 fc 03 [P.P.P...........]
+| | | |      2838067: fc 03 fc 03 fc 03 fc 03 fc 03 fc 03 a8 02 a8 02 [................]
+| | | |      2838077: a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 [................]
+| | | |      2838087: a8 02 54 01 54 01 54 01 54 01 54 01 54 01 54 01 [..T.T.T.T.T.T.T.]
+| | | |         [snip 206 bytes]
+| | | | 12) AFPointsInFocus = 0 7936 -15368 32271 0 0 0 0 0
+| | | |     - Tag 0x000c (18 bytes, int16s[9]):
+| | | |      2838165: 00 00 00 1f f8 c3 0f 7e 00 00 00 00 00 00 00 00 [.......~........]
+| | | |      2838175: 00 00                                           [..]
+| | | | 13) AFPointsSelected = -1 -1 -1 -1 -1 -1 7 0 0
+| | | |     - Tag 0x000d (18 bytes, int16s[9]):
+| | | |      2838177: ff ff ff ff ff ff ff ff ff ff ff ff 07 00 00 00 [................]
+| | | |      2838187: 00 00                                           [..]
+| | | 3)  CanonFileInfo (SubDirectory) -->
+| | |     - Tag 0x0093 (132 bytes, int16u[66] read as undef[132]):
+| | |      283819d: 84 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      28381ad: ff ff 00 00 00 00 00 00 00 00 00 00 ff ff ff ff [................]
+| | |      28381bd: 16 01 ff ff 01 00 01 00 22 00 1f 00 00 00 01 00 [........".......]
+| | |      28381cd: 00 00 00 00 ff ff 00 00 3f 00 3f 00 1a 00 1f 00 [........?.?.....]
+| | |      28381dd: 00 00 74 00 00 00 00 00 00 00 00 00 00 00 00 00 [..t.............]
+| | |         [snip 52 bytes]
+| | | + [BinaryData directory, 132 bytes]
+| | | | BracketMode = 0
+| | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | |  28381a3: 00 00                                           [..]
+| | | | BracketValue = 0
+| | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | |  28381a5: 00 00                                           [..]
+| | | | BracketShotNumber = 0
+| | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | |  28381a7: 00 00                                           [..]
+| | | | RawJpgQuality = 0
+| | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | |  28381a9: 00 00                                           [..]
+| | | | RawJpgSize = 0
+| | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | |  28381ab: 00 00                                           [..]
+| | | | LongExposureNoiseReduction2 = -1
+| | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | |  28381ad: ff ff                                           [..]
+| | | | WBBracketMode = 0
+| | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | |  28381af: 00 00                                           [..]
+| | | | WBBracketValueAB = 0
+| | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | |  28381b5: 00 00                                           [..]
+| | | | WBBracketValueGM = 0
+| | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | |  28381b7: 00 00                                           [..]
+| | | | FilterEffect = -1
+| | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | |  28381b9: ff ff                                           [..]
+| | | | ToningEffect = -1
+| | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | |  28381bb: ff ff                                           [..]
+| | | | LiveViewShooting = 1
+| | | | - Tag 0x0013 (2 bytes, int16s[1]):
+| | | |  28381c3: 01 00                                           [..]
+| | | | FocusDistanceUpper = 34
+| | | | - Tag 0x0014 (2 bytes, int16u[1]):
+| | | |  28381c5: 22 00                                           [".]
+| | | | FocusDistanceLower = 31
+| | | | - Tag 0x0015 (2 bytes, int16u[1]):
+| | | |  28381c7: 1f 00                                           [..]
+| | | | FlashExposureLock = 0
+| | | | - Tag 0x0019 (2 bytes, int16s[1]):
+| | | |  28381cf: 00 00                                           [..]
+| | | 4)  ProcessingInfo (SubDirectory) -->
+| | |     - Tag 0x00a0 (36 bytes, int16u[18] read as undef[36]):
+| | |      2838221: 24 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 [$...............]
+| | |      2838231: ff ff 50 14 87 00 00 00 00 00 00 00 02 00 04 00 [..P.............]
+| | |      2838241: 00 00 ff ff                                     [....]
+| | | + [BinaryData directory, 36 bytes]
+| | | | ToneCurve = 0
+| | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | |  2838223: 00 00                                           [..]
+| | | | Sharpness = 4
+| | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | |  2838225: 04 00                                           [..]
+| | | | SharpnessFrequency = 0
+| | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | |  2838227: 00 00                                           [..]
+| | | | SensorRedLevel = 0
+| | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | |  2838229: 00 00                                           [..]
+| | | | SensorBlueLevel = 0
+| | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | |  283822b: 00 00                                           [..]
+| | | | WhiteBalanceRed = 0
+| | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | |  283822d: 00 00                                           [..]
+| | | | WhiteBalanceBlue = 0
+| | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | |  283822f: 00 00                                           [..]
+| | | | WhiteBalance = -1
+| | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | |  2838231: ff ff                                           [..]
+| | | | ColorTemperature = 5200
+| | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | |  2838233: 50 14                                           [P.]
+| | | | PictureStyle = 135
+| | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | |  2838235: 87 00                                           [..]
+| | | | DigitalGain = 0
+| | | | - Tag 0x000b (2 bytes, int16s[1]):
+| | | |  2838237: 00 00                                           [..]
+| | | | WBShiftAB = 0
+| | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | |  2838239: 00 00                                           [..]
+| | | | WBShiftGM = 0
+| | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | |  283823b: 00 00                                           [..]
+| | | 5)  VignettingCorr2 (SubDirectory) -->
+| | |     - Tag 0x4016 (40 bytes, int32u[10] read as undef[40]):
+| | |      2838245: 28 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 [(...............]
+| | |      2838255: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 [................]
+| | |      2838265: 01 00 00 00 00 00 00 00                         [........]
+| | | + [BinaryData directory, 40 bytes]
+| | | | PeripheralLightingSetting = 1
+| | | | - Tag 0x0005 (4 bytes, int32s[1]):
+| | | |  2838259: 01 00 00 00                                     [....]
+| | | | ChromaticAberrationSetting = 1
+| | | | - Tag 0x0006 (4 bytes, int32s[1]):
+| | | |  283825d: 01 00 00 00                                     [....]
++ [CTMD type 8 directory, 37712 bytes]
+|     0728: 01 01 00 01 ff ff 4a 93 00 00 7c 92 00 00 49 49 [......J...|...II]
+|     0738: 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 00 00 [*........@......]
+|     0748: 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e 00 00 [.....@...~..f...]
+|     0758: 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 77 04 [........B.....w.]
+|     0768: 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 50 02 [..............P.]
+|     [snip 37632 bytes]
+| MakerNoteCanon (SubDirectory) -->
+| - Tag 0x927c (37698 bytes):
+|  283831b: 49 49 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 [II*........@....]
+|  283832b: 00 00 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e [.......@...~..f.]
+|  283833b: 00 00 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 [..........B.....]
+|  283834b: 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 [w...............]
+|  283835b: 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 06 02 [P.......~.......]
+|     [snip 37618 bytes]
+| + [TIFF directory]
+| | + [Canon directory with 3 entries]
+| | | 0)  ColorData9 (SubDirectory) -->
+| | |     - Tag 0x4001 (3640 bytes, int16u[1820] read as undef[3640]):
+| | |      2837c13: 10 00 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 [..w.............]
+| | |      2837c23: ea 02 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 [..P.......~.....]
+| | |      2837c33: 06 02 a6 02 00 04 00 04 f9 02 58 02 00 04 00 04 [..........X.....]
+| | |      2837c43: ed 04 00 00 00 00 00 01 00 01 00 01 00 00 02 00 [................]
+| | |      2837c53: 04 00 02 00 04 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |         [snip 3560 bytes]
+| | | + [BinaryData directory, 3640 bytes]
+| | | | ColorDataVersion = 16
+| | | | - Tag 0x0000 (2 bytes, int16s[1]):
+| | | |  2837c13: 10 00                                           [..]
+| | | | WB_RGGBLevelsAsShot = 1093 1024 1024 1856
+| | | | - Tag 0x0047 (8 bytes, int16s[4]):
+| | | |  2837ca1: 45 04 00 04 00 04 40 07                         [E.....@.]
+| | | | ColorTempAsShot = 3200
+| | | | - Tag 0x004b (2 bytes, int16s[1]):
+| | | |  2837ca9: 80 0c                                           [..]
+| | | | WB_RGGBLevelsAuto = 1093 1024 1024 1856
+| | | | - Tag 0x004c (8 bytes, int16s[4]):
+| | | |  2837cab: 45 04 00 04 00 04 40 07                         [E.....@.]
+| | | | ColorTempAuto = 3200
+| | | | - Tag 0x0050 (2 bytes, int16s[1]):
+| | | |  2837cb3: 80 0c                                           [..]
+| | | | WB_RGGBLevelsMeasured = 1093 1024 1024 1856
+| | | | - Tag 0x0051 (8 bytes, int16s[4]):
+| | | |  2837cb5: 45 04 00 04 00 04 40 07                         [E.....@.]
+| | | | ColorTempMeasured = 3200
+| | | | - Tag 0x0055 (2 bytes, int16s[1]):
+| | | |  2837cbd: 80 0c                                           [..]
+| | | | WB_RGGBLevelsDaylight = 1549 1024 1024 1316
+| | | | - Tag 0x0088 (8 bytes, int16s[4]):
+| | | |  2837d23: 0d 06 00 04 00 04 24 05                         [......$.]
+| | | | ColorTempDaylight = 5200
+| | | | - Tag 0x008c (2 bytes, int16s[1]):
+| | | |  2837d2b: 50 14                                           [P.]
+| | | | WB_RGGBLevelsShade = 1792 1024 1024 1147
+| | | | - Tag 0x008d (8 bytes, int16s[4]):
+| | | |  2837d2d: 00 07 00 04 00 04 7b 04                         [......{.]
+| | | | ColorTempShade = 7000
+| | | | - Tag 0x0091 (2 bytes, int16s[1]):
+| | | |  2837d35: 58 1b                                           [X.]
+| | | | WB_RGGBLevelsCloudy = 1670 1024 1024 1229
+| | | | - Tag 0x0092 (8 bytes, int16s[4]):
+| | | |  2837d37: 86 06 00 04 00 04 cd 04                         [........]
+| | | | ColorTempCloudy = 6000
+| | | | - Tag 0x0096 (2 bytes, int16s[1]):
+| | | |  2837d3f: 70 17                                           [p.]
+| | | | WB_RGGBLevelsTungsten = 1104 1024 1024 1879
+| | | | - Tag 0x0097 (8 bytes, int16s[4]):
+| | | |  2837d41: 50 04 00 04 00 04 57 07                         [P.....W.]
+| | | | ColorTempTungsten = 3200
+| | | | - Tag 0x009b (2 bytes, int16s[1]):
+| | | |  2837d49: 80 0c                                           [..]
+| | | | WB_RGGBLevelsFluorescent = 1303 1024 1024 1771
+| | | | - Tag 0x009c (8 bytes, int16s[4]):
+| | | |  2837d4b: 17 05 00 04 00 04 eb 06                         [........]
+| | | | ColorTempFluorescent = 3687
+| | | | - Tag 0x00a0 (2 bytes, int16s[1]):
+| | | |  2837d53: 67 0e                                           [g.]
+| | | | WB_RGGBLevelsKelvin = 1549 1024 1024 1316
+| | | | - Tag 0x00a1 (8 bytes, int16s[4]):
+| | | |  2837d55: 0d 06 00 04 00 04 24 05                         [......$.]
+| | | | ColorTempKelvin = 5200
+| | | | - Tag 0x00a5 (2 bytes, int16s[1]):
+| | | |  2837d5d: 50 14                                           [P.]
+| | | | WB_RGGBLevelsFlash = 1697 1024 1024 1218
+| | | | - Tag 0x00a6 (8 bytes, int16s[4]):
+| | | |  2837d5f: a1 06 00 04 00 04 c2 04                         [........]
+| | | | ColorTempFlash = 6166
+| | | | - Tag 0x00aa (2 bytes, int16s[1]):
+| | | |  2837d67: 16 18                                           [..]
+| | | 1)  Flavor = .~. .?_...........?_...........?_...........?_...........?_.........[snip]
+| | |     - Tag 0x4005 (32476 bytes, undef[32476]):
+| | |      2838a4b: dc 7e 00 00 0b 00 00 20 00 00 00 00 00 00 00 00 [.~..... ........]
+| | |      2838a5b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2838a6b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2838a7b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2838a8b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |         [snip 32396 bytes]
+| | | 2)  CanonCameraInfoUnknown (SubDirectory) -->
+| | |     - Tag 0x000d (1536 bytes, undef[1536]):
+| | |      2840927: aa aa 00 10 20 10 00 27 00 10 00 10 20 f9 10 f9 [.... ..'.... ...]
+| | |      2840937: 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 [................]
+| | |      2840947: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2840957: 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2840967: 00 00 00 00 00 00 00 00 00 00 00 a2 9a 00 00 00 [................]
+| | |         [snip 1456 bytes]
+| | | + [BinaryData directory, 1536 bytes]
++ [CTMD type 9 directory, 1486 bytes]
+|     9a7e: 01 01 00 01 ff ff c8 05 00 00 7c 92 00 00 49 49 [..........|...II]
+|     9a8e: 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 00 00 [*........@..x...]
+|     9a9e: 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 00 00 [....3@..........]
+|     9aae: 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 78 02 [.@.."....... 0x.]
+|     9abe: 01 00 00 00 01 00 01 00 01 00 00 00 14 00 00 00 [................]
+|     [snip 1406 bytes]
+| MakerNoteCanon (SubDirectory) -->
+| - Tag 0x927c (1472 bytes):
+|  2841671: 49 49 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 [II*........@..x.]
+|  2841681: 00 00 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 [......3@........]
+|  2841691: 00 00 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 [...@.."....... 0]
+|  28416a1: 78 02 01 00 00 00 01 00 01 00 01 00 00 00 14 00 [x...............]
+|  28416b1: 00 00 64 00 64 00 66 04 80 00 00 00 00 00 88 0e [..d.d.f.........]
+|     [snip 1392 bytes]
+| + [TIFF directory]
+| | + [Canon directory with 3 entries]
+| | | 0)  VignettingCorrUnknown1 (SubDirectory) -->
+| | |     - Tag 0x4015 (632 bytes, undef[632]):
+| | |      2837c13: 20 30 78 02 01 00 00 00 01 00 01 00 01 00 00 00 [ 0x.............]
+| | |      2837c23: 14 00 00 00 64 00 64 00 66 04 80 00 00 00 00 00 [....d.d.f.......]
+| | |      2837c33: 88 0e 70 17 a0 0f 00 00 00 00 00 00 00 00 00 00 [..p.............]
+| | |      2837c43: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2837c53: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |         [snip 552 bytes]
+| | | + [BinaryData directory, 632 bytes]
+| | | | VignettingCorrVersion = 32
+| | | | - Tag 0x0000 (1 bytes, int8u[1]):
+| | | |  2837c13: 20                                              [ ]
+| | | 1)  Canon_0x4033 = 
+| | |     - Tag 0x4033 (504 bytes, undef[504]):
+| | |      2837e8b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2837e9b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2837eab: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2837ebb: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |      2837ecb: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | |         [snip 424 bytes]
+| | | 2)  Canon_0x402e = .".........}..?.........?..........E..,..............u.@...a..[snip]
+| | |     - Tag 0x402e (290 bytes, undef[290]):
+| | |      2838083: 00 10 22 01 00 00 00 00 00 00 ff ff ff ff fe ff [..".............]
+| | |      2838093: f8 ff 7d ff ff 3f 00 00 00 00 00 00 00 00 ff ff [..}..?..........]
+| | |      28380a3: fe ff f7 ff 06 ff fc 3f 00 00 d2 ff a5 ff 99 ff [.......?........]
+| | |      28380b3: 9b ff d9 ff 45 05 f0 2c b9 00 00 00 18 00 1d 00 [....E..,........]
+| | |      28380c3: 12 00 d1 ff ef fe c0 f6 ba d3 a3 fe 00 00 75 fd [..............u.]
+| | |         [snip 210 bytes]
+--------------------------
+  XMP (SubDirectory) -->
+  - Tag 'uuid' (65552 bytes):
+      73e0: be 7a cf cb 97 a9 42 e8 9c 71 99 94 91 e3 af ac [.z....B..q......]
+      73f0: 3c 3f 78 70 61 63 6b 65 74 20 62 65 67 69 6e 3d [<?xpacket begin=]
+      7400: 27 ef bb bf 27 20 69 64 3d 27 57 35 4d 30 4d 70 ['...' id='W5M0Mp]
+      7410: 43 65 68 69 48 7a 72 65 53 7a 4e 54 63 7a 6b 63 [CehiHzreSzNTczkc]
+      7420: 39 64 27 3f 3e 3c 78 3a 78 6d 70 6d 65 74 61 20 [9d'?><x:xmpmeta ]
+      [snip 65472 bytes]
+  + [XMP directory, 65536 bytes]
+  | Rating = 0
+  | - Tag 'x:xmpmeta/rdf:RDF/rdf:Description/xmp:Rating'
+  PreviewImage = ..+^..K.....@nM.....PRVW..T.8.........................................[snip]
+  - Tag 'uuid' (515533 bytes):
+     173f8: ea f4 2b 5e 1c 98 4b 88 b9 fb b7 dc 40 6e 4d 16 [..+^..K.....@nM.]
+     17408: 00 00 00 00 00 00 00 01 00 07 dd b5 50 52 56 57 [............PRVW]
+     17418: 00 00 00 00 00 01 06 54 04 38 00 01 00 07 dd 9d [.......T.8......]
+     17428: ff d8 ff db 00 84 00 03 02 02 03 02 02 03 03 02 [................]
+     17438: 03 03 03 03 04 05 08 05 05 04 04 05 09 07 07 06 [................]
+      [snip 515453 bytes]
+  MovieDataSize = 41601632
+  MovieDataOffset = 610773
+  MovieData
+  - Tag 'mdat' at offset 0x951d5 (41601632 bytes)

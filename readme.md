@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 12mar2018 
+version: 13mar2018 
 
 Laurent Clévy (@Lorenzo2472)
 
@@ -254,6 +254,11 @@ size=0xa04c
 
 ## CR3 samples (from M50 camera)
 
-http://img.photographyblog.com/reviews/canon_eos_m50/photos/canon_eos_m50_01.cr3
+Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
 
 http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/
+
+See exiftool directory for outputs of "exiftool(-k).exe" -v3 -H -a  canon_eos_m50_**.cr3
+
+
+

@@ -48,10 +48,11 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
             - **CMT3** (Canon Makernotes)
             - **CMT4** (Canon Metadata?)
             - **THMB** (Thumbnail image in jpeg format)
+              - confirmed jpeg. size=160x120
 
  - **mvhd** (Movie Header)
 
- - **trak** (Track)
+ - **trak** (Track, embedded jpeg)
      - **tkhd** (Track Header)
      - **mdia** (Media)
        - **mdhd** (Media Header)
@@ -73,7 +74,7 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
            - **free**
            - **CO64** : pointer to picture #1 inside mdat
 
- - **trak**
+ - **trak** (big preview in c-raw?)
 
      - **tkhd**
      - **mdia**
@@ -95,7 +96,7 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
                  - **stsz** : size of picture #2 in mdat
                 - **co64** : pointer to picture #2 in mdat
 
- - **trak**
+ - **trak** (main image in c-raw?)
 
      - **tkhd**
      - **mdia**
@@ -117,7 +118,7 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
              - **stsz** : size of picture #3 in mdat
             - **co64** : pointer to picture #3 in mdat
 
- - **trak**
+ - **trak** (metadata at end of mdat)
 
     - ...
     - **stsz** : size of metadata in mdat
@@ -127,13 +128,13 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
 
 - **uuid** = eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data)
    - **PRVW**
-     - looks like jpeg (start with FFD8, ends with FFD9)
+     - confirmed jpeg (1620x1080)
 
 - **mdat** (main data)
 
-   - picture #1 (6000x4000, jpeg ?)
+   - picture #1 (6000x4000, jpeg)
 
-   - picture #2 (1624x1080, preview ?)
+   - picture #2 (1624x1080, lossy raw preview?)
 
    - picture #3 (main, 6888x4056, lossy raw?)
 
@@ -143,6 +144,23 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
 
 ## Canon tags description
 
+### THBM (Thumbnail) 
+
+from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | long   | 1                   | size of this tag            |
+| 4            | char   | 4                   | "THBM"                      |
+| 8            | long   | 1                   | unknown, value = 0          |
+| 12/0xc       | short  | 1                   | width (160)                 |
+| 14/0xe       | short  | 1                   | height (120)                |
+| 16/0x10      | long   | 1                   | jpeg image size (jpeg_size) |
+| 20/0x14      | long   | 1                   | unknown, value = 0x00010000 |
+| 24/0x18      | byte[] | stored at offset 16 | jpeg_data = ffd8ffdb...ffd9 |
+| 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
+|              | long   | 1                   | ?                           |
+
 ### CTBO (using canon_eos_m50_02.cr3)
 
 ```
@@ -150,14 +168,33 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
 00000001 00000000 00006b88 00000000 00010018 (offset and size of xpacket uuid)
 00000002 00000000 00016ba0 00000000 00056d90 (offset and size of preview uuid)
 00000003 00000000 0006d930 00000000 025022b8 (offset and size of mdat)
-00000004 00000000 00000000 00000000 00000000 no lossy raw ?
+00000004 00000000 00000000 00000000 00000000 no lossless raw ?
 ```
 
+### PRVW (Preview) 
 
+from **uuid** = eaf42b5e 1c98 4b88 b9fb b7dc406e4d16
 
-### mdat_picture1 (jpeg like)
+size = 1620x1008
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | long   | 1                   | size of this tag            |
+| 4            | char   | 4                   | "PRVW"                      |
+| 8            | long   | 1                   | unknown, value = 0          |
+| 12/0xc       | short  | 1                   | ? value = 1                 |
+| 14/0xe       | short  | 1                   | width (1620)                |
+| 16/0x10      | short  | 1                   | height (1080)               |
+| 18/0x12      | short  | 1                   | ? value = 1                 |
+| 20/0x14      | long   | 1                   | jpeg_size                   |
+| 24/0x18      | byte[] | stored at offset 20 | jpeg_data = ffd8ffdb...ffd9 |
+| 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
+
+### mdat_picture1 (confirmed jpeg)
 
 size=0x30d6ef (from stsz)
+
+6000x4000 pixels
 
 ```
 0x06d940:  ffd8ffdb 00840006 04040604 04060604    

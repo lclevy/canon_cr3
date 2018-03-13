@@ -143,7 +143,7 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
 
 ## Canon tags description
 
-### CTBO (using canon_eos_m50_01.cr3)
+### CTBO (using canon_eos_m50_02.cr3)
 
 ```
 00000004 

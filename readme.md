@@ -376,46 +376,63 @@ size=0xa04c
 This is a block of CTMD records.
 
 Each CTMD record has this format (little-endian byte order):
-4 bytes - record size (N)
-2 bytes - record type:
-          1 = TimeStamp
-          3 = ?
-          4 = Focal-length info
-          5 = Exposure info
-          7 = Block of Exif records
-          8 = Block of Exif records
-          9 = Block of Exif records
-6 bytes - ?
-N-6 bytes - payload
 
-TimeStamp format:
-2 bytes - 0
-2 bytes - year
-1 byte  - month
-1 byte  - day
-1 byte  - hour
-1 byte  - minute
-1 byte  - second
-1 byte  - 0.01 seconds
-2 bytes - ?
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | long   | 1                   | record size (N)             |
+| 4            | short  | 1                   | record type (1,3,4,5,7,8,9) |
+| 6            | byte[] | 6                   | unknown                     |
+| 12           | byte[] | N-12                | payload                     |
 
-Focal-length info format:
-2 bytes - focal length numerator
-2 bytes - focal length denominator
-8 bytes - ?
+CMTD record type 1 format (time stamp):
 
-Exposure info format:
-2 bytes - F-number numerator
-2 bytes - F-number denominator
-2 bytes - Exposure time numerator
-2 bytes - Exposure time denominator
-4 bytes - ISO speed rating
-16 bytes - ?
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | short  | 1                   | unknown                     |
+| 2            | short  | 1                   | year                        |
+| 4            | byte   | 1                   | month                       |
+| 5            | byte   | 1                   | day                         |
+| 6            | byte   | 1                   | hour                        |
+| 7            | byte   | 1                   | minute                      |
+| 8            | byte   | 1                   | second                      |
+| 9            | byte   | 1                   | 1/100 seconds               |
+| 10           | byte[] | 2                   | unknown                     |
 
-Exif record format:
-4 bytes - record size (N)
-4 bytes - tag ID: 0x8769=ExifIFD, 0x927c=MakerNotes
-N-8 bytes - payload (TIFF-format metadata)
+CTMD record type 3 format (unknown):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | byte[] | 4                   | unknown                     |
+
+CTMD record type 4 format (focal-length info):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | short  | 1                   | focal length numerator      |
+| 2            | short  | 1                   | focal length denominator    |
+| 4            | byte[] | 8                   | unknown                     |
+
+CTMD record type 5 format (exposure info):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | short  | 1                   | F-number numerator          |
+| 2            | short  | 1                   | F-number denominator        |
+| 4            | short  | 1                   | exposure time numerator     |
+| 5            | short  | 1                   | exposure time denominator   |
+| 6            | long   | 1                   | ISO speed rating            |
+| 10           | byte[] | 16                  | unknown                     |
+
+CTMD record type 7, 8 and 9 format (Exif info):
+
+This is a block of Exif records.  Each Exif record has this format:
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | long   | 1                   | record size (N)             |
+| 4            | long   | 1                   | tag ID (0x8769=ExifIFD,     |
+|              |        |                     |    0x927c=MakerNotes)       |
+| 8            | byte[] | N-8                 | TIFF-format metadata        |
 
 ## crx codec structures
 

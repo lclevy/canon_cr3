@@ -419,9 +419,9 @@ CTMD record type 5 format (exposure info):
 | 0            | short  | 1                   | F-number numerator          |
 | 2            | short  | 1                   | F-number denominator        |
 | 4            | short  | 1                   | exposure time numerator     |
-| 5            | short  | 1                   | exposure time denominator   |
-| 6            | long   | 1                   | ISO speed rating            |
-| 10           | byte[] | 16                  | unknown                     |
+| 6            | short  | 1                   | exposure time denominator   |
+| 8            | long   | 1                   | ISO speed rating            |
+| 12           | byte[] | 16                  | unknown                     |
 
 CTMD record type 7, 8 and 9 format (Exif info):
 

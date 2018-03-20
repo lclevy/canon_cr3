@@ -119,124 +119,141 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
 - **ftyp**: File Type Box
 
 - **moov** : container box whose sub‐boxes define the metadata for a presentation 
-    - **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
-        - **CNCV** (Canon Compressor Version). "CanonCR3_001/00.09.00/00.00.00"
+  - **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
+    - **CNCV** (Canon Compressor Version). "CanonCR3_001/00.09.00/00.00.00"
 
-        - **CCTP** (Canon Compressor Table Pointers?). 00000000 00000001 00000003 (how many CCDT == 3 ?)
+    - **CCTP** (Canon Compressor Table Pointers?). 00000000 00000001 00000003 (how many CCDT == 3 ?)
 
-            - **CCDT** (?, 16 bytes). 
+      - **CCDT** (?, 16 bytes). 
 
-                00000000 00000010 00000000 00000001 (flags and index ?)
+          00000000 00000010 00000000 00000001 (flags and index ?)
 
-            - **CCDT** (?, 16 bytes). 
+      - **CCDT** (?, 16 bytes). 
 
-                00000000 00000001 00000000 00000002
+          00000000 00000001 00000000 00000002
 
-            - **CCDT** (?, 16 bytes). 
+      - **CCDT** (?, 16 bytes). 
 
-                00000000 00000000 00000000 00000003
+          00000000 00000000 00000000 00000003
 
-        - **CTBO** (Canon Trak b Offsets?)
+    - **CTBO** (Canon Trak b Offsets?)
 
-            - free
-            - **CMT1** (Canon Metadata? Exif)
-            - **CMT2** (Canon Metadata? Exif)
-            - **CMT3** (Canon Makernotes)
-            - **CMT4** (Canon Metadata?)
-            - **THMB** (Thumbnail image in jpeg format)
-              - confirmed jpeg. size=160x120
+      - free
+      - **CMT1** (Canon Metadata? Exif IFD0)
+      - **CMT2** (Canon Metadata? Exif ExifIFD)
+      - **CMT3** (Canon Makernotes)
+      - **CMT4** (Canon Metadata? Exif GPS IFD)
+      - **THMB** (Thumbnail image in jpeg format)
+        - confirmed jpeg. size=160x120
 
- - **mvhd** (Movie Header)
+  - **mvhd** (Movie Header)
 
- - **trak** (Track, embedded jpeg)
-     - **tkhd** (Track Header)
-     - **mdia** (Media)
-       - **mdhd** (Media Header)
-       - **hdlr** (Handler)
-       - **minf** (Media Information container)
-         - **vmhd** (Video Media Header)
-         - **dinf** (Data information box)
-           - **dref** (Data Reference box)
-         - **stbl** (Sample table box)
-           - **stsd** (Sample descriptions, codec types, init...)
-             - **CRAW** (size=0x70)
-               - W=6000, H=4000
-               - **JPEG** (size=0xc)
-               - **free**
-           - **stts** (decoding, time-to-sample)
-           - **stsc** (sample-to-chunk, partial data offset info)
-           - **stsz** (sample sizes, framing)
-             - size of picture #1 in mdat
-           - **free**
-           - **CO64** : pointer to picture #1 inside mdat
+  - **trak** (Track, embedded jpeg)
 
- - **trak** (big preview in c-raw?)
+    - **tkhd** (Track Header)
+    - **mdia** (Media)
+      - **mdhd** (Media Header)
+      - **hdlr** (Handler, type='vide')
+      - **minf** (Media Information container)
+        - **vmhd** (Video Media Header)
+        - **dinf** (Data information box)
+          - **dref** (Data Reference box)
+        - **stbl** (Sample table box)
+          - **stsd** (Sample descriptions, codec types, init...)
+            - **CRAW** (size=0x70)
+              - W=6000, H=4000, D=24bit
+              - **JPEG** (size=0xc)
+              - **free**
+          - **stts** (decoding, time-to-sample)
+          - **stsc** (sample-to-chunk, partial data offset info)
+          - **stsz** (sample sizes, framing)
+            - size of picture #1 in mdat
+          - **free**
+          - **co64** : pointer to picture #1 inside mdat
 
-     - **tkhd**
-     - **mdia**
-         - **mdhd**
-         - **hdlr**
-         - **minf**
-             - **vmhd**
-             - **dinf**
-                 - **dref**
-             - **stbl**
-                 - **stsd**
-                     - **CRAW** (size=0xd4)
-                         - W=1624, H=1080, BitDepth=24
-                         - **CMP1** (size=0x3c)
-                         - **CDI1** (size=0x34)
-                             - **IAD1** (size=0x28)
-                 - **stts**
-                 - **stsc**
-                 - **stsz** : size of picture #2 in mdat
-                - **co64** : pointer to picture #2 in mdat
+  - **trak** (big preview in c-raw?)
 
- - **trak** (main image in c-raw?)
+    - **tkhd**
+    - **mdia**
+      - **mdhd**
+      - **hdlr** (type='vide')
+      - **minf**
+        - **vmhd**
+        - **dinf**
+          - **dref**
+        - **stbl**
+          - **stsd**
+            - **CRAW** (size=0xd4)
+              - W=1624, H=1080, BitDepth=24
+              - **CMP1** (size=0x3c)
+              - **CDI1** (size=0x34)
+                - **IAD1** (size=0x28)
+              - **free**
+          - **stts**
+          - **stsc**
+          - **stsz** : size of picture #2 in mdat
+          - **free**
+          - **co64** : pointer to picture #2 in mdat
 
-     - **tkhd**
-     - **mdia**
-         - **mdhd**
-         - **hdlr**
-         - **minf**
-             - **vmhd**
-             - **dinf**
-                 - **dref**
-             - **stbl**
-                 - **stsd**
-                 - **CRAW** (size=0xe4)
-                     - W=6288, H=4056, bitDepth=24
-                     - **CMP1** (size=0x3c)
-                     - **CDI1** (size=0x44)
-                         - **IAD1** (size=0x38)
-             - **stts**
-             - **stsc**
-             - **stsz** : size of picture #3 in mdat
-            - **co64** : pointer to picture #3 in mdat
+  - **trak** (main image in c-raw?)
 
- - **trak** (metadata at end of mdat)
+    - **tkhd**
+    - **mdia**
+      - **mdhd**
+      - **hdlr** (type='vide')
+      - **minf**
+        - **vmhd**
+        - **dinf**
+          - **dref**
+        - **stbl**
+          - **stsd**
+          - **CRAW** (size=0xe4)
+            - W=6288, H=4056, bitDepth=24
+            - **CMP1** (size=0x3c)
+            - **CDI1** (size=0x44)
+              - **IAD1** (size=0x38)
+            - **free**
+        - **stts**
+        - **stsc**
+        - **stsz** : size of picture #3 in mdat
+        - **free**
+        - **co64** : pointer to picture #3 in mdat
 
-    - ...
-    - **stsz** : size of metadata in mdat
-    - **co64** : pointer to metadata in mdat
+  - **trak** (metadata at end of mdat)
+
+    - **tkhd**
+    - **mdia**
+      - **mdhd**
+      - **hdlr** (type='meta')
+      - **minf**
+        - **nmhd**
+        - **dinf**
+          - **dref**
+        - **stbl**
+          - **stsd**
+          - **CTMD** (size=0x4c)
+        - **stts**
+        - **stsc**
+        - **stsz** : size of metadata in mdat
+        - **free**
+        - **co64** : pointer to metadata in mdat
 
 - **uuid** = be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
 
 - **uuid** = eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data)
-   - **PRVW**
-     - confirmed jpeg (1620x1080)
+  - **PRVW**
+    - confirmed jpeg (1620x1080)
 
 - **mdat** (main data)
 
-   - picture #1 (6000x4000, jpeg)
+  - picture #1 (6000x4000, jpeg)
 
-   - picture #2 (1624x1080, craw preview)
+  - picture #2 (1624x1080, craw preview)
 
-   - picture #3 (main, 6888x4056, craw main image)
+  - picture #3 (main, 6888x4056, craw main image)
 
-   - metadata (TIFF like)
+  - metadata (TIFF like)
 
-      ​
 
 ## Canon tags description
 
@@ -356,7 +373,65 @@ size=0xa04c
 0x256fbe0:  05000000 00000000                      ........        
 ```
 
+This is a block of CTMD (Canon Timed MetaData?) records.
 
+Each CTMD record has this format (little-endian byte order):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | long   | 1                   | record size (N)             |
+| 4            | short  | 1                   | record type (1,3,4,5,7,8,9) |
+| 6            | byte[] | 6                   | unknown                     |
+| 12           | byte[] | N-12                | payload                     |
+
+CTMD record type 1 payload (time stamp):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | short  | 1                   | unknown                     |
+| 2            | short  | 1                   | year                        |
+| 4            | byte   | 1                   | month                       |
+| 5            | byte   | 1                   | day                         |
+| 6            | byte   | 1                   | hour                        |
+| 7            | byte   | 1                   | minute                      |
+| 8            | byte   | 1                   | second                      |
+| 9            | byte   | 1                   | 1/100 seconds               |
+| 10           | byte[] | 2                   | unknown                     |
+
+CTMD record type 3 payload (unknown):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | byte[] | 4                   | unknown                     |
+
+CTMD record type 4 payload (focal-length info):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | short  | 1                   | focal length numerator      |
+| 2            | short  | 1                   | focal length denominator    |
+| 4            | byte[] | 8                   | unknown                     |
+
+CTMD record type 5 payload (exposure info):
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | short  | 1                   | F-number numerator          |
+| 2            | short  | 1                   | F-number denominator        |
+| 4            | short  | 1                   | exposure time numerator     |
+| 6            | short  | 1                   | exposure time denominator   |
+| 8            | long   | 1                   | ISO speed rating            |
+| 12           | byte[] | 16                  | unknown                     |
+
+CTMD record type 7, 8 and 9 payload (Exif info):
+
+This is a block of Exif records.  Each Exif record has this format:
+
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 0            | long   | 1                   | record size (N)             |
+| 4            | long   | 1                   | tag ID (0x8769=ExifIFD, 0x927c=MakerNotes)       |
+| 8            | byte[] | N-8                 | TIFF-format metadata        |
 
 ## crx codec structures
 

@@ -384,7 +384,7 @@ Each CTMD record has this format (little-endian byte order):
 | 6            | byte[] | 6                   | unknown                     |
 | 12           | byte[] | N-12                | payload                     |
 
-CTMD record type 1 format (time stamp):
+CTMD record type 1 payload (time stamp):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
@@ -398,13 +398,13 @@ CTMD record type 1 format (time stamp):
 | 9            | byte   | 1                   | 1/100 seconds               |
 | 10           | byte[] | 2                   | unknown                     |
 
-CTMD record type 3 format (unknown):
+CTMD record type 3 payload (unknown):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
 | 0            | byte[] | 4                   | unknown                     |
 
-CTMD record type 4 format (focal-length info):
+CTMD record type 4 payload (focal-length info):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
@@ -412,7 +412,7 @@ CTMD record type 4 format (focal-length info):
 | 2            | short  | 1                   | focal length denominator    |
 | 4            | byte[] | 8                   | unknown                     |
 
-CTMD record type 5 format (exposure info):
+CTMD record type 5 payload (exposure info):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
@@ -423,7 +423,7 @@ CTMD record type 5 format (exposure info):
 | 8            | long   | 1                   | ISO speed rating            |
 | 12           | byte[] | 16                  | unknown                     |
 
-CTMD record type 7, 8 and 9 format (Exif info):
+CTMD record type 7, 8 and 9 payload (Exif info):
 
 This is a block of Exif records.  Each Exif record has this format:
 

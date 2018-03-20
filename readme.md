@@ -373,7 +373,7 @@ size=0xa04c
 0x256fbe0:  05000000 00000000                      ........        
 ```
 
-This is a block of CTMD records.
+This is a block of CTMD (Canon Timed MetaData?) records.
 
 Each CTMD record has this format (little-endian byte order):
 

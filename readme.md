@@ -119,124 +119,141 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
 - **ftyp**: File Type Box
 
 - **moov** : container box whose sub‐boxes define the metadata for a presentation 
-    - **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
-        - **CNCV** (Canon Compressor Version). "CanonCR3_001/00.09.00/00.00.00"
+  - **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
+    - **CNCV** (Canon Compressor Version). "CanonCR3_001/00.09.00/00.00.00"
 
-        - **CCTP** (Canon Compressor Table Pointers?). 00000000 00000001 00000003 (how many CCDT == 3 ?)
+    - **CCTP** (Canon Compressor Table Pointers?). 00000000 00000001 00000003 (how many CCDT == 3 ?)
 
-            - **CCDT** (?, 16 bytes). 
+      - **CCDT** (?, 16 bytes). 
 
-                00000000 00000010 00000000 00000001 (flags and index ?)
+          00000000 00000010 00000000 00000001 (flags and index ?)
 
-            - **CCDT** (?, 16 bytes). 
+      - **CCDT** (?, 16 bytes). 
 
-                00000000 00000001 00000000 00000002
+          00000000 00000001 00000000 00000002
 
-            - **CCDT** (?, 16 bytes). 
+      - **CCDT** (?, 16 bytes). 
 
-                00000000 00000000 00000000 00000003
+          00000000 00000000 00000000 00000003
 
-        - **CTBO** (Canon Trak b Offsets?)
+    - **CTBO** (Canon Trak b Offsets?)
 
-            - free
-            - **CMT1** (Canon Metadata? Exif)
-            - **CMT2** (Canon Metadata? Exif)
-            - **CMT3** (Canon Makernotes)
-            - **CMT4** (Canon Metadata?)
-            - **THMB** (Thumbnail image in jpeg format)
-              - confirmed jpeg. size=160x120
+      - free
+      - **CMT1** (Canon Metadata? Exif IFD0)
+      - **CMT2** (Canon Metadata? Exif ExifIFD)
+      - **CMT3** (Canon Makernotes)
+      - **CMT4** (Canon Metadata? Exif GPS IFD)
+      - **THMB** (Thumbnail image in jpeg format)
+        - confirmed jpeg. size=160x120
 
- - **mvhd** (Movie Header)
+  - **mvhd** (Movie Header)
 
- - **trak** (Track, embedded jpeg)
-     - **tkhd** (Track Header)
-     - **mdia** (Media)
-       - **mdhd** (Media Header)
-       - **hdlr** (Handler)
-       - **minf** (Media Information container)
-         - **vmhd** (Video Media Header)
-         - **dinf** (Data information box)
-           - **dref** (Data Reference box)
-         - **stbl** (Sample table box)
-           - **stsd** (Sample descriptions, codec types, init...)
-             - **CRAW** (size=0x70)
-               - W=6000, H=4000
-               - **JPEG** (size=0xc)
-               - **free**
-           - **stts** (decoding, time-to-sample)
-           - **stsc** (sample-to-chunk, partial data offset info)
-           - **stsz** (sample sizes, framing)
-             - size of picture #1 in mdat
-           - **free**
-           - **CO64** : pointer to picture #1 inside mdat
+  - **trak** (Track, embedded jpeg)
 
- - **trak** (big preview in c-raw?)
+    - **tkhd** (Track Header)
+    - **mdia** (Media)
+      - **mdhd** (Media Header)
+      - **hdlr** (Handler, type='vide')
+      - **minf** (Media Information container)
+        - **vmhd** (Video Media Header)
+        - **dinf** (Data information box)
+          - **dref** (Data Reference box)
+        - **stbl** (Sample table box)
+          - **stsd** (Sample descriptions, codec types, init...)
+            - **CRAW** (size=0x70)
+              - W=6000, H=4000, D=24bit
+              - **JPEG** (size=0xc)
+              - **free**
+          - **stts** (decoding, time-to-sample)
+          - **stsc** (sample-to-chunk, partial data offset info)
+          - **stsz** (sample sizes, framing)
+            - size of picture #1 in mdat
+          - **free**
+          - **co64** : pointer to picture #1 inside mdat
 
-     - **tkhd**
-     - **mdia**
-         - **mdhd**
-         - **hdlr**
-         - **minf**
-             - **vmhd**
-             - **dinf**
-                 - **dref**
-             - **stbl**
-                 - **stsd**
-                     - **CRAW** (size=0xd4)
-                         - W=1624, H=1080, BitDepth=24
-                         - **CMP1** (size=0x3c)
-                         - **CDI1** (size=0x34)
-                             - **IAD1** (size=0x28)
-                 - **stts**
-                 - **stsc**
-                 - **stsz** : size of picture #2 in mdat
-                - **co64** : pointer to picture #2 in mdat
+  - **trak** (big preview in c-raw?)
 
- - **trak** (main image in c-raw?)
+    - **tkhd**
+    - **mdia**
+      - **mdhd**
+      - **hdlr** (type='vide')
+      - **minf**
+        - **vmhd**
+        - **dinf**
+          - **dref**
+        - **stbl**
+          - **stsd**
+            - **CRAW** (size=0xd4)
+              - W=1624, H=1080, BitDepth=24
+              - **CMP1** (size=0x3c)
+              - **CDI1** (size=0x34)
+                - **IAD1** (size=0x28)
+              - **free**
+          - **stts**
+          - **stsc**
+          - **stsz** : size of picture #2 in mdat
+          - **free**
+          - **co64** : pointer to picture #2 in mdat
 
-     - **tkhd**
-     - **mdia**
-         - **mdhd**
-         - **hdlr**
-         - **minf**
-             - **vmhd**
-             - **dinf**
-                 - **dref**
-             - **stbl**
-                 - **stsd**
-                 - **CRAW** (size=0xe4)
-                     - W=6288, H=4056, bitDepth=24
-                     - **CMP1** (size=0x3c)
-                     - **CDI1** (size=0x44)
-                         - **IAD1** (size=0x38)
-             - **stts**
-             - **stsc**
-             - **stsz** : size of picture #3 in mdat
-            - **co64** : pointer to picture #3 in mdat
+  - **trak** (main image in c-raw?)
 
- - **trak** (metadata at end of mdat)
+    - **tkhd**
+    - **mdia**
+      - **mdhd**
+      - **hdlr** (type='vide')
+      - **minf**
+        - **vmhd**
+        - **dinf**
+          - **dref**
+        - **stbl**
+          - **stsd**
+          - **CRAW** (size=0xe4)
+            - W=6288, H=4056, bitDepth=24
+            - **CMP1** (size=0x3c)
+            - **CDI1** (size=0x44)
+              - **IAD1** (size=0x38)
+            - **free**
+        - **stts**
+        - **stsc**
+        - **stsz** : size of picture #3 in mdat
+        - **free**
+        - **co64** : pointer to picture #3 in mdat
 
-    - ...
-    - **stsz** : size of metadata in mdat
-    - **co64** : pointer to metadata in mdat
+  - **trak** (metadata at end of mdat)
+
+    - **tkhd**
+    - **mdia**
+      - **mdhd**
+      - **hdlr** (type='meta')
+      - **minf**
+        - **nmhd**
+        - **dinf**
+          - **dref**
+        - **stbl**
+          - **stsd**
+          - **CTMD** (size=0x4c)
+        - **stts**
+        - **stsc**
+        - **stsz** : size of metadata in mdat
+        - **free**
+        - **co64** : pointer to metadata in mdat
 
 - **uuid** = be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
 
 - **uuid** = eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data)
-   - **PRVW**
-     - confirmed jpeg (1620x1080)
+  - **PRVW**
+    - confirmed jpeg (1620x1080)
 
 - **mdat** (main data)
 
-   - picture #1 (6000x4000, jpeg)
+  - picture #1 (6000x4000, jpeg)
 
-   - picture #2 (1624x1080, craw preview)
+  - picture #2 (1624x1080, craw preview)
 
-   - picture #3 (main, 6888x4056, craw main image)
+  - picture #3 (main, 6888x4056, craw main image)
 
-   - metadata (TIFF like)
+  - metadata (TIFF like)
 
-      ​
 
 ## Canon tags description
 
@@ -356,7 +373,49 @@ size=0xa04c
 0x256fbe0:  05000000 00000000                      ........        
 ```
 
+This is a block of CTMD records.
 
+Each CTMD record has this format (little-endian byte order):
+4 bytes - record size (N)
+2 bytes - record type:
+          1 = TimeStamp
+          3 = ?
+          4 = Focal-length info
+          5 = Exposure info
+          7 = Block of Exif records
+          8 = Block of Exif records
+          9 = Block of Exif records
+6 bytes - ?
+N-6 bytes - payload
+
+TimeStamp format:
+2 bytes - 0
+2 bytes - year
+1 byte  - month
+1 byte  - day
+1 byte  - hour
+1 byte  - minute
+1 byte  - second
+1 byte  - 0.01 seconds
+2 bytes - ?
+
+Focal-length info format:
+2 bytes - focal length numerator
+2 bytes - focal length denominator
+8 bytes - ?
+
+Exposure info format:
+2 bytes - F-number numerator
+2 bytes - F-number denominator
+2 bytes - Exposure time numerator
+2 bytes - Exposure time denominator
+4 bytes - ISO speed rating
+16 bytes - ?
+
+Exif record format:
+4 bytes - record size (N)
+4 bytes - tag ID: 0x8769=ExifIFD, 0x927c=MakerNotes
+N-8 bytes - payload (TIFF-format metadata)
 
 ## crx codec structures
 

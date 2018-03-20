@@ -430,8 +430,7 @@ This is a block of Exif records.  Each Exif record has this format:
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
 | 0            | long   | 1                   | record size (N)             |
-| 4            | long   | 1                   | tag ID (0x8769=ExifIFD,     |
-|              |        |                     |    0x927c=MakerNotes)       |
+| 4            | long   | 1                   | tag ID (0x8769=ExifIFD, 0x927c=MakerNotes)       |
 | 8            | byte[] | N-8                 | TIFF-format metadata        |
 
 ## crx codec structures

@@ -1,10 +1,16 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 19mar2018 
+version: 20mar2018 
 
-Laurent Clévy (@Lorenzo2472)
+by Laurent Clévy (@Lorenzo2472)
 
-other contributors are welcome!
+
+
+Contributors: 
+
+- Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD
+
+
 
 
 
@@ -19,6 +25,7 @@ other contributors are welcome!
       * [THMB Thumbnail](#thmb-(thumbnail)) 
       * [CTBO](#ctbo)
       * [PRVW (Preview)](#prvw-(preview))
+      * [CTMD](#CTMD)
   * [Crx codec structures](#crx-codec-structures)
 
 
@@ -254,6 +261,8 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
 
   - metadata (TIFF like)
 
+    ​
+
 
 ## Canon tags description
 
@@ -305,76 +314,9 @@ size = 1620x1080
 | 24/0x18      | byte[] | stored at offset 20 | jpeg_data = ffd8ffdb...ffd9 |
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
 
-### mdat_picture1 (confirmed jpeg)
+### CTMD  ###
 
-size=0x30d6ef (from stsz)
-
-6000x4000 pixels
-
-```
-0x06d940:  ffd8ffdb 00840006 04040604 04060604    
-0x06d950:  06060606 080a110a 0a08080a 130f0f0c    
-0x06d960:  11171519 17171517 15191d23 1f191b23    
-0x06d970:  1b1b171f 2c1f2325 282a2a2a 191f2c30    
-0x06d980:  2c283023 282a2801 0606060a 080a130a    
-...
-0x37b020:  03b0daaa 3185c13d a9d85276 3fffd900    
-```
-
-### mdat_picture2 (crx codec)
-
-size=0x1cbc40
-
-```
-0x37b030:  ff010008 001cbbd0 00000000 ff020008    ................ 
-0x37b040:  0007b5c0 08000000 ff030008 0007b5c0    ................
-0x37b050:  00200001 ff020008 00070600 18000000    . ..............
-0x37b060:  ff030008 00070600 00200002 ff020008    ......... ......
-0x37b070:  00070640 28000000 ff030008 00070640    ...@(..........@
-0x37b080:  00200006 ff020008 0006f9d0 38000000    . ..........8...
-0x37b090:  ff030008 0006f9d0 00200006 00000000    ......... ......
-0x37b0a0:  00000000 002027a5 00000400 0f03e034    ..... '........4
-0x37b0b0:  7565417b 810ded0e f68019d5 9085af6a    ueA{...........j
-0x37b0c0:  95d4e700 cc0d744d 20d7c569 0af800b0    ......tM ..i....
-...
-0x546c30:  f1860b4a 31096b41 a64c0a0e f1b54760    ...J1.kA.L....G`
-0x546c40:  74072f89 b1680333 16cb3c79 f9e98bc2    t./..h.3..<y....
-0x546c50:  95a459a6 c0213203 37f136f1 b3711906    ..Y..!2.7.6..q..
-0x546c60:  86bbe446 05c21456 bdbc0000 00000000    ...F...V........
-```
-
-### mdat_picture3 (crx codec)
-
-size=0x201ef28
-
-```
-0x546c70:  ff010008 00ff40b8 00000000 ff020008    ......@......... 
-0x546c80:  00405528 08000000 ff030008 00405528    .@U(.........@U(
-....
-0x2565b70:  bff1234a ce204824 8b54935d 5e0fc72d    ..#J. H$.T.]^..-
-0x2565b80:  f8dfd549 a2c4f792 ddc72efe 2c9a7435    ...I........,.t5
-0x2565b90:  f8000000 00000000 
-```
-
-### mdat_metadata (trak3)
-
-size=0xa04c
-
-```
-0x2565b90:                    18000000 01000000    ................
-0x2565ba0:  00010000 0000e207 02150c01 1c010000    ................
-0x2565bb0:  10000000 03000000 00010000 ffffffff    ................
-0x2565bc0:  18000000 04000000 0001ffff 2d000100    ............-...
-0x2565bd0:  ffffffff ffffffff 28000000 05000000    ........(.......
-0x2565be0:  0001ffff 3f000a00 01005000 00320000    ....?.....P..2..
-....
-0x256fbc0:  00000000 0002b006 00009800 94042600    ..............&.
-0x256fbd0:  6d004d00 01000001 ff070100 00000100    m.M.............
-0x256fbe0:  05000000 00000000                      ........        
-```
-
-This is a block of CTMD (Canon Timed MetaData?) records.
-
+(at end of mdat area)
 Each CTMD record has this format (little-endian byte order):
 
 | Offset       | type   | size                | content                     |
@@ -427,11 +369,83 @@ CTMD record type 7, 8 and 9 payload (Exif info):
 
 This is a block of Exif records.  Each Exif record has this format:
 
-| Offset       | type   | size                | content                     |
-| ------------ | ------ | ------------------- | --------------------------- |
-| 0            | long   | 1                   | record size (N)             |
-| 4            | long   | 1                   | tag ID (0x8769=ExifIFD, 0x927c=MakerNotes)       |
-| 8            | byte[] | N-8                 | TIFF-format metadata        |
+| Offset | type   | size | content                                    |
+| ------ | ------ | ---- | ------------------------------------------ |
+| 0      | long   | 1    | record size (N)                            |
+| 4      | long   | 1    | tag ID (0x8769=ExifIFD, 0x927c=MakerNotes) |
+| 8      | byte[] | N-8  | TIFF-format metadata                       |
+
+### mdat_picture1 (confirmed jpeg)
+
+size=0x30d6ef (from stsz)
+
+6000x4000 pixels
+
+```
+0x06d940:  ffd8ffdb 00840006 04040604 04060604    
+0x06d950:  06060606 080a110a 0a08080a 130f0f0c    
+0x06d960:  11171519 17171517 15191d23 1f191b23    
+0x06d970:  1b1b171f 2c1f2325 282a2a2a 191f2c30    
+0x06d980:  2c283023 282a2801 0606060a 080a130a    
+...
+0x37b020:  03b0daaa 3185c13d a9d85276 3fffd900    
+```
+
+### mdat_picture2 (crx codec)
+
+size=0x1cbc40
+
+```
+0x37b030:  ff010008 001cbbd0 00000000 ff020008    ................ 
+0x37b040:  0007b5c0 08000000 ff030008 0007b5c0    ................
+0x37b050:  00200001 ff020008 00070600 18000000    . ..............
+0x37b060:  ff030008 00070600 00200002 ff020008    ......... ......
+0x37b070:  00070640 28000000 ff030008 00070640    ...@(..........@
+0x37b080:  00200006 ff020008 0006f9d0 38000000    . ..........8...
+0x37b090:  ff030008 0006f9d0 00200006 00000000    ......... ......
+0x37b0a0:  00000000 002027a5 00000400 0f03e034    ..... '........4
+0x37b0b0:  7565417b 810ded0e f68019d5 9085af6a    ueA{...........j
+0x37b0c0:  95d4e700 cc0d744d 20d7c569 0af800b0    ......tM ..i....
+...
+0x546c30:  f1860b4a 31096b41 a64c0a0e f1b54760    ...J1.kA.L....G`
+0x546c40:  74072f89 b1680333 16cb3c79 f9e98bc2    t./..h.3..<y....
+0x546c50:  95a459a6 c0213203 37f136f1 b3711906    ..Y..!2.7.6..q..
+0x546c60:  86bbe446 05c21456 bdbc0000 00000000    ...F...V........
+```
+
+### mdat_picture3 (crx codec)
+
+size=0x201ef28
+
+```
+0x546c70:  ff010008 00ff40b8 00000000 ff020008    ......@......... 
+0x546c80:  00405528 08000000 ff030008 00405528    .@U(.........@U(
+....
+0x2565b70:  bff1234a ce204824 8b54935d 5e0fc72d    ..#J. H$.T.]^..-
+0x2565b80:  f8dfd549 a2c4f792 ddc72efe 2c9a7435    ...I........,.t5
+0x2565b90:  f8000000 00000000 
+```
+
+### mdat_metadata (CTMD records)
+
+size=0xa04c
+
+```
+0x2565b90:                    18000000 01000000    ................
+0x2565ba0:  00010000 0000e207 02150c01 1c010000    ................
+0x2565bb0:  10000000 03000000 00010000 ffffffff    ................
+0x2565bc0:  18000000 04000000 0001ffff 2d000100    ............-...
+0x2565bd0:  ffffffff ffffffff 28000000 05000000    ........(.......
+0x2565be0:  0001ffff 3f000a00 01005000 00320000    ....?.....P..2..
+....
+0x256fbc0:  00000000 0002b006 00009800 94042600    ..............&.
+0x256fbd0:  6d004d00 01000001 ff070100 00000100    m.M.............
+0x256fbe0:  05000000 00000000                      ........        
+```
+
+This is a block of CTMD (Canon Timed MetaData?) records.
+
+
 
 ## crx codec structures
 
@@ -533,7 +547,7 @@ ff40b8 + 102ad98 = 201EE50 (+d8 = 201ef28)
 - MP4 file format : [ISO/IEC 14496-14:2003](http://jchblog.u.qiniudn.com/doc/ISO_IEC_14496-14_2003-11-15.pdf "ISO/IEC 14496-14:2003")
 - [ISO 14496-1 Media Format](http://xhelmboyx.tripod.com/formats/mp4-layout.txt "ISO 14496-1 Media Format")
 - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
-- Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+	 Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
 - Discussions about CR3 format: 
   - [rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
 

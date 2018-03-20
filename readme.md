@@ -384,7 +384,7 @@ Each CTMD record has this format (little-endian byte order):
 | 6            | byte[] | 6                   | unknown                     |
 | 12           | byte[] | N-12                | payload                     |
 
-CMTD record type 1 format (time stamp):
+CTMD record type 1 format (time stamp):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |

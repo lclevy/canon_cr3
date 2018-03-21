@@ -1,11 +1,9 @@
-  ExifToolVersion = 10.82
+  ExifToolVersion = 10.87
   FileName = canon_eos_m50_06.cr3
   Directory = .
   FileSize = 42212405
-  FileModifyDate = 1519771662
-  FileAccessDate = 1519801360
-  FileCreateDate = 1519801361.66
-  FilePermissions = 33206
+  FileModifyDate = 1521636176
+  FileAccessDate = 1521636150
   FileType = CR3
   FileTypeExtension = CR3
   MIMEType = image/x-canon-cr3
@@ -73,7 +71,7 @@
   | | Unknown_free = 
   | | - Tag 'free' (2 bytes):
   | |     011e: 00 00                                           [..]
-  | | CMT1 (SubDirectory) -->
+  | | IFD0 (SubDirectory) -->
   | | - Tag 'CMT1' (384 bytes):
   | |     0128: 49 49 2a 00 08 00 00 00 0d 00 00 01 03 00 01 00 [II*.............]
   | |     0138: 00 00 70 17 00 00 01 01 03 00 01 00 00 00 a0 0f [..p.............]
@@ -124,7 +122,7 @@
   | | | | 12) Copyright = 
   | | | |     - Tag 0x8298 (1 bytes, string[1] read as undef[1]):
   | | | |         01ca: 00                                              [.]
-  | | CMT2 (SubDirectory) -->
+  | | ExifIFD (SubDirectory) -->
   | | - Tag 'CMT2' (1056 bytes):
   | |     02b0: 49 49 2a 00 08 00 00 00 27 00 9a 82 05 00 01 00 [II*.....'.......]
   | |     02c0: 00 00 e2 01 00 00 9d 82 05 00 01 00 00 00 ea 01 [................]
@@ -134,7 +132,7 @@
   | |     [snip 976 bytes]
   | | + [TIFF directory]
   | | | ExifByteOrder = II
-  | | | + [IFD0 directory with 39 entries]
+  | | | + [ExifIFD directory with 39 entries]
   | | | | 0)  ExposureTime = 0.025 (1/40)
   | | | |     - Tag 0x829a (8 bytes, rational64u[1]):
   | | | |         0492: 01 00 00 00 28 00 00 00                         [....(...]
@@ -261,7 +259,7 @@
   | | | | 38) LensSerialNumber = 0000000000
   | | | |     - Tag 0xa435 (11 bytes, string[11]):
   | | | |         06ac: 30 30 30 30 30 30 30 30 30 30 00                [0000000000.]
-  | | CMT3 (SubDirectory) -->
+  | | MakerNoteCanon (SubDirectory) -->
   | | - Tag 'CMT3' (5168 bytes):
   | |     06d8: 49 49 2a 00 08 00 00 00 2f 00 01 00 03 00 31 00 [II*...../.....1.]
   | |     06e8: 00 00 42 02 00 00 02 00 03 00 04 00 00 00 a4 02 [..B.............]
@@ -605,7 +603,7 @@
   | | | | | DaylightSavings = 0
   | | | | | - Tag 0x0003 (4 bytes, int32s[1]):
   | | | | |     0f1c: 00 00 00 00                                     [....]
-  | | | | 14) Canon_0x0038 = LLP-E12.
+  | | | | 14) BatteryType = LLP-E12.
   | | | |     - Tag 0x0038 (76 bytes, undef[76]):
   | | | |         0f20: 4c 00 00 00 4c 50 2d 45 31 32 00 00 00 00 00 00 [L...LP-E12......]
   | | | |         0f30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
@@ -1010,7 +1008,7 @@
   | | | | 46) Canon_0x403c = 12 1 24
   | | | |     - Tag 0x403c (12 bytes, int32u[3]):
   | | | |         1aee: 0c 00 00 00 01 00 00 00 18 00 00 00             [............]
-  | | CMT4 (SubDirectory) -->
+  | | GPSInfo (SubDirectory) -->
   | | - Tag 'CMT4' (1808 bytes):
   | |     1b10: 49 49 2a 00 08 00 00 00 01 00 00 00 01 00 04 00 [II*.............]
   | |     1b20: 00 00 02 03 00 00 00 00 00 00 00 00 00 00 00 00 [................]
@@ -1019,8 +1017,9 @@
   | |     1b50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
   | |     [snip 1728 bytes]
   | | + [TIFF directory]
-  | | | + [Canon directory with 1 entries]
-  | | | | 0)  Canon_UnknownIFD_0x0000 = 2 3 0 0
+  | | | ExifByteOrder = II
+  | | | + [IFD0 directory with 1 entries]
+  | | | | 0)  GPSVersionID = 2 3 0 0
   | | | |     - Tag 0x0000 (4 bytes, int8u[4]):
   | | | |         1b22: 02 03 00 00                                     [....]
   | | ThumbnailImage = .xH.............................................................[snip]
@@ -1262,7 +1261,7 @@
   | | | | | | - Tag 0x0029 (2 bytes, int16u[1]):
   | | | | | |     6cf3: 00 18                                           [..]
   | | | | | + [VideoSampleDesc directory]
-  | | | | | | Unknown_JPEG = 
+  | | | | | | JPEGInfo = 
   | | | | | | - Tag 'JPEG' (4 bytes):
   | | | | | |     6d03: 00 00 00 00                                     [....]
   | | | | | | Unknown_free = 
@@ -1284,6 +1283,25 @@
   | | | | | ChunkOffset64 = ..Q.
   | | | | | - Tag 'co64' (16 bytes):
   | | | | |     6d70: 00 00 00 00 00 00 00 01 00 00 00 00 00 09 51 d5 [..............Q.]
+---- Extract Embedded ----
+Track1 Type='JPEG' Format='', Sample 1 of 1 (4365334 bytes)
+   951d5: ff d8 ff db 00 84 00 06 04 04 06 04 04 06 06 04 [................]
+   951e5: 06 06 06 06 08 0a 11 0a 0a 08 08 0a 13 0f 0f 0c [................]
+   951f5: 11 17 15 19 17 17 15 17 15 19 1d 23 1f 19 1b 23 [...........#...#]
+   95205: 1b 1b 17 1f 2c 1f 23 25 28 2a 2a 2a 19 1f 2c 30 [....,.#%(***..,0]
+   95215: 2c 28 30 23 28 2a 28 01 06 06 06 0a 08 0a 13 0a [,(0#(*(.........]
+    [snip 4365254 bytes]
+SampleTime = 0
+SampleDuration = 1
+JpgFromRaw = .........................................#...#....,.#%(***..,0,(0#(*(.....[snip]
+- Tag 'JPEG' (4365334 bytes):
+   951d5: ff d8 ff db 00 84 00 06 04 04 06 04 04 06 06 04 [................]
+   951e5: 06 06 06 06 08 0a 11 0a 0a 08 08 0a 13 0f 0f 0c [................]
+   951f5: 11 17 15 19 17 17 15 17 15 19 1d 23 1f 19 1b 23 [...........#...#]
+   95205: 1b 1b 17 1f 2c 1f 23 25 28 2a 2a 2a 19 1f 2c 30 [....,.#%(***..,0]
+   95215: 2c 28 30 23 28 2a 28 01 06 06 06 0a 08 0a 13 0a [,(0#(*(.........]
+    [snip 4365254 bytes]
+--------------------------
   | Track (SubDirectory) -->
   | - Tag 'trak' (576 bytes):
   |     6d88: 00 00 00 5c 74 6b 68 64 00 00 00 07 d6 b3 10 7c [...\tkhd.......|]
@@ -1885,589 +1903,627 @@ CTMD (SubDirectory) -->
  2837c15: 00 01 ff ff 0f 00 01 00 ff ff ff ff ff ff ff ff [................]
  2837c25: 28 00 00 00 05 00 00 00 00 01 ff ff 3f 00 0a 00 [(...........?...]
     [snip 40956 bytes]
-+ [CTMD type 1 directory, 18 bytes]
-|     0006: 00 00 00 01 00 00 00 00 e2 07 02 15 0c 03 08 41 [...............A]
-|     0016: 00 00                                           [..]
-+ [CTMD type 3 directory, 10 bytes]
-|     001e: 00 00 00 01 00 00 ff ff ff ff                   [..........]
-+ [CTMD type 4 directory, 18 bytes]
-|     002e: 00 00 00 01 ff ff 0f 00 01 00 ff ff ff ff ff ff [................]
-|     003e: ff ff                                           [..]
-+ [CTMD type 5 directory, 34 bytes]
-|     0046: 00 00 00 01 ff ff 3f 00 0a 00 01 00 28 00 00 64 [......?.....(..d]
-|     0056: 00 00 01 00 00 00 ff ff ff ff 00 00 00 00 ff ff [................]
-|     0066: ff ff                                           [..]
-+ [CTMD type 7 directory, 1716 bytes]
-|     006e: 01 01 00 01 ff ff 1e 00 00 00 69 87 00 00 49 49 [..........i...II]
-|     007e: 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 00 00 [*...............]
-|     008e: 00 00 00 00 90 06 00 00 7c 92 00 00 49 49 2a 00 [........|...II*.]
-|     009e: 08 00 00 00 06 00 01 00 03 00 31 00 00 00 52 00 [..........1...R.]
-|     00ae: 00 00 04 00 03 00 22 00 00 00 b4 00 00 00 26 00 [......".......&.]
-|     [snip 1636 bytes]
-| ExifInfo (SubDirectory) -->
-| - Tag 0x8769 (22 bytes):
-|  2837c61: 49 49 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 [II*.............]
-|  2837c71: 00 00 00 00 00 00                               [......]
-| + [TIFF directory]
-| | ExifByteOrder = II
-| | + [IFD0 directory with 1 entries]
-| | | 0)  SceneCaptureType = 0
-| | |     - Tag 0xa406 (2 bytes, int16u[1]):
-| | |      2837bf7: 00 00                                           [..]
-| MakerNoteCanon (SubDirectory) -->
-| - Tag 0x927c (1672 bytes):
-|  2837c7f: 49 49 2a 00 08 00 00 00 06 00 01 00 03 00 31 00 [II*...........1.]
-|  2837c8f: 00 00 52 00 00 00 04 00 03 00 22 00 00 00 b4 00 [..R.......".....]
-|  2837c9f: 00 00 26 00 03 00 60 02 00 00 f8 00 00 00 93 00 [..&...`.........]
-|  2837caf: 03 00 42 00 00 00 b8 05 00 00 a0 00 03 00 12 00 [..B.............]
-|  2837cbf: 00 00 3c 06 00 00 16 40 04 00 0a 00 00 00 60 06 [..<....@......`.]
-|     [snip 1592 bytes]
-| + [TIFF directory]
-| | + [Canon directory with 6 entries]
-| | | 0)  CanonCameraSettings (SubDirectory) -->
-| | |     - Tag 0x0001 (98 bytes, int16u[49] read as undef[98]):
-| | |      2837c37: 62 00 02 00 00 00 04 00 00 00 00 00 00 00 00 01 [b...............]
-| | |      2837c47: 00 00 0d 00 00 00 01 00 00 00 00 00 00 00 ff 7f [................]
-| | |      2837c57: 0f 00 03 00 02 00 00 00 03 00 ff ff 39 10 2d 00 [............9.-.]
-| | |      2837c67: 0f 00 01 00 74 00 20 01 00 00 08 00 00 00 00 00 [....t. .........]
-| | |      2837c77: ff ff ff ff ff ff 00 00 00 00 00 00 00 00 ff ff [................]
-| | |         [snip 18 bytes]
-| | | + [BinaryData directory, 98 bytes]
-| | | | MacroMode = 2
-| | | | - Tag 0x0001 (2 bytes, int16s[1]):
-| | | |  2837c39: 02 00                                           [..]
-| | | | SelfTimer = 0
-| | | | - Tag 0x0002 (2 bytes, int16s[1]):
-| | | |  2837c3b: 00 00                                           [..]
-| | | | Quality = 4
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  2837c3d: 04 00                                           [..]
-| | | | CanonFlashMode = 0
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  2837c3f: 00 00                                           [..]
-| | | | ContinuousDrive = 0
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  2837c41: 00 00                                           [..]
-| | | | FocusMode = 256
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  2837c45: 00 01                                           [..]
-| | | | RecordMode = 13
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  2837c49: 0d 00                                           [..]
-| | | | CanonImageSize = 0
-| | | | - Tag 0x000a (2 bytes, int16s[1]):
-| | | |  2837c4b: 00 00                                           [..]
-| | | | EasyMode = 1
-| | | | - Tag 0x000b (2 bytes, int16s[1]):
-| | | |  2837c4d: 01 00                                           [..]
-| | | | DigitalZoom = 0
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  2837c4f: 00 00                                           [..]
-| | | | Contrast = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  2837c51: 00 00                                           [..]
-| | | | Saturation = 0
-| | | | - Tag 0x000e (2 bytes, int16s[1]):
-| | | |  2837c53: 00 00                                           [..]
-| | | | Sharpness = 32767
-| | | | - Tag 0x000f (2 bytes, int16s[1]):
-| | | |  2837c55: ff 7f                                           [..]
-| | | | CameraISO = 15
-| | | | - Tag 0x0010 (2 bytes, int16s[1]):
-| | | |  2837c57: 0f 00                                           [..]
-| | | | MeteringMode = 3
-| | | | - Tag 0x0011 (2 bytes, int16s[1]):
-| | | |  2837c59: 03 00                                           [..]
-| | | | FocusRange = 2
-| | | | - Tag 0x0012 (2 bytes, int16s[1]):
-| | | |  2837c5b: 02 00                                           [..]
-| | | | AFPoint = 0
-| | | | - Tag 0x0013 (2 bytes, int16s[1]):
-| | | |  2837c5d: 00 00                                           [..]
-| | | | CanonExposureMode = 3
-| | | | - Tag 0x0014 (2 bytes, int16s[1]):
-| | | |  2837c5f: 03 00                                           [..]
-| | | | LensType = 4153
-| | | | - Tag 0x0016 (2 bytes, int16u[1]):
-| | | |  2837c63: 39 10                                           [9.]
-| | | | MaxFocalLength = 45
-| | | | - Tag 0x0017 (2 bytes, int16u[1]):
-| | | |  2837c65: 2d 00                                           [-.]
-| | | | MinFocalLength = 15
-| | | | - Tag 0x0018 (2 bytes, int16u[1]):
-| | | |  2837c67: 0f 00                                           [..]
-| | | | FocalUnits = 1
-| | | | - Tag 0x0019 (2 bytes, int16s[1]):
-| | | |  2837c69: 01 00                                           [..]
-| | | | MaxAperture = 116
-| | | | - Tag 0x001a (2 bytes, int16s[1]):
-| | | |  2837c6b: 74 00                                           [t.]
-| | | | MinAperture = 288
-| | | | - Tag 0x001b (2 bytes, int16s[1]):
-| | | |  2837c6d: 20 01                                           [ .]
-| | | | FlashActivity = 0
-| | | | - Tag 0x001c (2 bytes, int16s[1]):
-| | | |  2837c6f: 00 00                                           [..]
-| | | | FlashBits = 8
-| | | | - Tag 0x001d (2 bytes, int16s[1]):
-| | | |  2837c71: 08 00                                           [..]
-| | | | FocusContinuous = -1
-| | | | - Tag 0x0020 (2 bytes, int16s[1]):
-| | | |  2837c77: ff ff                                           [..]
-| | | | AESetting = -1
-| | | | - Tag 0x0021 (2 bytes, int16s[1]):
-| | | |  2837c79: ff ff                                           [..]
-| | | | ImageStabilization = -1
-| | | | - Tag 0x0022 (2 bytes, int16s[1]):
-| | | |  2837c7b: ff ff                                           [..]
-| | | | DisplayAperture = 0
-| | | | - Tag 0x0023 (2 bytes, int16s[1]):
-| | | |  2837c7d: 00 00                                           [..]
-| | | | ZoomSourceWidth = 0
-| | | | - Tag 0x0024 (2 bytes, int16s[1]):
-| | | |  2837c7f: 00 00                                           [..]
-| | | | ZoomTargetWidth = 0
-| | | | - Tag 0x0025 (2 bytes, int16s[1]):
-| | | |  2837c81: 00 00                                           [..]
-| | | | SpotMeteringMode = -1
-| | | | - Tag 0x0027 (2 bytes, int16s[1]):
-| | | |  2837c85: ff ff                                           [..]
-| | | | PhotoEffect = -1
-| | | | - Tag 0x0028 (2 bytes, int16s[1]):
-| | | |  2837c87: ff ff                                           [..]
-| | | | ManualFlashOutput = 0
-| | | | - Tag 0x0029 (2 bytes, int16s[1]):
-| | | |  2837c89: 00 00                                           [..]
-| | | | ColorTone = 0
-| | | | - Tag 0x002a (2 bytes, int16s[1]):
-| | | |  2837c8b: 00 00                                           [..]
-| | | | SRAWQuality = 0
-| | | | - Tag 0x002e (2 bytes, int16s[1]):
-| | | |  2837c93: 00 00                                           [..]
-| | | 1)  CanonShotInfo (SubDirectory) -->
-| | |     - Tag 0x0004 (68 bytes, int16u[34] read as undef[68]):
-| | |      2837c99: 44 00 00 00 a0 01 b8 ff ac 00 ac 00 00 00 00 00 [D...............]
-| | |      2837ca9: 03 00 00 00 08 00 08 00 a2 00 00 00 00 00 00 00 [................]
-| | |      2837cb9: 00 00 00 00 01 00 00 00 00 00 ac 00 ac 00 45 00 [..............E.]
-| | |      2837cc9: 00 00 00 00 f8 00 00 00 ff ff ff ff ff ff 00 00 [................]
-| | |      2837cd9: 00 00 00 00                                     [....]
-| | | + [BinaryData directory, 68 bytes]
-| | | | AutoISO = 0
-| | | | - Tag 0x0001 (2 bytes, int16s[1]):
-| | | |  2837c9b: 00 00                                           [..]
-| | | | BaseISO = 416
-| | | | - Tag 0x0002 (2 bytes, int16s[1]):
-| | | |  2837c9d: a0 01                                           [..]
-| | | | MeasuredEV = -72
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  2837c9f: b8 ff                                           [..]
-| | | | TargetAperture = 172
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  2837ca1: ac 00                                           [..]
-| | | | TargetExposureTime = 172
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  2837ca3: ac 00                                           [..]
-| | | | ExposureCompensation = 0
-| | | | - Tag 0x0006 (2 bytes, int16s[1]):
-| | | |  2837ca5: 00 00                                           [..]
-| | | | WhiteBalance = 0
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  2837ca7: 00 00                                           [..]
-| | | | SlowShutter = 3
-| | | | - Tag 0x0008 (2 bytes, int16s[1]):
-| | | |  2837ca9: 03 00                                           [..]
-| | | | SequenceNumber = 0
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  2837cab: 00 00                                           [..]
-| | | | OpticalZoomCode = 8
-| | | | - Tag 0x000a (2 bytes, int16s[1]):
-| | | |  2837cad: 08 00                                           [..]
-| | | | CameraTemperature = 162
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  2837cb1: a2 00                                           [..]
-| | | | FlashGuideNumber = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  2837cb3: 00 00                                           [..]
-| | | | AFPointsInFocus = 0
-| | | | - Tag 0x000e (2 bytes, int16s[1]):
-| | | |  2837cb5: 00 00                                           [..]
-| | | | FlashExposureComp = 0
-| | | | - Tag 0x000f (2 bytes, int16s[1]):
-| | | |  2837cb7: 00 00                                           [..]
-| | | | AutoExposureBracketing = 0
-| | | | - Tag 0x0010 (2 bytes, int16s[1]):
-| | | |  2837cb9: 00 00                                           [..]
-| | | | AEBBracketValue = 0
-| | | | - Tag 0x0011 (2 bytes, int16s[1]):
-| | | |  2837cbb: 00 00                                           [..]
-| | | | ControlMode = 1
-| | | | - Tag 0x0012 (2 bytes, int16s[1]):
-| | | |  2837cbd: 01 00                                           [..]
-| | | | FocusDistanceUpper = 0
-| | | | - Tag 0x0013 (2 bytes, int16u[1]):
-| | | |  2837cbf: 00 00                                           [..]
-| | | | FNumber = 172
-| | | | - Tag 0x0015 (2 bytes, int16s[1]):
-| | | |  2837cc3: ac 00                                           [..]
-| | | | ExposureTime = 172
-| | | | - Tag 0x0016 (2 bytes, int16s[1]):
-| | | |  2837cc5: ac 00                                           [..]
-| | | | MeasuredEV2 = 69
-| | | | - Tag 0x0017 (2 bytes, int16s[1]):
-| | | |  2837cc7: 45 00                                           [E.]
-| | | | BulbDuration = 0
-| | | | - Tag 0x0018 (2 bytes, int16s[1]):
-| | | |  2837cc9: 00 00                                           [..]
-| | | | CameraType = 248
-| | | | - Tag 0x001a (2 bytes, int16s[1]):
-| | | |  2837ccd: f8 00                                           [..]
-| | | | AutoRotate = 0
-| | | | - Tag 0x001b (2 bytes, int16s[1]):
-| | | |  2837ccf: 00 00                                           [..]
-| | | | NDFilter = -1
-| | | | - Tag 0x001c (2 bytes, int16s[1]):
-| | | |  2837cd1: ff ff                                           [..]
-| | | | SelfTimer2 = -1
-| | | | - Tag 0x001d (2 bytes, int16s[1]):
-| | | |  2837cd3: ff ff                                           [..]
-| | | | FlashOutput = 0
-| | | | - Tag 0x0021 (2 bytes, int16s[1]):
-| | | |  2837cdb: 00 00                                           [..]
-| | | 2)  CanonAFInfo2 (SubDirectory) -->
-| | |     - Tag 0x0026 (1216 bytes, int16u[608] read as undef[1216]):
-| | |      2837cdd: c0 04 06 00 8f 00 63 00 70 17 a0 0f 70 17 a0 0f [......c.p...p...]
-| | |      2837ced: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | |      2837cfd: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | |      2837d0d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | |      2837d1d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | |         [snip 1136 bytes]
-| | | + [SerialData directory, 1216 bytes]
-| | | | 0)  AFInfoSize = 1216
-| | | |     - Tag 0x0000 (2 bytes, int16u[1]):
-| | | |      2837cdd: c0 04                                           [..]
-| | | | 1)  AFAreaMode = 6
-| | | |     - Tag 0x0001 (2 bytes, int16u[1]):
-| | | |      2837cdf: 06 00                                           [..]
-| | | | 2)  NumAFPoints = 143
-| | | |     - Tag 0x0002 (2 bytes, int16u[1]):
-| | | |      2837ce1: 8f 00                                           [..]
-| | | | 3)  ValidAFPoints = 99
-| | | |     - Tag 0x0003 (2 bytes, int16u[1]):
-| | | |      2837ce3: 63 00                                           [c.]
-| | | | 4)  CanonImageWidth = 6000
-| | | |     - Tag 0x0004 (2 bytes, int16u[1]):
-| | | |      2837ce5: 70 17                                           [p.]
-| | | | 5)  CanonImageHeight = 4000
-| | | |     - Tag 0x0005 (2 bytes, int16u[1]):
-| | | |      2837ce7: a0 0f                                           [..]
-| | | | 6)  AFImageWidth = 6000
-| | | |     - Tag 0x0006 (2 bytes, int16u[1]):
-| | | |      2837ce9: 70 17                                           [p.]
-| | | | 7)  AFImageHeight = 4000
-| | | |     - Tag 0x0007 (2 bytes, int16u[1]):
-| | | |      2837ceb: a0 0f                                           [..]
-| | | | 8)  AFAreaWidths = 360 360 360 360 360 360 360 360 360 360 360 360 360 360 360 [snip]
-| | | |     - Tag 0x0008 (286 bytes, int16s[143]):
-| | | |      2837ced: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | | |      2837cfd: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | | |      2837d0d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | | |      2837d1d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | | |      2837d2d: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
-| | | |         [snip 206 bytes]
-| | | | 9)  AFAreaHeights = 300 300 300 300 300 300 300 300 300 300 300 300 300 300 300[snip]
-| | | |     - Tag 0x0009 (286 bytes, int16s[143]):
-| | | |      2837e0b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
-| | | |      2837e1b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
-| | | |      2837e2b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
-| | | |      2837e3b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
-| | | |      2837e4b: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
-| | | |         [snip 206 bytes]
-| | | | 10) AFAreaXPositions = -1940 -1552 -1164 -776 -388 0 388 776 1164 1552 1940 -19[snip]
-| | | |     - Tag 0x000a (286 bytes, int16s[143]):
-| | | |      2837f29: 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 08 03 [l...t...|.......]
-| | | |      2837f39: 8c 04 10 06 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe [......l...t...|.]
-| | | |      2837f49: 00 00 84 01 08 03 8c 04 10 06 94 07 6c f8 f0 f9 [............l...]
-| | | |      2837f59: 74 fb f8 fc 7c fe 00 00 84 01 08 03 8c 04 10 06 [t...|...........]
-| | | |      2837f69: 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 [..l...t...|.....]
-| | | |         [snip 206 bytes]
-| | | | 11) AFAreaYPositions = 1360 1360 1360 1360 1360 1360 1360 1360 1360 1360 1360 1[snip]
-| | | |     - Tag 0x000b (286 bytes, int16s[143]):
-| | | |      2838047: 50 05 50 05 50 05 50 05 50 05 50 05 50 05 50 05 [P.P.P.P.P.P.P.P.]
-| | | |      2838057: 50 05 50 05 50 05 fc 03 fc 03 fc 03 fc 03 fc 03 [P.P.P...........]
-| | | |      2838067: fc 03 fc 03 fc 03 fc 03 fc 03 fc 03 a8 02 a8 02 [................]
-| | | |      2838077: a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 [................]
-| | | |      2838087: a8 02 54 01 54 01 54 01 54 01 54 01 54 01 54 01 [..T.T.T.T.T.T.T.]
-| | | |         [snip 206 bytes]
-| | | | 12) AFPointsInFocus = 0 7936 -15368 32271 0 0 0 0 0
-| | | |     - Tag 0x000c (18 bytes, int16s[9]):
-| | | |      2838165: 00 00 00 1f f8 c3 0f 7e 00 00 00 00 00 00 00 00 [.......~........]
-| | | |      2838175: 00 00                                           [..]
-| | | | 13) AFPointsSelected = -1 -1 -1 -1 -1 -1 7 0 0
-| | | |     - Tag 0x000d (18 bytes, int16s[9]):
-| | | |      2838177: ff ff ff ff ff ff ff ff ff ff ff ff 07 00 00 00 [................]
-| | | |      2838187: 00 00                                           [..]
-| | | 3)  CanonFileInfo (SubDirectory) -->
-| | |     - Tag 0x0093 (132 bytes, int16u[66] read as undef[132]):
-| | |      283819d: 84 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      28381ad: ff ff 00 00 00 00 00 00 00 00 00 00 ff ff ff ff [................]
-| | |      28381bd: 16 01 ff ff 01 00 01 00 22 00 1f 00 00 00 01 00 [........".......]
-| | |      28381cd: 00 00 00 00 ff ff 00 00 3f 00 3f 00 1a 00 1f 00 [........?.?.....]
-| | |      28381dd: 00 00 74 00 00 00 00 00 00 00 00 00 00 00 00 00 [..t.............]
-| | |         [snip 52 bytes]
-| | | + [BinaryData directory, 132 bytes]
-| | | | BracketMode = 0
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  28381a3: 00 00                                           [..]
-| | | | BracketValue = 0
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  28381a5: 00 00                                           [..]
-| | | | BracketShotNumber = 0
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  28381a7: 00 00                                           [..]
-| | | | RawJpgQuality = 0
-| | | | - Tag 0x0006 (2 bytes, int16s[1]):
-| | | |  28381a9: 00 00                                           [..]
-| | | | RawJpgSize = 0
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  28381ab: 00 00                                           [..]
-| | | | LongExposureNoiseReduction2 = -1
-| | | | - Tag 0x0008 (2 bytes, int16s[1]):
-| | | |  28381ad: ff ff                                           [..]
-| | | | WBBracketMode = 0
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  28381af: 00 00                                           [..]
-| | | | WBBracketValueAB = 0
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  28381b5: 00 00                                           [..]
-| | | | WBBracketValueGM = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  28381b7: 00 00                                           [..]
-| | | | FilterEffect = -1
-| | | | - Tag 0x000e (2 bytes, int16s[1]):
-| | | |  28381b9: ff ff                                           [..]
-| | | | ToningEffect = -1
-| | | | - Tag 0x000f (2 bytes, int16s[1]):
-| | | |  28381bb: ff ff                                           [..]
-| | | | LiveViewShooting = 1
-| | | | - Tag 0x0013 (2 bytes, int16s[1]):
-| | | |  28381c3: 01 00                                           [..]
-| | | | FocusDistanceUpper = 34
-| | | | - Tag 0x0014 (2 bytes, int16u[1]):
-| | | |  28381c5: 22 00                                           [".]
-| | | | FocusDistanceLower = 31
-| | | | - Tag 0x0015 (2 bytes, int16u[1]):
-| | | |  28381c7: 1f 00                                           [..]
-| | | | FlashExposureLock = 0
-| | | | - Tag 0x0019 (2 bytes, int16s[1]):
-| | | |  28381cf: 00 00                                           [..]
-| | | 4)  ProcessingInfo (SubDirectory) -->
-| | |     - Tag 0x00a0 (36 bytes, int16u[18] read as undef[36]):
-| | |      2838221: 24 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 [$...............]
-| | |      2838231: ff ff 50 14 87 00 00 00 00 00 00 00 02 00 04 00 [..P.............]
-| | |      2838241: 00 00 ff ff                                     [....]
-| | | + [BinaryData directory, 36 bytes]
-| | | | ToneCurve = 0
-| | | | - Tag 0x0001 (2 bytes, int16s[1]):
-| | | |  2838223: 00 00                                           [..]
-| | | | Sharpness = 4
-| | | | - Tag 0x0002 (2 bytes, int16s[1]):
-| | | |  2838225: 04 00                                           [..]
-| | | | SharpnessFrequency = 0
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  2838227: 00 00                                           [..]
-| | | | SensorRedLevel = 0
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  2838229: 00 00                                           [..]
-| | | | SensorBlueLevel = 0
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  283822b: 00 00                                           [..]
-| | | | WhiteBalanceRed = 0
-| | | | - Tag 0x0006 (2 bytes, int16s[1]):
-| | | |  283822d: 00 00                                           [..]
-| | | | WhiteBalanceBlue = 0
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  283822f: 00 00                                           [..]
-| | | | WhiteBalance = -1
-| | | | - Tag 0x0008 (2 bytes, int16s[1]):
-| | | |  2838231: ff ff                                           [..]
-| | | | ColorTemperature = 5200
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  2838233: 50 14                                           [P.]
-| | | | PictureStyle = 135
-| | | | - Tag 0x000a (2 bytes, int16s[1]):
-| | | |  2838235: 87 00                                           [..]
-| | | | DigitalGain = 0
-| | | | - Tag 0x000b (2 bytes, int16s[1]):
-| | | |  2838237: 00 00                                           [..]
-| | | | WBShiftAB = 0
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  2838239: 00 00                                           [..]
-| | | | WBShiftGM = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  283823b: 00 00                                           [..]
-| | | 5)  VignettingCorr2 (SubDirectory) -->
-| | |     - Tag 0x4016 (40 bytes, int32u[10] read as undef[40]):
-| | |      2838245: 28 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 [(...............]
-| | |      2838255: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 [................]
-| | |      2838265: 01 00 00 00 00 00 00 00                         [........]
-| | | + [BinaryData directory, 40 bytes]
-| | | | PeripheralLightingSetting = 1
-| | | | - Tag 0x0005 (4 bytes, int32s[1]):
-| | | |  2838259: 01 00 00 00                                     [....]
-| | | | ChromaticAberrationSetting = 1
-| | | | - Tag 0x0006 (4 bytes, int32s[1]):
-| | | |  283825d: 01 00 00 00                                     [....]
-+ [CTMD type 8 directory, 37712 bytes]
-|     0728: 01 01 00 01 ff ff 4a 93 00 00 7c 92 00 00 49 49 [......J...|...II]
-|     0738: 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 00 00 [*........@......]
-|     0748: 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e 00 00 [.....@...~..f...]
-|     0758: 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 77 04 [........B.....w.]
-|     0768: 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 50 02 [..............P.]
-|     [snip 37632 bytes]
-| MakerNoteCanon (SubDirectory) -->
-| - Tag 0x927c (37698 bytes):
-|  283831b: 49 49 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 [II*........@....]
-|  283832b: 00 00 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e [.......@...~..f.]
-|  283833b: 00 00 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 [..........B.....]
-|  283834b: 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 [w...............]
-|  283835b: 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 06 02 [P.......~.......]
-|     [snip 37618 bytes]
-| + [TIFF directory]
-| | + [Canon directory with 3 entries]
-| | | 0)  ColorData9 (SubDirectory) -->
-| | |     - Tag 0x4001 (3640 bytes, int16u[1820] read as undef[3640]):
-| | |      2837c13: 10 00 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 [..w.............]
-| | |      2837c23: ea 02 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 [..P.......~.....]
-| | |      2837c33: 06 02 a6 02 00 04 00 04 f9 02 58 02 00 04 00 04 [..........X.....]
-| | |      2837c43: ed 04 00 00 00 00 00 01 00 01 00 01 00 00 02 00 [................]
-| | |      2837c53: 04 00 02 00 04 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 3560 bytes]
-| | | + [BinaryData directory, 3640 bytes]
-| | | | ColorDataVersion = 16
-| | | | - Tag 0x0000 (2 bytes, int16s[1]):
-| | | |  2837c13: 10 00                                           [..]
-| | | | WB_RGGBLevelsAsShot = 1093 1024 1024 1856
-| | | | - Tag 0x0047 (8 bytes, int16s[4]):
-| | | |  2837ca1: 45 04 00 04 00 04 40 07                         [E.....@.]
-| | | | ColorTempAsShot = 3200
-| | | | - Tag 0x004b (2 bytes, int16s[1]):
-| | | |  2837ca9: 80 0c                                           [..]
-| | | | WB_RGGBLevelsAuto = 1093 1024 1024 1856
-| | | | - Tag 0x004c (8 bytes, int16s[4]):
-| | | |  2837cab: 45 04 00 04 00 04 40 07                         [E.....@.]
-| | | | ColorTempAuto = 3200
-| | | | - Tag 0x0050 (2 bytes, int16s[1]):
-| | | |  2837cb3: 80 0c                                           [..]
-| | | | WB_RGGBLevelsMeasured = 1093 1024 1024 1856
-| | | | - Tag 0x0051 (8 bytes, int16s[4]):
-| | | |  2837cb5: 45 04 00 04 00 04 40 07                         [E.....@.]
-| | | | ColorTempMeasured = 3200
-| | | | - Tag 0x0055 (2 bytes, int16s[1]):
-| | | |  2837cbd: 80 0c                                           [..]
-| | | | WB_RGGBLevelsDaylight = 1549 1024 1024 1316
-| | | | - Tag 0x0088 (8 bytes, int16s[4]):
-| | | |  2837d23: 0d 06 00 04 00 04 24 05                         [......$.]
-| | | | ColorTempDaylight = 5200
-| | | | - Tag 0x008c (2 bytes, int16s[1]):
-| | | |  2837d2b: 50 14                                           [P.]
-| | | | WB_RGGBLevelsShade = 1792 1024 1024 1147
-| | | | - Tag 0x008d (8 bytes, int16s[4]):
-| | | |  2837d2d: 00 07 00 04 00 04 7b 04                         [......{.]
-| | | | ColorTempShade = 7000
-| | | | - Tag 0x0091 (2 bytes, int16s[1]):
-| | | |  2837d35: 58 1b                                           [X.]
-| | | | WB_RGGBLevelsCloudy = 1670 1024 1024 1229
-| | | | - Tag 0x0092 (8 bytes, int16s[4]):
-| | | |  2837d37: 86 06 00 04 00 04 cd 04                         [........]
-| | | | ColorTempCloudy = 6000
-| | | | - Tag 0x0096 (2 bytes, int16s[1]):
-| | | |  2837d3f: 70 17                                           [p.]
-| | | | WB_RGGBLevelsTungsten = 1104 1024 1024 1879
-| | | | - Tag 0x0097 (8 bytes, int16s[4]):
-| | | |  2837d41: 50 04 00 04 00 04 57 07                         [P.....W.]
-| | | | ColorTempTungsten = 3200
-| | | | - Tag 0x009b (2 bytes, int16s[1]):
-| | | |  2837d49: 80 0c                                           [..]
-| | | | WB_RGGBLevelsFluorescent = 1303 1024 1024 1771
-| | | | - Tag 0x009c (8 bytes, int16s[4]):
-| | | |  2837d4b: 17 05 00 04 00 04 eb 06                         [........]
-| | | | ColorTempFluorescent = 3687
-| | | | - Tag 0x00a0 (2 bytes, int16s[1]):
-| | | |  2837d53: 67 0e                                           [g.]
-| | | | WB_RGGBLevelsKelvin = 1549 1024 1024 1316
-| | | | - Tag 0x00a1 (8 bytes, int16s[4]):
-| | | |  2837d55: 0d 06 00 04 00 04 24 05                         [......$.]
-| | | | ColorTempKelvin = 5200
-| | | | - Tag 0x00a5 (2 bytes, int16s[1]):
-| | | |  2837d5d: 50 14                                           [P.]
-| | | | WB_RGGBLevelsFlash = 1697 1024 1024 1218
-| | | | - Tag 0x00a6 (8 bytes, int16s[4]):
-| | | |  2837d5f: a1 06 00 04 00 04 c2 04                         [........]
-| | | | ColorTempFlash = 6166
-| | | | - Tag 0x00aa (2 bytes, int16s[1]):
-| | | |  2837d67: 16 18                                           [..]
-| | | 1)  Flavor = .~. .?_...........?_...........?_...........?_...........?_.........[snip]
-| | |     - Tag 0x4005 (32476 bytes, undef[32476]):
-| | |      2838a4b: dc 7e 00 00 0b 00 00 20 00 00 00 00 00 00 00 00 [.~..... ........]
-| | |      2838a5b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2838a6b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2838a7b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2838a8b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 32396 bytes]
-| | | 2)  CanonCameraInfoUnknown (SubDirectory) -->
-| | |     - Tag 0x000d (1536 bytes, undef[1536]):
-| | |      2840927: aa aa 00 10 20 10 00 27 00 10 00 10 20 f9 10 f9 [.... ..'.... ...]
-| | |      2840937: 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 [................]
-| | |      2840947: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2840957: 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2840967: 00 00 00 00 00 00 00 00 00 00 00 a2 9a 00 00 00 [................]
-| | |         [snip 1456 bytes]
-| | | + [BinaryData directory, 1536 bytes]
-+ [CTMD type 9 directory, 1486 bytes]
-|     9a7e: 01 01 00 01 ff ff c8 05 00 00 7c 92 00 00 49 49 [..........|...II]
-|     9a8e: 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 00 00 [*........@..x...]
-|     9a9e: 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 00 00 [....3@..........]
-|     9aae: 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 78 02 [.@.."....... 0x.]
-|     9abe: 01 00 00 00 01 00 01 00 01 00 00 00 14 00 00 00 [................]
-|     [snip 1406 bytes]
-| MakerNoteCanon (SubDirectory) -->
-| - Tag 0x927c (1472 bytes):
-|  2841671: 49 49 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 [II*........@..x.]
-|  2841681: 00 00 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 [......3@........]
-|  2841691: 00 00 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 [...@.."....... 0]
-|  28416a1: 78 02 01 00 00 00 01 00 01 00 01 00 00 00 14 00 [x...............]
-|  28416b1: 00 00 64 00 64 00 66 04 80 00 00 00 00 00 88 0e [..d.d.f.........]
-|     [snip 1392 bytes]
-| + [TIFF directory]
-| | + [Canon directory with 3 entries]
-| | | 0)  VignettingCorrUnknown1 (SubDirectory) -->
-| | |     - Tag 0x4015 (632 bytes, undef[632]):
-| | |      2837c13: 20 30 78 02 01 00 00 00 01 00 01 00 01 00 00 00 [ 0x.............]
-| | |      2837c23: 14 00 00 00 64 00 64 00 66 04 80 00 00 00 00 00 [....d.d.f.......]
-| | |      2837c33: 88 0e 70 17 a0 0f 00 00 00 00 00 00 00 00 00 00 [..p.............]
-| | |      2837c43: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2837c53: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 552 bytes]
-| | | + [BinaryData directory, 632 bytes]
-| | | | VignettingCorrVersion = 32
-| | | | - Tag 0x0000 (1 bytes, int8u[1]):
-| | | |  2837c13: 20                                              [ ]
-| | | 1)  Canon_0x4033 = 
-| | |     - Tag 0x4033 (504 bytes, undef[504]):
-| | |      2837e8b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2837e9b: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2837eab: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2837ebb: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2837ecb: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 424 bytes]
-| | | 2)  Canon_0x402e = .".........}..?.........?..........E..,..............u.@...a..[snip]
-| | |     - Tag 0x402e (290 bytes, undef[290]):
-| | |      2838083: 00 10 22 01 00 00 00 00 00 00 ff ff ff ff fe ff [..".............]
-| | |      2838093: f8 ff 7d ff ff 3f 00 00 00 00 00 00 00 00 ff ff [..}..?..........]
-| | |      28380a3: fe ff f7 ff 06 ff fc 3f 00 00 d2 ff a5 ff 99 ff [.......?........]
-| | |      28380b3: 9b ff d9 ff 45 05 f0 2c b9 00 00 00 18 00 1d 00 [....E..,........]
-| | |      28380c3: 12 00 d1 ff ef fe c0 f6 ba d3 a3 fe 00 00 75 fd [..............u.]
-| | |         [snip 210 bytes]
++ [CTMD type 1 directory, 12 bytes]
+| TimeStamp = .......A
+| - Tag 0x0001 (12 bytes):
+|  2837bf1: 00 00 e2 07 02 15 0c 03 08 41 00 00             [.........A..]
++ [CTMD type 3 directory, 4 bytes]
+|  2837c09: ff ff ff ff                                     [....]
++ [CTMD type 4 directory, 12 bytes]
+| FocalInfo (SubDirectory) -->
+| - Tag 0x0004 (12 bytes):
+|  2837c19: 0f 00 01 00 ff ff ff ff ff ff ff ff             [............]
+| + [BinaryData directory, 12 bytes]
+| | FocalLength = 15
+| | - Tag 0x0000 (4 bytes, rational32u[1]):
+| |  2837c19: 0f 00 01 00                                     [....]
++ [CTMD type 5 directory, 28 bytes]
+| ExposureInfo (SubDirectory) -->
+| - Tag 0x0005 (28 bytes):
+|  2837c31: 3f 00 0a 00 01 00 28 00 00 64 00 00 01 00 00 00 [?.....(..d......]
+|  2837c41: ff ff ff ff 00 00 00 00 ff ff ff ff             [............]
+| + [BinaryData directory, 28 bytes]
+| | FNumber = 6.3
+| | - Tag 0x0000 (4 bytes, rational32u[1]):
+| |  2837c31: 3f 00 0a 00                                     [?...]
+| | ExposureTime = 0.025
+| | - Tag 0x0001 (4 bytes, rational32u[1]):
+| |  2837c35: 01 00 28 00                                     [..(.]
+| | ISO = 25600
+| | - Tag 0x0002 (4 bytes, int32u[1]):
+| |  2837c39: 00 64 00 00                                     [.d..]
++ [CTMD type 7 directory, 1710 bytes]
+| TimedExif7 (SubDirectory) -->
+| - Tag 0x0007 (1710 bytes):
+|  2837c59: 1e 00 00 00 69 87 00 00 49 49 2a 00 08 00 00 00 [....i...II*.....]
+|  2837c69: 01 00 06 a4 03 00 01 00 00 00 00 00 00 00 90 06 [................]
+|  2837c79: 00 00 7c 92 00 00 49 49 2a 00 08 00 00 00 06 00 [..|...II*.......]
+|  2837c89: 01 00 03 00 31 00 00 00 52 00 00 00 04 00 03 00 [....1...R.......]
+|  2837c99: 22 00 00 00 b4 00 00 00 26 00 03 00 60 02 00 00 [".......&...`...]
+|     [snip 1630 bytes]
+| + [TimedExif directory, 1710 bytes]
+| | ExifIFD (SubDirectory) -->
+| | - Tag 0x8769 (22 bytes):
+| |  2837c61: 49 49 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 [II*.............]
+| |  2837c71: 00 00 00 00 00 00                               [......]
+| | + [TIFF directory]
+| | | ExifByteOrder = II
+| | | + [ExifIFD directory with 1 entries]
+| | | | 0)  SceneCaptureType = 0
+| | | |     - Tag 0xa406 (2 bytes, int16u[1]):
+| | | |      2837c73: 00 00                                           [..]
+| | MakerNoteCanon (SubDirectory) -->
+| | - Tag 0x927c (1672 bytes):
+| |  2837c7f: 49 49 2a 00 08 00 00 00 06 00 01 00 03 00 31 00 [II*...........1.]
+| |  2837c8f: 00 00 52 00 00 00 04 00 03 00 22 00 00 00 b4 00 [..R.......".....]
+| |  2837c9f: 00 00 26 00 03 00 60 02 00 00 f8 00 00 00 93 00 [..&...`.........]
+| |  2837caf: 03 00 42 00 00 00 b8 05 00 00 a0 00 03 00 12 00 [..B.............]
+| |  2837cbf: 00 00 3c 06 00 00 16 40 04 00 0a 00 00 00 60 06 [..<....@......`.]
+| |     [snip 1592 bytes]
+| | + [TIFF directory]
+| | | + [Canon directory with 6 entries]
+| | | | 0)  CanonCameraSettings (SubDirectory) -->
+| | | |     - Tag 0x0001 (98 bytes, int16u[49] read as undef[98]):
+| | | |      2837cd1: 62 00 02 00 00 00 04 00 00 00 00 00 00 00 00 01 [b...............]
+| | | |      2837ce1: 00 00 0d 00 00 00 01 00 00 00 00 00 00 00 ff 7f [................]
+| | | |      2837cf1: 0f 00 03 00 02 00 00 00 03 00 ff ff 39 10 2d 00 [............9.-.]
+| | | |      2837d01: 0f 00 01 00 74 00 20 01 00 00 08 00 00 00 00 00 [....t. .........]
+| | | |      2837d11: ff ff ff ff ff ff 00 00 00 00 00 00 00 00 ff ff [................]
+| | | |         [snip 18 bytes]
+| | | | + [BinaryData directory, 98 bytes]
+| | | | | MacroMode = 2
+| | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | | |  2837cd3: 02 00                                           [..]
+| | | | | SelfTimer = 0
+| | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | | |  2837cd5: 00 00                                           [..]
+| | | | | Quality = 4
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  2837cd7: 04 00                                           [..]
+| | | | | CanonFlashMode = 0
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  2837cd9: 00 00                                           [..]
+| | | | | ContinuousDrive = 0
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  2837cdb: 00 00                                           [..]
+| | | | | FocusMode = 256
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  2837cdf: 00 01                                           [..]
+| | | | | RecordMode = 13
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  2837ce3: 0d 00                                           [..]
+| | | | | CanonImageSize = 0
+| | | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | | |  2837ce5: 00 00                                           [..]
+| | | | | EasyMode = 1
+| | | | | - Tag 0x000b (2 bytes, int16s[1]):
+| | | | |  2837ce7: 01 00                                           [..]
+| | | | | DigitalZoom = 0
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  2837ce9: 00 00                                           [..]
+| | | | | Contrast = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  2837ceb: 00 00                                           [..]
+| | | | | Saturation = 0
+| | | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | | |  2837ced: 00 00                                           [..]
+| | | | | Sharpness = 32767
+| | | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | | |  2837cef: ff 7f                                           [..]
+| | | | | CameraISO = 15
+| | | | | - Tag 0x0010 (2 bytes, int16s[1]):
+| | | | |  2837cf1: 0f 00                                           [..]
+| | | | | MeteringMode = 3
+| | | | | - Tag 0x0011 (2 bytes, int16s[1]):
+| | | | |  2837cf3: 03 00                                           [..]
+| | | | | FocusRange = 2
+| | | | | - Tag 0x0012 (2 bytes, int16s[1]):
+| | | | |  2837cf5: 02 00                                           [..]
+| | | | | AFPoint = 0
+| | | | | - Tag 0x0013 (2 bytes, int16s[1]):
+| | | | |  2837cf7: 00 00                                           [..]
+| | | | | CanonExposureMode = 3
+| | | | | - Tag 0x0014 (2 bytes, int16s[1]):
+| | | | |  2837cf9: 03 00                                           [..]
+| | | | | LensType = 4153
+| | | | | - Tag 0x0016 (2 bytes, int16u[1]):
+| | | | |  2837cfd: 39 10                                           [9.]
+| | | | | MaxFocalLength = 45
+| | | | | - Tag 0x0017 (2 bytes, int16u[1]):
+| | | | |  2837cff: 2d 00                                           [-.]
+| | | | | MinFocalLength = 15
+| | | | | - Tag 0x0018 (2 bytes, int16u[1]):
+| | | | |  2837d01: 0f 00                                           [..]
+| | | | | FocalUnits = 1
+| | | | | - Tag 0x0019 (2 bytes, int16s[1]):
+| | | | |  2837d03: 01 00                                           [..]
+| | | | | MaxAperture = 116
+| | | | | - Tag 0x001a (2 bytes, int16s[1]):
+| | | | |  2837d05: 74 00                                           [t.]
+| | | | | MinAperture = 288
+| | | | | - Tag 0x001b (2 bytes, int16s[1]):
+| | | | |  2837d07: 20 01                                           [ .]
+| | | | | FlashActivity = 0
+| | | | | - Tag 0x001c (2 bytes, int16s[1]):
+| | | | |  2837d09: 00 00                                           [..]
+| | | | | FlashBits = 8
+| | | | | - Tag 0x001d (2 bytes, int16s[1]):
+| | | | |  2837d0b: 08 00                                           [..]
+| | | | | FocusContinuous = -1
+| | | | | - Tag 0x0020 (2 bytes, int16s[1]):
+| | | | |  2837d11: ff ff                                           [..]
+| | | | | AESetting = -1
+| | | | | - Tag 0x0021 (2 bytes, int16s[1]):
+| | | | |  2837d13: ff ff                                           [..]
+| | | | | ImageStabilization = -1
+| | | | | - Tag 0x0022 (2 bytes, int16s[1]):
+| | | | |  2837d15: ff ff                                           [..]
+| | | | | DisplayAperture = 0
+| | | | | - Tag 0x0023 (2 bytes, int16s[1]):
+| | | | |  2837d17: 00 00                                           [..]
+| | | | | ZoomSourceWidth = 0
+| | | | | - Tag 0x0024 (2 bytes, int16s[1]):
+| | | | |  2837d19: 00 00                                           [..]
+| | | | | ZoomTargetWidth = 0
+| | | | | - Tag 0x0025 (2 bytes, int16s[1]):
+| | | | |  2837d1b: 00 00                                           [..]
+| | | | | SpotMeteringMode = -1
+| | | | | - Tag 0x0027 (2 bytes, int16s[1]):
+| | | | |  2837d1f: ff ff                                           [..]
+| | | | | PhotoEffect = -1
+| | | | | - Tag 0x0028 (2 bytes, int16s[1]):
+| | | | |  2837d21: ff ff                                           [..]
+| | | | | ManualFlashOutput = 0
+| | | | | - Tag 0x0029 (2 bytes, int16s[1]):
+| | | | |  2837d23: 00 00                                           [..]
+| | | | | ColorTone = 0
+| | | | | - Tag 0x002a (2 bytes, int16s[1]):
+| | | | |  2837d25: 00 00                                           [..]
+| | | | | SRAWQuality = 0
+| | | | | - Tag 0x002e (2 bytes, int16s[1]):
+| | | | |  2837d2d: 00 00                                           [..]
+| | | | 1)  CanonShotInfo (SubDirectory) -->
+| | | |     - Tag 0x0004 (68 bytes, int16u[34] read as undef[68]):
+| | | |      2837d33: 44 00 00 00 a0 01 b8 ff ac 00 ac 00 00 00 00 00 [D...............]
+| | | |      2837d43: 03 00 00 00 08 00 08 00 a2 00 00 00 00 00 00 00 [................]
+| | | |      2837d53: 00 00 00 00 01 00 00 00 00 00 ac 00 ac 00 45 00 [..............E.]
+| | | |      2837d63: 00 00 00 00 f8 00 00 00 ff ff ff ff ff ff 00 00 [................]
+| | | |      2837d73: 00 00 00 00                                     [....]
+| | | | + [BinaryData directory, 68 bytes]
+| | | | | AutoISO = 0
+| | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | | |  2837d35: 00 00                                           [..]
+| | | | | BaseISO = 416
+| | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | | |  2837d37: a0 01                                           [..]
+| | | | | MeasuredEV = -72
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  2837d39: b8 ff                                           [..]
+| | | | | TargetAperture = 172
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  2837d3b: ac 00                                           [..]
+| | | | | TargetExposureTime = 172
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  2837d3d: ac 00                                           [..]
+| | | | | ExposureCompensation = 0
+| | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | | |  2837d3f: 00 00                                           [..]
+| | | | | WhiteBalance = 0
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  2837d41: 00 00                                           [..]
+| | | | | SlowShutter = 3
+| | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | | |  2837d43: 03 00                                           [..]
+| | | | | SequenceNumber = 0
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  2837d45: 00 00                                           [..]
+| | | | | OpticalZoomCode = 8
+| | | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | | |  2837d47: 08 00                                           [..]
+| | | | | CameraTemperature = 162
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  2837d4b: a2 00                                           [..]
+| | | | | FlashGuideNumber = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  2837d4d: 00 00                                           [..]
+| | | | | AFPointsInFocus = 0
+| | | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | | |  2837d4f: 00 00                                           [..]
+| | | | | FlashExposureComp = 0
+| | | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | | |  2837d51: 00 00                                           [..]
+| | | | | AutoExposureBracketing = 0
+| | | | | - Tag 0x0010 (2 bytes, int16s[1]):
+| | | | |  2837d53: 00 00                                           [..]
+| | | | | AEBBracketValue = 0
+| | | | | - Tag 0x0011 (2 bytes, int16s[1]):
+| | | | |  2837d55: 00 00                                           [..]
+| | | | | ControlMode = 1
+| | | | | - Tag 0x0012 (2 bytes, int16s[1]):
+| | | | |  2837d57: 01 00                                           [..]
+| | | | | FocusDistanceUpper = 0
+| | | | | - Tag 0x0013 (2 bytes, int16u[1]):
+| | | | |  2837d59: 00 00                                           [..]
+| | | | | FNumber = 172
+| | | | | - Tag 0x0015 (2 bytes, int16s[1]):
+| | | | |  2837d5d: ac 00                                           [..]
+| | | | | ExposureTime = 172
+| | | | | - Tag 0x0016 (2 bytes, int16s[1]):
+| | | | |  2837d5f: ac 00                                           [..]
+| | | | | MeasuredEV2 = 69
+| | | | | - Tag 0x0017 (2 bytes, int16s[1]):
+| | | | |  2837d61: 45 00                                           [E.]
+| | | | | BulbDuration = 0
+| | | | | - Tag 0x0018 (2 bytes, int16s[1]):
+| | | | |  2837d63: 00 00                                           [..]
+| | | | | CameraType = 248
+| | | | | - Tag 0x001a (2 bytes, int16s[1]):
+| | | | |  2837d67: f8 00                                           [..]
+| | | | | AutoRotate = 0
+| | | | | - Tag 0x001b (2 bytes, int16s[1]):
+| | | | |  2837d69: 00 00                                           [..]
+| | | | | NDFilter = -1
+| | | | | - Tag 0x001c (2 bytes, int16s[1]):
+| | | | |  2837d6b: ff ff                                           [..]
+| | | | | SelfTimer2 = -1
+| | | | | - Tag 0x001d (2 bytes, int16s[1]):
+| | | | |  2837d6d: ff ff                                           [..]
+| | | | | FlashOutput = 0
+| | | | | - Tag 0x0021 (2 bytes, int16s[1]):
+| | | | |  2837d75: 00 00                                           [..]
+| | | | 2)  CanonAFInfo2 (SubDirectory) -->
+| | | |     - Tag 0x0026 (1216 bytes, int16u[608] read as undef[1216]):
+| | | |      2837d77: c0 04 06 00 8f 00 63 00 70 17 a0 0f 70 17 a0 0f [......c.p...p...]
+| | | |      2837d87: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |      2837d97: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |      2837da7: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |      2837db7: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | |         [snip 1136 bytes]
+| | | | + [SerialData directory, 1216 bytes]
+| | | | | 0)  AFInfoSize = 1216
+| | | | |     - Tag 0x0000 (2 bytes, int16u[1]):
+| | | | |      2837d77: c0 04                                           [..]
+| | | | | 1)  AFAreaMode = 6
+| | | | |     - Tag 0x0001 (2 bytes, int16u[1]):
+| | | | |      2837d79: 06 00                                           [..]
+| | | | | 2)  NumAFPoints = 143
+| | | | |     - Tag 0x0002 (2 bytes, int16u[1]):
+| | | | |      2837d7b: 8f 00                                           [..]
+| | | | | 3)  ValidAFPoints = 99
+| | | | |     - Tag 0x0003 (2 bytes, int16u[1]):
+| | | | |      2837d7d: 63 00                                           [c.]
+| | | | | 4)  CanonImageWidth = 6000
+| | | | |     - Tag 0x0004 (2 bytes, int16u[1]):
+| | | | |      2837d7f: 70 17                                           [p.]
+| | | | | 5)  CanonImageHeight = 4000
+| | | | |     - Tag 0x0005 (2 bytes, int16u[1]):
+| | | | |      2837d81: a0 0f                                           [..]
+| | | | | 6)  AFImageWidth = 6000
+| | | | |     - Tag 0x0006 (2 bytes, int16u[1]):
+| | | | |      2837d83: 70 17                                           [p.]
+| | | | | 7)  AFImageHeight = 4000
+| | | | |     - Tag 0x0007 (2 bytes, int16u[1]):
+| | | | |      2837d85: a0 0f                                           [..]
+| | | | | 8)  AFAreaWidths = 360 360 360 360 360 360 360 360 360 360 360 360 360 360 36[snip]
+| | | | |     - Tag 0x0008 (286 bytes, int16s[143]):
+| | | | |      2837d87: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | | |      2837d97: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | | |      2837da7: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | | |      2837db7: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | | |      2837dc7: 68 01 68 01 68 01 68 01 68 01 68 01 68 01 68 01 [h.h.h.h.h.h.h.h.]
+| | | | |         [snip 206 bytes]
+| | | | | 9)  AFAreaHeights = 300 300 300 300 300 300 300 300 300 300 300 300 300 300 3[snip]
+| | | | |     - Tag 0x0009 (286 bytes, int16s[143]):
+| | | | |      2837ea5: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | | |      2837eb5: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | | |      2837ec5: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | | |      2837ed5: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | | |      2837ee5: 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 2c 01 [,.,.,.,.,.,.,.,.]
+| | | | |         [snip 206 bytes]
+| | | | | 10) AFAreaXPositions = -1940 -1552 -1164 -776 -388 0 388 776 1164 1552 1940 -[snip]
+| | | | |     - Tag 0x000a (286 bytes, int16s[143]):
+| | | | |      2837fc3: 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 08 03 [l...t...|.......]
+| | | | |      2837fd3: 8c 04 10 06 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe [......l...t...|.]
+| | | | |      2837fe3: 00 00 84 01 08 03 8c 04 10 06 94 07 6c f8 f0 f9 [............l...]
+| | | | |      2837ff3: 74 fb f8 fc 7c fe 00 00 84 01 08 03 8c 04 10 06 [t...|...........]
+| | | | |      2838003: 94 07 6c f8 f0 f9 74 fb f8 fc 7c fe 00 00 84 01 [..l...t...|.....]
+| | | | |         [snip 206 bytes]
+| | | | | 11) AFAreaYPositions = 1360 1360 1360 1360 1360 1360 1360 1360 1360 1360 1360[snip]
+| | | | |     - Tag 0x000b (286 bytes, int16s[143]):
+| | | | |      28380e1: 50 05 50 05 50 05 50 05 50 05 50 05 50 05 50 05 [P.P.P.P.P.P.P.P.]
+| | | | |      28380f1: 50 05 50 05 50 05 fc 03 fc 03 fc 03 fc 03 fc 03 [P.P.P...........]
+| | | | |      2838101: fc 03 fc 03 fc 03 fc 03 fc 03 fc 03 a8 02 a8 02 [................]
+| | | | |      2838111: a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 a8 02 [................]
+| | | | |      2838121: a8 02 54 01 54 01 54 01 54 01 54 01 54 01 54 01 [..T.T.T.T.T.T.T.]
+| | | | |         [snip 206 bytes]
+| | | | | 12) AFPointsInFocus = 0 7936 -15368 32271 0 0 0 0 0
+| | | | |     - Tag 0x000c (18 bytes, int16s[9]):
+| | | | |      28381ff: 00 00 00 1f f8 c3 0f 7e 00 00 00 00 00 00 00 00 [.......~........]
+| | | | |      283820f: 00 00                                           [..]
+| | | | | 13) AFPointsSelected = -1 -1 -1 -1 -1 -1 7 0 0
+| | | | |     - Tag 0x000d (18 bytes, int16s[9]):
+| | | | |      2838211: ff ff ff ff ff ff ff ff ff ff ff ff 07 00 00 00 [................]
+| | | | |      2838221: 00 00                                           [..]
+| | | | 3)  CanonFileInfo (SubDirectory) -->
+| | | |     - Tag 0x0093 (132 bytes, int16u[66] read as undef[132]):
+| | | |      2838237: 84 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2838247: ff ff 00 00 00 00 00 00 00 00 00 00 ff ff ff ff [................]
+| | | |      2838257: 16 01 ff ff 01 00 01 00 22 00 1f 00 00 00 01 00 [........".......]
+| | | |      2838267: 00 00 00 00 ff ff 00 00 3f 00 3f 00 1a 00 1f 00 [........?.?.....]
+| | | |      2838277: 00 00 74 00 00 00 00 00 00 00 00 00 00 00 00 00 [..t.............]
+| | | |         [snip 52 bytes]
+| | | | + [BinaryData directory, 132 bytes]
+| | | | | BracketMode = 0
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  283823d: 00 00                                           [..]
+| | | | | BracketValue = 0
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  283823f: 00 00                                           [..]
+| | | | | BracketShotNumber = 0
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  2838241: 00 00                                           [..]
+| | | | | RawJpgQuality = 0
+| | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | | |  2838243: 00 00                                           [..]
+| | | | | RawJpgSize = 0
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  2838245: 00 00                                           [..]
+| | | | | LongExposureNoiseReduction2 = -1
+| | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | | |  2838247: ff ff                                           [..]
+| | | | | WBBracketMode = 0
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  2838249: 00 00                                           [..]
+| | | | | WBBracketValueAB = 0
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  283824f: 00 00                                           [..]
+| | | | | WBBracketValueGM = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  2838251: 00 00                                           [..]
+| | | | | FilterEffect = -1
+| | | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | | |  2838253: ff ff                                           [..]
+| | | | | ToningEffect = -1
+| | | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | | |  2838255: ff ff                                           [..]
+| | | | | LiveViewShooting = 1
+| | | | | - Tag 0x0013 (2 bytes, int16s[1]):
+| | | | |  283825d: 01 00                                           [..]
+| | | | | FocusDistanceUpper = 34
+| | | | | - Tag 0x0014 (2 bytes, int16u[1]):
+| | | | |  283825f: 22 00                                           [".]
+| | | | | FocusDistanceLower = 31
+| | | | | - Tag 0x0015 (2 bytes, int16u[1]):
+| | | | |  2838261: 1f 00                                           [..]
+| | | | | FlashExposureLock = 0
+| | | | | - Tag 0x0019 (2 bytes, int16s[1]):
+| | | | |  2838269: 00 00                                           [..]
+| | | | 4)  ProcessingInfo (SubDirectory) -->
+| | | |     - Tag 0x00a0 (36 bytes, int16u[18] read as undef[36]):
+| | | |      28382bb: 24 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 [$...............]
+| | | |      28382cb: ff ff 50 14 87 00 00 00 00 00 00 00 02 00 04 00 [..P.............]
+| | | |      28382db: 00 00 ff ff                                     [....]
+| | | | + [BinaryData directory, 36 bytes]
+| | | | | ToneCurve = 0
+| | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | | |  28382bd: 00 00                                           [..]
+| | | | | Sharpness = 4
+| | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | | |  28382bf: 04 00                                           [..]
+| | | | | SharpnessFrequency = 0
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  28382c1: 00 00                                           [..]
+| | | | | SensorRedLevel = 0
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  28382c3: 00 00                                           [..]
+| | | | | SensorBlueLevel = 0
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  28382c5: 00 00                                           [..]
+| | | | | WhiteBalanceRed = 0
+| | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | | |  28382c7: 00 00                                           [..]
+| | | | | WhiteBalanceBlue = 0
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  28382c9: 00 00                                           [..]
+| | | | | WhiteBalance = -1
+| | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | | |  28382cb: ff ff                                           [..]
+| | | | | ColorTemperature = 5200
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  28382cd: 50 14                                           [P.]
+| | | | | PictureStyle = 135
+| | | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | | |  28382cf: 87 00                                           [..]
+| | | | | DigitalGain = 0
+| | | | | - Tag 0x000b (2 bytes, int16s[1]):
+| | | | |  28382d1: 00 00                                           [..]
+| | | | | WBShiftAB = 0
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  28382d3: 00 00                                           [..]
+| | | | | WBShiftGM = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  28382d5: 00 00                                           [..]
+| | | | 5)  VignettingCorr2 (SubDirectory) -->
+| | | |     - Tag 0x4016 (40 bytes, int32u[10] read as undef[40]):
+| | | |      28382df: 28 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 [(...............]
+| | | |      28382ef: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 [................]
+| | | |      28382ff: 01 00 00 00 00 00 00 00                         [........]
+| | | | + [BinaryData directory, 40 bytes]
+| | | | | PeripheralLightingSetting = 1
+| | | | | - Tag 0x0005 (4 bytes, int32s[1]):
+| | | | |  28382f3: 01 00 00 00                                     [....]
+| | | | | ChromaticAberrationSetting = 1
+| | | | | - Tag 0x0006 (4 bytes, int32s[1]):
+| | | | |  28382f7: 01 00 00 00                                     [....]
++ [CTMD type 8 directory, 37706 bytes]
+| TimedExif8 (SubDirectory) -->
+| - Tag 0x0008 (37706 bytes):
+|  2838313: 4a 93 00 00 7c 92 00 00 49 49 2a 00 08 00 00 00 [J...|...II*.....]
+|  2838323: 03 00 01 40 03 00 1c 07 00 00 2e 00 00 00 05 40 [...@...........@]
+|  2838333: 07 00 dc 7e 00 00 66 0e 00 00 0d 00 07 00 00 06 [...~..f.........]
+|  2838343: 00 00 42 8d 00 00 10 00 77 04 00 04 00 04 f7 01 [..B.....w.......]
+|  2838353: 9f 02 00 04 00 04 ea 02 50 02 00 04 00 04 d4 04 [........P.......]
+|     [snip 37626 bytes]
+| + [TimedExif directory, 37706 bytes]
+| | MakerNoteCanon (SubDirectory) -->
+| | - Tag 0x927c (37698 bytes):
+| |  283831b: 49 49 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 [II*........@....]
+| |  283832b: 00 00 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e [.......@...~..f.]
+| |  283833b: 00 00 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 [..........B.....]
+| |  283834b: 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 [w...............]
+| |  283835b: 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 06 02 [P.......~.......]
+| |     [snip 37618 bytes]
+| | + [TIFF directory]
+| | | + [Canon directory with 3 entries]
+| | | | 0)  ColorData9 (SubDirectory) -->
+| | | |     - Tag 0x4001 (3640 bytes, int16u[1820] read as undef[3640]):
+| | | |      2838349: 10 00 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 [..w.............]
+| | | |      2838359: ea 02 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 [..P.......~.....]
+| | | |      2838369: 06 02 a6 02 00 04 00 04 f9 02 58 02 00 04 00 04 [..........X.....]
+| | | |      2838379: ed 04 00 00 00 00 00 01 00 01 00 01 00 00 02 00 [................]
+| | | |      2838389: 04 00 02 00 04 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 3560 bytes]
+| | | | + [BinaryData directory, 3640 bytes]
+| | | | | ColorDataVersion = 16
+| | | | | - Tag 0x0000 (2 bytes, int16s[1]):
+| | | | |  2838349: 10 00                                           [..]
+| | | | | WB_RGGBLevelsAsShot = 1093 1024 1024 1856
+| | | | | - Tag 0x0047 (8 bytes, int16s[4]):
+| | | | |  28383d7: 45 04 00 04 00 04 40 07                         [E.....@.]
+| | | | | ColorTempAsShot = 3200
+| | | | | - Tag 0x004b (2 bytes, int16s[1]):
+| | | | |  28383df: 80 0c                                           [..]
+| | | | | WB_RGGBLevelsAuto = 1093 1024 1024 1856
+| | | | | - Tag 0x004c (8 bytes, int16s[4]):
+| | | | |  28383e1: 45 04 00 04 00 04 40 07                         [E.....@.]
+| | | | | ColorTempAuto = 3200
+| | | | | - Tag 0x0050 (2 bytes, int16s[1]):
+| | | | |  28383e9: 80 0c                                           [..]
+| | | | | WB_RGGBLevelsMeasured = 1093 1024 1024 1856
+| | | | | - Tag 0x0051 (8 bytes, int16s[4]):
+| | | | |  28383eb: 45 04 00 04 00 04 40 07                         [E.....@.]
+| | | | | ColorTempMeasured = 3200
+| | | | | - Tag 0x0055 (2 bytes, int16s[1]):
+| | | | |  28383f3: 80 0c                                           [..]
+| | | | | WB_RGGBLevelsDaylight = 1549 1024 1024 1316
+| | | | | - Tag 0x0088 (8 bytes, int16s[4]):
+| | | | |  2838459: 0d 06 00 04 00 04 24 05                         [......$.]
+| | | | | ColorTempDaylight = 5200
+| | | | | - Tag 0x008c (2 bytes, int16s[1]):
+| | | | |  2838461: 50 14                                           [P.]
+| | | | | WB_RGGBLevelsShade = 1792 1024 1024 1147
+| | | | | - Tag 0x008d (8 bytes, int16s[4]):
+| | | | |  2838463: 00 07 00 04 00 04 7b 04                         [......{.]
+| | | | | ColorTempShade = 7000
+| | | | | - Tag 0x0091 (2 bytes, int16s[1]):
+| | | | |  283846b: 58 1b                                           [X.]
+| | | | | WB_RGGBLevelsCloudy = 1670 1024 1024 1229
+| | | | | - Tag 0x0092 (8 bytes, int16s[4]):
+| | | | |  283846d: 86 06 00 04 00 04 cd 04                         [........]
+| | | | | ColorTempCloudy = 6000
+| | | | | - Tag 0x0096 (2 bytes, int16s[1]):
+| | | | |  2838475: 70 17                                           [p.]
+| | | | | WB_RGGBLevelsTungsten = 1104 1024 1024 1879
+| | | | | - Tag 0x0097 (8 bytes, int16s[4]):
+| | | | |  2838477: 50 04 00 04 00 04 57 07                         [P.....W.]
+| | | | | ColorTempTungsten = 3200
+| | | | | - Tag 0x009b (2 bytes, int16s[1]):
+| | | | |  283847f: 80 0c                                           [..]
+| | | | | WB_RGGBLevelsFluorescent = 1303 1024 1024 1771
+| | | | | - Tag 0x009c (8 bytes, int16s[4]):
+| | | | |  2838481: 17 05 00 04 00 04 eb 06                         [........]
+| | | | | ColorTempFluorescent = 3687
+| | | | | - Tag 0x00a0 (2 bytes, int16s[1]):
+| | | | |  2838489: 67 0e                                           [g.]
+| | | | | WB_RGGBLevelsKelvin = 1549 1024 1024 1316
+| | | | | - Tag 0x00a1 (8 bytes, int16s[4]):
+| | | | |  283848b: 0d 06 00 04 00 04 24 05                         [......$.]
+| | | | | ColorTempKelvin = 5200
+| | | | | - Tag 0x00a5 (2 bytes, int16s[1]):
+| | | | |  2838493: 50 14                                           [P.]
+| | | | | WB_RGGBLevelsFlash = 1697 1024 1024 1218
+| | | | | - Tag 0x00a6 (8 bytes, int16s[4]):
+| | | | |  2838495: a1 06 00 04 00 04 c2 04                         [........]
+| | | | | ColorTempFlash = 6166
+| | | | | - Tag 0x00aa (2 bytes, int16s[1]):
+| | | | |  283849d: 16 18                                           [..]
+| | | | | PerChannelBlackLevel = 2048 2048 2049 2047
+| | | | | - Tag 0x0149 (8 bytes, int16u[4]):
+| | | | |  28385db: 00 08 00 08 01 08 ff 07                         [........]
+| | | | | NormalWhiteLevel = 13035
+| | | | | - Tag 0x031c (2 bytes, int16u[1]):
+| | | | |  2838981: eb 32                                           [.2]
+| | | | | SpecularWhiteLevel = 14338
+| | | | | - Tag 0x031d (2 bytes, int16u[1]):
+| | | | |  2838983: 02 38                                           [.8]
+| | | | | LinearityUpperMargin = 10000
+| | | | | - Tag 0x031e (2 bytes, int16u[1]):
+| | | | |  2838985: 10 27                                           [.']
+| | | | 1)  Flavor = .~. .?_...........?_...........?_...........?_...........?_.......[snip]
+| | | |     - Tag 0x4005 (32476 bytes, undef[32476]):
+| | | |      2839181: dc 7e 00 00 0b 00 00 20 00 00 00 00 00 00 00 00 [.~..... ........]
+| | | |      2839191: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      28391a1: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      28391b1: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      28391c1: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 32396 bytes]
+| | | | 2)  CanonCameraInfoUnknown (SubDirectory) -->
+| | | |     - Tag 0x000d (1536 bytes, undef[1536]):
+| | | |      284105d: aa aa 00 10 20 10 00 27 00 10 00 10 20 f9 10 f9 [.... ..'.... ...]
+| | | |      284106d: 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 [................]
+| | | |      284107d: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      284108d: 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      284109d: 00 00 00 00 00 00 00 00 00 00 00 a2 9a 00 00 00 [................]
+| | | |         [snip 1456 bytes]
+| | | | + [BinaryData directory, 1536 bytes]
++ [CTMD type 9 directory, 1480 bytes]
+| TimedExif9 (SubDirectory) -->
+| - Tag 0x0009 (1480 bytes):
+|  2841669: c8 05 00 00 7c 92 00 00 49 49 2a 00 08 00 00 00 [....|...II*.....]
+|  2841679: 03 00 15 40 07 00 78 02 00 00 2e 00 00 00 33 40 [...@..x.......3@]
+|  2841689: 07 00 f8 01 00 00 a6 02 00 00 2e 40 07 00 22 01 [...........@..".]
+|  2841699: 00 00 9e 04 00 00 20 30 78 02 01 00 00 00 01 00 [...... 0x.......]
+|  28416a9: 01 00 01 00 00 00 14 00 00 00 64 00 64 00 66 04 [..........d.d.f.]
+|     [snip 1400 bytes]
+| + [TimedExif directory, 1480 bytes]
+| | MakerNoteCanon (SubDirectory) -->
+| | - Tag 0x927c (1472 bytes):
+| |  2841671: 49 49 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 [II*........@..x.]
+| |  2841681: 00 00 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 [......3@........]
+| |  2841691: 00 00 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 [...@.."....... 0]
+| |  28416a1: 78 02 01 00 00 00 01 00 01 00 01 00 00 00 14 00 [x...............]
+| |  28416b1: 00 00 64 00 64 00 66 04 80 00 00 00 00 00 88 0e [..d.d.f.........]
+| |     [snip 1392 bytes]
+| | + [TIFF directory]
+| | | + [Canon directory with 3 entries]
+| | | | 0)  VignettingCorrUnknown1 (SubDirectory) -->
+| | | |     - Tag 0x4015 (632 bytes, undef[632]):
+| | | |      284169f: 20 30 78 02 01 00 00 00 01 00 01 00 01 00 00 00 [ 0x.............]
+| | | |      28416af: 14 00 00 00 64 00 64 00 66 04 80 00 00 00 00 00 [....d.d.f.......]
+| | | |      28416bf: 88 0e 70 17 a0 0f 00 00 00 00 00 00 00 00 00 00 [..p.............]
+| | | |      28416cf: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      28416df: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 552 bytes]
+| | | | + [BinaryData directory, 632 bytes]
+| | | | | VignettingCorrVersion = 32
+| | | | | - Tag 0x0000 (1 bytes, int8u[1]):
+| | | | |  284169f: 20                                              [ ]
+| | | | 1)  Canon_0x4033 = 
+| | | |     - Tag 0x4033 (504 bytes, undef[504]):
+| | | |      2841917: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2841927: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2841937: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2841947: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2841957: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 424 bytes]
+| | | | 2)  Canon_0x402e = .".........}..?.........?..........E..,..............u.@...a[snip]
+| | | |     - Tag 0x402e (290 bytes, undef[290]):
+| | | |      2841b0f: 00 10 22 01 00 00 00 00 00 00 ff ff ff ff fe ff [..".............]
+| | | |      2841b1f: f8 ff 7d ff ff 3f 00 00 00 00 00 00 00 00 ff ff [..}..?..........]
+| | | |      2841b2f: fe ff f7 ff 06 ff fc 3f 00 00 d2 ff a5 ff 99 ff [.......?........]
+| | | |      2841b3f: 9b ff d9 ff 45 05 f0 2c b9 00 00 00 18 00 1d 00 [....E..,........]
+| | | |      2841b4f: 12 00 d1 ff ef fe c0 f6 ba d3 a3 fe 00 00 75 fd [..............u.]
+| | | |         [snip 210 bytes]
 --------------------------
   XMP (SubDirectory) -->
   - Tag 'uuid' (65552 bytes):

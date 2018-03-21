@@ -1,11 +1,9 @@
-  ExifToolVersion = 10.82
+  ExifToolVersion = 10.87
   FileName = canon_eos_m50_02.cr3
   Directory = .
   FileSize = 39255016
-  FileModifyDate = 1519771622
-  FileAccessDate = 1519801360
-  FileCreateDate = 1519801361.25
-  FilePermissions = 33206
+  FileModifyDate = 1521636166
+  FileAccessDate = 1521636146
   FileType = CR3
   FileTypeExtension = CR3
   MIMEType = image/x-canon-cr3
@@ -73,7 +71,7 @@
   | | Unknown_free = 
   | | - Tag 'free' (2 bytes):
   | |     011e: 00 00                                           [..]
-  | | CMT1 (SubDirectory) -->
+  | | IFD0 (SubDirectory) -->
   | | - Tag 'CMT1' (384 bytes):
   | |     0128: 49 49 2a 00 08 00 00 00 0d 00 00 01 03 00 01 00 [II*.............]
   | |     0138: 00 00 70 17 00 00 01 01 03 00 01 00 00 00 a0 0f [..p.............]
@@ -124,7 +122,7 @@
   | | | | 12) Copyright = 
   | | | |     - Tag 0x8298 (1 bytes, string[1] read as undef[1]):
   | | | |         01ca: 00                                              [.]
-  | | CMT2 (SubDirectory) -->
+  | | ExifIFD (SubDirectory) -->
   | | - Tag 'CMT2' (1056 bytes):
   | |     02b0: 49 49 2a 00 08 00 00 00 27 00 9a 82 05 00 01 00 [II*.....'.......]
   | |     02c0: 00 00 e2 01 00 00 9d 82 05 00 01 00 00 00 ea 01 [................]
@@ -134,7 +132,7 @@
   | |     [snip 976 bytes]
   | | + [TIFF directory]
   | | | ExifByteOrder = II
-  | | | + [IFD0 directory with 39 entries]
+  | | | + [ExifIFD directory with 39 entries]
   | | | | 0)  ExposureTime = 0.0125 (1/80)
   | | | |     - Tag 0x829a (8 bytes, rational64u[1]):
   | | | |         0492: 01 00 00 00 50 00 00 00                         [....P...]
@@ -261,7 +259,7 @@
   | | | | 38) LensSerialNumber = 0000000000
   | | | |     - Tag 0xa435 (11 bytes, string[11]):
   | | | |         06ac: 30 30 30 30 30 30 30 30 30 30 00                [0000000000.]
-  | | CMT3 (SubDirectory) -->
+  | | MakerNoteCanon (SubDirectory) -->
   | | - Tag 'CMT3' (5168 bytes):
   | |     06d8: 49 49 2a 00 08 00 00 00 2f 00 01 00 03 00 31 00 [II*...../.....1.]
   | |     06e8: 00 00 42 02 00 00 02 00 03 00 04 00 00 00 a4 02 [..B.............]
@@ -605,7 +603,7 @@
   | | | | | DaylightSavings = 0
   | | | | | - Tag 0x0003 (4 bytes, int32s[1]):
   | | | | |     0f1c: 00 00 00 00                                     [....]
-  | | | | 14) Canon_0x0038 = LLP-E12.
+  | | | | 14) BatteryType = LLP-E12.
   | | | |     - Tag 0x0038 (76 bytes, undef[76]):
   | | | |         0f20: 4c 00 00 00 4c 50 2d 45 31 32 00 00 00 00 00 00 [L...LP-E12......]
   | | | |         0f30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
@@ -1010,7 +1008,7 @@
   | | | | 46) Canon_0x403c = 12 1 25
   | | | |     - Tag 0x403c (12 bytes, int32u[3]):
   | | | |         1aee: 0c 00 00 00 01 00 00 00 19 00 00 00             [............]
-  | | CMT4 (SubDirectory) -->
+  | | GPSInfo (SubDirectory) -->
   | | - Tag 'CMT4' (1808 bytes):
   | |     1b10: 49 49 2a 00 08 00 00 00 01 00 00 00 01 00 04 00 [II*.............]
   | |     1b20: 00 00 02 03 00 00 00 00 00 00 00 00 00 00 00 00 [................]
@@ -1019,8 +1017,9 @@
   | |     1b50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
   | |     [snip 1728 bytes]
   | | + [TIFF directory]
-  | | | + [Canon directory with 1 entries]
-  | | | | 0)  Canon_UnknownIFD_0x0000 = 2 3 0 0
+  | | | ExifByteOrder = II
+  | | | + [IFD0 directory with 1 entries]
+  | | | | 0)  GPSVersionID = 2 3 0 0
   | | | |     - Tag 0x0000 (4 bytes, int8u[4]):
   | | | |         1b22: 02 03 00 00                                     [....]
   | | ThumbnailImage = .x@.............................................................[snip]
@@ -1262,7 +1261,7 @@
   | | | | | | - Tag 0x0029 (2 bytes, int16u[1]):
   | | | | | |     64a3: 00 18                                           [..]
   | | | | | + [VideoSampleDesc directory]
-  | | | | | | Unknown_JPEG = 
+  | | | | | | JPEGInfo = 
   | | | | | | - Tag 'JPEG' (4 bytes):
   | | | | | |     64b3: 00 00 00 00                                     [....]
   | | | | | | Unknown_free = 
@@ -1284,6 +1283,25 @@
   | | | | | ChunkOffset64 = ...@
   | | | | | - Tag 'co64' (16 bytes):
   | | | | |     6520: 00 00 00 00 00 00 00 01 00 00 00 00 00 06 d9 40 [...............@]
+---- Extract Embedded ----
+Track1 Type='JPEG' Format='', Sample 1 of 1 (3200751 bytes)
+   6d940: ff d8 ff db 00 84 00 06 04 04 06 04 04 06 06 04 [................]
+   6d950: 06 06 06 06 08 0a 11 0a 0a 08 08 0a 13 0f 0f 0c [................]
+   6d960: 11 17 15 19 17 17 15 17 15 19 1d 23 1f 19 1b 23 [...........#...#]
+   6d970: 1b 1b 17 1f 2c 1f 23 25 28 2a 2a 2a 19 1f 2c 30 [....,.#%(***..,0]
+   6d980: 2c 28 30 23 28 2a 28 01 06 06 06 0a 08 0a 13 0a [,(0#(*(.........]
+    [snip 3200671 bytes]
+SampleTime = 0
+SampleDuration = 1
+JpgFromRaw = .........................................#...#....,.#%(***..,0,(0#(*(.....[snip]
+- Tag 'JPEG' (3200751 bytes):
+   6d940: ff d8 ff db 00 84 00 06 04 04 06 04 04 06 06 04 [................]
+   6d950: 06 06 06 06 08 0a 11 0a 0a 08 08 0a 13 0f 0f 0c [................]
+   6d960: 11 17 15 19 17 17 15 17 15 19 1d 23 1f 19 1b 23 [...........#...#]
+   6d970: 1b 1b 17 1f 2c 1f 23 25 28 2a 2a 2a 19 1f 2c 30 [....,.#%(***..,0]
+   6d980: 2c 28 30 23 28 2a 28 01 06 06 06 0a 08 0a 13 0a [,(0#(*(.........]
+    [snip 3200671 bytes]
+--------------------------
   | Track (SubDirectory) -->
   | - Tag 'trak' (576 bytes):
   |     6538: 00 00 00 5c 74 6b 68 64 00 00 00 07 d6 b3 10 18 [...\tkhd........]
@@ -1885,589 +1903,627 @@ CTMD (SubDirectory) -->
  2565bc8: 00 01 ff ff 2d 00 01 00 ff ff ff ff ff ff ff ff [....-...........]
  2565bd8: 28 00 00 00 05 00 00 00 00 01 ff ff 3f 00 0a 00 [(...........?...]
     [snip 40956 bytes]
-+ [CTMD type 1 directory, 18 bytes]
-|     0006: 00 00 00 01 00 00 00 00 e2 07 02 15 0c 01 1c 01 [................]
-|     0016: 00 00                                           [..]
-+ [CTMD type 3 directory, 10 bytes]
-|     001e: 00 00 00 01 00 00 ff ff ff ff                   [..........]
-+ [CTMD type 4 directory, 18 bytes]
-|     002e: 00 00 00 01 ff ff 2d 00 01 00 ff ff ff ff ff ff [......-.........]
-|     003e: ff ff                                           [..]
-+ [CTMD type 5 directory, 34 bytes]
-|     0046: 00 00 00 01 ff ff 3f 00 0a 00 01 00 50 00 00 32 [......?.....P..2]
-|     0056: 00 00 01 00 00 00 ff ff ff ff 00 00 00 00 ff ff [................]
-|     0066: ff ff                                           [..]
-+ [CTMD type 7 directory, 1716 bytes]
-|     006e: 01 01 00 01 ff ff 1e 00 00 00 69 87 00 00 49 49 [..........i...II]
-|     007e: 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 00 00 [*...............]
-|     008e: 00 00 00 00 90 06 00 00 7c 92 00 00 49 49 2a 00 [........|...II*.]
-|     009e: 08 00 00 00 06 00 01 00 03 00 31 00 00 00 52 00 [..........1...R.]
-|     00ae: 00 00 04 00 03 00 22 00 00 00 b4 00 00 00 26 00 [......".......&.]
-|     [snip 1636 bytes]
-| ExifInfo (SubDirectory) -->
-| - Tag 0x8769 (22 bytes):
-|  2565c14: 49 49 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 [II*.............]
-|  2565c24: 00 00 00 00 00 00                               [......]
-| + [TIFF directory]
-| | ExifByteOrder = II
-| | + [IFD0 directory with 1 entries]
-| | | 0)  SceneCaptureType = 0
-| | |     - Tag 0xa406 (2 bytes, int16u[1]):
-| | |      2565baa: 00 00                                           [..]
-| MakerNoteCanon (SubDirectory) -->
-| - Tag 0x927c (1672 bytes):
-|  2565c32: 49 49 2a 00 08 00 00 00 06 00 01 00 03 00 31 00 [II*...........1.]
-|  2565c42: 00 00 52 00 00 00 04 00 03 00 22 00 00 00 b4 00 [..R.......".....]
-|  2565c52: 00 00 26 00 03 00 60 02 00 00 f8 00 00 00 93 00 [..&...`.........]
-|  2565c62: 03 00 42 00 00 00 b8 05 00 00 a0 00 03 00 12 00 [..B.............]
-|  2565c72: 00 00 3c 06 00 00 16 40 04 00 0a 00 00 00 60 06 [..<....@......`.]
-|     [snip 1592 bytes]
-| + [TIFF directory]
-| | + [Canon directory with 6 entries]
-| | | 0)  CanonCameraSettings (SubDirectory) -->
-| | |     - Tag 0x0001 (98 bytes, int16u[49] read as undef[98]):
-| | |      2565bea: 62 00 02 00 00 00 04 00 00 00 00 00 00 00 00 01 [b...............]
-| | |      2565bfa: 00 00 0d 00 00 00 01 00 00 00 00 00 00 00 ff 7f [................]
-| | |      2565c0a: 0f 00 03 00 02 00 00 00 03 00 ff ff 39 10 2d 00 [............9.-.]
-| | |      2565c1a: 0f 00 01 00 ac 00 58 01 00 00 08 00 00 00 00 00 [......X.........]
-| | |      2565c2a: ff ff ff ff ff ff 00 00 00 00 00 00 00 00 ff ff [................]
-| | |         [snip 18 bytes]
-| | | + [BinaryData directory, 98 bytes]
-| | | | MacroMode = 2
-| | | | - Tag 0x0001 (2 bytes, int16s[1]):
-| | | |  2565bec: 02 00                                           [..]
-| | | | SelfTimer = 0
-| | | | - Tag 0x0002 (2 bytes, int16s[1]):
-| | | |  2565bee: 00 00                                           [..]
-| | | | Quality = 4
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  2565bf0: 04 00                                           [..]
-| | | | CanonFlashMode = 0
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  2565bf2: 00 00                                           [..]
-| | | | ContinuousDrive = 0
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  2565bf4: 00 00                                           [..]
-| | | | FocusMode = 256
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  2565bf8: 00 01                                           [..]
-| | | | RecordMode = 13
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  2565bfc: 0d 00                                           [..]
-| | | | CanonImageSize = 0
-| | | | - Tag 0x000a (2 bytes, int16s[1]):
-| | | |  2565bfe: 00 00                                           [..]
-| | | | EasyMode = 1
-| | | | - Tag 0x000b (2 bytes, int16s[1]):
-| | | |  2565c00: 01 00                                           [..]
-| | | | DigitalZoom = 0
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  2565c02: 00 00                                           [..]
-| | | | Contrast = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  2565c04: 00 00                                           [..]
-| | | | Saturation = 0
-| | | | - Tag 0x000e (2 bytes, int16s[1]):
-| | | |  2565c06: 00 00                                           [..]
-| | | | Sharpness = 32767
-| | | | - Tag 0x000f (2 bytes, int16s[1]):
-| | | |  2565c08: ff 7f                                           [..]
-| | | | CameraISO = 15
-| | | | - Tag 0x0010 (2 bytes, int16s[1]):
-| | | |  2565c0a: 0f 00                                           [..]
-| | | | MeteringMode = 3
-| | | | - Tag 0x0011 (2 bytes, int16s[1]):
-| | | |  2565c0c: 03 00                                           [..]
-| | | | FocusRange = 2
-| | | | - Tag 0x0012 (2 bytes, int16s[1]):
-| | | |  2565c0e: 02 00                                           [..]
-| | | | AFPoint = 0
-| | | | - Tag 0x0013 (2 bytes, int16s[1]):
-| | | |  2565c10: 00 00                                           [..]
-| | | | CanonExposureMode = 3
-| | | | - Tag 0x0014 (2 bytes, int16s[1]):
-| | | |  2565c12: 03 00                                           [..]
-| | | | LensType = 4153
-| | | | - Tag 0x0016 (2 bytes, int16u[1]):
-| | | |  2565c16: 39 10                                           [9.]
-| | | | MaxFocalLength = 45
-| | | | - Tag 0x0017 (2 bytes, int16u[1]):
-| | | |  2565c18: 2d 00                                           [-.]
-| | | | MinFocalLength = 15
-| | | | - Tag 0x0018 (2 bytes, int16u[1]):
-| | | |  2565c1a: 0f 00                                           [..]
-| | | | FocalUnits = 1
-| | | | - Tag 0x0019 (2 bytes, int16s[1]):
-| | | |  2565c1c: 01 00                                           [..]
-| | | | MaxAperture = 172
-| | | | - Tag 0x001a (2 bytes, int16s[1]):
-| | | |  2565c1e: ac 00                                           [..]
-| | | | MinAperture = 344
-| | | | - Tag 0x001b (2 bytes, int16s[1]):
-| | | |  2565c20: 58 01                                           [X.]
-| | | | FlashActivity = 0
-| | | | - Tag 0x001c (2 bytes, int16s[1]):
-| | | |  2565c22: 00 00                                           [..]
-| | | | FlashBits = 8
-| | | | - Tag 0x001d (2 bytes, int16s[1]):
-| | | |  2565c24: 08 00                                           [..]
-| | | | FocusContinuous = -1
-| | | | - Tag 0x0020 (2 bytes, int16s[1]):
-| | | |  2565c2a: ff ff                                           [..]
-| | | | AESetting = -1
-| | | | - Tag 0x0021 (2 bytes, int16s[1]):
-| | | |  2565c2c: ff ff                                           [..]
-| | | | ImageStabilization = -1
-| | | | - Tag 0x0022 (2 bytes, int16s[1]):
-| | | |  2565c2e: ff ff                                           [..]
-| | | | DisplayAperture = 0
-| | | | - Tag 0x0023 (2 bytes, int16s[1]):
-| | | |  2565c30: 00 00                                           [..]
-| | | | ZoomSourceWidth = 0
-| | | | - Tag 0x0024 (2 bytes, int16s[1]):
-| | | |  2565c32: 00 00                                           [..]
-| | | | ZoomTargetWidth = 0
-| | | | - Tag 0x0025 (2 bytes, int16s[1]):
-| | | |  2565c34: 00 00                                           [..]
-| | | | SpotMeteringMode = -1
-| | | | - Tag 0x0027 (2 bytes, int16s[1]):
-| | | |  2565c38: ff ff                                           [..]
-| | | | PhotoEffect = -1
-| | | | - Tag 0x0028 (2 bytes, int16s[1]):
-| | | |  2565c3a: ff ff                                           [..]
-| | | | ManualFlashOutput = 0
-| | | | - Tag 0x0029 (2 bytes, int16s[1]):
-| | | |  2565c3c: 00 00                                           [..]
-| | | | ColorTone = 0
-| | | | - Tag 0x002a (2 bytes, int16s[1]):
-| | | |  2565c3e: 00 00                                           [..]
-| | | | SRAWQuality = 0
-| | | | - Tag 0x002e (2 bytes, int16s[1]):
-| | | |  2565c46: 00 00                                           [..]
-| | | 1)  CanonShotInfo (SubDirectory) -->
-| | |     - Tag 0x0004 (68 bytes, int16u[34] read as undef[68]):
-| | |      2565c4c: 44 00 00 00 80 01 f8 ff ac 00 cc 00 00 00 00 00 [D...............]
-| | |      2565c5c: 03 00 00 00 08 00 08 00 a0 00 00 00 00 00 00 00 [................]
-| | |      2565c6c: 00 00 00 00 01 00 00 00 00 00 ac 00 cc 00 59 00 [..............Y.]
-| | |      2565c7c: 00 00 00 00 f8 00 00 00 ff ff ff ff ff ff 00 00 [................]
-| | |      2565c8c: 00 00 00 00                                     [....]
-| | | + [BinaryData directory, 68 bytes]
-| | | | AutoISO = 0
-| | | | - Tag 0x0001 (2 bytes, int16s[1]):
-| | | |  2565c4e: 00 00                                           [..]
-| | | | BaseISO = 384
-| | | | - Tag 0x0002 (2 bytes, int16s[1]):
-| | | |  2565c50: 80 01                                           [..]
-| | | | MeasuredEV = -8
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  2565c52: f8 ff                                           [..]
-| | | | TargetAperture = 172
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  2565c54: ac 00                                           [..]
-| | | | TargetExposureTime = 204
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  2565c56: cc 00                                           [..]
-| | | | ExposureCompensation = 0
-| | | | - Tag 0x0006 (2 bytes, int16s[1]):
-| | | |  2565c58: 00 00                                           [..]
-| | | | WhiteBalance = 0
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  2565c5a: 00 00                                           [..]
-| | | | SlowShutter = 3
-| | | | - Tag 0x0008 (2 bytes, int16s[1]):
-| | | |  2565c5c: 03 00                                           [..]
-| | | | SequenceNumber = 0
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  2565c5e: 00 00                                           [..]
-| | | | OpticalZoomCode = 8
-| | | | - Tag 0x000a (2 bytes, int16s[1]):
-| | | |  2565c60: 08 00                                           [..]
-| | | | CameraTemperature = 160
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  2565c64: a0 00                                           [..]
-| | | | FlashGuideNumber = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  2565c66: 00 00                                           [..]
-| | | | AFPointsInFocus = 0
-| | | | - Tag 0x000e (2 bytes, int16s[1]):
-| | | |  2565c68: 00 00                                           [..]
-| | | | FlashExposureComp = 0
-| | | | - Tag 0x000f (2 bytes, int16s[1]):
-| | | |  2565c6a: 00 00                                           [..]
-| | | | AutoExposureBracketing = 0
-| | | | - Tag 0x0010 (2 bytes, int16s[1]):
-| | | |  2565c6c: 00 00                                           [..]
-| | | | AEBBracketValue = 0
-| | | | - Tag 0x0011 (2 bytes, int16s[1]):
-| | | |  2565c6e: 00 00                                           [..]
-| | | | ControlMode = 1
-| | | | - Tag 0x0012 (2 bytes, int16s[1]):
-| | | |  2565c70: 01 00                                           [..]
-| | | | FocusDistanceUpper = 0
-| | | | - Tag 0x0013 (2 bytes, int16u[1]):
-| | | |  2565c72: 00 00                                           [..]
-| | | | FNumber = 172
-| | | | - Tag 0x0015 (2 bytes, int16s[1]):
-| | | |  2565c76: ac 00                                           [..]
-| | | | ExposureTime = 204
-| | | | - Tag 0x0016 (2 bytes, int16s[1]):
-| | | |  2565c78: cc 00                                           [..]
-| | | | MeasuredEV2 = 89
-| | | | - Tag 0x0017 (2 bytes, int16s[1]):
-| | | |  2565c7a: 59 00                                           [Y.]
-| | | | BulbDuration = 0
-| | | | - Tag 0x0018 (2 bytes, int16s[1]):
-| | | |  2565c7c: 00 00                                           [..]
-| | | | CameraType = 248
-| | | | - Tag 0x001a (2 bytes, int16s[1]):
-| | | |  2565c80: f8 00                                           [..]
-| | | | AutoRotate = 0
-| | | | - Tag 0x001b (2 bytes, int16s[1]):
-| | | |  2565c82: 00 00                                           [..]
-| | | | NDFilter = -1
-| | | | - Tag 0x001c (2 bytes, int16s[1]):
-| | | |  2565c84: ff ff                                           [..]
-| | | | SelfTimer2 = -1
-| | | | - Tag 0x001d (2 bytes, int16s[1]):
-| | | |  2565c86: ff ff                                           [..]
-| | | | FlashOutput = 0
-| | | | - Tag 0x0021 (2 bytes, int16s[1]):
-| | | |  2565c8e: 00 00                                           [..]
-| | | 2)  CanonAFInfo2 (SubDirectory) -->
-| | |     - Tag 0x0026 (1216 bytes, int16u[608] read as undef[1216]):
-| | |      2565c90: c0 04 06 00 8f 00 01 00 70 17 a0 0f 70 17 a0 0f [........p...p...]
-| | |      2565ca0: 84 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565cb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565cc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565cd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 1136 bytes]
-| | | + [SerialData directory, 1216 bytes]
-| | | | 0)  AFInfoSize = 1216
-| | | |     - Tag 0x0000 (2 bytes, int16u[1]):
-| | | |      2565c90: c0 04                                           [..]
-| | | | 1)  AFAreaMode = 6
-| | | |     - Tag 0x0001 (2 bytes, int16u[1]):
-| | | |      2565c92: 06 00                                           [..]
-| | | | 2)  NumAFPoints = 143
-| | | |     - Tag 0x0002 (2 bytes, int16u[1]):
-| | | |      2565c94: 8f 00                                           [..]
-| | | | 3)  ValidAFPoints = 1
-| | | |     - Tag 0x0003 (2 bytes, int16u[1]):
-| | | |      2565c96: 01 00                                           [..]
-| | | | 4)  CanonImageWidth = 6000
-| | | |     - Tag 0x0004 (2 bytes, int16u[1]):
-| | | |      2565c98: 70 17                                           [p.]
-| | | | 5)  CanonImageHeight = 4000
-| | | |     - Tag 0x0005 (2 bytes, int16u[1]):
-| | | |      2565c9a: a0 0f                                           [..]
-| | | | 6)  AFImageWidth = 6000
-| | | |     - Tag 0x0006 (2 bytes, int16u[1]):
-| | | |      2565c9c: 70 17                                           [p.]
-| | | | 7)  AFImageHeight = 4000
-| | | |     - Tag 0x0007 (2 bytes, int16u[1]):
-| | | |      2565c9e: a0 0f                                           [..]
-| | | | 8)  AFAreaWidths = 900 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 [snip]
-| | | |     - Tag 0x0008 (286 bytes, int16s[143]):
-| | | |      2565ca0: 84 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565cb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565cc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565cd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565ce0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |         [snip 206 bytes]
-| | | | 9)  AFAreaHeights = 898 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0[snip]
-| | | |     - Tag 0x0009 (286 bytes, int16s[143]):
-| | | |      2565dbe: 82 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565dce: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565dde: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565dee: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565dfe: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |         [snip 206 bytes]
-| | | | 10) AFAreaXPositions = 900 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 [snip]
-| | | |     - Tag 0x000a (286 bytes, int16s[143]):
-| | | |      2565edc: 84 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565eec: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565efc: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565f0c: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2565f1c: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |         [snip 206 bytes]
-| | | | 11) AFAreaYPositions = 675 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 [snip]
-| | | |     - Tag 0x000b (286 bytes, int16s[143]):
-| | | |      2565ffa: a3 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      256600a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      256601a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      256602a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      256603a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |         [snip 206 bytes]
-| | | | 12) AFPointsInFocus = 1 0 0 0 0 0 0 0 0
-| | | |     - Tag 0x000c (18 bytes, int16s[9]):
-| | | |      2566118: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      2566128: 00 00                                           [..]
-| | | | 13) AFPointsSelected = 1 0 0 0 0 0 0 0 0
-| | | |     - Tag 0x000d (18 bytes, int16s[9]):
-| | | |      256612a: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | | |      256613a: 00 00                                           [..]
-| | | 3)  CanonFileInfo (SubDirectory) -->
-| | |     - Tag 0x0093 (132 bytes, int16u[66] read as undef[132]):
-| | |      2566150: 84 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2566160: ff ff 00 00 00 00 00 00 00 00 00 00 ff ff ff ff [................]
-| | |      2566170: 4a 00 ff ff 01 00 01 00 ef 00 d0 00 00 00 01 00 [J...............]
-| | |      2566180: 00 00 00 00 ff ff 00 00 00 00 3f 00 06 00 1f 00 [..........?.....]
-| | |      2566190: 00 00 ac 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 52 bytes]
-| | | + [BinaryData directory, 132 bytes]
-| | | | BracketMode = 0
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  2566156: 00 00                                           [..]
-| | | | BracketValue = 0
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  2566158: 00 00                                           [..]
-| | | | BracketShotNumber = 0
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  256615a: 00 00                                           [..]
-| | | | RawJpgQuality = 0
-| | | | - Tag 0x0006 (2 bytes, int16s[1]):
-| | | |  256615c: 00 00                                           [..]
-| | | | RawJpgSize = 0
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  256615e: 00 00                                           [..]
-| | | | LongExposureNoiseReduction2 = -1
-| | | | - Tag 0x0008 (2 bytes, int16s[1]):
-| | | |  2566160: ff ff                                           [..]
-| | | | WBBracketMode = 0
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  2566162: 00 00                                           [..]
-| | | | WBBracketValueAB = 0
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  2566168: 00 00                                           [..]
-| | | | WBBracketValueGM = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  256616a: 00 00                                           [..]
-| | | | FilterEffect = -1
-| | | | - Tag 0x000e (2 bytes, int16s[1]):
-| | | |  256616c: ff ff                                           [..]
-| | | | ToningEffect = -1
-| | | | - Tag 0x000f (2 bytes, int16s[1]):
-| | | |  256616e: ff ff                                           [..]
-| | | | LiveViewShooting = 1
-| | | | - Tag 0x0013 (2 bytes, int16s[1]):
-| | | |  2566176: 01 00                                           [..]
-| | | | FocusDistanceUpper = 239
-| | | | - Tag 0x0014 (2 bytes, int16u[1]):
-| | | |  2566178: ef 00                                           [..]
-| | | | FocusDistanceLower = 208
-| | | | - Tag 0x0015 (2 bytes, int16u[1]):
-| | | |  256617a: d0 00                                           [..]
-| | | | FlashExposureLock = 0
-| | | | - Tag 0x0019 (2 bytes, int16s[1]):
-| | | |  2566182: 00 00                                           [..]
-| | | 4)  ProcessingInfo (SubDirectory) -->
-| | |     - Tag 0x00a0 (36 bytes, int16u[18] read as undef[36]):
-| | |      25661d4: 24 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 [$...............]
-| | |      25661e4: ff ff 50 14 87 00 00 00 00 00 00 00 02 00 04 00 [..P.............]
-| | |      25661f4: 00 00 ff ff                                     [....]
-| | | + [BinaryData directory, 36 bytes]
-| | | | ToneCurve = 0
-| | | | - Tag 0x0001 (2 bytes, int16s[1]):
-| | | |  25661d6: 00 00                                           [..]
-| | | | Sharpness = 4
-| | | | - Tag 0x0002 (2 bytes, int16s[1]):
-| | | |  25661d8: 04 00                                           [..]
-| | | | SharpnessFrequency = 0
-| | | | - Tag 0x0003 (2 bytes, int16s[1]):
-| | | |  25661da: 00 00                                           [..]
-| | | | SensorRedLevel = 0
-| | | | - Tag 0x0004 (2 bytes, int16s[1]):
-| | | |  25661dc: 00 00                                           [..]
-| | | | SensorBlueLevel = 0
-| | | | - Tag 0x0005 (2 bytes, int16s[1]):
-| | | |  25661de: 00 00                                           [..]
-| | | | WhiteBalanceRed = 0
-| | | | - Tag 0x0006 (2 bytes, int16s[1]):
-| | | |  25661e0: 00 00                                           [..]
-| | | | WhiteBalanceBlue = 0
-| | | | - Tag 0x0007 (2 bytes, int16s[1]):
-| | | |  25661e2: 00 00                                           [..]
-| | | | WhiteBalance = -1
-| | | | - Tag 0x0008 (2 bytes, int16s[1]):
-| | | |  25661e4: ff ff                                           [..]
-| | | | ColorTemperature = 5200
-| | | | - Tag 0x0009 (2 bytes, int16s[1]):
-| | | |  25661e6: 50 14                                           [P.]
-| | | | PictureStyle = 135
-| | | | - Tag 0x000a (2 bytes, int16s[1]):
-| | | |  25661e8: 87 00                                           [..]
-| | | | DigitalGain = 0
-| | | | - Tag 0x000b (2 bytes, int16s[1]):
-| | | |  25661ea: 00 00                                           [..]
-| | | | WBShiftAB = 0
-| | | | - Tag 0x000c (2 bytes, int16s[1]):
-| | | |  25661ec: 00 00                                           [..]
-| | | | WBShiftGM = 0
-| | | | - Tag 0x000d (2 bytes, int16s[1]):
-| | | |  25661ee: 00 00                                           [..]
-| | | 5)  VignettingCorr2 (SubDirectory) -->
-| | |     - Tag 0x4016 (40 bytes, int32u[10] read as undef[40]):
-| | |      25661f8: 28 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 [(...............]
-| | |      2566208: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 [................]
-| | |      2566218: 01 00 00 00 00 00 00 00                         [........]
-| | | + [BinaryData directory, 40 bytes]
-| | | | PeripheralLightingSetting = 1
-| | | | - Tag 0x0005 (4 bytes, int32s[1]):
-| | | |  256620c: 01 00 00 00                                     [....]
-| | | | ChromaticAberrationSetting = 1
-| | | | - Tag 0x0006 (4 bytes, int32s[1]):
-| | | |  2566210: 01 00 00 00                                     [....]
-+ [CTMD type 8 directory, 37712 bytes]
-|     0728: 01 01 00 01 ff ff 4a 93 00 00 7c 92 00 00 49 49 [......J...|...II]
-|     0738: 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 00 00 [*........@......]
-|     0748: 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e 00 00 [.....@...~..f...]
-|     0758: 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 77 04 [........B.....w.]
-|     0768: 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 50 02 [..............P.]
-|     [snip 37632 bytes]
-| MakerNoteCanon (SubDirectory) -->
-| - Tag 0x927c (37698 bytes):
-|  25662ce: 49 49 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 [II*........@....]
-|  25662de: 00 00 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e [.......@...~..f.]
-|  25662ee: 00 00 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 [..........B.....]
-|  25662fe: 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 [w...............]
-|  256630e: 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 06 02 [P.......~.......]
-|     [snip 37618 bytes]
-| + [TIFF directory]
-| | + [Canon directory with 3 entries]
-| | | 0)  ColorData9 (SubDirectory) -->
-| | |     - Tag 0x4001 (3640 bytes, int16u[1820] read as undef[3640]):
-| | |      2565bc6: 10 00 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 [..w.............]
-| | |      2565bd6: ea 02 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 [..P.......~.....]
-| | |      2565be6: 06 02 a6 02 00 04 00 04 f9 02 58 02 00 04 00 04 [..........X.....]
-| | |      2565bf6: ed 04 00 00 00 00 00 01 00 01 00 01 00 00 02 00 [................]
-| | |      2565c06: 04 00 02 00 04 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 3560 bytes]
-| | | + [BinaryData directory, 3640 bytes]
-| | | | ColorDataVersion = 16
-| | | | - Tag 0x0000 (2 bytes, int16s[1]):
-| | | |  2565bc6: 10 00                                           [..]
-| | | | WB_RGGBLevelsAsShot = 1262 1024 1024 1591
-| | | | - Tag 0x0047 (8 bytes, int16s[4]):
-| | | |  2565c54: ee 04 00 04 00 04 37 06                         [......7.]
-| | | | ColorTempAsShot = 3832
-| | | | - Tag 0x004b (2 bytes, int16s[1]):
-| | | |  2565c5c: f8 0e                                           [..]
-| | | | WB_RGGBLevelsAuto = 1262 1024 1024 1591
-| | | | - Tag 0x004c (8 bytes, int16s[4]):
-| | | |  2565c5e: ee 04 00 04 00 04 37 06                         [......7.]
-| | | | ColorTempAuto = 3832
-| | | | - Tag 0x0050 (2 bytes, int16s[1]):
-| | | |  2565c66: f8 0e                                           [..]
-| | | | WB_RGGBLevelsMeasured = 1262 1024 1024 1591
-| | | | - Tag 0x0051 (8 bytes, int16s[4]):
-| | | |  2565c68: ee 04 00 04 00 04 37 06                         [......7.]
-| | | | ColorTempMeasured = 3832
-| | | | - Tag 0x0055 (2 bytes, int16s[1]):
-| | | |  2565c70: f8 0e                                           [..]
-| | | | WB_RGGBLevelsDaylight = 1549 1024 1024 1316
-| | | | - Tag 0x0088 (8 bytes, int16s[4]):
-| | | |  2565cd6: 0d 06 00 04 00 04 24 05                         [......$.]
-| | | | ColorTempDaylight = 5200
-| | | | - Tag 0x008c (2 bytes, int16s[1]):
-| | | |  2565cde: 50 14                                           [P.]
-| | | | WB_RGGBLevelsShade = 1792 1024 1024 1147
-| | | | - Tag 0x008d (8 bytes, int16s[4]):
-| | | |  2565ce0: 00 07 00 04 00 04 7b 04                         [......{.]
-| | | | ColorTempShade = 7000
-| | | | - Tag 0x0091 (2 bytes, int16s[1]):
-| | | |  2565ce8: 58 1b                                           [X.]
-| | | | WB_RGGBLevelsCloudy = 1670 1024 1024 1229
-| | | | - Tag 0x0092 (8 bytes, int16s[4]):
-| | | |  2565cea: 86 06 00 04 00 04 cd 04                         [........]
-| | | | ColorTempCloudy = 6000
-| | | | - Tag 0x0096 (2 bytes, int16s[1]):
-| | | |  2565cf2: 70 17                                           [p.]
-| | | | WB_RGGBLevelsTungsten = 1104 1024 1024 1879
-| | | | - Tag 0x0097 (8 bytes, int16s[4]):
-| | | |  2565cf4: 50 04 00 04 00 04 57 07                         [P.....W.]
-| | | | ColorTempTungsten = 3200
-| | | | - Tag 0x009b (2 bytes, int16s[1]):
-| | | |  2565cfc: 80 0c                                           [..]
-| | | | WB_RGGBLevelsFluorescent = 1303 1024 1024 1771
-| | | | - Tag 0x009c (8 bytes, int16s[4]):
-| | | |  2565cfe: 17 05 00 04 00 04 eb 06                         [........]
-| | | | ColorTempFluorescent = 3687
-| | | | - Tag 0x00a0 (2 bytes, int16s[1]):
-| | | |  2565d06: 67 0e                                           [g.]
-| | | | WB_RGGBLevelsKelvin = 1549 1024 1024 1316
-| | | | - Tag 0x00a1 (8 bytes, int16s[4]):
-| | | |  2565d08: 0d 06 00 04 00 04 24 05                         [......$.]
-| | | | ColorTempKelvin = 5200
-| | | | - Tag 0x00a5 (2 bytes, int16s[1]):
-| | | |  2565d10: 50 14                                           [P.]
-| | | | WB_RGGBLevelsFlash = 1697 1024 1024 1218
-| | | | - Tag 0x00a6 (8 bytes, int16s[4]):
-| | | |  2565d12: a1 06 00 04 00 04 c2 04                         [........]
-| | | | ColorTempFlash = 6166
-| | | | - Tag 0x00aa (2 bytes, int16s[1]):
-| | | |  2565d1a: 16 18                                           [..]
-| | | 1)  Flavor = .~. .?_...........?_...........?_...........@`...........?_.........[snip]
-| | |     - Tag 0x4005 (32476 bytes, undef[32476]):
-| | |      25669fe: dc 7e 00 00 0b 00 00 20 00 00 00 00 00 00 00 00 [.~..... ........]
-| | |      2566a0e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2566a1e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2566a2e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2566a3e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 32396 bytes]
-| | | 2)  CanonCameraInfoUnknown (SubDirectory) -->
-| | |     - Tag 0x000d (1536 bytes, undef[1536]):
-| | |      256e8da: aa aa 38 13 20 10 00 24 00 13 00 10 58 ff 70 00 [..8. ..$....X.p.]
-| | |      256e8ea: 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 [................]
-| | |      256e8fa: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      256e90a: 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      256e91a: 00 00 00 00 00 00 00 00 00 00 00 a0 9a 00 00 00 [................]
-| | |         [snip 1456 bytes]
-| | | + [BinaryData directory, 1536 bytes]
-+ [CTMD type 9 directory, 1486 bytes]
-|     9a7e: 01 01 00 01 ff ff c8 05 00 00 7c 92 00 00 49 49 [..........|...II]
-|     9a8e: 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 00 00 [*........@..x...]
-|     9a9e: 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 00 00 [....3@..........]
-|     9aae: 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 78 02 [.@.."....... 0x.]
-|     9abe: 01 00 00 00 01 00 01 00 01 00 00 00 14 00 00 00 [................]
-|     [snip 1406 bytes]
-| MakerNoteCanon (SubDirectory) -->
-| - Tag 0x927c (1472 bytes):
-|  256f624: 49 49 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 [II*........@..x.]
-|  256f634: 00 00 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 [......3@........]
-|  256f644: 00 00 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 [...@.."....... 0]
-|  256f654: 78 02 01 00 00 00 01 00 01 00 01 00 00 00 14 00 [x...............]
-|  256f664: 00 00 64 00 64 00 cc 04 80 00 00 00 00 00 88 0e [..d.d...........]
-|     [snip 1392 bytes]
-| + [TIFF directory]
-| | + [Canon directory with 3 entries]
-| | | 0)  VignettingCorrUnknown1 (SubDirectory) -->
-| | |     - Tag 0x4015 (632 bytes, undef[632]):
-| | |      2565bc6: 20 30 78 02 01 00 00 00 01 00 01 00 01 00 00 00 [ 0x.............]
-| | |      2565bd6: 14 00 00 00 64 00 64 00 cc 04 80 00 00 00 00 00 [....d.d.........]
-| | |      2565be6: 88 0e 70 17 a0 0f 00 00 00 00 00 00 00 00 00 00 [..p.............]
-| | |      2565bf6: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565c06: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 552 bytes]
-| | | + [BinaryData directory, 632 bytes]
-| | | | VignettingCorrVersion = 32
-| | | | - Tag 0x0000 (1 bytes, int8u[1]):
-| | | |  2565bc6: 20                                              [ ]
-| | | 1)  Canon_0x4033 = 
-| | |     - Tag 0x4033 (504 bytes, undef[504]):
-| | |      2565e3e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565e4e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565e5e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565e6e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |      2565e7e: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
-| | |         [snip 424 bytes]
-| | | 2)  Canon_0x402e = ."..............?......3..?......|.3...&-b..,0*:....w.1.8.....[snip]
-| | |     - Tag 0x402e (290 bytes, undef[290]):
-| | |      2566036: 00 10 22 01 00 00 00 00 ff ff ff ff ff ff ff ff [..".............]
-| | |      2566046: f9 ff 06 ff fc 3f 00 00 00 00 00 00 00 00 ff ff [.....?..........]
-| | |      2566056: ff ff ff ff 33 fe f3 3f 00 00 d5 ff aa ff 98 ff [....3..?........]
-| | |      2566066: 7c ff 33 ff b8 02 26 2d 62 01 00 00 19 00 2c 00 [|.3...&-b.....,.]
-| | |      2566076: 30 00 2a 00 3a 00 a7 fb fe d2 77 fd 00 00 31 02 [0.*.:.....w...1.]
-| | |         [snip 210 bytes]
++ [CTMD type 1 directory, 12 bytes]
+| TimeStamp = ........
+| - Tag 0x0001 (12 bytes):
+|  2565ba4: 00 00 e2 07 02 15 0c 01 1c 01 00 00             [............]
++ [CTMD type 3 directory, 4 bytes]
+|  2565bbc: ff ff ff ff                                     [....]
++ [CTMD type 4 directory, 12 bytes]
+| FocalInfo (SubDirectory) -->
+| - Tag 0x0004 (12 bytes):
+|  2565bcc: 2d 00 01 00 ff ff ff ff ff ff ff ff             [-...........]
+| + [BinaryData directory, 12 bytes]
+| | FocalLength = 45
+| | - Tag 0x0000 (4 bytes, rational32u[1]):
+| |  2565bcc: 2d 00 01 00                                     [-...]
++ [CTMD type 5 directory, 28 bytes]
+| ExposureInfo (SubDirectory) -->
+| - Tag 0x0005 (28 bytes):
+|  2565be4: 3f 00 0a 00 01 00 50 00 00 32 00 00 01 00 00 00 [?.....P..2......]
+|  2565bf4: ff ff ff ff 00 00 00 00 ff ff ff ff             [............]
+| + [BinaryData directory, 28 bytes]
+| | FNumber = 6.3
+| | - Tag 0x0000 (4 bytes, rational32u[1]):
+| |  2565be4: 3f 00 0a 00                                     [?...]
+| | ExposureTime = 0.0125
+| | - Tag 0x0001 (4 bytes, rational32u[1]):
+| |  2565be8: 01 00 50 00                                     [..P.]
+| | ISO = 12800
+| | - Tag 0x0002 (4 bytes, int32u[1]):
+| |  2565bec: 00 32 00 00                                     [.2..]
++ [CTMD type 7 directory, 1710 bytes]
+| TimedExif7 (SubDirectory) -->
+| - Tag 0x0007 (1710 bytes):
+|  2565c0c: 1e 00 00 00 69 87 00 00 49 49 2a 00 08 00 00 00 [....i...II*.....]
+|  2565c1c: 01 00 06 a4 03 00 01 00 00 00 00 00 00 00 90 06 [................]
+|  2565c2c: 00 00 7c 92 00 00 49 49 2a 00 08 00 00 00 06 00 [..|...II*.......]
+|  2565c3c: 01 00 03 00 31 00 00 00 52 00 00 00 04 00 03 00 [....1...R.......]
+|  2565c4c: 22 00 00 00 b4 00 00 00 26 00 03 00 60 02 00 00 [".......&...`...]
+|     [snip 1630 bytes]
+| + [TimedExif directory, 1710 bytes]
+| | ExifIFD (SubDirectory) -->
+| | - Tag 0x8769 (22 bytes):
+| |  2565c14: 49 49 2a 00 08 00 00 00 01 00 06 a4 03 00 01 00 [II*.............]
+| |  2565c24: 00 00 00 00 00 00                               [......]
+| | + [TIFF directory]
+| | | ExifByteOrder = II
+| | | + [ExifIFD directory with 1 entries]
+| | | | 0)  SceneCaptureType = 0
+| | | |     - Tag 0xa406 (2 bytes, int16u[1]):
+| | | |      2565c26: 00 00                                           [..]
+| | MakerNoteCanon (SubDirectory) -->
+| | - Tag 0x927c (1672 bytes):
+| |  2565c32: 49 49 2a 00 08 00 00 00 06 00 01 00 03 00 31 00 [II*...........1.]
+| |  2565c42: 00 00 52 00 00 00 04 00 03 00 22 00 00 00 b4 00 [..R.......".....]
+| |  2565c52: 00 00 26 00 03 00 60 02 00 00 f8 00 00 00 93 00 [..&...`.........]
+| |  2565c62: 03 00 42 00 00 00 b8 05 00 00 a0 00 03 00 12 00 [..B.............]
+| |  2565c72: 00 00 3c 06 00 00 16 40 04 00 0a 00 00 00 60 06 [..<....@......`.]
+| |     [snip 1592 bytes]
+| | + [TIFF directory]
+| | | + [Canon directory with 6 entries]
+| | | | 0)  CanonCameraSettings (SubDirectory) -->
+| | | |     - Tag 0x0001 (98 bytes, int16u[49] read as undef[98]):
+| | | |      2565c84: 62 00 02 00 00 00 04 00 00 00 00 00 00 00 00 01 [b...............]
+| | | |      2565c94: 00 00 0d 00 00 00 01 00 00 00 00 00 00 00 ff 7f [................]
+| | | |      2565ca4: 0f 00 03 00 02 00 00 00 03 00 ff ff 39 10 2d 00 [............9.-.]
+| | | |      2565cb4: 0f 00 01 00 ac 00 58 01 00 00 08 00 00 00 00 00 [......X.........]
+| | | |      2565cc4: ff ff ff ff ff ff 00 00 00 00 00 00 00 00 ff ff [................]
+| | | |         [snip 18 bytes]
+| | | | + [BinaryData directory, 98 bytes]
+| | | | | MacroMode = 2
+| | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | | |  2565c86: 02 00                                           [..]
+| | | | | SelfTimer = 0
+| | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | | |  2565c88: 00 00                                           [..]
+| | | | | Quality = 4
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  2565c8a: 04 00                                           [..]
+| | | | | CanonFlashMode = 0
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  2565c8c: 00 00                                           [..]
+| | | | | ContinuousDrive = 0
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  2565c8e: 00 00                                           [..]
+| | | | | FocusMode = 256
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  2565c92: 00 01                                           [..]
+| | | | | RecordMode = 13
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  2565c96: 0d 00                                           [..]
+| | | | | CanonImageSize = 0
+| | | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | | |  2565c98: 00 00                                           [..]
+| | | | | EasyMode = 1
+| | | | | - Tag 0x000b (2 bytes, int16s[1]):
+| | | | |  2565c9a: 01 00                                           [..]
+| | | | | DigitalZoom = 0
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  2565c9c: 00 00                                           [..]
+| | | | | Contrast = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  2565c9e: 00 00                                           [..]
+| | | | | Saturation = 0
+| | | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | | |  2565ca0: 00 00                                           [..]
+| | | | | Sharpness = 32767
+| | | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | | |  2565ca2: ff 7f                                           [..]
+| | | | | CameraISO = 15
+| | | | | - Tag 0x0010 (2 bytes, int16s[1]):
+| | | | |  2565ca4: 0f 00                                           [..]
+| | | | | MeteringMode = 3
+| | | | | - Tag 0x0011 (2 bytes, int16s[1]):
+| | | | |  2565ca6: 03 00                                           [..]
+| | | | | FocusRange = 2
+| | | | | - Tag 0x0012 (2 bytes, int16s[1]):
+| | | | |  2565ca8: 02 00                                           [..]
+| | | | | AFPoint = 0
+| | | | | - Tag 0x0013 (2 bytes, int16s[1]):
+| | | | |  2565caa: 00 00                                           [..]
+| | | | | CanonExposureMode = 3
+| | | | | - Tag 0x0014 (2 bytes, int16s[1]):
+| | | | |  2565cac: 03 00                                           [..]
+| | | | | LensType = 4153
+| | | | | - Tag 0x0016 (2 bytes, int16u[1]):
+| | | | |  2565cb0: 39 10                                           [9.]
+| | | | | MaxFocalLength = 45
+| | | | | - Tag 0x0017 (2 bytes, int16u[1]):
+| | | | |  2565cb2: 2d 00                                           [-.]
+| | | | | MinFocalLength = 15
+| | | | | - Tag 0x0018 (2 bytes, int16u[1]):
+| | | | |  2565cb4: 0f 00                                           [..]
+| | | | | FocalUnits = 1
+| | | | | - Tag 0x0019 (2 bytes, int16s[1]):
+| | | | |  2565cb6: 01 00                                           [..]
+| | | | | MaxAperture = 172
+| | | | | - Tag 0x001a (2 bytes, int16s[1]):
+| | | | |  2565cb8: ac 00                                           [..]
+| | | | | MinAperture = 344
+| | | | | - Tag 0x001b (2 bytes, int16s[1]):
+| | | | |  2565cba: 58 01                                           [X.]
+| | | | | FlashActivity = 0
+| | | | | - Tag 0x001c (2 bytes, int16s[1]):
+| | | | |  2565cbc: 00 00                                           [..]
+| | | | | FlashBits = 8
+| | | | | - Tag 0x001d (2 bytes, int16s[1]):
+| | | | |  2565cbe: 08 00                                           [..]
+| | | | | FocusContinuous = -1
+| | | | | - Tag 0x0020 (2 bytes, int16s[1]):
+| | | | |  2565cc4: ff ff                                           [..]
+| | | | | AESetting = -1
+| | | | | - Tag 0x0021 (2 bytes, int16s[1]):
+| | | | |  2565cc6: ff ff                                           [..]
+| | | | | ImageStabilization = -1
+| | | | | - Tag 0x0022 (2 bytes, int16s[1]):
+| | | | |  2565cc8: ff ff                                           [..]
+| | | | | DisplayAperture = 0
+| | | | | - Tag 0x0023 (2 bytes, int16s[1]):
+| | | | |  2565cca: 00 00                                           [..]
+| | | | | ZoomSourceWidth = 0
+| | | | | - Tag 0x0024 (2 bytes, int16s[1]):
+| | | | |  2565ccc: 00 00                                           [..]
+| | | | | ZoomTargetWidth = 0
+| | | | | - Tag 0x0025 (2 bytes, int16s[1]):
+| | | | |  2565cce: 00 00                                           [..]
+| | | | | SpotMeteringMode = -1
+| | | | | - Tag 0x0027 (2 bytes, int16s[1]):
+| | | | |  2565cd2: ff ff                                           [..]
+| | | | | PhotoEffect = -1
+| | | | | - Tag 0x0028 (2 bytes, int16s[1]):
+| | | | |  2565cd4: ff ff                                           [..]
+| | | | | ManualFlashOutput = 0
+| | | | | - Tag 0x0029 (2 bytes, int16s[1]):
+| | | | |  2565cd6: 00 00                                           [..]
+| | | | | ColorTone = 0
+| | | | | - Tag 0x002a (2 bytes, int16s[1]):
+| | | | |  2565cd8: 00 00                                           [..]
+| | | | | SRAWQuality = 0
+| | | | | - Tag 0x002e (2 bytes, int16s[1]):
+| | | | |  2565ce0: 00 00                                           [..]
+| | | | 1)  CanonShotInfo (SubDirectory) -->
+| | | |     - Tag 0x0004 (68 bytes, int16u[34] read as undef[68]):
+| | | |      2565ce6: 44 00 00 00 80 01 f8 ff ac 00 cc 00 00 00 00 00 [D...............]
+| | | |      2565cf6: 03 00 00 00 08 00 08 00 a0 00 00 00 00 00 00 00 [................]
+| | | |      2565d06: 00 00 00 00 01 00 00 00 00 00 ac 00 cc 00 59 00 [..............Y.]
+| | | |      2565d16: 00 00 00 00 f8 00 00 00 ff ff ff ff ff ff 00 00 [................]
+| | | |      2565d26: 00 00 00 00                                     [....]
+| | | | + [BinaryData directory, 68 bytes]
+| | | | | AutoISO = 0
+| | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | | |  2565ce8: 00 00                                           [..]
+| | | | | BaseISO = 384
+| | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | | |  2565cea: 80 01                                           [..]
+| | | | | MeasuredEV = -8
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  2565cec: f8 ff                                           [..]
+| | | | | TargetAperture = 172
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  2565cee: ac 00                                           [..]
+| | | | | TargetExposureTime = 204
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  2565cf0: cc 00                                           [..]
+| | | | | ExposureCompensation = 0
+| | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | | |  2565cf2: 00 00                                           [..]
+| | | | | WhiteBalance = 0
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  2565cf4: 00 00                                           [..]
+| | | | | SlowShutter = 3
+| | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | | |  2565cf6: 03 00                                           [..]
+| | | | | SequenceNumber = 0
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  2565cf8: 00 00                                           [..]
+| | | | | OpticalZoomCode = 8
+| | | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | | |  2565cfa: 08 00                                           [..]
+| | | | | CameraTemperature = 160
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  2565cfe: a0 00                                           [..]
+| | | | | FlashGuideNumber = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  2565d00: 00 00                                           [..]
+| | | | | AFPointsInFocus = 0
+| | | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | | |  2565d02: 00 00                                           [..]
+| | | | | FlashExposureComp = 0
+| | | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | | |  2565d04: 00 00                                           [..]
+| | | | | AutoExposureBracketing = 0
+| | | | | - Tag 0x0010 (2 bytes, int16s[1]):
+| | | | |  2565d06: 00 00                                           [..]
+| | | | | AEBBracketValue = 0
+| | | | | - Tag 0x0011 (2 bytes, int16s[1]):
+| | | | |  2565d08: 00 00                                           [..]
+| | | | | ControlMode = 1
+| | | | | - Tag 0x0012 (2 bytes, int16s[1]):
+| | | | |  2565d0a: 01 00                                           [..]
+| | | | | FocusDistanceUpper = 0
+| | | | | - Tag 0x0013 (2 bytes, int16u[1]):
+| | | | |  2565d0c: 00 00                                           [..]
+| | | | | FNumber = 172
+| | | | | - Tag 0x0015 (2 bytes, int16s[1]):
+| | | | |  2565d10: ac 00                                           [..]
+| | | | | ExposureTime = 204
+| | | | | - Tag 0x0016 (2 bytes, int16s[1]):
+| | | | |  2565d12: cc 00                                           [..]
+| | | | | MeasuredEV2 = 89
+| | | | | - Tag 0x0017 (2 bytes, int16s[1]):
+| | | | |  2565d14: 59 00                                           [Y.]
+| | | | | BulbDuration = 0
+| | | | | - Tag 0x0018 (2 bytes, int16s[1]):
+| | | | |  2565d16: 00 00                                           [..]
+| | | | | CameraType = 248
+| | | | | - Tag 0x001a (2 bytes, int16s[1]):
+| | | | |  2565d1a: f8 00                                           [..]
+| | | | | AutoRotate = 0
+| | | | | - Tag 0x001b (2 bytes, int16s[1]):
+| | | | |  2565d1c: 00 00                                           [..]
+| | | | | NDFilter = -1
+| | | | | - Tag 0x001c (2 bytes, int16s[1]):
+| | | | |  2565d1e: ff ff                                           [..]
+| | | | | SelfTimer2 = -1
+| | | | | - Tag 0x001d (2 bytes, int16s[1]):
+| | | | |  2565d20: ff ff                                           [..]
+| | | | | FlashOutput = 0
+| | | | | - Tag 0x0021 (2 bytes, int16s[1]):
+| | | | |  2565d28: 00 00                                           [..]
+| | | | 2)  CanonAFInfo2 (SubDirectory) -->
+| | | |     - Tag 0x0026 (1216 bytes, int16u[608] read as undef[1216]):
+| | | |      2565d2a: c0 04 06 00 8f 00 01 00 70 17 a0 0f 70 17 a0 0f [........p...p...]
+| | | |      2565d3a: 84 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2565d4a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2565d5a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2565d6a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 1136 bytes]
+| | | | + [SerialData directory, 1216 bytes]
+| | | | | 0)  AFInfoSize = 1216
+| | | | |     - Tag 0x0000 (2 bytes, int16u[1]):
+| | | | |      2565d2a: c0 04                                           [..]
+| | | | | 1)  AFAreaMode = 6
+| | | | |     - Tag 0x0001 (2 bytes, int16u[1]):
+| | | | |      2565d2c: 06 00                                           [..]
+| | | | | 2)  NumAFPoints = 143
+| | | | |     - Tag 0x0002 (2 bytes, int16u[1]):
+| | | | |      2565d2e: 8f 00                                           [..]
+| | | | | 3)  ValidAFPoints = 1
+| | | | |     - Tag 0x0003 (2 bytes, int16u[1]):
+| | | | |      2565d30: 01 00                                           [..]
+| | | | | 4)  CanonImageWidth = 6000
+| | | | |     - Tag 0x0004 (2 bytes, int16u[1]):
+| | | | |      2565d32: 70 17                                           [p.]
+| | | | | 5)  CanonImageHeight = 4000
+| | | | |     - Tag 0x0005 (2 bytes, int16u[1]):
+| | | | |      2565d34: a0 0f                                           [..]
+| | | | | 6)  AFImageWidth = 6000
+| | | | |     - Tag 0x0006 (2 bytes, int16u[1]):
+| | | | |      2565d36: 70 17                                           [p.]
+| | | | | 7)  AFImageHeight = 4000
+| | | | |     - Tag 0x0007 (2 bytes, int16u[1]):
+| | | | |      2565d38: a0 0f                                           [..]
+| | | | | 8)  AFAreaWidths = 900 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 [snip]
+| | | | |     - Tag 0x0008 (286 bytes, int16s[143]):
+| | | | |      2565d3a: 84 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565d4a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565d5a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565d6a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565d7a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |         [snip 206 bytes]
+| | | | | 9)  AFAreaHeights = 898 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0[snip]
+| | | | |     - Tag 0x0009 (286 bytes, int16s[143]):
+| | | | |      2565e58: 82 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565e68: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565e78: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565e88: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565e98: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |         [snip 206 bytes]
+| | | | | 10) AFAreaXPositions = 900 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 [snip]
+| | | | |     - Tag 0x000a (286 bytes, int16s[143]):
+| | | | |      2565f76: 84 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565f86: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565f96: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565fa6: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      2565fb6: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |         [snip 206 bytes]
+| | | | | 11) AFAreaYPositions = 675 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 [snip]
+| | | | |     - Tag 0x000b (286 bytes, int16s[143]):
+| | | | |      2566094: a3 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      25660a4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      25660b4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      25660c4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      25660d4: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |         [snip 206 bytes]
+| | | | | 12) AFPointsInFocus = 1 0 0 0 0 0 0 0 0
+| | | | |     - Tag 0x000c (18 bytes, int16s[9]):
+| | | | |      25661b2: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      25661c2: 00 00                                           [..]
+| | | | | 13) AFPointsSelected = 1 0 0 0 0 0 0 0 0
+| | | | |     - Tag 0x000d (18 bytes, int16s[9]):
+| | | | |      25661c4: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | | |      25661d4: 00 00                                           [..]
+| | | | 3)  CanonFileInfo (SubDirectory) -->
+| | | |     - Tag 0x0093 (132 bytes, int16u[66] read as undef[132]):
+| | | |      25661ea: 84 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      25661fa: ff ff 00 00 00 00 00 00 00 00 00 00 ff ff ff ff [................]
+| | | |      256620a: 4a 00 ff ff 01 00 01 00 ef 00 d0 00 00 00 01 00 [J...............]
+| | | |      256621a: 00 00 00 00 ff ff 00 00 00 00 3f 00 06 00 1f 00 [..........?.....]
+| | | |      256622a: 00 00 ac 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 52 bytes]
+| | | | + [BinaryData directory, 132 bytes]
+| | | | | BracketMode = 0
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  25661f0: 00 00                                           [..]
+| | | | | BracketValue = 0
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  25661f2: 00 00                                           [..]
+| | | | | BracketShotNumber = 0
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  25661f4: 00 00                                           [..]
+| | | | | RawJpgQuality = 0
+| | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | | |  25661f6: 00 00                                           [..]
+| | | | | RawJpgSize = 0
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  25661f8: 00 00                                           [..]
+| | | | | LongExposureNoiseReduction2 = -1
+| | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | | |  25661fa: ff ff                                           [..]
+| | | | | WBBracketMode = 0
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  25661fc: 00 00                                           [..]
+| | | | | WBBracketValueAB = 0
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  2566202: 00 00                                           [..]
+| | | | | WBBracketValueGM = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  2566204: 00 00                                           [..]
+| | | | | FilterEffect = -1
+| | | | | - Tag 0x000e (2 bytes, int16s[1]):
+| | | | |  2566206: ff ff                                           [..]
+| | | | | ToningEffect = -1
+| | | | | - Tag 0x000f (2 bytes, int16s[1]):
+| | | | |  2566208: ff ff                                           [..]
+| | | | | LiveViewShooting = 1
+| | | | | - Tag 0x0013 (2 bytes, int16s[1]):
+| | | | |  2566210: 01 00                                           [..]
+| | | | | FocusDistanceUpper = 239
+| | | | | - Tag 0x0014 (2 bytes, int16u[1]):
+| | | | |  2566212: ef 00                                           [..]
+| | | | | FocusDistanceLower = 208
+| | | | | - Tag 0x0015 (2 bytes, int16u[1]):
+| | | | |  2566214: d0 00                                           [..]
+| | | | | FlashExposureLock = 0
+| | | | | - Tag 0x0019 (2 bytes, int16s[1]):
+| | | | |  256621c: 00 00                                           [..]
+| | | | 4)  ProcessingInfo (SubDirectory) -->
+| | | |     - Tag 0x00a0 (36 bytes, int16u[18] read as undef[36]):
+| | | |      256626e: 24 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 [$...............]
+| | | |      256627e: ff ff 50 14 87 00 00 00 00 00 00 00 02 00 04 00 [..P.............]
+| | | |      256628e: 00 00 ff ff                                     [....]
+| | | | + [BinaryData directory, 36 bytes]
+| | | | | ToneCurve = 0
+| | | | | - Tag 0x0001 (2 bytes, int16s[1]):
+| | | | |  2566270: 00 00                                           [..]
+| | | | | Sharpness = 4
+| | | | | - Tag 0x0002 (2 bytes, int16s[1]):
+| | | | |  2566272: 04 00                                           [..]
+| | | | | SharpnessFrequency = 0
+| | | | | - Tag 0x0003 (2 bytes, int16s[1]):
+| | | | |  2566274: 00 00                                           [..]
+| | | | | SensorRedLevel = 0
+| | | | | - Tag 0x0004 (2 bytes, int16s[1]):
+| | | | |  2566276: 00 00                                           [..]
+| | | | | SensorBlueLevel = 0
+| | | | | - Tag 0x0005 (2 bytes, int16s[1]):
+| | | | |  2566278: 00 00                                           [..]
+| | | | | WhiteBalanceRed = 0
+| | | | | - Tag 0x0006 (2 bytes, int16s[1]):
+| | | | |  256627a: 00 00                                           [..]
+| | | | | WhiteBalanceBlue = 0
+| | | | | - Tag 0x0007 (2 bytes, int16s[1]):
+| | | | |  256627c: 00 00                                           [..]
+| | | | | WhiteBalance = -1
+| | | | | - Tag 0x0008 (2 bytes, int16s[1]):
+| | | | |  256627e: ff ff                                           [..]
+| | | | | ColorTemperature = 5200
+| | | | | - Tag 0x0009 (2 bytes, int16s[1]):
+| | | | |  2566280: 50 14                                           [P.]
+| | | | | PictureStyle = 135
+| | | | | - Tag 0x000a (2 bytes, int16s[1]):
+| | | | |  2566282: 87 00                                           [..]
+| | | | | DigitalGain = 0
+| | | | | - Tag 0x000b (2 bytes, int16s[1]):
+| | | | |  2566284: 00 00                                           [..]
+| | | | | WBShiftAB = 0
+| | | | | - Tag 0x000c (2 bytes, int16s[1]):
+| | | | |  2566286: 00 00                                           [..]
+| | | | | WBShiftGM = 0
+| | | | | - Tag 0x000d (2 bytes, int16s[1]):
+| | | | |  2566288: 00 00                                           [..]
+| | | | 5)  VignettingCorr2 (SubDirectory) -->
+| | | |     - Tag 0x4016 (40 bytes, int32u[10] read as undef[40]):
+| | | |      2566292: 28 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 [(...............]
+| | | |      25662a2: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 [................]
+| | | |      25662b2: 01 00 00 00 00 00 00 00                         [........]
+| | | | + [BinaryData directory, 40 bytes]
+| | | | | PeripheralLightingSetting = 1
+| | | | | - Tag 0x0005 (4 bytes, int32s[1]):
+| | | | |  25662a6: 01 00 00 00                                     [....]
+| | | | | ChromaticAberrationSetting = 1
+| | | | | - Tag 0x0006 (4 bytes, int32s[1]):
+| | | | |  25662aa: 01 00 00 00                                     [....]
++ [CTMD type 8 directory, 37706 bytes]
+| TimedExif8 (SubDirectory) -->
+| - Tag 0x0008 (37706 bytes):
+|  25662c6: 4a 93 00 00 7c 92 00 00 49 49 2a 00 08 00 00 00 [J...|...II*.....]
+|  25662d6: 03 00 01 40 03 00 1c 07 00 00 2e 00 00 00 05 40 [...@...........@]
+|  25662e6: 07 00 dc 7e 00 00 66 0e 00 00 0d 00 07 00 00 06 [...~..f.........]
+|  25662f6: 00 00 42 8d 00 00 10 00 77 04 00 04 00 04 f7 01 [..B.....w.......]
+|  2566306: 9f 02 00 04 00 04 ea 02 50 02 00 04 00 04 d4 04 [........P.......]
+|     [snip 37626 bytes]
+| + [TimedExif directory, 37706 bytes]
+| | MakerNoteCanon (SubDirectory) -->
+| | - Tag 0x927c (37698 bytes):
+| |  25662ce: 49 49 2a 00 08 00 00 00 03 00 01 40 03 00 1c 07 [II*........@....]
+| |  25662de: 00 00 2e 00 00 00 05 40 07 00 dc 7e 00 00 66 0e [.......@...~..f.]
+| |  25662ee: 00 00 0d 00 07 00 00 06 00 00 42 8d 00 00 10 00 [..........B.....]
+| |  25662fe: 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 ea 02 [w...............]
+| |  256630e: 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 06 02 [P.......~.......]
+| |     [snip 37618 bytes]
+| | + [TIFF directory]
+| | | + [Canon directory with 3 entries]
+| | | | 0)  ColorData9 (SubDirectory) -->
+| | | |     - Tag 0x4001 (3640 bytes, int16u[1820] read as undef[3640]):
+| | | |      25662fc: 10 00 77 04 00 04 00 04 f7 01 9f 02 00 04 00 04 [..w.............]
+| | | |      256630c: ea 02 50 02 00 04 00 04 d4 04 7e 04 00 04 00 04 [..P.......~.....]
+| | | |      256631c: 06 02 a6 02 00 04 00 04 f9 02 58 02 00 04 00 04 [..........X.....]
+| | | |      256632c: ed 04 00 00 00 00 00 01 00 01 00 01 00 00 02 00 [................]
+| | | |      256633c: 04 00 02 00 04 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 3560 bytes]
+| | | | + [BinaryData directory, 3640 bytes]
+| | | | | ColorDataVersion = 16
+| | | | | - Tag 0x0000 (2 bytes, int16s[1]):
+| | | | |  25662fc: 10 00                                           [..]
+| | | | | WB_RGGBLevelsAsShot = 1262 1024 1024 1591
+| | | | | - Tag 0x0047 (8 bytes, int16s[4]):
+| | | | |  256638a: ee 04 00 04 00 04 37 06                         [......7.]
+| | | | | ColorTempAsShot = 3832
+| | | | | - Tag 0x004b (2 bytes, int16s[1]):
+| | | | |  2566392: f8 0e                                           [..]
+| | | | | WB_RGGBLevelsAuto = 1262 1024 1024 1591
+| | | | | - Tag 0x004c (8 bytes, int16s[4]):
+| | | | |  2566394: ee 04 00 04 00 04 37 06                         [......7.]
+| | | | | ColorTempAuto = 3832
+| | | | | - Tag 0x0050 (2 bytes, int16s[1]):
+| | | | |  256639c: f8 0e                                           [..]
+| | | | | WB_RGGBLevelsMeasured = 1262 1024 1024 1591
+| | | | | - Tag 0x0051 (8 bytes, int16s[4]):
+| | | | |  256639e: ee 04 00 04 00 04 37 06                         [......7.]
+| | | | | ColorTempMeasured = 3832
+| | | | | - Tag 0x0055 (2 bytes, int16s[1]):
+| | | | |  25663a6: f8 0e                                           [..]
+| | | | | WB_RGGBLevelsDaylight = 1549 1024 1024 1316
+| | | | | - Tag 0x0088 (8 bytes, int16s[4]):
+| | | | |  256640c: 0d 06 00 04 00 04 24 05                         [......$.]
+| | | | | ColorTempDaylight = 5200
+| | | | | - Tag 0x008c (2 bytes, int16s[1]):
+| | | | |  2566414: 50 14                                           [P.]
+| | | | | WB_RGGBLevelsShade = 1792 1024 1024 1147
+| | | | | - Tag 0x008d (8 bytes, int16s[4]):
+| | | | |  2566416: 00 07 00 04 00 04 7b 04                         [......{.]
+| | | | | ColorTempShade = 7000
+| | | | | - Tag 0x0091 (2 bytes, int16s[1]):
+| | | | |  256641e: 58 1b                                           [X.]
+| | | | | WB_RGGBLevelsCloudy = 1670 1024 1024 1229
+| | | | | - Tag 0x0092 (8 bytes, int16s[4]):
+| | | | |  2566420: 86 06 00 04 00 04 cd 04                         [........]
+| | | | | ColorTempCloudy = 6000
+| | | | | - Tag 0x0096 (2 bytes, int16s[1]):
+| | | | |  2566428: 70 17                                           [p.]
+| | | | | WB_RGGBLevelsTungsten = 1104 1024 1024 1879
+| | | | | - Tag 0x0097 (8 bytes, int16s[4]):
+| | | | |  256642a: 50 04 00 04 00 04 57 07                         [P.....W.]
+| | | | | ColorTempTungsten = 3200
+| | | | | - Tag 0x009b (2 bytes, int16s[1]):
+| | | | |  2566432: 80 0c                                           [..]
+| | | | | WB_RGGBLevelsFluorescent = 1303 1024 1024 1771
+| | | | | - Tag 0x009c (8 bytes, int16s[4]):
+| | | | |  2566434: 17 05 00 04 00 04 eb 06                         [........]
+| | | | | ColorTempFluorescent = 3687
+| | | | | - Tag 0x00a0 (2 bytes, int16s[1]):
+| | | | |  256643c: 67 0e                                           [g.]
+| | | | | WB_RGGBLevelsKelvin = 1549 1024 1024 1316
+| | | | | - Tag 0x00a1 (8 bytes, int16s[4]):
+| | | | |  256643e: 0d 06 00 04 00 04 24 05                         [......$.]
+| | | | | ColorTempKelvin = 5200
+| | | | | - Tag 0x00a5 (2 bytes, int16s[1]):
+| | | | |  2566446: 50 14                                           [P.]
+| | | | | WB_RGGBLevelsFlash = 1697 1024 1024 1218
+| | | | | - Tag 0x00a6 (8 bytes, int16s[4]):
+| | | | |  2566448: a1 06 00 04 00 04 c2 04                         [........]
+| | | | | ColorTempFlash = 6166
+| | | | | - Tag 0x00aa (2 bytes, int16s[1]):
+| | | | |  2566450: 16 18                                           [..]
+| | | | | PerChannelBlackLevel = 2050 2045 2045 2049
+| | | | | - Tag 0x0149 (8 bytes, int16u[4]):
+| | | | |  256658e: 02 08 fd 07 fd 07 01 08                         [........]
+| | | | | NormalWhiteLevel = 13035
+| | | | | - Tag 0x031c (2 bytes, int16u[1]):
+| | | | |  2566934: eb 32                                           [.2]
+| | | | | SpecularWhiteLevel = 14338
+| | | | | - Tag 0x031d (2 bytes, int16u[1]):
+| | | | |  2566936: 02 38                                           [.8]
+| | | | | LinearityUpperMargin = 10000
+| | | | | - Tag 0x031e (2 bytes, int16u[1]):
+| | | | |  2566938: 10 27                                           [.']
+| | | | 1)  Flavor = .~. .?_...........?_...........?_...........@`...........?_.......[snip]
+| | | |     - Tag 0x4005 (32476 bytes, undef[32476]):
+| | | |      2567134: dc 7e 00 00 0b 00 00 20 00 00 00 00 00 00 00 00 [.~..... ........]
+| | | |      2567144: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2567154: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2567164: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      2567174: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 32396 bytes]
+| | | | 2)  CanonCameraInfoUnknown (SubDirectory) -->
+| | | |     - Tag 0x000d (1536 bytes, undef[1536]):
+| | | |      256f010: aa aa 38 13 20 10 00 24 00 13 00 10 58 ff 70 00 [..8. ..$....X.p.]
+| | | |      256f020: 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f030: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f040: 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f050: 00 00 00 00 00 00 00 00 00 00 00 a0 9a 00 00 00 [................]
+| | | |         [snip 1456 bytes]
+| | | | + [BinaryData directory, 1536 bytes]
++ [CTMD type 9 directory, 1480 bytes]
+| TimedExif9 (SubDirectory) -->
+| - Tag 0x0009 (1480 bytes):
+|  256f61c: c8 05 00 00 7c 92 00 00 49 49 2a 00 08 00 00 00 [....|...II*.....]
+|  256f62c: 03 00 15 40 07 00 78 02 00 00 2e 00 00 00 33 40 [...@..x.......3@]
+|  256f63c: 07 00 f8 01 00 00 a6 02 00 00 2e 40 07 00 22 01 [...........@..".]
+|  256f64c: 00 00 9e 04 00 00 20 30 78 02 01 00 00 00 01 00 [...... 0x.......]
+|  256f65c: 01 00 01 00 00 00 14 00 00 00 64 00 64 00 cc 04 [..........d.d...]
+|     [snip 1400 bytes]
+| + [TimedExif directory, 1480 bytes]
+| | MakerNoteCanon (SubDirectory) -->
+| | - Tag 0x927c (1472 bytes):
+| |  256f624: 49 49 2a 00 08 00 00 00 03 00 15 40 07 00 78 02 [II*........@..x.]
+| |  256f634: 00 00 2e 00 00 00 33 40 07 00 f8 01 00 00 a6 02 [......3@........]
+| |  256f644: 00 00 2e 40 07 00 22 01 00 00 9e 04 00 00 20 30 [...@.."....... 0]
+| |  256f654: 78 02 01 00 00 00 01 00 01 00 01 00 00 00 14 00 [x...............]
+| |  256f664: 00 00 64 00 64 00 cc 04 80 00 00 00 00 00 88 0e [..d.d...........]
+| |     [snip 1392 bytes]
+| | + [TIFF directory]
+| | | + [Canon directory with 3 entries]
+| | | | 0)  VignettingCorrUnknown1 (SubDirectory) -->
+| | | |     - Tag 0x4015 (632 bytes, undef[632]):
+| | | |      256f652: 20 30 78 02 01 00 00 00 01 00 01 00 01 00 00 00 [ 0x.............]
+| | | |      256f662: 14 00 00 00 64 00 64 00 cc 04 80 00 00 00 00 00 [....d.d.........]
+| | | |      256f672: 88 0e 70 17 a0 0f 00 00 00 00 00 00 00 00 00 00 [..p.............]
+| | | |      256f682: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f692: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 552 bytes]
+| | | | + [BinaryData directory, 632 bytes]
+| | | | | VignettingCorrVersion = 32
+| | | | | - Tag 0x0000 (1 bytes, int8u[1]):
+| | | | |  256f652: 20                                              [ ]
+| | | | 1)  Canon_0x4033 = 
+| | | |     - Tag 0x4033 (504 bytes, undef[504]):
+| | | |      256f8ca: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f8da: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f8ea: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f8fa: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |      256f90a: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 [................]
+| | | |         [snip 424 bytes]
+| | | | 2)  Canon_0x402e = ."..............?......3..?......|.3...&-b..,0*:....w.1.8...[snip]
+| | | |     - Tag 0x402e (290 bytes, undef[290]):
+| | | |      256fac2: 00 10 22 01 00 00 00 00 ff ff ff ff ff ff ff ff [..".............]
+| | | |      256fad2: f9 ff 06 ff fc 3f 00 00 00 00 00 00 00 00 ff ff [.....?..........]
+| | | |      256fae2: ff ff ff ff 33 fe f3 3f 00 00 d5 ff aa ff 98 ff [....3..?........]
+| | | |      256faf2: 7c ff 33 ff b8 02 26 2d 62 01 00 00 19 00 2c 00 [|.3...&-b.....,.]
+| | | |      256fb02: 30 00 2a 00 3a 00 a7 fb fe d2 77 fd 00 00 31 02 [0.*.:.....w...1.]
+| | | |         [snip 210 bytes]
 --------------------------
   XMP (SubDirectory) -->
   - Tag 'uuid' (65552 bytes):

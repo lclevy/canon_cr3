@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 20mar2018 
+version: 29mar2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -8,7 +8,7 @@ by Laurent Clévy (@Lorenzo2472)
 
 Contributors: 
 
-- Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD
+- Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD, File structure
 
 
 
@@ -17,10 +17,10 @@ Contributors:
 ### Table of contents ###
 
   * [Introduction](#introduction)
-
   * [C-Raw-codec](#about-c-raw-codec)
   * [About Cinema RAW Light codec](#about-cinema-raw-Light-codec)
   * [CR3 file Structure](#cr3-file-Structure)
+  * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
       * [THMB Thumbnail](#thmb-(thumbnail)) 
       * [CTBO](#ctbo)
@@ -262,6 +262,20 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
   - metadata (TIFF like)
 
     ​
+
+
+## parse_cr3.py
+
+This experimental tool allows to:
+
+* parse Canon Raw v3 file structure
+* display some Canon tags content
+* extract the 3 jpeg pictures: THMB, PRVW and "mdat1"
+* extract the 2 crx pictures: "mdat2" and "mdat3". Compression scheme is unknown (yet)
+  * display first 32 bytes of each image subparts
+
+Examples of output [here](output/)
+
 
 
 ## Canon tags description

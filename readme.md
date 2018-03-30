@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 29mar2018 
+version: 30mar2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -96,27 +96,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
     timecode        : 18:28:18;24
   Duration: 00:00:49.05, start: 0.000000, bitrate: 26049 kb/s
     Stream #0:0(eng): Video: none (CRAW / 0x57415243), none, 4096x2160, 993500 kb/s, 59.94 fps, 59.94 tbr, 60k tbn, 60k tbc (default)
-    Metadata:
-      creation_time   : 2017-10-01T22:04:43.000000Z
-    Stream #0:1(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, mono, s16, 768 kb/s (default)
-    Metadata:
-      creation_time   : 2017-10-01T22:04:43.000000Z
-    Stream #0:2(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, mono, s16, 768 kb/s (default)
-    Metadata:
-      creation_time   : 2017-10-01T22:04:43.000000Z
-    Stream #0:3(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, mono, s16, 768 kb/s (default)
-    Metadata:
-      creation_time   : 2017-10-01T22:04:43.000000Z
-    Stream #0:4(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, mono, s16, 768 kb/s (default)
-    Metadata:
-      creation_time   : 2017-10-01T22:04:43.000000Z
-    Stream #0:5(eng): Data: none (tmcd / 0x64636D74), 1 kb/s (default)
-    Metadata:
-      creation_time   : 2017-10-01T22:04:43.000000Z
-      timecode        : 18:28:18;24
-    Stream #0:6(eng): Data: none (CTMD / 0x444D5443), 774 kb/s (default)
-    Metadata:
-      creation_time   : 2017-10-01T22:04:43.000000Z
+...
 ```
 
 
@@ -129,7 +109,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
   - **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
     - **CNCV** (Canon Compressor Version). "CanonCR3_001/00.09.00/00.00.00"
 
-    - **CCTP** (Canon Compressor Table Pointers?). 00000000 00000001 00000003 (how many CCDT == 3 ?)
+    - **CCTP** (Canon Compressor Table Pointers?). 
 
       - **CCDT** (?, 16 bytes). 
 
@@ -145,13 +125,17 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
 
     - **CTBO** (Canon Trak b Offsets?)
 
-      - free
-      - **CMT1** (Canon Metadata? Exif IFD0)
-      - **CMT2** (Canon Metadata? Exif ExifIFD)
-      - **CMT3** (Canon Makernotes)
-      - **CMT4** (Canon Metadata? Exif GPS IFD)
-      - **THMB** (Thumbnail image in jpeg format)
-        - confirmed jpeg. size=160x120
+    - free
+    - **CMT1** (Canon Metadata? Exif IFD0)
+
+    - **CMT2** (Canon Metadata? Exif ExifIFD)
+
+    - **CMT3** (Canon Makernotes)
+
+    - **CMT4** (Canon Metadata? Exif GPS IFD)
+
+    - **THMB** (Thumbnail image in jpeg format)
+      - size=160x120
 
   - **mvhd** (Movie Header)
 
@@ -174,11 +158,11 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
           - **stts** (decoding, time-to-sample)
           - **stsc** (sample-to-chunk, partial data offset info)
           - **stsz** (sample sizes, framing)
-            - size of picture #1 in mdat
+            - size of jpeg picture #1 in mdat
           - **free**
           - **co64** : pointer to picture #1 inside mdat
 
-  - **trak** (big preview in c-raw?)
+  - **trak** (sd c-raw)
 
     - **tkhd**
     - **mdia**
@@ -202,7 +186,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
           - **free**
           - **co64** : pointer to picture #2 in mdat
 
-  - **trak** (main image in c-raw?)
+  - **trak** (hd image in c-raw)
 
     - **tkhd**
     - **mdia**
@@ -249,7 +233,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
 
 - **uuid** = eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data)
   - **PRVW**
-    - confirmed jpeg (1620x1080)
+    - jpeg (1620x1080)
 
 - **mdat** (main data)
 
@@ -259,7 +243,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Canon-C200-Raw.CRM':
 
   - picture #3 (main, 6888x4056, craw main image)
 
-  - metadata (TIFF like)
+  - metadata, CTMD tags below 
 
     ​
 
@@ -389,55 +373,101 @@ This is a block of Exif records.  Each Exif record has this format:
 | 4      | long   | 1    | tag ID (0x8769=ExifIFD, 0x927c=MakerNotes) |
 | 8      | byte[] | N-8  | TIFF-format metadata                       |
 
-### mdat_picture1 (confirmed jpeg)
-
-size=0x30d6ef (from stsz)
-
-6000x4000 pixels
+### mdat_picture1 (lossy jpeg)
 
 ```
-0x06d940:  ffd8ffdb 00840006 04040604 04060604    
-0x06d950:  06060606 080a110a 0a08080a 130f0f0c    
-0x06d960:  11171519 17171517 15191d23 1f191b23    
-0x06d970:  1b1b171f 2c1f2325 282a2a2a 191f2c30    
-0x06d980:  2c283023 282a2801 0606060a 080a130a    
+>python parse_cr3.py -v 2 canon_eos_m50_02.cr3
 ...
-0x37b020:  03b0daaa 3185c13d a9d85276 3fffd900    
+06451:            CRAW: (0x70)
+                    width=6000, height=4000
+064ab:              b'JPEG' b'00000000' (0xc)
+064b7:              b'free' b'0000' (0xa)
+064c1:          b'stts' b'00000000000000010000000100000001' (0x18)
+064d9:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+064f5:          stsz: version=0, size=0x30d6ef, count=1 (0x14)
+06509:          b'free' b'00000000000000' (0xf)
+06518:          co64: version=0, size=6d940, count=1 (0x18)
+...
+extracting jpeg (trak0) 6000x4000 from mdat... offset=0x6d940, size=0x30d6ef
 ```
 
 ### mdat_picture2 (crx codec)
 
-size=0x1cbc40
-
 ```
-0x37b030:  ff010008 001cbbd0 00000000 ff020008    ................ 
-0x37b040:  0007b5c0 08000000 ff030008 0007b5c0    ................
-0x37b050:  00200001 ff020008 00070600 18000000    . ..............
-0x37b060:  ff030008 00070600 00200002 ff020008    ......... ......
-0x37b070:  00070640 28000000 ff030008 00070640    ...@(..........@
-0x37b080:  00200006 ff020008 0006f9d0 38000000    . ..........8...
-0x37b090:  ff030008 0006f9d0 00200006 00000000    ......... ......
-0x37b0a0:  00000000 002027a5 00000400 0f03e034    ..... '........4
-0x37b0b0:  7565417b 810ded0e f68019d5 9085af6a    ueA{...........j
-0x37b0c0:  95d4e700 cc0d744d 20d7c569 0af800b0    ......tM ..i....
+>python parse_cr3.py canon_eos_m50_02.cr3
 ...
-0x546c30:  f1860b4a 31096b41 a64c0a0e f1b54760    ...J1.kA.L....G`
-0x546c40:  74072f89 b1680333 16cb3c79 f9e98bc2    t./..h.3..<y....
-0x546c50:  95a459a6 c0213203 37f136f1 b3711906    ..Y..!2.7.6..q..
-0x546c60:  86bbe446 05c21456 bdbc0000 00000000    ...F...V........
+06635:            CRAW: (0xd4)
+                    width=1624, height=1080
+0668f:              CMP1: (0x3c)
+066cb:              CDI1: (0x34)
+066d7:                IAD1: (0x28)
+066ff:              b'free' b'0000' (0xa)
+06709:          b'stts' b'00000000000000010000000100000001' (0x18)
+06721:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+0673d:          stsz: version=0, size=0x1cbc40, count=1 (0x14)
+06751:          b'free' b'00000000000000' (0xf)
+06760:          co64: version=0, size=37b030, count=1 (0x18)
+...
+extracting SD crx (trak1) 1624x1080 from mdat... offset=0x37b030, size=0x1cbc40
+ff010008 001cbbd0 00000000
+  ff020008 0007b5c0 08000000
+  ff030008 0007b5c0 00200001
+    b'00000000002027a5000004000f03e0347565417b810ded0ef68019d59085af6a'
+  ff020008 00070600 18000000
+  ff030008 00070600 00200002
+    b'00000000002028ff00000a6000680ccecfdd76905615eb87c07047a8e10bb5a4'
+  ff020008 00070640 28000000
+  ff030008 00070640 00200006
+    b'00000000002028d500000000004001800880baa0035a513e5a91891b50050ad5'
+  ff020008 0006f9d0 38000000
+  ff030008 0006f9d0 00200006
+    b'0000000000202cab0000020002a2b7747063b83a27ff1625fb4d52b4c41823e5'
 ```
 
 ### mdat_picture3 (crx codec)
 
-size=0x201ef28
-
 ```
-0x546c70:  ff010008 00ff40b8 00000000 ff020008    ......@......... 
-0x546c80:  00405528 08000000 ff030008 00405528    .@U(.........@U(
-....
-0x2565b70:  bff1234a ce204824 8b54935d 5e0fc72d    ..#J. H$.T.]^..-
-0x2565b80:  f8dfd549 a2c4f792 ddc72efe 2c9a7435    ...I........,.t5
-0x2565b90:  f8000000 00000000 
+>python parse_cr3.py -v 2 canon_eos_m50_02.cr3
+...
+0687d:            CRAW: (0xe4)
+                    width=6288, height=4056
+068d7:              CMP1: (0x3c)
+06913:              CDI1: (0x44)
+0691f:                IAD1: (0x38)
+06957:              b'free' b'0000' (0xa)
+06961:          b'stts' b'00000000000000010000000100000001' (0x18)
+06979:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+06995:          stsz: version=0, size=0x201ef28, count=1 (0x14)
+069a9:          b'free' b'00000000000000' (0xf)
+069b8:          co64: version=0, size=546c70, count=1 (0x18)
+...
+extracting HD crx (trak2) 6288x4056 from mdat... offset=0x546c70, size=0x201ef28
+ff010008 00ff40b8 00000000
+  ff020008 00405528 08000000
+  ff030008 00405528 00200006
+    b'0000000000202e45000000000040039226003b15c982d276151ca7cef3aa0b22'
+  ff020008 003fc8a8 18000000
+  ff030008 003fc8a8 00200003
+    b'0000000000202fbd000000000040016000000000e801b88ac3590cd6c022df4d'
+  ff020008 003fc6e8 28000000
+  ff030008 003fc6e8 00200005
+    b'0000000000202f9d0000000002000000000a80110bf884163afc8d3d28f76fe1'
+  ff020008 003f5c00 38000000
+  ff030008 003f5c00 00200000
+    b'0000000000202f6100000000004003ae0000000062a9c1c8002b0471075d0a2d'
+ff010008 0102ad98 00010000
+  ff020008 0040cb88 08000000
+  ff030008 0040cb88 00200006
+    b'0000000000202f6b0000000000a0064e819b8854c64481e72f454f50a3242ab2'
+  ff020008 0040eb50 18000000
+  ff030008 0040eb50 00200006
+    b'0000000000202feb00000000004003c20000000000800b68026fcbbd264dfba5'
+  ff020008 0040ed48 28000000
+  ff030008 0040ed48 00200002
+    b'0000000000202fa10001c00001b0034367370ac4dec63b510ad0e2415a17c15f'
+  ff020008 00400978 38000000
+  ff030008 00400978 00200007
+    b'00000000002031db000000000040062400000001b0005e43835fa07a05efb670'
 ```
 
 ### mdat_metadata (CTMD records)
@@ -473,13 +503,13 @@ picture data size = 0x1cbc40
 crx header (size=0x70)
 0x37b030:  ff010008 001cbbd0 00000000             size after header is 0x1cbbd0
            ff020008 0007b5c0 08000000             subpic#0, size is 7b5c0
-           ff030008 0007b5c0 00200001 
+           ff030008 0007b5c0 00200001             maybe huffman table#1 ?
            ff020008 00070600 18000000             subpic#1
 0x37b060:  ff030008 00070600 00200002 
            ff020008 00070640 28000000             subpic#2
            ff030008 00070640 00200006 
            ff020008 0006f9d0 38000000             subpic#3
-0x37b090:  ff030008 0006f9d0 00200006 
+0x37b090:  ff030008 0006f9d0 00200006             maybe huffman table#6 ?
            00000000 
 0x37b0a0:  00000000 002027a5 00000400 0f03e034    start of subpic#0 (37b030+70)
 0x37b0b0:  7565417b 810ded0e f68019d5 9085af6a  

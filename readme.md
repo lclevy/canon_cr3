@@ -17,7 +17,7 @@ Contributors:
 ### Table of contents ###
 
   * [Introduction](#introduction)
-    * [C-Raw-codec](#about-c-raw-codec)
+    * [C-Raw-compression](#about-c-raw-compression)
   * [CR3 file Structure](#cr3-file-Structure)
   * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
@@ -35,15 +35,15 @@ Contributors:
 
 ## Introduction ##
 
-The Canon CR3 format is mainly based on the ISO Base Media File Format (ISO/IEC 14496-12), with custom tags. Some tags contains TIFF structures (like IFDs, Makernotes...)
+The Canon CR3 format is mainly based on the ISO Base Media File Format (ISO/IEC 14496-12), with custom tags, and the new 'crx' codec. Some tags contains TIFF structures (like IFDs, Makernotes...)
 
-Phil Harvey, the author of ExifTool, already identified some custom tags: [Canon CR3 tags](http://https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#uuid "Canon CR3 tags")
+Phil Harvey, the author of ExifTool, already identified some custom TIFF tags: [Canon CR3 tags](http://https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#uuid "Canon CR3 tags")
 
 Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: https://sno.phy.queensu.ca/~phil/exiftool/canon_raw.html
 
-Pictures compressed with lossless 'raw' and lossy 'craw' are stored in CR3 format. CR2, the TIFF based format is not used by the M50, even with lossless 'raw' compression.
+The CR3 file format and its new crx codec support both lossless 'raw' and lossy 'craw' compressions. CR2, the TIFF based format is not used by the M50, even with lossless 'raw' compression. 
 
-#### About C-RAW codec
+#### About C-RAW compression
 
 "Supports the next-generation CR3 RAW format and the new C-RAW compression format. The C – RAW format is 40% smaller in file size than conventional RAW, and it corresponds to in – camera RAW development and digital lens optimizer"
 
@@ -142,7 +142,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'canon_eos_m50_02.cr3':
           - **free**
           - **co64** : pointer to picture #1 inside mdat
 
-  - **trak** (sd c-raw)
+  - **trak** (sd crx)
 
     - **tkhd**
     - **mdia**
@@ -166,7 +166,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'canon_eos_m50_02.cr3':
           - **free**
           - **co64** : pointer to picture #2 in mdat
 
-  - **trak** (hd image in c-raw)
+  - **trak** (hd image in crx)
 
     - **tkhd**
     - **mdia**
@@ -235,7 +235,7 @@ This experimental tool allows to:
 * parse Canon Raw v3 file structure
 * display some Canon tags content
 * extract the 3 jpeg pictures: THMB, PRVW and "mdat1"
-* extract the 2 crx pictures: "mdat2" and "mdat3". Compression scheme is unknown 
+* extract the 2 crx pictures: "mdat2" and "mdat3". Compression schemes (lossless and lossy) are unknown 
   * display first 32 bytes of each image subparts (both 'raw'/lossless and 'craw'/lossy)
 
 Examples of output [here](output/)
@@ -843,7 +843,7 @@ ff01 008dd0f0 1
 - Software support:
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
-   - Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+   	 Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
 - Discussions about CR3 format: 
   - [Rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
 

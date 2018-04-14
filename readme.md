@@ -17,7 +17,7 @@ Contributors:
 ### Table of contents ###
 
   * [Introduction](#introduction)
-        * [C-Raw-codec](#about-c-raw-codec)
+      * [C-Raw-codec](#about-c-raw-codec)
   * [CR3 file Structure](#cr3-file-Structure)
   * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
@@ -26,8 +26,8 @@ Contributors:
       * [PRVW (Preview)](#prvw-(preview))
       * [CTMD](#CTMD)
   * [Crx codec structures](#crx-codec-structures)
-        * [Lossless compression (raw)](#lossless-compression-(raw))
-        * [Lossy compression (craw)](#lossy-compression-(craw))
+      * [Lossless compression (raw)](#lossless-compression-(raw))
+      * [Lossy compression (craw)](#lossy-compression-(craw))
 
 
 

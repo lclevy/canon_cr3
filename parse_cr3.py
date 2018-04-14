@@ -111,41 +111,87 @@ def craw(d, l, depth):
   print('      %swidth=%d, height=%d' % (depth*'  ', w, h) )
   return (w,h)
 
-def get_crx_hdr_line(d):
-  v1 = getLongBE( d, 0 )
-  v2 = getLongBE( d, 4 )
-  v3 = getLongBE( d, 8 )
-  return v1, v2, v3
-
 CRX_HDR_LINE_LEN = 12  
-def parse_crx(d, hdr_size):
-  o = 0 #offset inside header
-  o2 = hdr_size #offset inside compressed data
-  t_ff01 = hdr_size #size accumulation per ff01 parts
-  for i in range(2):
-    v1 = getLongBE( d, o )
-    if v1!= 0xff010008: 
+
+def parse_ff03(d, total):
+  offset = 0
+  ff03_list = []
+  while total > 0:
+    v1 = getLongBE( d, offset )
+    if v1!= 0xff030008: 
       return
-    v2 = getLongBE( d, o+4 )
-    t_ff01 = t_ff01 + v2
-    v_ff01 = v2    
-    v3 = getLongBE( d, o+8 )
-    print('%08x %08x %08x' % ( v1, v2, v3 ) )
-    o = o + CRX_HDR_LINE_LEN  
-    t_ff03 = 0
-    for l in range(4):
-      for j in range(2):
-        r = get_crx_hdr_line(d[o:])
-        print('  %08x %08x %08x' % ( r ) )
-        if r[0]==0xff030008:
-          print('    %s' % hexlify(d[o2:o2+32]) )
-          o2 = o2 + r[1]
-          t_ff03 = t_ff03 + r[1]
-        o = o + CRX_HDR_LINE_LEN
-    if t_ff03 != v_ff01: #accumulation of ff03/ff02 sizes must equals size in ff01 size field
-      print('t_ff03 != v_ff01, %x %x' % (t_ff03, v_ff01))
-  if t_ff01 != len(d): #accumulation of ff01 size + header must equals picture size        
-    print('t_ff01 != len(d), %x %x'% (t_ff01, len(d)))
+    v2 = getLongBE( d, offset+4 ) #total of next ff03 group
+    v3 = getLongBE( d, offset+8 )
+    j = (v3 & 0xf000000)>>24
+    k = (v3 & 0xfff0000)>>16
+    l = (v3 & 0xffff)
+    #print('    %08x %08x %08x'%(v1,v2,v3))
+    total = total - v2
+    offset = offset + CRX_HDR_LINE_LEN
+    ff03_list.append( (v2,j,k,l) )
+  return offset, ff03_list  
+
+def parse_ff02(d, total):
+  offset = 0
+  ff02_list = []
+  while total > 0:    
+    v1 = getLongBE( d, offset )
+    if v1!= 0xff020008: 
+      return
+    _ff02 = dict()  
+    v2 = getLongBE( d, offset+4 ) #total of next ff03 group
+    v3 = getLongBE( d, offset+8 )
+    i = (v3 & 0xf0000000)>>28
+    j = (v3 & 0x0f000000)>>24
+    l = (v3 & 0x00ffffff)
+    #print('  %08x %08x %08x'%(v1,v2,v3))
+    total = total - v2
+    offset = offset + CRX_HDR_LINE_LEN
+    delta, r = parse_ff03(d[offset:], v2)
+    ff02_list.append( (v2,i,j,l,r) )
+    offset = offset + delta
+  return offset, ff02_list  
+    
+def parse_crx(d):
+  offset = 0 #offset inside header
+  dataOffset = 0
+  v1 = getLongBE( d, offset )
+  ff01_list = []  
+  while v1 == 0xff010008: 
+    #print('offset=%x'%offset)
+    v2 = getLongBE( d, offset+4 ) #total of next ff02 group
+    v3 = getLongBE( d, offset+8 )
+    i = (v3 & 0xff0000)>>16
+    #print('  %08x %08x %08x'%(v1,v2,v3))
+    offset = offset + CRX_HDR_LINE_LEN
+    delta, r = parse_ff02(d[offset:], v2)
+    ff01_list.append( (v2,i,r) )
+    #print('delta %x'%delta)
+    offset = offset + delta
+    v1 = getLongBE( d, offset )
+  #print('%x' % offset)
+  if len(ff01_list)<2:
+    dataOffset = offset + 4
+  else:  
+    dataOffset = offset
+  for ff01 in ff01_list:
+    print('ff01 %08x %d ' % (ff01[0], ff01[1]) )
+    in_ff01 = 0
+    for ff02 in ff01[2]: #r
+      print('  ff02 %08x %d %x %06x' % (ff02[0], ff02[1], ff02[2],ff02[3]) )
+      in_ff02 = 0
+      for ff03 in ff02[4]: #r
+        print('    ff03 %08x %x %03x %04x' % (ff03[0], ff03[1], ff03[2], ff03[3]) )
+        print('      %s' % hexlify(d[dataOffset:dataOffset+32]) )
+        dataOffset = dataOffset + ff03[0]
+        in_ff02 = in_ff02 + ff03[0]
+      if in_ff02 != ff02[0]:
+        print('in_ff02 != ff02[0], %x != %x' % (in_ff02, ff02[0]) )      
+      in_ff01 = in_ff01 + ff02[0]
+    if in_ff01 != ff01[0]:
+      print('in_ff01 != ff01[0], %x != %x' % (in_ff01, ff01[0]) )
+  if dataOffset!=len(d):
+    print('dataOffset!=len(d), %x %x' % (dataOffset, len(d)) )  
     
 tags = { b'ftyp':ftyp, b'moov':moov, b'uuid':uuid, b'stsz':stsz, b'co64':co64, b'PRVW':prvw, b'CTBO':ctbo, b'THMB':thmb, b'CNCV':cncv,
          b'CDI1':cdi1, b'IAD1':iad1, b'CMP1':cmp1, b'CRAW':craw }  
@@ -248,7 +294,7 @@ if options.extract:
   f.write( sd_crx )
   f.close()
 if options.verbose>1:
-  parse_crx( sd_crx, 0x70 ) #small crx has header size = 0x70
+  parse_crx( sd_crx ) #small crx has header size = 0x70
 
 if options.verbose>0:
   print('extracting HD crx (trak2) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak2'][b'CRAW'][0],cr3['trak2'][b'CRAW'][1],
@@ -259,4 +305,4 @@ if options.extract:
   f.write( hd_crx )
   f.close()
 if options.verbose>1:  
-  parse_crx( hd_crx, 0xd8 )
+  parse_crx( hd_crx )

@@ -17,17 +17,17 @@ Contributors:
 ### Table of contents ###
 
   * [Introduction](#introduction)
-      * [C-Raw-codec](#about-c-raw-codec)
+    * [C-Raw-codec](#about-c-raw-codec)
   * [CR3 file Structure](#cr3-file-Structure)
   * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
-      * [THMB Thumbnail](#thmb-(thumbnail)) 
-      * [CTBO](#ctbo)
-      * [PRVW (Preview)](#prvw-(preview))
-      * [CTMD](#CTMD)
+    * [THMB Thumbnail](#thmb-(thumbnail)) 
+    * [CTBO](#ctbo)
+    * [PRVW (Preview)](#prvw-(preview))
+    * [CTMD](#CTMD)
   * [Crx codec structures](#crx-codec-structures)
-      * [Lossless compression (raw)](#lossless-compression-(raw))
-      * [Lossy compression (craw)](#lossy-compression-(craw))
+    * [Lossless compression (raw)](#lossless-compression-(raw))
+    * [Lossy compression (craw)](#lossy-compression-(craw))
 
 
 
@@ -840,10 +840,12 @@ ff01 008dd0f0 1
 - ISO base media file format : [ISO/IEC 14496-12:2015](http://http://standards.iso.org/ittf/PubliclyAvailableStandards/c068960_ISO_IEC_14496-12_2015.zip "ISO IEC 14496-12:2015")
 - MP4 file format : [ISO/IEC 14496-14:2003](http://jchblog.u.qiniudn.com/doc/ISO_IEC_14496-14_2003-11-15.pdf "ISO/IEC 14496-14:2003")
 - [ISO 14496-1 Media Format](http://xhelmboyx.tripod.com/formats/mp4-layout.txt "ISO 14496-1 Media Format")
-- Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
-	 Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+- Software support:
+   - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
+   - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
+   - Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
 - Discussions about CR3 format: 
-  - [rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
+  - [Rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
 
   - [Exiv2](https://github.com/Exiv2/exiv2/issues/236)
 

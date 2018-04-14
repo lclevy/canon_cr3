@@ -270,7 +270,7 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 00000001 0000000000006b88 0000000000010018 (offset and size of xpacket uuid)
 00000002 0000000000016ba0 0000000000056d90 (offset and size of preview uuid)
 00000003 000000000006d930 00000000025022b8 (offset and size of mdat)
-00000004 0000000000000000 0000000000000000 no lossless raw ?
+00000004 0000000000000000 0000000000000000 ?
 ```
 
 ### PRVW (Preview) 
@@ -843,7 +843,7 @@ ff01 008dd0f0 1
 - Software support:
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
-   	 Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+   - Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
 - Discussions about CR3 format: 
   - [Rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
 

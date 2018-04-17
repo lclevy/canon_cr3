@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 14apr2018 
+version: 17apr2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -42,6 +42,8 @@ Phil Harvey, the author of ExifTool, already identified some custom TIFF tags: [
 Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: https://sno.phy.queensu.ca/~phil/exiftool/canon_raw.html
 
 The CR3 file format and its new crx codec support both lossless 'raw' and lossy 'craw' compressions. CR2, the TIFF based format is not used by the M50, even with lossless 'raw' compression. 
+
+'craw' means 'compact raw'.
 
 #### About C-RAW compression
 
@@ -481,7 +483,7 @@ This is a block of CTMD (Canon Timed MetaData?) records.
 
 (using canon_eos_m50_02.cr3, by analysing hex data)
 
-small picture 1624x1080
+small picture 1624x1080 (preview in DPP)
 
 ```
 picture data size = 0x1cbc40
@@ -517,6 +519,8 @@ crx header (size=0x6c +4)
 ```
 
 big picture 6888x4056
+
+The first ff01 section is the left slice, the second one is the right slice. Inside each ff01 section, it seems the first ff02 is for red, the second and third for green, the 4th for blue: the bayer RGGB pattern.
 
 ```
 picture data size = 0x201ef28
@@ -564,7 +568,7 @@ ff40b8 + 102ad98 = 201EE50 (+d8 = 201ef28)
                               00000000 00202fa1   1947988 + 40eb50 = 1D564D8 (subpic#1.2)
 0x1d564e0:  0001c000 01b00343 67370ac4 dec63b51    
 ...
-0x2565b80:  f8dfd549 a2c4f792 ddc72efe 2c9a7435    ...I........,.t5
+0x2565b80:  f8dfd549 a2c4f792 ddc72efe 2c9a7435    
 0x2565b90:  f8000000 00000000 
                               18000000 01000000    546d48 + ff40b8 + 102ad98 = 2565B98 (end of subpic#1.3)
 ```
@@ -843,7 +847,7 @@ ff01 008dd0f0 1
 - Software support:
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
-   - Cimena RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+   - Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
 - Discussions about CR3 format: 
   - [Rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
 
@@ -856,7 +860,9 @@ ff01 008dd0f0 1
 
 Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
 
-http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/
+http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/ (only lossless raw)
+
+https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip (including lossy c-raw)
 
 See exiftool directory for outputs of "exiftool(-k).exe" -v3 -H -a  canon_eos_m50_*.cr3
 [exiftool02.txt](exiftool/exiftool02.txt)

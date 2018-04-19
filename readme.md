@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 17apr2018 
+version:19apr2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -18,6 +18,7 @@ Contributors:
 
   * [Introduction](#introduction)
     * [C-Raw-compression](#about-c-raw-compression)
+    * [Cinema Raw Lite](#cimena-raw-movie-(CRM))
   * [CR3 file Structure](#cr3-file-Structure)
   * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
@@ -28,6 +29,7 @@ Contributors:
   * [Crx codec structures](#crx-codec-structures)
     * [Lossless compression (raw)](#lossless-compression-(raw))
     * [Lossy compression (craw)](#lossy-compression-(craw))
+* [Samples](#samples)
 
 
 
@@ -45,11 +47,11 @@ The CR3 file format and its new crx codec support both lossless 'raw' and lossy 
 
 'craw' means 'compact raw'.
 
+The Cinema Raw Light file format with extension .crm, also used the crx codec.
+
 #### About C-RAW compression
 
 "Supports the next-generation CR3 RAW format and the new C-RAW compression format. The C – RAW format is 40% smaller in file size than conventional RAW, and it corresponds to in – camera RAW development and digital lens optimizer"
-
-See this related patent : http://patents.com/us-20170359471.html, US Patent 20170359471 (December 14th, 2017)
 
 ```[mov,mp4,m4a,3gp,3g2,mj2 @ 0000000000140640] Could not find codec parameters for stream 0 (Video: none (CRAW / 0x57415243), none, 6000x4000, 25606 kb/s): unknown codec
 > ffmpeg.exe -i canon_eos_m50_02.cr3
@@ -81,10 +83,29 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'canon_eos_m50_02.cr3':
       creation_time   : 2018-02-21T12:01:28.000000Z
 ```
 
+#### Cimena Raw Movie (CRM)
+
+Cinema Raw Light (from C200) file format is very similar to CR3, and also uses the crx codec.
+CNCV value is 'CanonCRM0001/02.09.00/00.00.00'
+```
+> python parse_cr3.py -v 2 A003C013_170923CU_CANON.CRM
+filesize 0x21a36e70
+00000:ftyp: major_brand=b'crx ', minor_version=1, [b'crx ', b'isom'] x18)
+00018:moov: (0x4120) 00020:  uuid: b'85c0b687820f11e08111f4ce462b6a48' (0x2a80) 
+00038:    CNCV: b'CanonCRM0001/02.09.00/00.00.00' (0x26)
+0005e:   b'CCTP' b'000000000000000000000001000000184343445400000000' 0x2c)
+0003a:      b'CCDT' b'00000000000000000000000000000001' (0x18)
+...
+```
+
+See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-brief.shtml
+
+See this related patent : http://patents.com/us-20170359471.html, US Patent 20170359471 (December 14th, 2017)
 
 
 
 ## CR3 file Structure ##
+
 - **ftyp**: File Type Box
 
 - **moov** : container box whose sub‐boxes define the metadata for a presentation 
@@ -848,6 +869,7 @@ ff01 008dd0f0 1
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
    - Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+   - EDSDK 3.8.0 (Canon)
 - Discussions about CR3 format: 
   - [Rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
 
@@ -856,16 +878,27 @@ ff01 008dd0f0 1
 
 
 
-## CR3 samples (from M50 camera)
+## Samples 
 
-Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
+#### CR3 (from M50 camera)
 
-http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/ (only lossless raw)
+- Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
 
-https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip (including lossy c-raw)
+  http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/ (only lossless raw)
 
-See exiftool directory for outputs of "exiftool(-k).exe" -v3 -H -a  canon_eos_m50_*.cr3
-[exiftool02.txt](exiftool/exiftool02.txt)
+  See exiftool directory for outputs of "exiftool(-k).exe" -v3 -H -a  canon_eos_m50_*.cr3
+  [exiftool02.txt](exiftool/exiftool02.txt)
 
-See ffmpeg directory for outputs of "ffmpeg -i"
-[ffmpeg02.txt](ffmpeg/ffmpeg02.txt)
+  See ffmpeg directory for outputs of "ffmpeg -i"
+  [ffmpeg02.txt](ffmpeg/ffmpeg02.txt)
+
+
+- From DPReview: IMG_0482.CR3 (raw), IMG_0483.CR3 (craw)...
+
+  https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip (including lossy c-raw)
+
+
+
+#### CRM samples (from C200)
+
+http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/

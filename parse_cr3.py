@@ -1,20 +1,29 @@
 # parse CR3 file format from Canon (@lorenzo2472)
 # from https://github.com/lclevy/canon_cr3
-# samples from M50 camera here: http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/
+# samples from M50 camera here: http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/, 
+#   https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip
+# CRM sample: http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
 # about ISO Base file format : https://stackoverflow.com/questions/29565068/mp4-file-format-specification
 # License is GPLv3 
 
 import sys
-from struct import unpack
+from struct import unpack, Struct
 from binascii import hexlify, unhexlify
 from optparse import OptionParser
+
 
 def getShortBE(d, a):
  return unpack('>H',(d)[a:a+2])[0]
 
+def getShortLE(d, a):
+ return unpack('<H',(d)[a:a+2])[0]
+ 
 def getLongBE(d, a):
  return unpack('>L',(d)[a:a+4])[0]
 
+def getLongLE(d, a):
+ return unpack('<L',(d)[a:a+4])[0]
+ 
 def getLongLongBE(d, a):
  return unpack('>Q',(d)[a:a+8])[0]
 
@@ -82,26 +91,27 @@ def cncv(d, l, depth):
 
 def cdi1(d, l, depth):    
   print('CDI1: (0x{:x})'.format(l) ) 
-  print('      %s'% (depth*'  '),end='')
-  for i in range(0,len(d), 2):
-    print('%d,' % getShortBE(d, i),end='')
-  print()  
+  if options.verbose>0:
+    print('      %s'% (depth*'  '),end='')
+    for i in range(0,len(d), 2):
+      print('%d,' % getShortBE(d, i),end='')
+    print()  
 
 def iad1(d, l, depth):    
   print('IAD1: (0x{:x})'.format(l) ) 
-  #print(hexlify(d))
-  print('      %s'% (depth*'  '),end='')
-  for i in range(0,len(d), 2):
-    print('%d,' % getShortBE(d, i),end='')
-  print()  
+  if options.verbose>0:
+    print('      %s'% (depth*'  '),end='')
+    for i in range(0,len(d), 2):
+      print('%d,' % getShortBE(d, i),end='')
+    print()  
   
 def cmp1(d, l, depth):    
   print('CMP1: (0x{:x})'.format(l) ) 
-  #print(hexlify(d))
-  print('      %s'% (depth*'  '),end='')
-  for i in range(0,len(d), 2):
-    print('%d,' % getShortBE(d, i),end='')
-  print()  
+  if options.verbose>0:
+    print('      %s'% (depth*'  '),end='')
+    for i in range(0,len(d), 2):
+      print('%d,' % getShortBE(d, i),end='')
+    print()  
   
 def craw(d, l, depth):
   print( "CRAW: (0x{0:x})".format(l) )
@@ -111,6 +121,91 @@ def craw(d, l, depth):
   print('      %swidth=%d, height=%d' % (depth*'  ', w, h) )
   return (w,h)
 
+TIFF_TYPE_UCHAR = 1  
+TIFF_TYPE_STRING = 2
+TIFF_TYPE_USHORT = 3
+TIFF_TYPE_ULONG =  4 
+TIFF_TYPE_URATIONAL =  5 
+TIFF_TYPE_CHAR =  6 
+TIFF_TYPE_BYTESEQ = 7
+TIFF_TYPE_SHORT = 8 
+TIFF_TYPE_LONG =  9 
+TIFF_TYPE_RATIONAL =  10 
+TIFF_TYPE_FLOAT4 =  11 
+TIFF_TYPE_FLOAT8 =  12   
+
+tiffTypeLen = [ 1, 1, 2, 4, 4+4, 1, 1, 2, 4, 4+4, 4, 8 ]
+tiffTypeNames = [ "uchar", "string", "ushort", "ulong", "urational", "char", "byteseq", "short", "long", "rational", "float4", "float8" ]
+
+def tiff_print_value(d, l, base, type, tl, val, max):
+  typeLen = tiffTypeLen[type-1] 
+  data2 = d[ val: val+min(tl,max)*typeLen ]
+  if type == TIFF_TYPE_UCHAR or type == TIFF_TYPE_STRING:
+    if tl < 5:
+      print('%x'%val)
+    else:  
+      zero = data2.find(b'\x00')
+      if zero!=-1:
+        data2 = d[ val: val+zero ]
+      print(data2)
+  elif type == TIFF_TYPE_USHORT:
+    if tl == 1:
+      print('%hu'%val)
+    else:
+      for i in range(0, min(tl,max)*typeLen, typeLen):
+        print( '%hu '%( getShortLE(data2, i) ), end='' )
+      if tl>max:
+        print('...')
+      else:
+        print()      
+  elif type == TIFF_TYPE_ULONG:
+    if tl == 1:
+      print('%lu'%val)
+    else:
+      for i in range(0, min(tl,max)*typeLen, typeLen):
+        print( '%lu '%( getLongLE(data2, i) ), end='' )
+      if tl>max:
+        print('...')
+      else:
+        print()  
+  elif type == TIFF_TYPE_BYTESEQ:
+    if tl < 5:
+      print()    
+    else:
+      if tl>max:
+        print(hexlify(data2), '...')
+      else:
+        print(hexlify(data2))
+  elif type == TIFF_TYPE_URATIONAL:
+    print('%lu / %lu' % ( getLongLE(data2, 0), getLongLE(data2, 4) ) )
+  elif type == TIFF_TYPE_URATIONAL:
+    print('%ld / %ld' % ( getLongLE(data2, 0), getLongLE(data2, 4) ) )
+  else:
+    print()  
+  
+S_IFD_ENTRY_REC = Struct('<HHLL')  
+def tiff(d, l, depth, base, name):
+  ifd = dict()
+  print( "{0}: (0x{1:x})".format(name, l) )
+  order = d[0:2]
+  if order!=b'II':
+    return
+  marker = getShortLE( d, 2 )
+  if marker != 0x2a:
+    return  
+  ptr = getShortLE( d, 4 )
+  n = getShortLE( d, ptr )
+  ptr = ptr + 2
+  for i in range(n):
+    tag, type, length, val = S_IFD_ENTRY_REC.unpack_from( d[ptr:ptr+S_IFD_ENTRY_REC.size] )
+    if options.verbose>1:
+      print( "      %s 0x%06lx %5d/0x%-4x %9s(%d)*%-6ld %9lu/0x%-lx, " % (depth*'  ', base+ptr,tag,tag,tiffTypeNames[type-1],type,length,val,val), end='' )
+      tiff_print_value( d, l, 8, type, length, val, 20)
+    ifd[tag]=(base+ptr,type,length,val)  
+    ptr = ptr + S_IFD_ENTRY_REC.size
+  return base, ifd  
+
+  
 CRX_HDR_LINE_LEN = 12  
 
 def parse_ff03(d, total):
@@ -152,7 +247,7 @@ def parse_ff02(d, total):
     offset = offset + delta
   return offset, ff02_list  
     
-def parse_crx(d):
+def parse_crx(d, base):
   offset = 0 #offset inside header
   dataOffset = 0
   v1 = getLongBE( d, offset )
@@ -182,7 +277,7 @@ def parse_crx(d):
       in_ff02 = 0
       for ff03 in ff02[4]: #r
         print('    ff03 %08x %x %03x %04x' % (ff03[0], ff03[1], ff03[2], ff03[3]) )
-        print('      %s' % hexlify(d[dataOffset:dataOffset+32]) )
+        print('      %s (%x)' % (hexlify(d[dataOffset:dataOffset+32]), base+dataOffset) )
         dataOffset = dataOffset + ff03[0]
         in_ff02 = in_ff02 + ff03[0]
       if in_ff02 != ff02[0]:
@@ -231,6 +326,9 @@ def parse(d, base, depth):
       
     if chunkName in tags: #dedicated parsing
       r = tags[chunkName](d[o+no:o+no +l-no], l, depth+1) #return results
+    elif chunkName in { b'CMT1', b'CMT2', b'CMT3', b'CMT4' }:
+      r = tiff( d[o+no:o+no +l-no], l, depth+1, base+o+no, chunkName )
+      cr3[ chunkName ] = r
     else:
       print( '%s %s (0x%x)' % ( repr(chunkName), hexlify(d[o+no:o+no +dl-no]), l )  ) #default
        
@@ -246,7 +344,7 @@ def parse(d, base, depth):
       start = o+no+innerOffsets[chunkName]
       end = start +l-no-innerOffsets[chunkName]
       parse( d[start:end], start, depth+1 )
-
+      
     #post processing  
     if chunkName == b'stsz' or chunkName == b'co64' or chunkName == b'CRAW':  #keep these values per trak
       trakName = 'trak%d' % count[b'trak']
@@ -256,6 +354,17 @@ def parse(d, base, depth):
     o += l  
   return o
 
+def getTiffTagData(name, tag):
+  tagEntry = cr3[name][1][tag]  
+  #print( 'tagEntry', tagEntry )
+  base = cr3[name][0]
+  type = tagEntry[1]
+  length = tagEntry[2]
+  val = tagEntry[3]
+  size = tiffTypeLen[type-1]*length
+  tagInfoData = data[ base+val: base+val+size ]
+  return tagInfoData, tagEntry
+  
 parser = OptionParser(usage="usage: %prog [options]")
 parser.add_option("-v", "--verbose", type="int", dest="verbose", help="verbose level", default=0)
 parser.add_option("-x", "--extract", action="store_true", dest="extract", help="extract embedded images", default=False)
@@ -293,8 +402,8 @@ if options.extract:
   f=open('trak1.crx','wb')
   f.write( sd_crx )
   f.close()
-if options.verbose>1:
-  parse_crx( sd_crx ) #small crx has header size = 0x70
+if options.verbose>2:
+  parse_crx( sd_crx, cr3['trak1'][b'co64'] ) #small crx has header size = 0x70
 
 if options.verbose>0:
   print('extracting HD crx (trak2) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak2'][b'CRAW'][0],cr3['trak2'][b'CRAW'][1],
@@ -304,5 +413,38 @@ if options.extract:
   f=open('trak2.crx','wb')
   f.write( hd_crx )
   f.close()
-if options.verbose>1:  
-  parse_crx( hd_crx )
+if options.verbose>2:  
+  parse_crx( hd_crx, cr3['trak2'][b'co64'] )
+
+sensorInfoData, sensorInfoEntry = getTiffTagData( b'CMT3', 0xe0 )  
+print( 'sensorInfo', sensorInfoEntry )
+sensorInfoList = [ getShortLE(sensorInfoData, i) for i in range( 0, sensorInfoEntry[2], tiffTypeLen[sensorInfoEntry[1]-1] ) ]
+print( sensorInfoList ) 
+SensorWidth = sensorInfoList[1]
+SensorHeight = sensorInfoList[2]
+SensorLeftBorder = sensorInfoList[5]
+SensorTopBorder = sensorInfoList[6]
+SensorRightBorder = sensorInfoList[7]
+SensorBottomBorder = sensorInfoList[8]
+print( SensorWidth, SensorHeight, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder, SensorRightBorder-SensorLeftBorder+1, SensorBottomBorder-SensorTopBorder+1 )
+
+cameraSettingsData, cameraSettingsEntry = getTiffTagData( b'CMT3', 1 )  
+print( 'cameraSettings', cameraSettingsEntry )
+cameraSettingsList = [ getShortLE(cameraSettingsData, i) for i in range( 0, cameraSettingsEntry[2], tiffTypeLen[cameraSettingsEntry[1]-1] ) ]
+print(cameraSettingsList)
+if cameraSettingsList[3]==7:
+  print('craw')
+elif cameraSettingsList[3]==4:
+  print('raw')
+else:
+  print('cameraSettingsList[3]=%d'%cameraSettingsList[3]) 
+
+modelNames = { 0x412:'Canon EOS M50' }  
+modelIdEntry = cr3[b'CMT3'][1][0x10] 
+print(modelIdEntry)
+modelId = modelIdEntry[3]
+if modelId in modelNames:
+  print( modelNames[modelId] ) 
+
+#https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#ColorData9
+  

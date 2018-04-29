@@ -201,12 +201,12 @@ See this related patent : http://patents.com/us-20170359471.html, US Patent 2017
           - **dref**
         - **stbl**
           - **stsd**
-          - **CRAW** (size=0xe4)
-            - W=6288, H=4056, bitDepth=24
-            - **CMP1** (size=0x3c)
-            - **CDI1** (size=0x44)
-              - **IAD1** (size=0x38)
-            - **free**
+            - **CRAW** (size=0xe4)
+              - W=6288, H=4056, bitDepth=24
+              - **CMP1** (size=0x3c)
+              - **CDI1** (size=0x44)
+                - **IAD1** (size=0x38)
+              - **free**
         - **stts**
         - **stsc**
         - **stsz** : size of picture #3 in mdat
@@ -225,7 +225,7 @@ See this related patent : http://patents.com/us-20170359471.html, US Patent 2017
           - **dref**
         - **stbl**
           - **stsd**
-          - **CTMD** (size=0x4c)
+            - **CTMD** (size=0x4c)
         - **stts**
         - **stsc**
         - **stsz** : size of metadata in mdat

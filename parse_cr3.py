@@ -80,14 +80,19 @@ CTBO_LINE_LEN = 20
 def ctbo(d, l, depth):
   print( "CTBO: (0x{0:x})".format(l) )
   nbLine = getLongBE( d, 0 )
+  offsetList = {}
   for n in range( nbLine ):
     idx = getLongBE( d, 4+n*CTBO_LINE_LEN )
     offset = getLongLongBE( d, 4+4+n*CTBO_LINE_LEN )
     size = getLongLongBE( d, 4+4+8+n*CTBO_LINE_LEN )
     print('      %s%x %7x %7x' % (depth*'  ', idx, offset, size) )
+    offsetList[idx] = ( offset, size )
+  return offsetList  
+    
 
 def cncv(d, l, depth):    
   print('CNCV: {0} (0x{1:x})'.format(d, l) ) 
+  return d[:]
 
 def cdi1(d, l, depth):    
   print('CDI1: (0x{:x})'.format(l) ) 
@@ -217,13 +222,15 @@ def parse_ff03(d, total):
       return
     v2 = getLongBE( d, offset+4 ) #total of next ff03 group
     v3 = getLongBE( d, offset+8 )
-    j = (v3 & 0xf000000)>>24
-    k = (v3 & 0xfff0000)>>16
-    l = (v3 & 0xffff)
+    c     = (v3 & 0xf0000000)>>28
+    f     = (v3 & 0x08000000)>>27
+    val8  = (v3 & 0x07f80000)>>19
+    val13 = (v3 & 0x0007ffff)
     #print('    %08x %08x %08x'%(v1,v2,v3))
+    #print('    %08x %08x %d %x %02x %05x'%(v1,v2,c,f,val8,val13))
     total = total - v2
     offset = offset + CRX_HDR_LINE_LEN
-    ff03_list.append( (v2,j,k,l) )
+    ff03_list.append( (v2,c,f,val8,val13) )
   return offset, ff03_list  
 
 def parse_ff02(d, total):
@@ -236,14 +243,16 @@ def parse_ff02(d, total):
     _ff02 = dict()  
     v2 = getLongBE( d, offset+4 ) #total of next ff03 group
     v3 = getLongBE( d, offset+8 )
-    i = (v3 & 0xf0000000)>>28
-    j = (v3 & 0x0f000000)>>24
-    l = (v3 & 0x00ffffff)
+    c     = (v3 & 0xf0000000)>>28
+    f     = (v3 & 0x08000000)>>27
+    val2  = (v3 & 0x06000000)>>25
+    res     = (v3 & 0x01ffffff)
     #print('  %08x %08x %08x'%(v1,v2,v3))
+    #print('  %08x %08x %d %x %x %07x'%(v1,v2,c,f,val2, r))
     total = total - v2
     offset = offset + CRX_HDR_LINE_LEN
     delta, r = parse_ff03(d[offset:], v2)
-    ff02_list.append( (v2,i,j,l,r) )
+    ff02_list.append( (v2,c,f,val2,res,r) )
     offset = offset + delta
   return offset, ff02_list  
     
@@ -273,10 +282,10 @@ def parse_crx(d, base):
     print('ff01 %08x %d ' % (ff01[0], ff01[1]) )
     in_ff01 = 0
     for ff02 in ff01[2]: #r
-      print('  ff02 %08x %d %x %06x' % (ff02[0], ff02[1], ff02[2],ff02[3]) )
+      print('  ff02 %08x %d %x %x %07x' % (ff02[0], ff02[1], ff02[2],ff02[3],ff02[4]) )
       in_ff02 = 0
-      for ff03 in ff02[4]: #r
-        print('    ff03 %08x %x %03x %04x' % (ff03[0], ff03[1], ff03[2], ff03[3]) )
+      for ff03 in ff02[5]: #r
+        print('    ff03 %08x %d %x %02x %05x' % (ff03[0], ff03[1], ff03[2], ff03[3], ff03[4]) )
         print('      %s (%x)' % (hexlify(d[dataOffset:dataOffset+32]), base+dataOffset) )
         dataOffset = dataOffset + ff03[0]
         in_ff02 = in_ff02 + ff03[0]
@@ -349,6 +358,8 @@ def parse(d, base, depth):
     if chunkName == b'stsz' or chunkName == b'co64' or chunkName == b'CRAW':  #keep these values per trak
       trakName = 'trak%d' % count[b'trak']
       cr3[ trakName ][ chunkName ] = r
+    elif chunkName == b'CNCV' or chunkName == b'CTBO':  
+      cr3[ chunkName ] = r
     elif chunkName == b'PRVW' or chunkName == b'THMB':
       cr3[ chunkName ] = *r, base+o+no+16 #save offset
     o += l  
@@ -380,71 +391,89 @@ print( 'filesize 0x%x' % filesize)
 offset = parse(data, 0, 0)
 print('%05x:'%offset)
 #print( count )
+
 if options.verbose>1:  
   print(cr3)
 """for k, v in cr3.items():
   for k2, v2 in v.items():
     print('%s, %s, %x' % (k, k2, v2) )"""
 
-if options.verbose>0:
-  print('extracting jpeg (trak0) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak0'][b'CRAW'][0],cr3['trak0'][b'CRAW'][1],
-    cr3['trak0'][b'co64'], cr3['trak0'][b'stsz']) )
-if options.extract:
-  f=open('trak0.jpg','wb')
-  f.write( data[cr3['trak0'][b'co64']:cr3['trak0'][b'co64']+cr3['trak0'][b'stsz'] ] )
-  f.close()
 
-if options.verbose>0:
-  print('extracting SD crx (trak1) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak1'][b'CRAW'][0],cr3['trak1'][b'CRAW'][1],
-    cr3['trak1'][b'co64'], cr3['trak1'][b'stsz']) )
-sd_crx = data[cr3['trak1'][b'co64']:cr3['trak1'][b'co64']+cr3['trak1'][b'stsz'] ]
-if options.extract:
-  f=open('trak1.crx','wb')
-  f.write( sd_crx )
-  f.close()
-if options.verbose>2:
-  parse_crx( sd_crx, cr3['trak1'][b'co64'] ) #small crx has header size = 0x70
-
-if options.verbose>0:
-  print('extracting HD crx (trak2) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak2'][b'CRAW'][0],cr3['trak2'][b'CRAW'][1],
-    cr3['trak2'][b'co64'], cr3['trak2'][b'stsz']) )
-hd_crx = data[cr3['trak2'][b'co64']:cr3['trak2'][b'co64']+cr3['trak2'][b'stsz'] ]
-if options.extract:
-  f=open('trak2.crx','wb')
-  f.write( hd_crx )
-  f.close()
-if options.verbose>2:  
-  parse_crx( hd_crx, cr3['trak2'][b'co64'] )
-
-sensorInfoData, sensorInfoEntry = getTiffTagData( b'CMT3', 0xe0 )  
-print( 'sensorInfo', sensorInfoEntry )
-sensorInfoList = [ getShortLE(sensorInfoData, i) for i in range( 0, sensorInfoEntry[2], tiffTypeLen[sensorInfoEntry[1]-1] ) ]
-print( sensorInfoList ) 
-SensorWidth = sensorInfoList[1]
-SensorHeight = sensorInfoList[2]
-SensorLeftBorder = sensorInfoList[5]
-SensorTopBorder = sensorInfoList[6]
-SensorRightBorder = sensorInfoList[7]
-SensorBottomBorder = sensorInfoList[8]
-print( SensorWidth, SensorHeight, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder, SensorRightBorder-SensorLeftBorder+1, SensorBottomBorder-SensorTopBorder+1 )
-
-cameraSettingsData, cameraSettingsEntry = getTiffTagData( b'CMT3', 1 )  
-print( 'cameraSettings', cameraSettingsEntry )
-cameraSettingsList = [ getShortLE(cameraSettingsData, i) for i in range( 0, cameraSettingsEntry[2], tiffTypeLen[cameraSettingsEntry[1]-1] ) ]
-print(cameraSettingsList)
-if cameraSettingsList[3]==7:
-  print('craw')
-elif cameraSettingsList[3]==4:
-  print('raw')
-else:
-  print('cameraSettingsList[3]=%d'%cameraSettingsList[3]) 
-
-modelNames = { 0x412:'Canon EOS M50' }  
-modelIdEntry = cr3[b'CMT3'][1][0x10] 
-print(modelIdEntry)
-modelId = modelIdEntry[3]
-if modelId in modelNames:
-  print( modelNames[modelId] ) 
-
-#https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#ColorData9
+if cr3[b'CNCV'].find(b'CanonCRM')>=0:
+  print('CRM')
+  video = data[ cr3[b'CTBO'][3][0]+0x50: cr3[b'CTBO'][3][0]+cr3[b'CTBO'][3][1]-0x50]
+  if options.verbose>2:  
+    parse_crx( video, cr3[b'CTBO'][3][0]+0x50 )  
+elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
+  print('CR3')
+  if options.verbose>0:
+    print('extracting jpeg (trak0) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak0'][b'CRAW'][0],cr3['trak0'][b'CRAW'][1],
+      cr3['trak0'][b'co64'], cr3['trak0'][b'stsz']) )
+  if options.extract:
+    f=open('trak0.jpg','wb')
+    f.write( data[cr3['trak0'][b'co64']:cr3['trak0'][b'co64']+cr3['trak0'][b'stsz'] ] )
+    f.close()
   
+  if options.verbose>0:
+    print('extracting SD crx (trak1) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak1'][b'CRAW'][0],cr3['trak1'][b'CRAW'][1],
+      cr3['trak1'][b'co64'], cr3['trak1'][b'stsz']) )
+  sd_crx = data[cr3['trak1'][b'co64']:cr3['trak1'][b'co64']+cr3['trak1'][b'stsz'] ]
+  if options.extract:
+    f=open('trak1.crx','wb')
+    f.write( sd_crx )
+    f.close()
+  if options.verbose>2:
+    parse_crx( sd_crx, cr3['trak1'][b'co64'] ) #small crx has header size = 0x70
+
+  if options.verbose>0:
+    print('extracting HD crx (trak2) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak2'][b'CRAW'][0],cr3['trak2'][b'CRAW'][1],
+      cr3['trak2'][b'co64'], cr3['trak2'][b'stsz']) )
+  hd_crx = data[cr3['trak2'][b'co64']:cr3['trak2'][b'co64']+cr3['trak2'][b'stsz'] ]
+  if options.extract:
+    f=open('trak2.crx','wb')
+    f.write( hd_crx )
+    f.close()
+  if options.verbose>2:  
+    parse_crx( hd_crx, cr3['trak2'][b'co64'] )
+
+  TIFF_CMT3_SENSORINFO = 0xe0  
+  TIFF_CMT3_CAMERASETTINGS = 1
+  TIFF_CAMERASETTINGS_QUALITY_RAW = 4
+  TIFF_CAMERASETTINGS_QUALITY_CRAW = 7
+  TIFF_CMT3_MODELID = 0x10
+  TIFF_MODELID_M50 = 0x412
+    
+  sensorInfoData, sensorInfoEntry = getTiffTagData( b'CMT3', TIFF_CMT3_SENSORINFO )  
+  print( 'sensorInfo', sensorInfoEntry )
+  sensorInfoList = [ getShortLE(sensorInfoData, i) for i in range( 0, sensorInfoEntry[2], tiffTypeLen[sensorInfoEntry[1]-1] ) ]
+  #print( sensorInfoList ) 
+  SensorWidth = sensorInfoList[1]
+  SensorHeight = sensorInfoList[2]
+  SensorLeftBorder = sensorInfoList[5]
+  SensorTopBorder = sensorInfoList[6]
+  SensorRightBorder = sensorInfoList[7]
+  SensorBottomBorder = sensorInfoList[8]
+  print( SensorWidth, SensorHeight, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder, SensorRightBorder-SensorLeftBorder+1, SensorBottomBorder-SensorTopBorder+1 )
+
+  cameraSettingsData, cameraSettingsEntry = getTiffTagData( b'CMT3', TIFF_CMT3_CAMERASETTINGS )  
+  print( 'cameraSettings', cameraSettingsEntry )
+  cameraSettingsList = [ getShortLE(cameraSettingsData, i) for i in range( 0, cameraSettingsEntry[2], tiffTypeLen[cameraSettingsEntry[1]-1] ) ]
+  print(cameraSettingsList)
+  if cameraSettingsList[3]==TIFF_CAMERASETTINGS_QUALITY_CRAW:
+    print('craw')
+  elif cameraSettingsList[3]==TIFF_CAMERASETTINGS_QUALITY_RAW:
+    print('raw')
+  else:
+    print('cameraSettingsList[3]=%d'%cameraSettingsList[3]) 
+
+  modelNames = { TIFF_MODELID_M50:'Canon EOS M50' }  
+  modelIdEntry = cr3[b'CMT3'][1][TIFF_CMT3_MODELID] 
+  print(modelIdEntry)
+  modelId = modelIdEntry[3]
+  if modelId in modelNames:
+    print( modelNames[modelId] ) 
+
+  #https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#ColorData9
+else:
+  print('unknown codec')
+  sys.exit()  

@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version:19apr2018 
+version:6may2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -855,10 +855,40 @@ ff01 008dd0f0 1
     ff03 0007ffa0 0 0d0 0006
       b'00390dfc1a19240c4dcca0723767ac30a00050fcc4d005964680c62e20a4da56'
     ff03 00071d28 1 100 0007
-      b'21803d16c8b187b22bff4c12f93da0a0c86e84d0b17748811c3b821296b0e12d'
+      b'21803d16c8b187b22bff4c12f93da0a0c86e84d0b17748811c3b821296b0e12d' 
 ```
 
+### ff01 header format
+| Offset | type  | size | content                                                      |
+| ------ | ----- | ---- | ------------------------------------------------------------ |
+| 0      | short | 1    | ff01                                                         |
+| 2      | short | 1    | 8 (size)                                                     |
+| 4      | long  | 1    | size of ff01 data. One ff01 for small picture, two ff01 for big picture |
+| 8      | short | 1    | must be 0                                                    |
+| 10     | short | 1    | 0                                                            |
+### ff02 header format
+| Offset in bytes | type  | size | content                                                      |
+| --------------- | ----- | ---- | ------------------------------------------------------------ |
+| 0               | short | 1    | ff02                                                         |
+| 2               | short | 1    | 8 (size)                                                     |
+| 4               | long  | 1    | size of ff02 data. Sum of ff02 data equals size of parent ff01 |
+| 8               | bits  | 4    | counter (always 0 to 3). c                                   |
+| 8+4bits         | bits  | 1    | flag (f)                                                     |
+| 8+5bits         | bits  | 2    | 2bits value (x)                                              |
+last long format is (in bits): ccccfxx0 00000000 00000000 00000000
 
+### ff03 header format
+
+| Offset  | type  | size  | content                                                      |
+| ------- | ----- | ----- | ------------------------------------------------------------ |
+| 0       | short | 1     | ff03                                                         |
+| 2       | short | 1     | 8 (size)                                                     |
+| 4       | long  | 1     | size of ff03 data. Sum of ff03 data equals size of parent ff02 |
+| 8       | bits  | 4     | counter (0 to 9 for lossy/craw, only one for lossless/raw). c |
+| 8+4bits | bits  | 1     | flag (f)                                                     |
+| 8+5bits | bits  | 3+4+1 | 8 bits value (3 right most bits of byte#8 + 5 left most bits of byte#9). x |
+| 9+5bits | bits  | 3+16  | 19 bits value (3 right most bits of byte#9 + 16 bits at offset 10). Substracted to size at offset 4. Likely to compute exact meanful bits at end of the encoded stream, as size is rounded to 8 bits (observed values are 0 to 7). y |
+last long format is (in bits): ccccfxxx xxxxxyyy yyyyyyyy yyyyyyyy
 
 ## References ##
 
@@ -868,7 +898,7 @@ ff01 008dd0f0 1
 - Software support:
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
-   - Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+   	 Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
    - EDSDK 3.8.0 (Canon)
 - Discussions about CR3 format: 
   - [Rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
@@ -902,3 +932,6 @@ ff01 008dd0f0 1
 #### CRM samples (from C200)
 
 http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
+
+
+

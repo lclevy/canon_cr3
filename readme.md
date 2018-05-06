@@ -864,8 +864,8 @@ ff01 008dd0f0 1
 | 0      | short | 1    | ff01                                                         |
 | 2      | short | 1    | 8 (size)                                                     |
 | 4      | long  | 1    | size of ff01 data. One ff01 for small picture, two ff01 for big picture |
-| 8      | short | 1    | must be 0                                                    |
-| 10     | short | 1    | 0                                                            |
+| 8      | bits | 4    | counter (0 to 1)                                                    |
+
 ### ff02 header format
 | Offset in bytes | type  | size | content                                                      |
 | --------------- | ----- | ---- | ------------------------------------------------------------ |
@@ -875,6 +875,7 @@ ff01 008dd0f0 1
 | 8               | bits  | 4    | counter (always 0 to 3). c                                   |
 | 8+4bits         | bits  | 1    | flag (f)                                                     |
 | 8+5bits         | bits  | 2    | 2bits value (x)                                              |
+
 last long format is (in bits): ccccfxx0 00000000 00000000 00000000
 
 ### ff03 header format
@@ -888,6 +889,7 @@ last long format is (in bits): ccccfxx0 00000000 00000000 00000000
 | 8+4bits | bits  | 1     | flag (f)                                                     |
 | 8+5bits | bits  | 3+4+1 | 8 bits value (3 right most bits of byte#8 + 5 left most bits of byte#9). x |
 | 9+5bits | bits  | 3+16  | 19 bits value (3 right most bits of byte#9 + 16 bits at offset 10). Substracted to size at offset 4. Likely to compute exact meanful bits at end of the encoded stream, as size is rounded to 8 bits (observed values are 0 to 7). y |
+
 last long format is (in bits): ccccfxxx xxxxxyyy yyyyyyyy yyyyyyyy
 
 ## References ##

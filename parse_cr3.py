@@ -122,8 +122,8 @@ def craw(d, l, depth):
   print( "CRAW: (0x{0:x})".format(l) )
   w = getShortBE( d, 24 )
   h = getShortBE( d, 26 )
-  bits = getShortBE( d, 26 )
-  print('      %swidth=%d, height=%d' % (depth*'  ', w, h) )
+  bits = getLongBE( d, 72 )
+  print('      %swidth=%d, height=%d, bits=%d' % (depth*'  ', w, h, bits) )
   return (w,h)
 
 TIFF_TYPE_UCHAR = 1  

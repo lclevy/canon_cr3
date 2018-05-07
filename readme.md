@@ -207,11 +207,11 @@ See this related patent : http://patents.com/us-20170359471.html, US Patent 2017
               - **CDI1** (size=0x44)
                 - **IAD1** (size=0x38)
               - **free**
-        - **stts**
-        - **stsc**
-        - **stsz** : size of picture #3 in mdat
-        - **free**
-        - **co64** : pointer to picture #3 in mdat
+          - **stts**
+          - **stsc**
+          - **stsz** : size of picture #3 in mdat
+          - **free**
+          - **co64** : pointer to picture #3 in mdat
 
   - **trak** (metadata at end of mdat)
 
@@ -226,11 +226,11 @@ See this related patent : http://patents.com/us-20170359471.html, US Patent 2017
         - **stbl**
           - **stsd**
             - **CTMD** (size=0x4c)
-        - **stts**
-        - **stsc**
-        - **stsz** : size of metadata in mdat
-        - **free**
-        - **co64** : pointer to metadata in mdat
+          - **stts**
+          - **stsc**
+          - **stsz** : size of metadata in mdat
+          - **free**
+          - **co64** : pointer to metadata in mdat
 
 - **uuid** = be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
 

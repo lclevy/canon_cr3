@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 8may2018 
+version: 8sep2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -17,7 +17,6 @@ Contributors:
 ### Table of contents ###
 
   * [Introduction](#introduction)
-    * [C-Raw-compression](#about-c-raw-compression)
     * [Cinema Raw Lite](#cimena-raw-movie-(CRM))
   * [CR3 file Structure](#cr3-file-Structure)
   * [parse_cr3.py](#parse_cr3.py)
@@ -25,10 +24,11 @@ Contributors:
     * [THMB Thumbnail](#thmb-(thumbnail)) 
     * [CTBO](#ctbo)
     * [PRVW (Preview)](#prvw-(preview))
-    * [CTMD](#CTMD)
+    * [CTMD (Canon Timed Metadata)](#ctmd-(canon-timed-metadata))
   * [Crx codec structures](#crx-codec-structures)
     * [Lossless compression (raw)](#lossless-compression-(raw))
     * [Lossy compression (craw)](#lossy-compression-(craw))
+* [Crx compression](#crx-compression)
 * [Samples](#samples)
 
 
@@ -43,45 +43,11 @@ Phil Harvey, the author of ExifTool, already identified some custom TIFF tags: [
 
 Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: https://sno.phy.queensu.ca/~phil/exiftool/canon_raw.html
 
-The CR3 file format and its new crx codec support both lossless 'raw' and lossy 'craw' compressions. CR2, the TIFF based format is not used by the M50, even with lossless 'raw' compression. 
+The CR3 file format and its new crx codec support both lossless 'raw' and lossy 'craw' compressions. CR2, the TIFF based format is no more used by the M50 or EOSR, even with lossless 'raw' compression. 
 
 'craw' means 'compact raw'.
 
-The Cinema Raw Light file format with extension .crm, also used the crx codec.
-
-#### About C-RAW compression
-
-"Supports the next-generation CR3 RAW format and the new C-RAW compression format. The C – RAW format is 40% smaller in file size than conventional RAW, and it corresponds to in – camera RAW development and digital lens optimizer"
-
-```[mov,mp4,m4a,3gp,3g2,mj2 @ 0000000000140640] Could not find codec parameters for stream 0 (Video: none (CRAW / 0x57415243), none, 6000x4000, 25606 kb/s): unknown codec
-> ffmpeg.exe -i canon_eos_m50_02.cr3
-Consider increasing the value for the 'analyzeduration' and 'probesize' options
-[mov,mp4,m4a,3gp,3g2,mj2 @ 0000000000140640] Could not find codec parameters for stream 1 (Video: none (CRAW / 0x57415243), none, 1624x1080, 15065 kb/s): unknown codec
-Consider increasing the value for the 'analyzeduration' and 'probesize' options
-[mov,mp4,m4a,3gp,3g2,mj2 @ 0000000000140640] Could not find codec parameters for stream 2 (Video: none (CRAW / 0x57415243), none, 6288x4056, 269449 kb/s): unknown codec
-Consider increasing the value for the 'analyzeduration' and 'probesize' options`
-Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'canon_eos_m50_02.cr3':
-  Metadata:
-    major_brand     : crx
-    minor_version   : 1
-    compatible_brands: crx isom
-    creation_time   : 2018-02-21T12:01:28.000000Z
-  Duration: 00:00:01.00, start: 0.000000, bitrate: 314040 kb/s
-    Stream #0:0(eng): Video: none (CRAW / 0x57415243), none, 6000x4000, 25606 kb/s, 1 fps, 1 tbr, 1 tbn, 1 tbc (default)
-
-    Metadata:
-      creation_time   : 2018-02-21T12:01:28.000000Z
-    Stream #0:1(eng): Video: none (CRAW / 0x57415243), none, 1624x1080, 15065 kb/s, 1 fps, 1 tbr, 1 tbn, 1 tbc (default)
-    
-    Metadata:
-      creation_time   : 2018-02-21T12:01:28.000000Z
-    Stream #0:2(eng): Video: none (CRAW / 0x57415243), none, 6288x4056, 269449 kb/s, 1 fps, 1 tbr, 1 tbn, 1 tbc (default)    
-    Metadata:
-      creation_time   : 2018-02-21T12:01:28.000000Z
-    Stream #0:3(eng): Data: none (CTMD / 0x444D5443), 328 kb/s (default)
-    Metadata:
-      creation_time   : 2018-02-21T12:01:28.000000Z
-```
+The Cinema Raw Light file format with extension .crm, also uses the crx codec.
 
 #### Cimena Raw Movie (CRM)
 
@@ -99,8 +65,6 @@ filesize 0x21a36e70
 ```
 
 See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-brief.shtml
-
-See this related patent : http://patents.com/us-20170359471.html, US Patent 20170359471 (December 14th, 2017)
 
 
 
@@ -129,15 +93,16 @@ See this related patent : http://patents.com/us-20170359471.html, US Patent 2017
     - **CTBO** (Canon Trak b Offsets?)
 
     - free
-    - **CMT1** (Canon Metadata? Exif IFD0)
+    - **CMT1** (Canon Metadata in TIFF format, Exif IFD0)
 
-    - **CMT2** (Canon Metadata? Exif ExifIFD)
+    - **CMT2** (Canon Metadata in TIFF format, Exif ExifIFD)
 
-    - **CMT3** (Canon Makernotes)
+    - **CMT3** (Canon Metadata in TIFF format, Canon Makernotes)
 
-    - **CMT4** (Canon Metadata? Exif GPS IFD)
+    - **CMT4** (Canon Metadata in TIFF format, Exif GPS IFD)
 
     - **THMB** (Thumbnail image in jpeg format)
+
       - size=160x120
 
   - **mvhd** (Movie Header)
@@ -246,7 +211,7 @@ See this related patent : http://patents.com/us-20170359471.html, US Patent 2017
 
   - picture #3 (main, 6888x4056, crx main image)
 
-  - metadata, CTMD tags below 
+  - Canon Timed Metadata, CTMD tags below 
 
     ​
 
@@ -315,7 +280,7 @@ size = 1620x1080
 | 24/0x18      | byte[] | stored at offset 20 | jpeg_data = ffd8ffdb...ffd9 |
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
 
-### CTMD  ###
+### CTMD (Canon Timed MetaData)
 
 (at end of mdat area)
 Each CTMD record has this format (little-endian byte order):
@@ -494,7 +459,7 @@ size=0xa04c
 0x256fbe0:  05000000 00000000                      ........        
 ```
 
-This is a block of CTMD (Canon Timed MetaData?) records.
+This is a block of CTMD (Canon Timed MetaData) records.
 
 
 
@@ -740,6 +705,41 @@ last long format is (in bits): ccccfxx0 00000000 00000000 00000000
 
 last long format is (in bits): ccccfxxx xxxxxyyy yyyyyyyy yyyyyyyy
 
+
+
+## Crx compression
+
+This Canon patent https://patents.google.com/patent/US20160323602A1/en describes a 3 levels Wavelet transform and Adapting Rice encoding.
+
+*"FIG. 7A explains an example in which wavelet transform is executed three times. LL**1**, HL**1**, LH**1**, and HH**1** represent the subbands of decomposition level **1**, LL**2**, HL**2**, LH**2**, and HH**2** represent the subbands of decomposition level **2**, and LL**3**, HL**3**, LH**3**, and HH**3** represent the subbands of decomposition level **3**.*
+*Note that a transform target of wavelet transform from the second time is subband LL obtained by immediately preceding wavelet transform, so subbands LL**1** and LL**2** are omitted, and subband LL obtained by last wavelet transform remains. Also, the horizontal and vertical resolutions of, for example, HL**2** are half those of HL**1**. Subband LH indicates a horizontal-direction frequency characteristic (a horizontal-direction component) of a local region to which wavelet transform is applied. Likewise, subband HL indicates a* *vertical-direction frequency characteristic (a vertical-direction component), and subband HH indicates an oblique-direction frequency characteristic (an oblique-direction component). Subband LL is a* *low-frequency component. An integer-type 5/3 filter is used in wavelet transform of this embodiment, but the present invention is not limited to this. It is also possible to use another wavelet transform filter* such as a real-type 9/7 filter used in JPEG2000 (ISO/IEC15444|ITU-T T. 800) as an international standard. In addition, the processing unit of wavelet transform can be either a line or image."
+
+It is very likely the ten ff03 sections of lossy cr3 are LL1, HL1, LH1, HH1, HL2, LH2, HH2, HL3, LH3 and HH3, and lossless cr3 unique ff03 sections is LL1.
+
+*"The procedure of Golomb-Rice coding is as follows"*
+
+Each time, the first ff03 section is starting with b'00000000002', in bits 00000000 00000000 00000000 00000000 00000000 001, which is 42 in unary coding
+
+for canon_eos_m50_02.cr3, 
+
+small image, 
+
+first LL data over 4 (for Red data ?) is b'00000000002027a5000004000f03e0347565417b810ded0ef68019d59085af6a', which decodes to:
+
+00000000 00000000 00000000 00000000 00000000 001 = 42
+
+00000 00100111 10100101 = 10149 (21 next bits)
+
+for second FF03 (G1) : b'00000000002028ff00000', 
+
+42 and 10495 (00000 00101000 11111111)
+
+...
+
+
+
+
+
 ## References ##
 
 - ISO base media file format : [ISO/IEC 14496-12:2015](http://http://standards.iso.org/ittf/PubliclyAvailableStandards/c068960_ISO_IEC_14496-12_2015.zip "ISO IEC 14496-12:2015")
@@ -748,19 +748,14 @@ last long format is (in bits): ccccfxxx xxxxxyyy yyyyyyyy yyyyyyyy
 - Software support:
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
-   	 Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
+   - Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
    - EDSDK 3.8.0 (Canon)
-- Discussions about CR3 format: 
-  - [Rawspeed](https://github.com/darktable-org/rawspeed/issues/121)
-
-  - [Exiv2](https://github.com/Exiv2/exiv2/issues/236)
-
 
 
 
 ## Samples 
 
-#### CR3 (from M50 camera)
+#### CR3 from M50 camera
 
 - Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
 
@@ -777,7 +772,10 @@ last long format is (in bits): ccccfxxx xxxxxyyy yyyyyyyy yyyyyyyy
 
   https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip (including lossy c-raw)
 
+#### CR3 from EOSR (lossless)
 
+- https://www.photographyblog.com/reviews/canon_eos_r/preview_images/
+- https://www.dpreview.com/samples/5691884265/canon-eos-r-sample-gallery-updated-with-raw-conversions
 
 #### CRM samples (from C200)
 

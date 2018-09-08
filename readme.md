@@ -772,6 +772,10 @@ for second FF03 (G1) : b'00000000002028ff00000',
 
   https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip (including lossy c-raw)
 
+- raw.pixls.us (RAW, CRAW; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20EOS%20M50/
+
 #### CR3 from EOSR (lossless)
 
 - https://www.photographyblog.com/reviews/canon_eos_r/preview_images/

@@ -12,6 +12,8 @@ Contributors:
 
 
 
+NEEDED: craw (lossy) and dual pixel samples from EOS R, please!
+
 
 
 ### Table of contents ###

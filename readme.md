@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 8sep2018 
+version: 1oct2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -23,9 +23,11 @@ NEEDED: craw (lossy) and dual pixel samples from EOS R, please!
   * [CR3 file Structure](#cr3-file-Structure)
   * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
-    * [THMB Thumbnail](#thmb-(thumbnail)) 
+    * [THMB (Thumbnail)](#thmb-(thumbnail)) 
     * [CTBO](#ctbo)
     * [PRVW (Preview)](#prvw-(preview))
+    * [CMP1](#cmp1)
+    * [IAD1](#iad1)
     * [CTMD (Canon Timed Metadata)](#ctmd-(canon-timed-metadata))
   * [Crx codec structures](#crx-codec-structures)
     * [Lossless compression (raw)](#lossless-compression-(raw))
@@ -281,6 +283,82 @@ size = 1620x1080
 | 20/0x14      | long   | 1                   | jpeg_size                   |
 | 24/0x18      | byte[] | stored at offset 20 | jpeg_data = ffd8ffdb...ffd9 |
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
+
+### CMP1 ###
+
+Size=0x3c
+
+| Offset | type  | size | content                                 |
+| ------ | ----- | ---- | --------------------------------------- |
+| 0      | bytes | 8    | ? FF 00 00 30 01 00 00 00               |
+| 8      | long  | 1    | width                                   |
+| 12     | long  | 1    | height                                  |
+| 16     | long  | 1    | slice width (width /2 for big picture)  |
+| 20     | long  | 1    | height                                  |
+| 24     | bytes | 8    | flags?  raw small = 0e41 0000 0000 0070 |
+|        |       |      | flags?  raw big   = 0e40 0000 0000 00d8 |
+|        |       |      | flags? craw small = 0e41 0300 0000 0220 |
+|        |       |      | flags? craw big   = 0e40 0380 0000 0438 |
+| 32     | long  | 1    | 0                                       |
+| 36     | bytes | 16   | ? 4 times "01 01 00 00"                 |
+
+### IAD1 ###
+
+Size=0x28 for small picture, 0x38 for big picture. All values are in big endian
+
+| Offset | type  | size | content                                   |
+| ------ | ----- | ---- | ----------------------------------------- |
+| 0      | short | 1    | 0                                         |
+| 2      | short | 1    | 0                                         |
+| 4      | short | 1    | sensor width (like sensorInfo[1] in CMT3) |
+| 6      | short | 1    | sensor height (sensorInfo[2])             |
+| 8      | short | 1    | 1                                         |
+| 10/0xa | short | 1    | 0 (small), 2 (big) = flag for sliced ?    |
+| 12     | short | 1    | 1                                         |
+| 14     | short | 1    | 0                                         |
+
+Small image (1024x1080)
+
+| Offset | type  | size | content                                |
+| ------ | ----- | ---- | -------------------------------------- |
+| 16     | short | 1    | 1 |
+| 18     | short | 1    | 0 |
+| 20     | short | 1    | width -4 (1620)                        |
+| 22     | short | 1    | height -1 (1079)                       |
+| 24     | short | 1    | 0                                      |
+| 26     | short | 1    | 0                                      |
+| 28     | short | 1    | width -1 (1623)                        |
+| 30     | short | 1    | height -1 (1079)                       |
+
+Big image
+
+| Offset | type  | size | content                              |
+| ------ | ----- | ---- | ------------------------------------ |
+| 16     | short | 1    | sensor left border (sensorInfo[5])   |
+| 18     | short | 1    | sensor top border (sensorInfo[6])    |
+| 20     | short | 1    | sensor right border (sensorInfo[7])  |
+| 22     | short | 1    | sensor bottom border (sensorInfo[8]) |
+| 24     | short | 1    | 0                                    |
+| 26     | short | 1    | 0                                    |
+| 28     | short | 1    | sensor left border -13               |
+| 30     | short | 1    | sensor height -1                     |
+| 32     | short | 1    | sensor left border -12               |
+| 34     | short | 1    | 0                                    |
+| 36     | short | 1    | sensor width -1                      |
+| 38     | short | 1    | sensor top border -13                |
+| 40     | short | 1    | sensor left border -12               |
+| 42     | short | 1    | sensor top border -13                |
+| 44     | short | 1    | sensor width -1                      |
+| 46     | short | 1    | sensor height -1                     |
+
+### CDI1 ### 
+
+size = sizeof(IAD1) + 12
+
+| Offset | type  | size | content                                |
+| ------ | ----- | ---- | -------------------------------------- |
+| 0      | long? | 1?   | 0                                      |
+
 
 ### CTMD (Canon Timed MetaData)
 
@@ -752,6 +830,15 @@ for second FF03 (G1) : b'00000000002028ff00000',
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
    - Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
    - EDSDK 3.8.0 (Canon)
+
+
+
+### Cameras creating CR3 / CRX images
+
+| modelId | name | releaseData | sensorSize | sensorType | ImageProc |
+| ------- | ---- | ----------- | ---------- | ---------- | --------- |
+| 0x00000412 | EOS M50 / Kiss M | 04/2018 | APS-C | CMOS | Digic 8 |
+| 0x80000424 | EOS R                      |09/2018| FF| CMOS| Digic 8 |
 
 
 

@@ -98,7 +98,7 @@ def cdi1(d, l, depth):
   print('CDI1: (0x{:x})'.format(l) ) 
   if options.verbose>0:
     print('      %s'% (depth*'  '),end='')
-    for i in range(0,len(d), 2):
+    for i in range(0, 4, 2):
       print('%d,' % getShortBE(d, i),end='')
     print()  
 
@@ -446,7 +446,7 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
   sensorInfoData, sensorInfoEntry = getTiffTagData( b'CMT3', TIFF_CMT3_SENSORINFO )  
   print( 'sensorInfo', sensorInfoEntry )
   sensorInfoList = [ getShortLE(sensorInfoData, i) for i in range( 0, sensorInfoEntry[2], tiffTypeLen[sensorInfoEntry[1]-1] ) ]
-  #print( sensorInfoList ) 
+  print( sensorInfoList ) 
   SensorWidth = sensorInfoList[1]
   SensorHeight = sensorInfoList[2]
   SensorLeftBorder = sensorInfoList[5]

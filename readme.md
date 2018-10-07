@@ -486,6 +486,7 @@ size = sizeof(IAD1) + 12
 | 20      | records[]   | stored at 16           | |
 
 For each record (size=8 bytes):
+
 | Offset | type  | size | content                                |
 | ------ | ----- | ---- | -------------------------------------- |
 | 0      | long   | 1           | type. 1,3,4,5,7,8 or 9|

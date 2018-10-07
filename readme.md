@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 1oct2018 
+version: 7oct2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -19,16 +19,21 @@ NEEDED: craw (lossy) and dual pixel samples from EOS R, please!
 ### Table of contents ###
 
   * [Introduction](#introduction)
-    * [Cinema Raw Lite](#cimena-raw-movie-(CRM))
   * [CR3 file Structure](#cr3-file-Structure)
   * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
     * [THMB (Thumbnail)](#thmb-(thumbnail)) 
+    * [CCTP](#cctp) 
+    * [CCDT](#ccdt) 
     * [CTBO](#ctbo)
     * [PRVW (Preview)](#prvw-(preview))
+    * [CRAW](#craw) 
+    * [JPEG](#jpeg) 
     * [CMP1](#cmp1)
     * [IAD1](#iad1)
+    * [CDI1](#cdi1) 
     * [CTMD (Canon Timed Metadata)](#ctmd-(canon-timed-metadata))
+    * [MDAT (main data)](#mdat-(main-data))
   * [Crx codec structures](#crx-codec-structures)
     * [Lossless compression (raw)](#lossless-compression-(raw))
     * [Lossy compression (craw)](#lossy-compression-(craw))
@@ -120,6 +125,7 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
       - **minf** (Media Information container)
         - **vmhd** (Video Media Header)
         - **dinf** (Data information box)
+
           - **dref** (Data Reference box)
         - **stbl** (Sample table box)
           - **stsd** (Sample descriptions, codec types, init...)
@@ -130,7 +136,8 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
           - **stts** (decoding, time-to-sample)
           - **stsc** (sample-to-chunk, partial data offset info)
           - **stsz** (sample sizes, framing)
-            - size of jpeg picture #1 in mdat
+
+            size of jpeg picture #1 in mdat
           - **free**
           - **co64** : pointer to picture #1 inside mdat
 
@@ -236,14 +243,20 @@ Examples of output [here](output/)
 
 ## Canon tags description
 
+values are in big endian
+
+
+
 ### THMB (Thumbnail) 
 
 from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 
+
+
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
 | 0            | long   | 1                   | size of this tag            |
-| 4            | char   | 4                   | "THBM"                      |
+| 4            | char   | 4                   | "THMB"                      |
 | 8            | long   | 1                   | unknown, value = 0          |
 | 12/0xc       | short  | 1                   | width (160)                 |
 | 14/0xe       | short  | 1                   | height (120)                |
@@ -252,8 +265,51 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 | 24/0x18      | byte[] | stored at offset 16 | jpeg_data = ffd8ffdb...ffd9 |
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
 |              | long   | 1                   | ?                           |
+### CCTP ### 
 
-### CTBO 
+size=0x5c for 3 CCDT lines. Will Dual pixel give a 4th line ?
+
+| Offset       | type   | size        | content                     |
+| ------------ | ------ | ----------- | --------------------------- |
+| 0            | long   | 1           | size of this tag            |
+| 4            | char   | 4           | "CCTP". Canon Compressor Table p?      |
+| 8            | long   | 1           | 0      |
+| 12           | long   | 1           | 1      |
+| 16           | long   | 1           | number of CCDT lines. 3      |
+
+3 CCDT lines are included.
+
+### CCDT ### 
+
+| Offset       | type   | size        | content                     |
+| ------------ | ------ | ----------- | --------------------------- |
+| 0            | long   | 1           | size of this tag. 0x18        |
+| 4            | char   | 4           | "CCDT". Canon Compressor D? Table? |
+| 8            | longlong   | 1           | flags? 0x10 for #1, 1 for #2, 0 for #3|
+| 16            | longlong   | 1           | index. 1, 2, and 3 |
+
+### CTBO ###
+
+| Offset       | type   | size        | content                     |
+| ------------ | ------ | ----------- | --------------------------- |
+| 0            | long   | 1           | size of this tag. 0x5c       |
+| 4            | char   | 4           | "CTBO". Canon Table B? offset ?|
+| 8            | long   | 1           | number of records. 4 |
+
+for each records (20 bytes):
+| Offset       | type   | size        | content                     |
+| ------------ | ------ | ----------- | --------------------------- |
+| 0            | long   | 1           | index|
+| 4            | longlong   | 1           | offset |
+| 12            | longlong   | 1           | size |
+
+Records are:
+1. xpacket
+2. preview
+3. mdat (main data)
+4. dual pixel data ? for this record, size and offset are 0
+
+
 
 (using canon_eos_m50_02.cr3)
 
@@ -284,23 +340,73 @@ size = 1620x1080
 | 24/0x18      | byte[] | stored at offset 20 | jpeg_data = ffd8ffdb...ffd9 |
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
 
-### CMP1 ###
+### CRAW ###
 
-Size=0x3c
+see also https://sno.phy.queensu.ca/~phil/exiftool/TagNames/QuickTime.html#ImageDesc
 
 | Offset | type  | size | content                                 |
 | ------ | ----- | ---- | --------------------------------------- |
-| 0      | bytes | 8    | ? FF 00 00 30 01 00 00 00               |
-| 8      | long  | 1    | width                                   |
-| 12     | long  | 1    | height                                  |
-| 16     | long  | 1    | slice width (width /2 for big picture)  |
+| 0      | long   | 1           | size of this tag.        |
+| 4      | bytes | 4    | "CRAW"                                  |
+| 8      | long? | 1    | 0. VendorId?                            |
+| 12      | long? | 1    | 1                                       |
+| 16     | bytes?| 16?  | 0                                       |
+| 32     | short | 1    | width                                   |
+| 34     | short | 1    | height                                  |
+| 36     | short | 2    | 0048 0000. XResolution. (72.0) in fixed point |
+| 40     | short | 2    | 0048 0000. YResolution. (72.0)          |
+| 44     | long? | 1    | 0                                       |
+| 48     | short | 1    | 1                 |
+| 50     | bytes? | 32? | 0. CompressorName ?                     |
+| 82     | short | 1    | bits depth. 24                 |
+| 84     | short? | 1    |ffff. -1?                 |
+| 86     | short | 1    | 3. flags ? 3 for Jpeg, 1 for craw/raw |
+| 88     | short | 1    | 0 for jpeg. 1 for craw/raw |
+
+CRAW contains 
++ either JPEG (jpeg). size=0x3c
++ or CMP1 and CDI1 (raw) .
+
+sizes:
++ 0x3c for jpeg
++ 0xd4 for small raw, because IAD1 size is 0x28
++ 0xe4 for big raw, because IAD1 size id 0x38
+
+### JPEG ###
+
+| Offset | type  | size | content                                 |
+| ------ | ----- | ---- | --------------------------------------- |
+| 0      | long   | 1           | size of this tag. 0xc       |
+| 4      | char   | 4           | "JPEG"|
+| 8      | long  | 1    | 0               |
+
+### CMP1 ###
+
+| Offset | type  | size | content                                 |
+| ------ | ----- | ---- | --------------------------------------- |
+| 0      | long   | 1           | size of this tag. 0x3c       |
+| 4      | char   | 4           | "CMP1"|
+| 8      | bytes | 8    | ? FF 00 00 30 01 00 00 00               |
+| 16      | long  | 1    | width                                   |
 | 20     | long  | 1    | height                                  |
-| 24     | bytes | 8    | flags?  raw small = 0e41 0000 0000 0070 |
+| 24     | long  | 1    | slice width (width /2 for big picture)  |
+| 28     | long  | 1    | height                                  |
+| 32     | bytes | 8    | flags?  raw small = 0e41 0000 0000 0070 |
 |        |       |      | flags?  raw big   = 0e40 0000 0000 00d8 |
 |        |       |      | flags? craw small = 0e41 0300 0000 0220 |
 |        |       |      | flags? craw big   = 0e40 0380 0000 0438 |
-| 32     | long  | 1    | 0                                       |
-| 36     | bytes | 16   | ? 4 times "01 01 00 00"                 |
+| 40     | long  | 1    | 0                                       |
+| 44     | bytes | 16   | ? 4 times "01 01 00 00"                 |
+
+### CDI1 ###
+
+Size=0x34 or 0x44
+
+| Offset | type  | size | content                                 |
+| ------ | ----- | ---- | --------------------------------------- |
+| 0      | long   | 1           | size of this tag. 0x3c       |
+| 4      | char   | 4           | "CDI1"|
+| 8      | long  | 1    | 0               |
 
 ### IAD1 ###
 
@@ -311,7 +417,7 @@ Size=0x28 for small picture, 0x38 for big picture. All values are in big endian
 | 0      | short | 1    | 0                                         |
 | 2      | short | 1    | 0                                         |
 | 4      | short | 1    | sensor width (like sensorInfo[1] in CMT3) |
-| 6      | short | 1    | sensor height (sensorInfo[2])             |
+| 6      | short | 1    | sensor height (like sensorInfo[2])        |
 | 8      | short | 1    | 1                                         |
 | 10/0xa | short | 1    | 0 (small), 2 (big) = flag for sliced ?    |
 | 12     | short | 1    | 1                                         |
@@ -357,22 +463,59 @@ size = sizeof(IAD1) + 12
 
 | Offset | type  | size | content                                |
 | ------ | ----- | ---- | -------------------------------------- |
-| 0      | long? | 1?   | 0                                      |
+| 0      | long   | 1           | size of this tag. 0x3c       |
+| 4      | char   | 4           | "CDI1".|
+| 8      | long? | 1?   | 0                                      |
+
 
 
 ### CTMD (Canon Timed MetaData)
 
-(at end of mdat area)
-Each CTMD record has this format (little-endian byte order):
+
+
+#### Inside last 'trak':
+
+
+| Offset | type  | size | content                                |
+| ------ | ----- | ---- | -------------------------------------- |
+| 0      | long   | 1           | size of this tag. 0x4c       |
+| 4      | char   | 4           | "CTMD"|
+| 8      | long   | 1           | 0|
+| 12      | long   | 1           | 1|
+| 16      | long   | 1           | number of CTMD records. example= 7|
+| 20      | records[]   | stored at 16           | |
+
+For each record (size=8 bytes):
+| Offset | type  | size | content                                |
+| ------ | ----- | ---- | -------------------------------------- |
+| 0      | long   | 1           | type. 1,3,4,5,7,8 or 9|
+| 4      | long   | 1           | size|
+
+
+
+
+
+#### At end of mdat area:
+
+Contribution by Phil Harvey
+
+
+
+##### Each CTMD record has this format (little-endian byte order):
 
 | Offset       | type   | size                | content                     |
-| ------------ | ------ | ------------------- | --------------------------- |
-| 0            | long   | 1                   | record size (N)             |
-| 4            | short  | 1                   | record type (1,3,4,5,7,8,9) |
-| 6            | byte[] | 6                   | unknown                     |
+| ------------ | ------ | ------------------- | --------------------- |
+| 0            | long   | 1                   | record size (N)        |
+| 4            | short  | 1                   | record type (1,3,4,5,7,8 or 9) |
+| 6            | byte | 1                   | 0 for non TIFF types, 1 for TIFF                  |
+| 7            | byte | 1                   | 0 for non TIFF types, 1 for TIFF               |
+| 8            | short | 1                   | 1                     |
+| 10            | short | 1                   | unknown. value is 0 (types 1,3) or -1 (types 4,5,7,8,9) |
 | 12           | byte[] | N-12                | payload                     |
 
-CTMD record type 1 payload (time stamp):
+
+
+##### CTMD record type 1 payload (time stamp):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
@@ -386,13 +529,13 @@ CTMD record type 1 payload (time stamp):
 | 9            | byte   | 1                   | 1/100 seconds               |
 | 10           | byte[] | 2                   | unknown                     |
 
-CTMD record type 3 payload (unknown):
+##### CTMD record type 3 payload (unknown):
 
-| Offset       | type   | size                | content                     |
-| ------------ | ------ | ------------------- | --------------------------- |
-| 0            | byte[] | 4                   | unknown                     |
+| Offset | type | size | content                |
+| ------ | ---- | ---- | ---------------------- |
+| 0      | long | 1    | unknown. -1 if empty ? |
 
-CTMD record type 4 payload (focal-length info):
+##### CTMD record type 4 payload (focal-length info):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
@@ -400,7 +543,7 @@ CTMD record type 4 payload (focal-length info):
 | 2            | short  | 1                   | focal length denominator    |
 | 4            | byte[] | 8                   | unknown                     |
 
-CTMD record type 5 payload (exposure info):
+##### CTMD record type 5 payload (exposure info):
 
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
@@ -411,7 +554,7 @@ CTMD record type 5 payload (exposure info):
 | 8            | long   | 1                   | ISO speed rating            |
 | 12           | byte[] | 16                  | unknown                     |
 
-CTMD record type 7, 8 and 9 payload (Exif info):
+##### CTMD record type 7, 8 and 9 payload (Exif info):
 
 This is a block of Exif records.  Each Exif record has this format:
 
@@ -420,6 +563,22 @@ This is a block of Exif records.  Each Exif record has this format:
 | 0      | long   | 1    | record size (N)                            |
 | 4      | long   | 1    | tag ID (0x8769=ExifIFD, 0x927c=MakerNotes) |
 | 8      | byte[] | N-8  | TIFF-format metadata                       |
+
+
+
+## MDAT (main data)
+
+The MDAT section contains 4 parts:
+
+1. a fullsize, lossy jpeg version of the picture 
+
+2. a small version of the picture in raw or craw (1624x1080)
+
+3. a fullsize version, in raw or craw 
+
+4. data for CTMD (Canon Time Metada)
+
+
 
 ### mdat_picture1 (lossy jpeg)
 
@@ -808,9 +967,9 @@ first LL data over 4 (for Red data ?) is b'00000000002027a5000004000f03e03475654
 
 00000000 00000000 00000000 00000000 00000000 001 = 42
 
-00000 00100111 10100101 = 10149 (21 next bits)
+00000 00100111 10100101 = 10149 (next 21th bits)
 
-for second FF03 (G1) : b'00000000002028ff00000', 
+for second FF03 (Green1?) : b'00000000002028ff00000', 
 
 42 and 10495 (00000 00101000 11111111)
 

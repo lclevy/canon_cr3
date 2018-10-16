@@ -1,8 +1,10 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 7oct2018 
+version: 16oct2018 
 
 by Laurent Clévy (@Lorenzo2472)
+
+
 
 
 
@@ -10,9 +12,11 @@ Contributors:
 
 - Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD, File structure
 
+Samples:
+
+- Mark McClelland for EOS R samples (www.instagram.com/mcclellandphoto)
 
 
-NEEDED: craw (lossy) and dual pixel samples from EOS R, please!
 
 
 
@@ -54,7 +58,33 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
 
 The CR3 file format and its new crx codec support both lossless 'raw' and lossy 'craw' compressions. CR2, the TIFF based format is no more used by the M50 or EOSR, even with lossless 'raw' compression. 
 
-'craw' means 'compact raw'.
+'craw' means 'compact raw'. The CR3 format also support dual pixel pictures.
+
+
+
+The overall structure of a CR3 picture file is (EOS R): 
+
+- 'moov' container 
+  - uuid=85c0b687820f11e08111f4ce462b6a48
+    - track1 = full size jpeg (6000x4000)
+    - track2 = small definition raw image (1624x108)
+    - track3 = high definition raw image (6888x4546)
+    - track4 = Canon Timed Metadata
+    - track5 = second dual pixel picture (delta, 6888x4546)
+- uuid=be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
+- uuid=eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data, jpeg 1620x1080)
+  - PRVW, jpeg picture
+- mdat (main data)
+  - picture from track1
+  - picture from track2
+  - picture from track3
+  - Canon Timed Metadata
+  - picture from track5 (dual pixel)
+
+
+
+
+
 
 The Cinema Raw Light file format with extension .crm, also uses the crx codec.
 
@@ -220,11 +250,12 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
 
   - picture #2 (1624x1080, crx preview)
 
-  - picture #3 (main, 6888x4056, crx main image)
+  - picture #3 ( 6888x4056, crx main image)
 
   - Canon Timed Metadata, CTMD tags below 
 
-    ​
+  - picture #5 (6888x4056, dual pixel delta image)
+
 
 
 ## parse_cr3.py
@@ -234,7 +265,7 @@ This experimental tool allows to:
 * parse Canon Raw v3 file structure
 * display some Canon tags content
 * extract the 3 jpeg pictures: THMB, PRVW and "mdat1"
-* extract the 2 crx pictures: "mdat2" and "mdat3". Compression schemes (lossless and lossy) are unknown 
+* extract the 2 or 3 crx pictures from 'mdat' 
   * display first 32 bytes of each image subparts (both 'raw'/lossless and 'craw'/lossy)
 
 Examples of output [here](output/)
@@ -267,7 +298,7 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 |              | long   | 1                   | ?                           |
 ### CCTP ### 
 
-size=0x5c for 3 CCDT lines. Will Dual pixel give a 4th line ?
+size=0x5c for 3 CCDT lines, 0x74 for 4 lines (dual pixel). 
 
 | Offset       | type   | size        | content                     |
 | ------------ | ------ | ----------- | --------------------------- |
@@ -275,7 +306,7 @@ size=0x5c for 3 CCDT lines. Will Dual pixel give a 4th line ?
 | 4            | char   | 4           | "CCTP". Canon Compressor Table p?      |
 | 8            | long   | 1           | 0      |
 | 12           | long   | 1           | 1      |
-| 16           | long   | 1           | number of CCDT lines. 3      |
+| 16           | long   | 1           | number of CCDT lines. 3, or 4 for dual pixel |
 
 3 CCDT lines are included.
 
@@ -285,8 +316,9 @@ size=0x5c for 3 CCDT lines. Will Dual pixel give a 4th line ?
 | ------------ | ------ | ----------- | --------------------------- |
 | 0            | long   | 1           | size of this tag. 0x18        |
 | 4            | char   | 4           | "CCDT". Canon Compressor D? Table? |
-| 8            | longlong   | 1           | flags? 0x10 for #1, 1 for #2, 0 for #3|
-| 16            | longlong   | 1           | index. 1, 2, and 3 |
+| 8            | longlong   | 1           | flags? 0x10 for #1, 1 for #2, 0 for #3, 0x100 for dual pixel #5 |
+| 16            | long   | 1           | 0 or 1 for dual pixel |
+| 20            | long   | 1           | index. 1, 2 and 3. 5 for dual pixel |
 
 ### CTBO ###
 
@@ -297,6 +329,8 @@ size=0x5c for 3 CCDT lines. Will Dual pixel give a 4th line ?
 | 8            | long   | 1           | number of records. 4 |
 
 for each records (20 bytes):
+
+
 | Offset       | type   | size        | content                     |
 | ------------ | ------ | ----------- | --------------------------- |
 | 0            | long   | 1           | index|
@@ -307,7 +341,7 @@ Records are:
 1. xpacket
 2. preview
 3. mdat (main data)
-4. dual pixel data ? for this record, size and offset are 0
+4. ? size and offset are 0
 
 
 

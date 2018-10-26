@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 16oct2018 
+version: 25oct2018 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -67,10 +67,10 @@ The overall structure of a CR3 picture file is (EOS R):
 - 'moov' container 
   - uuid=85c0b687820f11e08111f4ce462b6a48
     - track1 = full size jpeg (6000x4000)
-    - track2 = small definition raw image (1624x108)
+    - track2 = small definition raw image (1624x1080)
     - track3 = high definition raw image (6888x4546)
     - track4 = Canon Timed Metadata
-    - track5 = second dual pixel picture (delta, 6888x4546)
+    - track5 = second dual pixel picture (delta?, 6888x4546)
 - uuid=be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
 - uuid=eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data, jpeg 1620x1080)
   - PRVW, jpeg picture
@@ -425,10 +425,14 @@ sizes:
 | 20     | long  | 1    | height                                  |
 | 24     | long  | 1    | slice width (width /2 for big picture)  |
 | 28     | long  | 1    | height                                  |
-| 32     | bytes | 8    | flags?  raw small = 0e41 0000 0000 0070 |
-|        |       |      | flags?  raw big   = 0e40 0000 0000 00d8 |
-|        |       |      | flags? craw small = 0e41 0300 0000 0220 |
-|        |       |      | flags? craw big   = 0e40 0380 0000 0438 |
+| 32     | bytes | 4    | flags?  raw small = 0e41 0000  |
+|        |       |      | flags?  raw big   = 0e40 0000  |
+|        |       |      | flags? craw small = 0e41 0300  |
+|        |       |      | flags? craw big   = 0e40 0380  |
+| 36     | long  | 1    | crx header size, raw small = 0x00000070 |
+|        |       |      |                  raw big   = 0x000000d8 |
+|        |       |      |                 craw small = 0x00000220 |
+|        |       |      |                 craw big   = 0x00000438 |
 | 40     | long  | 1    | 0                                       |
 | 44     | bytes | 16   | ? 4 times "01 01 00 00"                 |
 

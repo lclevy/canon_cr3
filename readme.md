@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 25oct2018 
+version: 1jan2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -27,6 +27,7 @@ Samples:
   * [parse_cr3.py](#parse_cr3.py)
   * [Canon tags description](#canon-tags-description)
     * [THMB (Thumbnail)](#thmb-(thumbnail)) 
+    * [CNCV](#cncv)
     * [CCTP](#cctp) 
     * [CCDT](#ccdt) 
     * [CTBO](#ctbo)
@@ -296,6 +297,21 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 | 24/0x18      | byte[] | stored at offset 16 | jpeg_data = ffd8ffdb...ffd9 |
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
 |              | long   | 1                   | ?                           |
+### CNCV ### 
+likely CaNon Compressor Version
+
+| Offset       | type   | size        | content                     |
+| ------------ | ------ | ----------- | --------------------------- |
+| 0            | long   | 1           | size of this tag. 0x26        |
+| 4            | char   | 4           | "CNCV" |
+| 8            | char   | 30          | version string |
+Observed values for version string:
+
+- "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS 
+- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R and M50
+- "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies
+
+
 ### CCTP ### 
 
 size=0x5c for 3 CCDT lines, 0x74 for 4 lines (dual pixel). 
@@ -511,7 +527,8 @@ size = sizeof(IAD1) + 12
 
 
 
-#### Inside last 'trak':
+1. #### Inside last 'trak':
+
 
 
 | Offset | type  | size | content                                |
@@ -534,7 +551,8 @@ For each record (size=8 bytes):
 
 
 
-#### At end of mdat area:
+2. #### At end of mdat area:
+
 
 Contribution by Phil Harvey
 
@@ -1037,7 +1055,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 | ------- | ---- | ----------- | ---------- | ---------- | --------- |
 | 0x00000412 | EOS M50 / Kiss M | 04/2018 | APS-C | CMOS | Digic 8 |
 | 0x80000424 | EOS R                      |09/2018| FF| CMOS| Digic 8 |
-
+| 0x00000805 | PowerShot SX70 HS | 09/2018| 1/2.3"| BSI-CMOS|Digic 8 |
 
 
 ## Samples 
@@ -1065,8 +1083,13 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
 #### CR3 from EOSR (lossless)
 
-- https://www.photographyblog.com/reviews/canon_eos_r/preview_images/
-- https://www.dpreview.com/samples/5691884265/canon-eos-r-sample-gallery-updated-with-raw-conversions
+https://www.photographyblog.com/reviews/canon_eos_r/preview_images/
+
+https://www.dpreview.com/samples/5691884265/canon-eos-r-sample-gallery-updated-with-raw-conversions
+
+#### Powershot SX70 HS
+
+https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_images
 
 #### CRM samples (from C200)
 

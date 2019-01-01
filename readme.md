@@ -305,8 +305,8 @@ likely CaNon Compressor Version
 | 0            | long   | 1           | size of this tag. 0x26        |
 | 4            | char   | 4           | "CNCV" |
 | 8            | char   | 30          | version string |
-Observed values for version string:
 
+Observed values for version string:
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS 
 - "CanonCR3_001/**00**.09.00/00.00.00" for EOS R and M50
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies

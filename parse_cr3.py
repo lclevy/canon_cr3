@@ -104,19 +104,21 @@ def cdi1(d, l, depth):
 
 def iad1(d, l, depth):    
   print('IAD1: (0x{:x})'.format(l) ) 
-  if options.verbose>0:
+  '''if options.verbose>0:
     print('      %s'% (depth*'  '),end='')
     for i in range(0,len(d), 2):
       print('%d,' % getShortBE(d, i),end='')
-    print()  
-  
+    print()  '''
+
+#offset does start after name, thus +8 when including size (long) and name (4*char)	
 def cmp1(d, l, depth):    
   print('CMP1: (0x{:x})'.format(l) ) 
-  if options.verbose>0:
-    print('      %s'% (depth*'  '),end='')
-    for i in range(0,len(d), 2):
-      print('%d,' % getShortBE(d, i),end='')
-    print()  
+  w = getLongBE( d, 8 ) #16 in format description (readme.md)
+  h = getLongBE( d, 12 )
+  slice_w = getLongBE( d, 16 )
+  crx_header_size = getLongBE( d, 28 )
+  #print(w, h, slice_w, crx_header_size)
+  return (w, h, slice_w, crx_header_size)	
   
 def craw(d, l, depth):
   print( "CRAW: (0x{0:x})".format(l) )
@@ -210,8 +212,22 @@ def tiff(d, l, depth, base, name):
     ptr = ptr + S_IFD_ENTRY_REC.size
   return base, ifd  
 
-  
+def ctmd(d, l, depth, base, name):
+  list = []
+  print('CTMD: (0x{:x})'.format(l) ) 
+  nb = getLongBE( d, 8 )
+  if options.verbose>1:
+    print('     %s %d' % (depth*'  ',nb))
+  for i in range(nb):
+    type = getLongBE( d, 12+i*8 )
+    size = getLongBE( d, 16+i*8 )
+    list.append( (type, size) )
+    if options.verbose>1:
+      print('       %s %d 0x%x' % (depth*'  ',type, size) )
+  return list
+    
 CRX_HDR_LINE_LEN = 12  
+
 
 def parse_ff03(d, total):
   offset = 0
@@ -255,7 +271,8 @@ def parse_ff02(d, total):
     ff02_list.append( (v2,c,f,val2,res,r) )
     offset = offset + delta
   return offset, ff02_list  
-    
+  
+#header size can be retrieved from CMP1     
 def parse_crx(d, base):
   offset = 0 #offset inside header
   dataOffset = 0
@@ -314,6 +331,7 @@ UUID_LEN = 16
 #no = next offset after name and length 
 def parse(d, base, depth):
   o = 0
+  print('base=%x'%base)
   while o < len(d):
     l = getLongBE(d, o)
     chunkName = d[o+SIZELEN:o+SIZELEN+NAMELEN]
@@ -325,7 +343,7 @@ def parse(d, base, depth):
     print( '%05x:%s' % (base+o, depth*'  '), end=''  )
     
     if chunkName not in count: #enumerate atom to create unique ID
-      count[ chunkName ] = 0
+      count[ chunkName ] = 1
     else:  
       count[ chunkName ] = count[ chunkName ] +1
     if chunkName == b'trak':  #will keep stsz and co64 per trak
@@ -337,6 +355,9 @@ def parse(d, base, depth):
       r = tags[chunkName](d[o+no:o+no +l-no], l, depth+1) #return results
     elif chunkName in { b'CMT1', b'CMT2', b'CMT3', b'CMT4' }:
       r = tiff( d[o+no:o+no +l-no], l, depth+1, base+o+no, chunkName )
+      cr3[ chunkName ] = r
+    elif chunkName == b'CTMD':
+      r = ctmd( d[o+no:o+no +l-no], l, depth+1, base+o+no, chunkName )
       cr3[ chunkName ] = r
     else:
       print( '%s %s (0x%x)' % ( repr(chunkName), hexlify(d[o+no:o+no +dl-no]), l )  ) #default
@@ -355,7 +376,7 @@ def parse(d, base, depth):
       parse( d[start:end], start, depth+1 )
       
     #post processing  
-    if chunkName == b'stsz' or chunkName == b'co64' or chunkName == b'CRAW':  #keep these values per trak
+    if chunkName == b'stsz' or chunkName == b'co64' or chunkName == b'CRAW' or chunkName == b'CMP1':  #keep these values per trak
       trakName = 'trak%d' % count[b'trak']
       cr3[ trakName ][ chunkName ] = r
     elif chunkName == b'CNCV' or chunkName == b'CTBO':  
@@ -375,11 +396,44 @@ def getTiffTagData(name, tag):
   size = tiffTypeLen[type-1]*length
   tagInfoData = data[ base+val: base+val+size ]
   return tagInfoData, tagEntry
+
+def trakData(trak):
+  return data[ cr3[trak][b'co64']:cr3[trak][b'co64']+cr3[trak][b'stsz'] ]
+
+def parseCTMD():
+  #in trak4/'CTMD' (stored in cr3[b'CTMD']), we have types and size of CMTD records, but CMTD data is in 'mdat' section
+  ctmd_data = trakData( 'trak4' )  
+  ctmd_offset = 0
+  file_offset = cr3['trak4'][b'co64']
+  ctmd_records = dict()
+  for type, size in cr3[b'CTMD']: #contains type and size
+    ctmd_record = ctmd_data[ ctmd_offset: ctmd_offset+size ]
+    record_size = getLongLE( ctmd_record, 0 )
+    record_type = getShortLE( ctmd_record, 4 )
+    if record_size!=size or record_type!=type:
+      print('warning CMDT type:%d/%d size:0x%x/0x%x' % (type, record_type, size, record_size ) )
+    if record_type in [ 7, 8, 9 ]:
+      record_offset = 12 #inside the record
+      ctmd_tiff = dict()
+      while record_offset < record_size:
+        payload_size = getLongLE( ctmd_record[ record_offset: ], 0 )
+        payload_tag = getLongLE( ctmd_record[ record_offset: ], 4 )
+        r = tiff( ctmd_record[ record_offset+8: ], payload_size, 1, 0, b'CTMD%d_0x%x'%(record_type, payload_tag) )
+        ctmd_tiff[ payload_tag ] =  (file_offset+ctmd_offset+record_offset, payload_size, payload_tag, r)  
+        record_offset += payload_size
+      ctmd_records[type] = (size, type, file_offset+ctmd_offset, ctmd_tiff)  #store context and TIFF entries		
+    else:
+      if options.verbose:
+        print('%d 0x%x 0x%x' % (int(record_type), record_size, file_offset+ctmd_offset))
+        print('  ',hexlify(ctmd_record))
+      ctmd_records[type] = (size, type, file_offset+ctmd_offset) #do not store content, but type, size and pointer for later processing
+    ctmd_offset += size
+  return ctmd_records	
   
 parser = OptionParser(usage="usage: %prog [options]")
 parser.add_option("-v", "--verbose", type="int", dest="verbose", help="verbose level", default=0)
 parser.add_option("-x", "--extract", action="store_true", dest="extract", help="extract embedded images", default=False)
-#parser.add_option("-d", "--dir", type="string", dest="directory", help="directory", default='')
+parser.add_option("-m", "--model", action="store_true", dest="model", help="display model info", default=False)
 (options, args) = parser.parse_args()
 
 f = open(args[0], 'rb')
@@ -406,59 +460,101 @@ if cr3[b'CNCV'].find(b'CanonCRM')>=0:
     parse_crx( video, cr3[b'CTBO'][3][0]+0x50 )  
 elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
   print('CR3')
-  if options.verbose>0:
-    print('extracting jpeg (trak0) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak0'][b'CRAW'][0],cr3['trak0'][b'CRAW'][1],
-      cr3['trak0'][b'co64'], cr3['trak0'][b'stsz']) )
   if options.extract:
-    f=open('trak0.jpg','wb')
-    f.write( data[cr3['trak0'][b'co64']:cr3['trak0'][b'co64']+cr3['trak0'][b'stsz'] ] )
+    if options.verbose>0:
+      print('extracting jpeg (trak1) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak1'][b'CRAW'][0],cr3['trak1'][b'CRAW'][1],
+        cr3['trak1'][b'co64'], cr3['trak1'][b'stsz']) )
+    jpeg = trakData( 'trak1' )    
+    f=open('trak1.jpg','wb')
+    f.write( jpeg )
     f.close()
   
-  if options.verbose>0:
-    print('extracting SD crx (trak1) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak1'][b'CRAW'][0],cr3['trak1'][b'CRAW'][1],
-      cr3['trak1'][b'co64'], cr3['trak1'][b'stsz']) )
-  sd_crx = data[cr3['trak1'][b'co64']:cr3['trak1'][b'co64']+cr3['trak1'][b'stsz'] ]
+  sd_crx = trakData( 'trak2' )
   if options.extract:
-    f=open('trak1.crx','wb')
+    if options.verbose>0:
+      print('extracting SD crx (trak2) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak2'][b'CRAW'][0],cr3['trak2'][b'CRAW'][1],
+        cr3['trak2'][b'co64'], cr3['trak2'][b'stsz']) )
+    f=open('trak2.crx','wb')
     f.write( sd_crx )
     f.close()
   if options.verbose>2:
-    parse_crx( sd_crx, cr3['trak1'][b'co64'] ) #small crx has header size = 0x70
+    parse_crx( sd_crx, cr3['trak2'][b'co64'] ) #small crx has header size = 0x70
 
-  if options.verbose>0:
-    print('extracting HD crx (trak2) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak2'][b'CRAW'][0],cr3['trak2'][b'CRAW'][1],
-      cr3['trak2'][b'co64'], cr3['trak2'][b'stsz']) )
-  hd_crx = data[cr3['trak2'][b'co64']:cr3['trak2'][b'co64']+cr3['trak2'][b'stsz'] ]
+  hd_crx = trakData( 'trak3' )
   if options.extract:
-    f=open('trak2.crx','wb')
+    if options.verbose>0:
+      print('extracting HD crx (trak3) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak3'][b'CRAW'][0],cr3['trak3'][b'CRAW'][1],
+        cr3['trak3'][b'co64'], cr3['trak3'][b'stsz']) )
+    f=open('trak3.crx','wb')
     f.write( hd_crx )
     f.close()
+    
   if options.verbose>2:  
-    parse_crx( hd_crx, cr3['trak2'][b'co64'] )
+    parse_crx( hd_crx, cr3['trak3'][b'co64'] )
 
+  if 'trak5' in cr3: #dual pixel trak 
+    dp_crx = trakData( 'trak5' )
+    if options.extract:
+      if options.verbose>0:
+        print('extracting DP crx (trak5) %dx%d from mdat... offset=0x%x, size=0x%x' % (cr3['trak5'][b'CRAW'][0],cr3['trak5'][b'CRAW'][1],
+          cr3['trak5'][b'co64'], cr3['trak5'][b'stsz']) )
+      f=open('trak5.crx','wb')
+      f.write( hd_crx )
+      f.close()
+  
+  ctmd = parseCTMD()  
+  print("CTMD parsing example")
+  #generic way to list CTMD entries
+  for entry in [1, 3, 7, 8]:
+    ctmd_record = ctmd[ entry ]
+    record_size = ctmd_record[0]
+    record_type = ctmd_record[1]
+    record_offset = ctmd_record[2]
+    print('offset=0x%x, size=%d, type=%d: ' % (record_offset, record_size, record_type ), end='' ) 
+    if len(ctmd_record)>3: #TIFF
+      print('list')
+      for subdir_tag, tiff_subdir in ctmd_record[3].items():
+        offset, payload_size, payload_tag, entries = tiff_subdir
+        print('  0x%04x: size=%d tag=0x%x offset_base=%x' % (offset, payload_size, payload_tag, entries[0]) )
+        for tag, ifd_entry in entries[1].items():
+          entry_offset, entry_type, entry_len, entry_value = ifd_entry
+          print( '    0x%04x: %5d/0x%-4x %d*%d %d/0x%x' % (entry_offset, tag, tag, entry_type, entry_len, entry_value, entry_value ) )
+    else: #not TIFF
+      ctmd_data = data[ record_offset: record_offset+record_size] #we do not know how to parse it
+      print('%s' % hexlify(ctmd_data) )
+
+  #now we want raw data of TIFF entry 0x4016, in subdir 0x927c, in CTMD record #7. We know it is type=4=long, little endian 32 bits
+  record_subdirs = ctmd[ 7 ][3]
+  subdir = record_subdirs[ 0x927c ][3] # (offset, list)
+  subdir_offset = record_subdirs[ 0x927c ][0]
+  entry_offset, entry_type, entry_len, entry_value = subdir[1][ 0x4016 ]
+  data_offset = subdir_offset+8+entry_value #TIFF_BASE is 8 bytes after TIFF subdir
+  for i in range(data_offset, data_offset+4*entry_len, 4):
+    print ('%d ' % getLongLE(data, i), end='' )
+  print()  
+  
+  
   TIFF_CMT3_SENSORINFO = 0xe0  
   TIFF_CMT3_CAMERASETTINGS = 1
   TIFF_CAMERASETTINGS_QUALITY_RAW = 4
   TIFF_CAMERASETTINGS_QUALITY_CRAW = 7
   TIFF_CMT3_MODELID = 0x10
-  TIFF_MODELID_M50 = 0x412
-    
+  TIFF_CMT1_MODEL = 0x110
+
+  #get sensor characteristics
   sensorInfoData, sensorInfoEntry = getTiffTagData( b'CMT3', TIFF_CMT3_SENSORINFO )  
-  print( 'sensorInfo', sensorInfoEntry )
+  #for each TIFF entry, we have (offset, type, length, value). If value is a pointer, we use getTiffTagData() to get the content
   sensorInfoList = [ getShortLE(sensorInfoData, i) for i in range( 0, sensorInfoEntry[2], tiffTypeLen[sensorInfoEntry[1]-1] ) ]
-  print( sensorInfoList ) 
   SensorWidth = sensorInfoList[1]
   SensorHeight = sensorInfoList[2]
   SensorLeftBorder = sensorInfoList[5]
   SensorTopBorder = sensorInfoList[6]
   SensorRightBorder = sensorInfoList[7]
   SensorBottomBorder = sensorInfoList[8]
-  print( SensorWidth, SensorHeight, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder, SensorRightBorder-SensorLeftBorder+1, SensorBottomBorder-SensorTopBorder+1 )
 
+  #get camera settings to find if it is a craw (lossy) or raw (lossless)
   cameraSettingsData, cameraSettingsEntry = getTiffTagData( b'CMT3', TIFF_CMT3_CAMERASETTINGS )  
-  print( 'cameraSettings', cameraSettingsEntry )
   cameraSettingsList = [ getShortLE(cameraSettingsData, i) for i in range( 0, cameraSettingsEntry[2], tiffTypeLen[cameraSettingsEntry[1]-1] ) ]
-  print(cameraSettingsList)
   if cameraSettingsList[3]==TIFF_CAMERASETTINGS_QUALITY_CRAW:
     print('craw')
   elif cameraSettingsList[3]==TIFF_CAMERASETTINGS_QUALITY_RAW:
@@ -466,14 +562,17 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
   else:
     print('cameraSettingsList[3]=%d'%cameraSettingsList[3]) 
 
-  modelNames = { TIFF_MODELID_M50:'Canon EOS M50' }  
+  #get model name and model Id
   modelIdEntry = cr3[b'CMT3'][1][TIFF_CMT3_MODELID] 
-  print(modelIdEntry)
+  modelData, modelEntry = getTiffTagData( b'CMT1', TIFF_CMT1_MODEL )  
+  print(modelData[:modelEntry[2]-1]) #use length value (modelEntry[2]) of TIFF entry for model
   modelId = modelIdEntry[3]
-  if modelId in modelNames:
-    print( modelNames[modelId] ) 
+  if options.model:
+ 	  # modelId, SensorWidth, SensorHeight, CrxBigW, CrxBigH, CrxBigSliceW, CrxSmallW, CrwSmallH, JpegBigW, JpegBigH, JpegPrvwW, JpegPrvwH
+    print('0x%08x, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d' % (modelId, SensorWidth, SensorHeight, cr3['trak3'][b'CRAW'][0],cr3['trak3'][b'CRAW'][1], 
+	  cr3['trak3'][b'CMP1'][2],
+	  cr3['trak2'][b'CRAW'][0],cr3['trak2'][b'CRAW'][1], cr3['trak1'][b'CRAW'][0],cr3['trak1'][b'CRAW'][1], cr3[b'PRVW'][0], cr3[b'PRVW'][1]) )
 
-  #https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#ColorData9
 else:
   print('unknown codec')
   sys.exit()  

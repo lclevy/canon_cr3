@@ -319,7 +319,7 @@ size=0x5c for 3 CCDT lines, 0x74 for 4 lines (dual pixel).
 | Offset       | type   | size        | content                     |
 | ------------ | ------ | ----------- | --------------------------- |
 | 0            | long   | 1           | size of this tag            |
-| 4            | char   | 4           | "CCTP". Canon Compressor Table p?      |
+| 4            | char   | 4           | "CCTP". Canon CR3 trak pointers? |
 | 8            | long   | 1           | 0      |
 | 12           | long   | 1           | 1      |
 | 16           | long   | 1           | number of CCDT lines. 3, or 4 for dual pixel |
@@ -331,17 +331,26 @@ size=0x5c for 3 CCDT lines, 0x74 for 4 lines (dual pixel).
 | Offset       | type   | size        | content                     |
 | ------------ | ------ | ----------- | --------------------------- |
 | 0            | long   | 1           | size of this tag. 0x18        |
-| 4            | char   | 4           | "CCDT". Canon Compressor D? Table? |
-| 8            | longlong   | 1           | flags? 0x10 for #1, 1 for #2, 0 for #3, 0x100 for dual pixel #5 |
+| 4            | char   | 4           | "CCDT". Canon CR3 definition of tracks ? |
+| 8            | longlong   | 1           | image type? |
 | 16            | long   | 1           | 0 or 1 for dual pixel |
-| 20            | long   | 1           | index. 1, 2 and 3. 5 for dual pixel |
+| 20            | long   | 1           | Trak index. 1, 2, 3 or 5 |
+
+type values:
+
+- 2 for trak#1 (JPEG_BIG)
+- 1 for trak#2 (CRX_SMALL)
+- 0 for trak#3 (CRX_BIG)
+- 4 for trak#5 dual pixel second image (CRX_DUAL)
+
+
 
 ### CTBO ###
 
 | Offset       | type   | size        | content                     |
 | ------------ | ------ | ----------- | --------------------------- |
 | 0            | long   | 1           | size of this tag. 0x5c       |
-| 4            | char   | 4           | "CTBO". Canon Table B? offset ?|
+| 4            | char   | 4           | "CTBO". Canon tracks base offsets ? |
 | 8            | long   | 1           | number of records. 4 |
 
 for each records (20 bytes):
@@ -414,7 +423,7 @@ see also https://sno.phy.queensu.ca/~phil/exiftool/TagNames/QuickTime.html#Image
 | 88     | short | 1    | 0 for jpeg. 1 for craw/raw |
 
 CRAW contains 
-+ either JPEG (jpeg). size=0x3c
++ either JPEG (jpeg). Size=0x3c
 + or CMP1 and CDI1 (raw) .
 
 sizes:
@@ -527,7 +536,7 @@ size = sizeof(IAD1) + 12
 
 
 
-1. #### Inside last 'trak':
+1. #### Inside trak#4:
 
 
 

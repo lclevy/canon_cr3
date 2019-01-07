@@ -1092,9 +1092,14 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
 #### CR3 from EOSR (lossless)
 
-https://www.photographyblog.com/reviews/canon_eos_r/preview_images/
+- https://www.photographyblog.com/reviews/canon_eos_r/preview_images/
 
-https://www.dpreview.com/samples/5691884265/canon-eos-r-sample-gallery-updated-with-raw-conversions
+- https://www.dpreview.com/samples/5691884265/canon-eos-r-sample-gallery-updated-with-raw-conversions
+
+- raw.pixls.us (full coverage, 16 samples: {C-RAW, RAW} x {dual pixel off, dual pixel on} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20EOS%20R/
+
 
 #### Powershot SX70 HS
 

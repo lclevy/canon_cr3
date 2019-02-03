@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 1jan2019 
+version: 3feb2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -11,10 +11,13 @@ by Laurent Clévy (@Lorenzo2472)
 Contributors: 
 
 - Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD, File structure
+- Alexey Danilchenko (https://github.com/Alexey-Danilchenko): CMP1
 
 Samples:
 
 - Mark McClelland for EOS R samples (www.instagram.com/mcclellandphoto)
+
+  
 
 
 
@@ -441,23 +444,31 @@ sizes:
 
 ### CMP1 ###
 
+Thanks for Alexey Danilchenko for his contributions (bytes 10 to 36): 
+
+"In terms of CRX decoder this CMP1 is essentially image header for encoded image (exists for each image track). Decoder uses CMP1 data to decode image track."
+
 | Offset | type  | size | content                                 |
 | ------ | ----- | ---- | --------------------------------------- |
 | 0      | long   | 1           | size of this tag. 0x3c       |
 | 4      | char   | 4           | "CMP1"|
-| 8      | bytes | 8    | ? FF 00 00 30 01 00 00 00               |
-| 16      | long  | 1    | width                                   |
-| 20     | long  | 1    | height                                  |
-| 24     | long  | 1    | slice width (width /2 for big picture)  |
-| 28     | long  | 1    | height                                  |
-| 32     | bytes | 4    | flags?  raw small = 0e41 0000  |
-|        |       |      | flags?  raw big   = 0e40 0000  |
-|        |       |      | flags? craw small = 0e41 0300  |
-|        |       |      | flags? craw big   = 0e40 0380  |
-| 36     | long  | 1    | crx header size, raw small = 0x00000070 |
-|        |       |      |                  raw big   = 0x000000d8 |
-|        |       |      |                 craw small = 0x00000220 |
-|        |       |      |                 craw big   = 0x00000438 |
+| 8      | short? | 1   | -1 ?            |
+| 10 | short | 1 | 0x30 - size of the image header to follow |
+| 12 | short | 1 | version - always 0x100 for current CR3 (major.minor version in bytes?) |
+| 14 | bytes | 2 | 00 00 |
+| 16      | long  | 1    | image width                            |
+| 20     | long  | 1    | image height                           |
+| 24     | long  | 1    | tile width (image width /2 for big picture) |
+| 28     | long  | 1    | tile height                             |
+| 32     | bytes | 4    | bits per sample - usually 0x0e |
+| 33 | bits | 4 | number of planes - 4 for RGGB |
+| 33+4bits | bits | 4 | CFA layout (TBD) - only valid where number of planes > 1. |
+| 34 | bits | 4 | extra bits per sample - only 1 or 3. |
+| 34+4bits | bits | 4 | number of wavelet levels (set for wavelet compressed image). |
+| 35 | bit | 1 | 1 = image has more than one tile horizontally  (set for wavelet compressed image). 1 for craw big, 0 otherwise |
+| 35+1bit | bit | 1 | 1 = image has more than one tile vertically (set for wavelet compressed image). Always 0 |
+| 35+2bits | bits | 6 | unused in current version - always 0 |
+| 36     | long  | 1    | mdat track header size (mdat bitstream data starts following that header). raw small = 0x70, raw big   = 0xd8, craw small = 0x220, craw big   = 0x438 |
 | 40     | long  | 1    | 0                                       |
 | 44     | bytes | 16   | ? 4 times "01 01 00 00"                 |
 

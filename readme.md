@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 3feb2019 
+version: 28feb2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -154,6 +154,7 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
 
     - **tkhd** (Track Header)
     - **mdia** (Media)
+
       - **mdhd** (Media Header)
       - **hdlr** (Handler, type='vide')
       - **minf** (Media Information container)
@@ -262,12 +263,12 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
 
 
 
-## parse_cr3.py
+## parse_cr3.py ##
 
 This experimental tool allows to:
 
 * parse Canon Raw v3 file structure
-* display some Canon tags content
+* display TIFF tags and Canon Timed Metadata content
 * extract the 3 jpeg pictures: THMB, PRVW and "mdat1"
 * extract the 2 or 3 crx pictures from 'mdat' 
   * display first 32 bytes of each image subparts (both 'raw'/lossless and 'craw'/lossy)
@@ -311,7 +312,7 @@ likely CaNon Compressor Version
 
 Observed values for version string:
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS 
-- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R and M50
+- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP and M50
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies
 
 
@@ -444,7 +445,7 @@ sizes:
 
 ### CMP1 ###
 
-Thanks for Alexey Danilchenko for his contributions (bytes 10 to 36): 
+Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36): 
 
 "In terms of CRX decoder this CMP1 is essentially image header for encoded image (exists for each image track). Decoder uses CMP1 data to decode image track."
 
@@ -987,7 +988,7 @@ ff01 005a42e0 1
     ...  
 ```
 
-### ff01 header format
+### ff01 header format (tile?)
 | Offset | type  | size | content                                                      |
 | ------ | ----- | ---- | ------------------------------------------------------------ |
 | 0      | short | 1    | ff01                                                         |
@@ -995,7 +996,7 @@ ff01 005a42e0 1
 | 4      | long  | 1    | size of ff01 data. One ff01 for small picture, two ff01 for big picture |
 | 8      | bits | 4    | counter (0 to 1)                                                    |
 
-### ff02 header format
+### ff02 header format (plane? RGGB)
 | Offset in bytes | type  | size | content                                                      |
 | --------------- | ----- | ---- | ------------------------------------------------------------ |
 | 0               | short | 1    | ff02                                                         |
@@ -1007,7 +1008,7 @@ ff01 005a42e0 1
 
 last long format is (in bits): ccccfxx0 00000000 00000000 00000000
 
-### ff03 header format
+### ff03 header format (subband? LL1 HL1... HH3?)
 
 | Offset  | type  | size  | content                                                      |
 | ------- | ----- | ----- | ------------------------------------------------------------ |
@@ -1058,8 +1059,8 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
 ## References ##
 
-- ISO base media file format : [ISO/IEC 14496-12:2015](http://http://standards.iso.org/ittf/PubliclyAvailableStandards/c068960_ISO_IEC_14496-12_2015.zip "ISO IEC 14496-12:2015")
-- MP4 file format : [ISO/IEC 14496-14:2003](http://jchblog.u.qiniudn.com/doc/ISO_IEC_14496-14_2003-11-15.pdf "ISO/IEC 14496-14:2003")
+- ISO base media file format : [ISO/IEC 14496-12:2015](https://mpeg.chiariglione.org/standards/mpeg-4/iso-base-media-file-format/text-isoiec-14496-12-5th-edition "ISO IEC 14496-12:2015")
+- MP4 file format : [ISO/IEC 14496-14:2003](https://mpeg.chiariglione.org/standards/mpeg-4/mp4-file-format "ISO/IEC 14496-14:2003")
 - [ISO 14496-1 Media Format](http://xhelmboyx.tripod.com/formats/mp4-layout.txt "ISO 14496-1 Media Format")
 - Software support:
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
@@ -1076,6 +1077,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 | 0x00000412 | EOS M50 / Kiss M | 04/2018 | APS-C | CMOS | Digic 8 |
 | 0x80000424 | EOS R                      |09/2018| FF| CMOS| Digic 8 |
 | 0x00000805 | PowerShot SX70 HS | 09/2018| 1/2.3"| BSI-CMOS|Digic 8 |
+| 0x80000433 | EOS RP | 02/2019 | FF | CMOS |Digic 8 |
 
 
 ## Samples 
@@ -1115,6 +1117,10 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 #### Powershot SX70 HS
 
 https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_images
+
+#### EOS RP
+
+https://www.dpreview.com/sample-galleries/0019055356/canon-eos-rp-sample-gallery/
 
 #### CRM samples (from C200)
 

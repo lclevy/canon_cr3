@@ -2,3 +2,4 @@ modelId, name, release, size, technology, processor
 0x00000412, EOS M50 / Kiss M, 04/2018, APS-C, CMOS, Digic 8
 0x80000424, EOS R, 09/2018, FF, CMOS, Digic 8
 0x00000805, Canon PowerShot SX70 HS, 09/2018, 1/2.3", BSI-CMOS, Digic 8
+0x80000433, EOS RP, 02/2019, FF, CMOS, Digic 8

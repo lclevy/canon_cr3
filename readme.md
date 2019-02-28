@@ -311,7 +311,7 @@ likely CaNon Compressor Version
 
 Observed values for version string:
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS 
-- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R and M50
+- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP and M50
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies
 
 

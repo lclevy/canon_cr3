@@ -1099,7 +1099,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
   https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip (including lossy c-raw)
 
-- raw.pixls.us (RAW, CRAW; CC0 licensed)
+- raw.pixls.us (full coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
 
   https://raw.pixls.us/data/Canon/Canon%20EOS%20M50/
 
@@ -1120,7 +1120,11 @@ https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_im
 
 #### EOS RP
 
-https://www.dpreview.com/sample-galleries/0019055356/canon-eos-rp-sample-gallery/
+- https://www.dpreview.com/sample-galleries/0019055356/canon-eos-rp-sample-gallery/
+
+- raw.pixls.us (full(?) coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20EOS%20R/
 
 #### CRM samples (from C200)
 

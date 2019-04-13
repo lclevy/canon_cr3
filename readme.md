@@ -1008,7 +1008,7 @@ ff01 005a42e0 1
 
 last long format is (in bits): ccccfxx0 00000000 00000000 00000000
 
-### ff03 header format (subband? LL1 HL1... HH3?)
+### ff03 header format (subband? LL3 HL3... HH1?)
 
 | Offset  | type  | size  | content                                                      |
 | ------- | ----- | ----- | ------------------------------------------------------------ |

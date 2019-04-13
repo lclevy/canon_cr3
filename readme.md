@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 28feb2019 
+version: 11apr2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -1031,7 +1031,9 @@ This Canon patent https://patents.google.com/patent/US20160323602A1/en describes
 *"FIG. 7A explains an example in which wavelet transform is executed three times. LL**1**, HL**1**, LH**1**, and HH**1** represent the subbands of decomposition level **1**, LL**2**, HL**2**, LH**2**, and HH**2** represent the subbands of decomposition level **2**, and LL**3**, HL**3**, LH**3**, and HH**3** represent the subbands of decomposition level **3**.*
 *Note that a transform target of wavelet transform from the second time is subband LL obtained by immediately preceding wavelet transform, so subbands LL**1** and LL**2** are omitted, and subband LL obtained by last wavelet transform remains. Also, the horizontal and vertical resolutions of, for example, HL**2** are half those of HL**1**. Subband LH indicates a horizontal-direction frequency characteristic (a horizontal-direction component) of a local region to which wavelet transform is applied. Likewise, subband HL indicates a* *vertical-direction frequency characteristic (a vertical-direction component), and subband HH indicates an oblique-direction frequency characteristic (an oblique-direction component). Subband LL is a* *low-frequency component. An integer-type 5/3 filter is used in wavelet transform of this embodiment, but the present invention is not limited to this. It is also possible to use another wavelet transform filter* such as a real-type 9/7 filter used in JPEG2000 (ISO/IEC15444|ITU-T T. 800) as an international standard. In addition, the processing unit of wavelet transform can be either a line or image."
 
-It is very likely the ten ff03 sections of lossy cr3 are LL1, HL1, LH1, HH1, HL2, LH2, HH2, HL3, LH3 and HH3, and lossless cr3 unique ff03 sections is LL1.
+It is very likely the ten ff03 sections of lossy cr3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, LH1 and HH1, and lossless cr3 unique ff03 sections is Adapted Rice coding only (LLx).
+
+![FIGS. 7A and 7B are views for explaining the concept of subband division by wavelet transform, and an example of a code to be generated](https://patentimages.storage.googleapis.com/a5/2f/24/6f36c0f3fdfe5f/US20160323602A1-20161103-D00007.png)
 
 *"The procedure of Golomb-Rice coding is as follows"*
 
@@ -1052,6 +1054,10 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 42 and 10495 (00000 00101000 11111111)
 
 ...
+
+![](https://patentimages.storage.googleapis.com/e0/58/28/42b05d26642a26/US20160323602A1-20161103-D00009.png)
+
+
 
 
 
@@ -1078,7 +1084,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 | 0x80000424 | EOS R                      |09/2018| FF| CMOS| Digic 8 |
 | 0x00000805 | PowerShot SX70 HS | 09/2018| 1/2.3"| BSI-CMOS|Digic 8 |
 | 0x80000433 | EOS RP | 02/2019 | FF | CMOS |Digic 8 |
-
+| 0x80000436 | EOS Rebel SL3 / 250D / Kiss X10 | 04/2019 | APS-C | CMOS |Digic 8 |
 
 ## Samples 
 
@@ -1088,11 +1094,6 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
   http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/ (only lossless raw)
 
-  See exiftool directory for outputs of "exiftool(-k).exe" -v3 -H -a  canon_eos_m50_*.cr3
-  [exiftool02.txt](exiftool/exiftool02.txt)
-
-  See ffmpeg directory for outputs of "ffmpeg -i"
-  [ffmpeg02.txt](ffmpeg/ffmpeg02.txt)
 
 
 - From DPReview: IMG_0482.CR3 (raw), IMG_0483.CR3 (craw)...
@@ -1121,6 +1122,8 @@ https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_im
 #### EOS RP
 
 https://www.dpreview.com/sample-galleries/0019055356/canon-eos-rp-sample-gallery/
+
+https://www.photographyblog.com/reviews/canon_eos_rp_review/sample_images
 
 #### CRM samples (from C200)
 

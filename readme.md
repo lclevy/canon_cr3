@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 11apr2019 
+version: 23apr2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -312,7 +312,7 @@ likely CaNon Compressor Version
 
 Observed values for version string:
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS 
-- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP and M50
+- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50 and 250D
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies
 
 
@@ -1128,6 +1128,10 @@ https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_im
   https://raw.pixls.us/data/Canon/Canon%20EOS%20R/
 
 https://www.photographyblog.com/reviews/canon_eos_rp_review/sample_images
+
+#### EOS 205D / Rebel SL3 / Kiss X10
+
+- https://www.imaging-resource.com/PRODS/canon-sl3/canon-sl3A7.HTM
 
 #### CRM samples (from C200)
 

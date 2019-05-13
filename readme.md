@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 23apr2019 
+version: 13mar2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -12,6 +12,7 @@ Contributors:
 
 - Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD, File structure
 - Alexey Danilchenko (https://github.com/Alexey-Danilchenko): CMP1
+- Kyle Kowalczyk (https://github.com/superadm1n): Restructure, Package, Test
 
 Samples:
 
@@ -47,6 +48,7 @@ Samples:
     * [Lossy compression (craw)](#lossy-compression-(craw))
 * [Crx compression](#crx-compression)
 * [Samples](#samples)
+* [Example Usage](#example-usage)
 
 
 
@@ -1138,4 +1140,43 @@ https://www.photographyblog.com/reviews/canon_eos_rp_review/sample_images
 http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
 
 
+### Example Usage
 
+Get camera model
+```python
+from cannon_cr3 import CmtdData
+image = 'path/to/image.cr3'
+dev = CmtdData(image)
+print(dev.camera_model)
+
+```
+
+Extract JPG
+```python
+from cannon_cr3 import Image
+image = 'path/to/image.cr3'
+img = Image(image)
+with open('/path/to/output/file.jpg', 'wb') as f:
+    f.write(img.jpeg_image)
+
+```
+
+Extract Thumbnail
+```python
+from cannon_cr3 import Image
+image = 'path/to/image.cr3'
+img = Image(image)
+with open('/path/to/output/file.thm', 'wb') as f:
+    f.write(img.thumbnail_image)
+
+```
+
+Extract Preview
+```python
+from cannon_cr3 import Image
+image = 'path/to/image.cr3'
+img = Image(image)
+with open('/path/to/output/file.jpg', 'wb') as f:
+    f.write(img.preview_image)
+
+```

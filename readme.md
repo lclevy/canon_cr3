@@ -1144,7 +1144,7 @@ http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-sample
 
 Get camera model
 ```python
-from cannon_cr3 import CmtdData
+from canon_cr3 import CmtdData
 image = 'path/to/image.cr3'
 dev = CmtdData(image)
 print(dev.camera_model)
@@ -1153,7 +1153,7 @@ print(dev.camera_model)
 
 Extract JPG
 ```python
-from cannon_cr3 import Image
+from canon_cr3 import Image
 image = 'path/to/image.cr3'
 img = Image(image)
 with open('/path/to/output/file.jpg', 'wb') as f:
@@ -1163,7 +1163,7 @@ with open('/path/to/output/file.jpg', 'wb') as f:
 
 Extract Thumbnail
 ```python
-from cannon_cr3 import Image
+from canon_cr3 import Image
 image = 'path/to/image.cr3'
 img = Image(image)
 with open('/path/to/output/file.thm', 'wb') as f:
@@ -1173,7 +1173,7 @@ with open('/path/to/output/file.thm', 'wb') as f:
 
 Extract Preview
 ```python
-from cannon_cr3 import Image
+from canon_cr3 import Image
 image = 'path/to/image.cr3'
 img = Image(image)
 with open('/path/to/output/file.jpg', 'wb') as f:

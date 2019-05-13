@@ -17,7 +17,7 @@ along with cannon_cr3. If not, see <http://www.gnu.org/licenses/>.
 '''
 
 from unittest import TestCase
-from cannon_cr3 import Image
+from canon_cr3 import Image
 
 test_file = '../samples/IMG_0482_raw.CR3'
 

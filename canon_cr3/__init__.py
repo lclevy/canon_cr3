@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with cannon_cr3. If not, see <http://www.gnu.org/licenses/>.
 '''
 
-from cannon_cr3.cr3_lib import Cr3FileParser, CmtdDataParser
+from canon_cr3.cr3_lib import Cr3FileParser, CmtdDataParser
 
 
 class CanonCraw:

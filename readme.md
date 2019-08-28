@@ -1119,7 +1119,11 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
 #### Powershot SX70 HS
 
-https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_images
+- https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_images
+
+- raw.pixls.us (full(?) coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20PowerShot%20SX70%20HS/
 
 #### EOS RP
 

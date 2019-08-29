@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 13mar2019 
+version: 29aug2019 
 
 by Laurent Clévy (@Lorenzo2472)
 

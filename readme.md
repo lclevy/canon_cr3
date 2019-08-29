@@ -1075,6 +1075,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
    - Adobe DNG Encoder 10.3 : [DNG Encoder](https://supportdownloads.adobe.com/detail.jsp?ftpID=6321)
    - Cinema RAW Development 2.1 for windows supports CRM movie format :  [Cinema Raw](https://www.usa.canon.com/internet/portal/us/home/support/details/cameras/cinema-eos/eos-c200?tab=drivers_downloads	"Cinema Raw")
    - EDSDK 3.8.0 (Canon)
+   - FastRawViewer 1.5.1 (libraw CR3 support by Alexey Danilchenko). Should be open-sourced
 
 
 
@@ -1087,6 +1088,10 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 | 0x00000805 | PowerShot SX70 HS | 09/2018| 1/2.3"| BSI-CMOS|Digic 8 |
 | 0x80000433 | EOS RP | 02/2019 | FF | CMOS |Digic 8 |
 | 0x80000436 | EOS Rebel SL3 / 250D / Kiss X10 | 04/2019 | APS-C | CMOS |Digic 8 |
+| 0x00000804 | Powershot G5 X Mark II | 07/2019 | 1" | BSI-CMOS |Digic 8 |
+| 0x00000808 | PowerShot G7 X Mark III | 07/2019 | 1" | BSI-CMOS |Digic 8 |
+| 0x00000811 | EOS M6 Mark II  | 08/2019 | APS-C | CMOS |Digic 8 |
+| 0x80000437 | EOS 90D | 08/2019 | APS-C | CMOS |Digic 8 |
 
 ## Samples 
 
@@ -1095,8 +1100,6 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 - Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
 
   http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/ (only lossless raw)
-
-
 
 - From DPReview: IMG_0482.CR3 (raw), IMG_0483.CR3 (craw)...
 

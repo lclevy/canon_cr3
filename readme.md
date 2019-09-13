@@ -1,10 +1,16 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 29aug2019 
+version: 13sep2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
 
+
+Requested samples (via lclevy at free dot fr + dropbox or similar, please):
+
+- pictures in **raw-burst-mode** (raw and c-raw) from G7 X mark iii or G5 X Mark II:
+
+  "This mode enables fast continuous shooting of RAW images. Useful when you want to choose the best shot taken at exactly the right moment from your captured images. Shots are captured as a single file (roll) with multiple images. You can extract any image from the roll to save it separately "
 
 
 
@@ -648,15 +654,13 @@ This is a block of Exif records.  Each Exif record has this format:
 
 ## MDAT (main data)
 
-The MDAT section contains 4 parts:
+The MDAT section contains 4 or 5 parts:
 
 1. a fullsize, lossy jpeg version of the picture 
-
 2. a small version of the picture in raw or craw (1624x1080)
-
 3. a fullsize version, in raw or craw 
-
 4. data for CTMD (Canon Time Metada)
+5. for dual pixel (delta?) picture, in raw or craw  
 
 
 

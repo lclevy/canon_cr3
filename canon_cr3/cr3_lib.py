@@ -1,20 +1,17 @@
 '''
 parse CR3 file format from Canon (@lorenzo2472)
 from https://github.com/lclevy/canon_cr3
-samples from M50 camera here: http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/, 
-  https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip
-CRM sample: http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
-about ISO Base file format : https://stackoverflow.com/questions/29565068/mp4-file-format-specification
+
 License is GPLv3
 
-This file is part of cannon_cr3.
+This file is part of canon_cr3.
 
 cannon_cr3 is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-cannon_cr3 is distributed in the hope that it will be useful,
+canon_cr3 is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.

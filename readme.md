@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 13sep2019 
+version: 17sep2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -8,7 +8,7 @@ by Laurent Clévy (@Lorenzo2472)
 
 Requested samples (via lclevy at free dot fr + dropbox or similar, please):
 
-- pictures in **raw-burst-mode** (raw and c-raw) from G7 X mark iii or G5 X Mark II:
+- pictures in **raw-burst-mode** (raw and c-raw) from G7 X mark III,  G5 X Mark II or M6 Mark II:
 
   "This mode enables fast continuous shooting of RAW images. Useful when you want to choose the best shot taken at exactly the right moment from your captured images. Shots are captured as a single file (roll) with multiple images. You can extract any image from the roll to save it separately "
 
@@ -70,14 +70,16 @@ Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: h
 
 The CR3 file format and its new crx codec support both lossless 'raw' and lossy 'craw' compressions. CR2, the TIFF based format is no more used by the M50 or EOSR, even with lossless 'raw' compression. 
 
-'craw' means 'compact raw'. The CR3 format also support dual pixel pictures.
+'craw' means 'compact raw'. The CR3 format also supports dual pixel pictures, sequence of images ("roll" created using Raw burst mode) and movie (CRM).
+
+Roll (CSI_*.CR3) can contains up to 70 pictures (for M6 Mark II).
 
 
 
-The overall structure of a CR3 picture file is (EOS R): 
+The overall structure of a CR3 picture file is (dimensions are for EOS R): 
 
 - 'moov' container 
-  - uuid=85c0b687820f11e08111f4ce462b6a48
+  - uuid=85c0b687 820f 11e0 8111 f4ce462b6a48
     - track1 = full size jpeg (6000x4000)
     - track2 = small definition raw image (1624x1080)
     - track3 = high definition raw image (6888x4546)
@@ -86,12 +88,16 @@ The overall structure of a CR3 picture file is (EOS R):
 - uuid=be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
 - uuid=eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data, jpeg 1620x1080)
   - PRVW, jpeg picture
+- uuid=5766b829 bb6a 47c5 bcfb 8b9f2260d06d (with roll)
+  - CMTA
 - mdat (main data)
-  - picture from track1
-  - picture from track2
-  - picture from track3
+  - picture(s) from track1
+  - picture(s) from track2
+  - picture(s) from track3
   - Canon Timed Metadata
-  - picture from track5 (dual pixel)
+  - picture(s) from track5 (dual pixel)
+- uuid=210f1687 9149 11e4 8111 00242131fce4 (optional data, with roll)
+  - CNOP
 
 
 
@@ -277,8 +283,8 @@ This experimental tool allows to:
 
 * parse Canon Raw v3 file structure
 * display TIFF tags and Canon Timed Metadata content
-* extract the 3 jpeg pictures: THMB, PRVW and "mdat1"
-* extract the 2 or 3 crx pictures from 'mdat' 
+* extract the 3 jpeg pictures: THMB, PRVW and "mdat"
+* extract the sd, hd and dual pictures from 'mdat' 
   * display first 32 bytes of each image subparts (both 'raw'/lossless and 'craw'/lossy)
 
 Examples of output [here](output/)
@@ -310,7 +316,7 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
 |              | long   | 1                   | ?                           |
 ### CNCV ### 
-likely CaNon Compressor Version
+likely CaNon Codec Version
 
 | Offset       | type   | size        | content                     |
 | ------------ | ------ | ----------- | --------------------------- |
@@ -319,8 +325,9 @@ likely CaNon Compressor Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
-- "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS 
-- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50 and 250D
+- "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (contening several pictures in burst mode)
+- "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
+- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II and 250D
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies
 
 
@@ -379,6 +386,7 @@ Records are:
 2. preview
 3. mdat (main data)
 4. ? size and offset are 0
+5. uuid: b'5766b829bb6a47c5bcfb8b9f2260d06d', containing CMTA
 
 
 
@@ -550,7 +558,17 @@ size = sizeof(IAD1) + 12
 | 4      | char   | 4           | "CDI1".|
 | 8      | long? | 1?   | 0                                      |
 
+### CMTA (Canon Metadata in Tiff)
 
+With roll CR3.
+
+Tiff tag 0x4047, byteseq, size = 583576
+
+unknown content
+
+### CNOP (Canon Optional data)
+
+unknown content
 
 ### CTMD (Canon Timed MetaData)
 

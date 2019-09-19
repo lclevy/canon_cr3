@@ -8,7 +8,7 @@ by Laurent Clévy (@Lorenzo2472)
 
 Requested samples (via lclevy at free dot fr + dropbox or similar, please):
 
-- pictures in **raw-burst-mode** (raw and c-raw) from G7 X mark III,  G5 X Mark II or M6 Mark II:
+- pictures in **raw-burst-mode** (raw and c-raw) from G7 X Mark III,  G5 X Mark II or M6 Mark II:
 
   "This mode enables fast continuous shooting of RAW images. Useful when you want to choose the best shot taken at exactly the right moment from your captured images. Shots are captured as a single file (roll) with multiple images. You can extract any image from the roll to save it separately "
 
@@ -72,7 +72,7 @@ The CR3 file format and its new crx codec support both lossless 'raw' and lossy 
 
 'craw' means 'compact raw'. The CR3 format also supports dual pixel pictures, sequence of images ("roll" created using Raw burst mode) and movie (CRM).
 
-Roll (CSI_*.CR3) can contains up to 70 pictures (for M6 Mark II).
+Roll files (CSI_*.CR3) can contains up to 70 pictures (for M6 Mark II).
 
 
 
@@ -84,11 +84,11 @@ The overall structure of a CR3 picture file is (dimensions are for EOS R):
     - track2 = small definition raw image (1624x1080)
     - track3 = high definition raw image (6888x4546)
     - track4 = Canon Timed Metadata
-    - track5 = second dual pixel picture (delta?, 6888x4546)
+    - track5 = dual pixel picture (delta?, 6888x4546)
 - uuid=be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
 - uuid=eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data, jpeg 1620x1080)
   - PRVW, jpeg picture
-- uuid=5766b829 bb6a 47c5 bcfb 8b9f2260d06d (with roll)
+- uuid=5766b829 bb6a 47c5 bcfb 8b9f2260d06d (in roll)
   - CMTA
 - mdat (main data)
   - picture(s) from track1
@@ -96,7 +96,7 @@ The overall structure of a CR3 picture file is (dimensions are for EOS R):
   - picture(s) from track3
   - Canon Timed Metadata
   - picture(s) from track5 (dual pixel)
-- uuid=210f1687 9149 11e4 8111 00242131fce4 (optional data, with roll)
+- uuid=210f1687 9149 11e4 8111 00242131fce4 (optional data, in roll)
   - CNOP
 
 
@@ -1168,8 +1168,9 @@ https://www.photographyblog.com/reviews/canon_eos_rp_review/sample_images
 
 http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
 
-
 ### Example Usage
+
+update 19sep2019: canon_cr3 library is obsolete compared to parse_cr3.py
 
 Get camera model
 ```python

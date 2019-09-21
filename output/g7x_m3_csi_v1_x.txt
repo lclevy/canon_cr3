@@ -1,0 +1,297 @@
+filesize 0x56787d7
+00000:ftyp: major_brand=b'crx ', minor_version=1, [b'crx ', b'isom'] (0x18)
+00018:moov: (0x336c)
+00020:  uuid: b'85c0b687820f11e08111f4ce462b6a48' (0x2a10)
+00038:    CNCV: b'CanonCR3_001/01.09.00/01.00.00' (0x26)
+0005e:    b'CCTP' b'000000000000000200000003000000184343445400000000' (0x5c)
+0003a:      b'CCDT' b'00000000000000120000000000000001' (0x18)
+00052:      b'CCDT' b'00000000000000010000000000000002' (0x18)
+0006a:      b'CCDT' b'00000000000000000000000000000003' (0x18)
+000ba:    CTBO: (0x70)
+            1    3384   10018
+            2   1339c   17d10
+            3   b9d98 55bcadb
+            4       0       0
+            5   2b0ac   8e890
+0012a:    b'free' b'000000000000' (0xe)
+00138:    002c0:    00740:    015b0:    01cc8:    THMB: width=160, height=120, jpeg_size=0xd4c (0xd68)
+02a30:  b'mvhd' b'00000000d8b7bf71d9a35398000000010000000600010000' (0x6c)
+02a9c:  b'trak' b'0000005c746b686400000007d8b7bf71d9a3539800000001' (0x215)
+02aa4:    b'tkhd' b'00000007d8b7bf71d9a35398000000010000000000000006' (0x5c)
+02b00:    b'mdia' b'000000206d64686400000000d8b7bf71d9a3539800000001' (0x1b1)
+02b08:      b'mdhd' b'00000000d8b7bf71d9a35398000000010000000615c70000' (0x20)
+02b28:      b'hdlr' b'000000000000000076696465000000000000000000000000' (0x21)
+02b49:      b'minf' b'00000014766d686400000001000000000000000000000024' (0x168)
+02b51:        b'vmhd' b'000000010000000000000000' (0x14)
+02b65:        b'dinf' b'0000001c6472656600000000000000010000000c75726c20' (0x24)
+02b6d:          b'dref' b'00000000000000010000000c75726c2000000001' (0x1c)
+00010:            b'url ' b'00000001' (0xc)
+02b89:        b'stbl' b'000000807374736400000000000000010000007043524157' (0x128)
+02b91:          b'stsd' b'000000000000000100000070435241570000000000000001' (0x80)
+00010:            CRAW: (0x70)
+                    width=1620, height=1080, bits=24
+0005a:              b'JPEG' b'00000000' (0xc)
+00066:              b'free' b'0000' (0xa)
+02c11:          b'stts' b'00000000000000010000000600000001' (0x18)
+02c29:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+02c45:          stsz: version=0, size=0x0, count=6 (0x2c)
+                  0x5ba17 0x5bcd8 0x5bb16 0x5bb48 0x5bcad 0x5badd 
+02c71:          co64: version=0, count=6 (0x40)
+                  0xb9da0 0x1157b7 0x17148f 0x1ccfa5 0x228aed 0x28479a 
+02cb1:  b'trak' b'0000005c746b686400000007d8b7bf71d9a3539800000002' (0x279)
+02cb9:    b'tkhd' b'00000007d8b7bf71d9a35398000000020000000000000006' (0x5c)
+02d15:    b'mdia' b'000000206d64686400000000d8b7bf71d9a3539800000001' (0x215)
+02d1d:      b'mdhd' b'00000000d8b7bf71d9a35398000000010000000615c70000' (0x20)
+02d3d:      b'hdlr' b'000000000000000076696465000000000000000000000000' (0x21)
+02d5e:      b'minf' b'00000014766d686400000001000000000000000000000024' (0x1cc)
+02d66:        b'vmhd' b'000000010000000000000000' (0x14)
+02d7a:        b'dinf' b'0000001c6472656600000000000000010000000c75726c20' (0x24)
+02d82:          b'dref' b'00000000000000010000000c75726c2000000001' (0x1c)
+00010:            b'url ' b'00000001' (0xc)
+02d9e:        b'stbl' b'000000e4737473640000000000000001000000d443524157' (0x18c)
+02da6:          b'stsd' b'0000000000000001000000d4435241570000000000000001' (0xe4)
+00010:            CRAW: (0xd4)
+                    width=1624, height=1080, bits=24
+0005a:              CMP1: (0x3c)
+00096:              CDI1: (0x34)
+                      0,0,
+00048:                IAD1: (0x28)
+000ca:              b'free' b'0000' (0xa)
+02e8a:          b'stts' b'00000000000000010000000600000001' (0x18)
+02ea2:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+02ebe:          stsz: version=0, size=0x0, count=6 (0x2c)
+                  0xbe4b0 0xbe2b0 0xbe390 0xbe380 0xbe410 0xbe1b8 
+02eea:          co64: version=0, count=6 (0x40)
+                  0x2e0277 0x39e727 0x45c9d7 0x51ad67 0x5d90e7 0x6974f7 
+02f2a:  b'trak' b'0000005c746b686400000007d8b7bf71d9a3539800000003' (0x289)
+02f32:    b'tkhd' b'00000007d8b7bf71d9a35398000000030000000000000006' (0x5c)
+02f8e:    b'mdia' b'000000206d64686400000000d8b7bf71d9a3539800000001' (0x225)
+02f96:      b'mdhd' b'00000000d8b7bf71d9a35398000000010000000615c70000' (0x20)
+02fb6:      b'hdlr' b'000000000000000076696465000000000000000000000000' (0x21)
+02fd7:      b'minf' b'00000014766d686400000001000000000000000000000024' (0x1dc)
+02fdf:        b'vmhd' b'000000010000000000000000' (0x14)
+02ff3:        b'dinf' b'0000001c6472656600000000000000010000000c75726c20' (0x24)
+02ffb:          b'dref' b'00000000000000010000000c75726c2000000001' (0x1c)
+00010:            b'url ' b'00000001' (0xc)
+03017:        b'stbl' b'000000f4737473640000000000000001000000e443524157' (0x19c)
+0301f:          b'stsd' b'0000000000000001000000e4435241570000000000000001' (0xf4)
+00010:            CRAW: (0xe4)
+                    width=5632, height=3710, bits=24
+0005a:              CMP1: (0x3c)
+00096:              CDI1: (0x44)
+                      0,0,
+00048:                IAD1: (0x38)
+000da:              b'free' b'0000' (0xa)
+03113:          b'stts' b'00000000000000010000000600000001' (0x18)
+0312b:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+03147:          stsz: version=0, size=0x0, count=6 (0x2c)
+                  0xd26518 0xd241f8 0xd24da8 0xd25c98 0xd26558 0xd246e0 
+03173:          co64: version=0, count=6 (0x40)
+                  0x7556af 0x147bbc7 0x219fdbf 0x2ec4b67 0x3bea7ff 0x4910d57 
+031b3:  b'trak' b'0000005c746b686400000007d8b7bf71d9a3539800000004' (0x1d1)
+031bb:    b'tkhd' b'00000007d8b7bf71d9a35398000000040000000000000006' (0x5c)
+03217:    b'mdia' b'000000206d64686400000000d8b7bf71d9a3539800000001' (0x16d)
+0321f:      b'mdhd' b'00000000d8b7bf71d9a35398000000010000000615c70000' (0x20)
+0323f:      b'hdlr' b'00000000000000006d657461000000000000000000000000' (0x21)
+03260:      b'minf' b'0000000c6e6d6864000000000000002464696e660000001c' (0x124)
+03268:        b'nmhd' b'00000000' (0xc)
+03274:        b'dinf' b'0000001c6472656600000000000000010000000c75726c20' (0x24)
+0327c:          b'dref' b'00000000000000010000000c75726c2000000001' (0x1c)
+00010:            b'url ' b'00000001' (0xc)
+03298:        b'stbl' b'0000005c7374736400000000000000010000004c43544d44' (0xec)
+032a0:          b'stsd' b'00000000000000010000004c43544d440000000000000001' (0x5c)
+00010:            CTMD: (0x4c)
+                    7
+                      1 0x18
+                      3 0x10
+                      4 0x18
+                      5 0x28
+                      7 0x328
+                      8 0x9f4e
+                      9 0xb2c
+032fc:          b'stts' b'00000000000000010000000600000001' (0x18)
+03314:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+03330:          stsz: version=0, size=0xae0a, count=6 (0x14)
+                  0xae0a 0xae0a 0xae0a 0xae0a 0xae0a 0xae0a 
+03344:          co64: version=0, count=6 (0x40)
+                  0x5635437 0x5640241 0x564b04b 0x5655e55 0x5660c5f 0x566ba69 
+03384:uuid: b'be7acfcb97a942e89c71999491e3afac' (0x10018)
+1339c:uuid: b'eaf42b5e1c984b88b9fbb7dc406e4d16' (0x17d10)
+133bc:  PRVW: width=1620, height=1080, jpeg_size=0x17cd1 (0x17cf0)
+2b0ac:uuid: b'5766b829bb6a47c5bcfb8b9f2260d06d' (0x8e890)
+2b0c4:  b993c:b'free' b'000000000000000000000000000000000000000000000000' (0x45c)
+b9d98:b'mdat' b'ffd8ffdb0084000101010101010101010101010101010201' (0x55bcadb)
+5676873:uuid: b'210f1687914911e4811100242131fce4' (0x1f64)
+567688b:  CNOP: (0x1f4c)
+end of parsing offset: 56787d7:
+CR3
+extracting jpg00.jpg (trak1) 1620x1080 from mdat... offset=0xb9da0, size=0x5ba17 (ends at 0x1157b7)
+extracting jpg01.jpg (trak1) 1620x1080 from mdat... offset=0x1157b7, size=0x5bcd8 (ends at 0x17148f)
+extracting jpg02.jpg (trak1) 1620x1080 from mdat... offset=0x17148f, size=0x5bb16 (ends at 0x1ccfa5)
+extracting jpg03.jpg (trak1) 1620x1080 from mdat... offset=0x1ccfa5, size=0x5bb48 (ends at 0x228aed)
+extracting jpg04.jpg (trak1) 1620x1080 from mdat... offset=0x228aed, size=0x5bcad (ends at 0x28479a)
+extracting jpg05.jpg (trak1) 1620x1080 from mdat... offset=0x28479a, size=0x5badd (ends at 0x2e0277)
+extracting sd00_crx.bin (trak2) 1624x1080 from mdat... offset=0x2e0277, size=0xbe4b0 (ends at 0x39e727)
+extracting sd01_crx.bin (trak2) 1624x1080 from mdat... offset=0x39e727, size=0xbe2b0 (ends at 0x45c9d7)
+extracting sd02_crx.bin (trak2) 1624x1080 from mdat... offset=0x45c9d7, size=0xbe390 (ends at 0x51ad67)
+extracting sd03_crx.bin (trak2) 1624x1080 from mdat... offset=0x51ad67, size=0xbe380 (ends at 0x5d90e7)
+extracting sd04_crx.bin (trak2) 1624x1080 from mdat... offset=0x5d90e7, size=0xbe410 (ends at 0x6974f7)
+extracting sd05_crx.bin (trak2) 1624x1080 from mdat... offset=0x6974f7, size=0xbe1b8 (ends at 0x7556af)
+extracting hd00_crx.bin (trak3) 5632x3710 from mdat... offset=0x7556af, size=0xd26518 (ends at 0x147bbc7)
+extracting hd01_crx.bin (trak3) 5632x3710 from mdat... offset=0x147bbc7, size=0xd241f8 (ends at 0x219fdbf)
+extracting hd02_crx.bin (trak3) 5632x3710 from mdat... offset=0x219fdbf, size=0xd24da8 (ends at 0x2ec4b67)
+extracting hd03_crx.bin (trak3) 5632x3710 from mdat... offset=0x2ec4b67, size=0xd25c98 (ends at 0x3bea7ff)
+extracting hd04_crx.bin (trak3) 5632x3710 from mdat... offset=0x3bea7ff, size=0xd26558 (ends at 0x4910d57)
+extracting hd05_crx.bin (trak3) 5632x3710 from mdat... offset=0x4910d57, size=0xd246e0 (ends at 0x5635437)
+offset=0x5635437, size=24, type=1: ctmd_timestamp(y=2019, mo=3, d=20, h=9, m=59, s=12, ms=89)
+offset=0x563544f, size=16, type=3: b'100000000300000000010000ffffffff'
+offset=0x563545f, size=24, type=4: ctmd_focal(num=8800, denum=1000)
+offset=0x5635477, size=40, type=5: ctmd_exposure(f_num=18, f_denum=10, expo_num=1, expo_denum=30, iso=2000)
+offset=0x563549f, size=808, type=7: list
+  0x56354ab: size=30 tag=0x8769 offset_base=14
+    0x001e: 41990/0xa406 3*1 0/0x0
+  0x56354c9: size=766 tag=0x927c offset_base=32
+    0x003c:     1/0x1    3*53 82/0x52
+    0x0048:     4/0x4    3*34 188/0xbc
+    0x0054:    38/0x26   3*139 256/0x100
+    0x0060:   147/0x93   3*74 534/0x216
+    0x006c:   160/0xa0   3*18 682/0x2aa
+    0x0078: 16406/0x4016 4*10 718/0x2ce
+offset=0x56357c7, size=40782, type=8: list
+  0x56357d3: size=40770 tag=0x927c offset_base=14
+    0x001e: 16385/0x4001 3*1816 46/0x2e
+    0x002a: 16389/0x4005 7*32476 3678/0xe5e
+    0x0036:    13/0xd    7*4608 36154/0x8d3a
+offset=0x563f715, size=2860, type=9: list
+  0x563f721: size=2848 tag=0x927c offset_base=14
+    0x001e: 16405/0x4015 7*1334 58/0x3a
+    0x002a: 16435/0x4033 7*634 1392/0x570
+    0x0036: 16430/0x402e 7*290 2026/0x7ea
+    0x0042: 16453/0x4045 7*524 2316/0x90c
+offset=0x5640241, size=24, type=1: ctmd_timestamp(y=2019, mo=3, d=20, h=9, m=59, s=13, ms=89)
+offset=0x5640259, size=16, type=3: b'100000000300000000010000ffffffff'
+offset=0x5640269, size=24, type=4: ctmd_focal(num=8800, denum=1000)
+offset=0x5640281, size=40, type=5: ctmd_exposure(f_num=18, f_denum=10, expo_num=1, expo_denum=30, iso=2000)
+offset=0x56402a9, size=808, type=7: list
+  0x56402b5: size=30 tag=0x8769 offset_base=14
+    0x001e: 41990/0xa406 3*1 0/0x0
+  0x56402d3: size=766 tag=0x927c offset_base=32
+    0x003c:     1/0x1    3*53 82/0x52
+    0x0048:     4/0x4    3*34 188/0xbc
+    0x0054:    38/0x26   3*139 256/0x100
+    0x0060:   147/0x93   3*74 534/0x216
+    0x006c:   160/0xa0   3*18 682/0x2aa
+    0x0078: 16406/0x4016 4*10 718/0x2ce
+offset=0x56405d1, size=40782, type=8: list
+  0x56405dd: size=40770 tag=0x927c offset_base=14
+    0x001e: 16385/0x4001 3*1816 46/0x2e
+    0x002a: 16389/0x4005 7*32476 3678/0xe5e
+    0x0036:    13/0xd    7*4608 36154/0x8d3a
+offset=0x564a51f, size=2860, type=9: list
+  0x564a52b: size=2848 tag=0x927c offset_base=14
+    0x001e: 16405/0x4015 7*1334 58/0x3a
+    0x002a: 16435/0x4033 7*634 1392/0x570
+    0x0036: 16430/0x402e 7*290 2026/0x7ea
+    0x0042: 16453/0x4045 7*524 2316/0x90c
+offset=0x564b04b, size=24, type=1: ctmd_timestamp(y=2019, mo=3, d=20, h=9, m=59, s=13, ms=89)
+offset=0x564b063, size=16, type=3: b'100000000300000000010000ffffffff'
+offset=0x564b073, size=24, type=4: ctmd_focal(num=8800, denum=1000)
+offset=0x564b08b, size=40, type=5: ctmd_exposure(f_num=18, f_denum=10, expo_num=1, expo_denum=30, iso=2000)
+offset=0x564b0b3, size=808, type=7: list
+  0x564b0bf: size=30 tag=0x8769 offset_base=14
+    0x001e: 41990/0xa406 3*1 0/0x0
+  0x564b0dd: size=766 tag=0x927c offset_base=32
+    0x003c:     1/0x1    3*53 82/0x52
+    0x0048:     4/0x4    3*34 188/0xbc
+    0x0054:    38/0x26   3*139 256/0x100
+    0x0060:   147/0x93   3*74 534/0x216
+    0x006c:   160/0xa0   3*18 682/0x2aa
+    0x0078: 16406/0x4016 4*10 718/0x2ce
+offset=0x564b3db, size=40782, type=8: list
+  0x564b3e7: size=40770 tag=0x927c offset_base=14
+    0x001e: 16385/0x4001 3*1816 46/0x2e
+    0x002a: 16389/0x4005 7*32476 3678/0xe5e
+    0x0036:    13/0xd    7*4608 36154/0x8d3a
+offset=0x5655329, size=2860, type=9: list
+  0x5655335: size=2848 tag=0x927c offset_base=14
+    0x001e: 16405/0x4015 7*1334 58/0x3a
+    0x002a: 16435/0x4033 7*634 1392/0x570
+    0x0036: 16430/0x402e 7*290 2026/0x7ea
+    0x0042: 16453/0x4045 7*524 2316/0x90c
+offset=0x5655e55, size=24, type=1: ctmd_timestamp(y=2019, mo=3, d=20, h=9, m=59, s=13, ms=89)
+offset=0x5655e6d, size=16, type=3: b'100000000300000000010000ffffffff'
+offset=0x5655e7d, size=24, type=4: ctmd_focal(num=8800, denum=1000)
+offset=0x5655e95, size=40, type=5: ctmd_exposure(f_num=18, f_denum=10, expo_num=1, expo_denum=30, iso=2000)
+offset=0x5655ebd, size=808, type=7: list
+  0x5655ec9: size=30 tag=0x8769 offset_base=14
+    0x001e: 41990/0xa406 3*1 0/0x0
+  0x5655ee7: size=766 tag=0x927c offset_base=32
+    0x003c:     1/0x1    3*53 82/0x52
+    0x0048:     4/0x4    3*34 188/0xbc
+    0x0054:    38/0x26   3*139 256/0x100
+    0x0060:   147/0x93   3*74 534/0x216
+    0x006c:   160/0xa0   3*18 682/0x2aa
+    0x0078: 16406/0x4016 4*10 718/0x2ce
+offset=0x56561e5, size=40782, type=8: list
+  0x56561f1: size=40770 tag=0x927c offset_base=14
+    0x001e: 16385/0x4001 3*1816 46/0x2e
+    0x002a: 16389/0x4005 7*32476 3678/0xe5e
+    0x0036:    13/0xd    7*4608 36154/0x8d3a
+offset=0x5660133, size=2860, type=9: list
+  0x566013f: size=2848 tag=0x927c offset_base=14
+    0x001e: 16405/0x4015 7*1334 58/0x3a
+    0x002a: 16435/0x4033 7*634 1392/0x570
+    0x0036: 16430/0x402e 7*290 2026/0x7ea
+    0x0042: 16453/0x4045 7*524 2316/0x90c
+offset=0x5660c5f, size=24, type=1: ctmd_timestamp(y=2019, mo=3, d=20, h=9, m=59, s=13, ms=89)
+offset=0x5660c77, size=16, type=3: b'100000000300000000010000ffffffff'
+offset=0x5660c87, size=24, type=4: ctmd_focal(num=8800, denum=1000)
+offset=0x5660c9f, size=40, type=5: ctmd_exposure(f_num=18, f_denum=10, expo_num=1, expo_denum=30, iso=2000)
+offset=0x5660cc7, size=808, type=7: list
+  0x5660cd3: size=30 tag=0x8769 offset_base=14
+    0x001e: 41990/0xa406 3*1 0/0x0
+  0x5660cf1: size=766 tag=0x927c offset_base=32
+    0x003c:     1/0x1    3*53 82/0x52
+    0x0048:     4/0x4    3*34 188/0xbc
+    0x0054:    38/0x26   3*139 256/0x100
+    0x0060:   147/0x93   3*74 534/0x216
+    0x006c:   160/0xa0   3*18 682/0x2aa
+    0x0078: 16406/0x4016 4*10 718/0x2ce
+offset=0x5660fef, size=40782, type=8: list
+  0x5660ffb: size=40770 tag=0x927c offset_base=14
+    0x001e: 16385/0x4001 3*1816 46/0x2e
+    0x002a: 16389/0x4005 7*32476 3678/0xe5e
+    0x0036:    13/0xd    7*4608 36154/0x8d3a
+offset=0x566af3d, size=2860, type=9: list
+  0x566af49: size=2848 tag=0x927c offset_base=14
+    0x001e: 16405/0x4015 7*1334 58/0x3a
+    0x002a: 16435/0x4033 7*634 1392/0x570
+    0x0036: 16430/0x402e 7*290 2026/0x7ea
+    0x0042: 16453/0x4045 7*524 2316/0x90c
+offset=0x566ba69, size=24, type=1: ctmd_timestamp(y=2019, mo=3, d=20, h=9, m=59, s=13, ms=89)
+offset=0x566ba81, size=16, type=3: b'100000000300000000010000ffffffff'
+offset=0x566ba91, size=24, type=4: ctmd_focal(num=8800, denum=1000)
+offset=0x566baa9, size=40, type=5: ctmd_exposure(f_num=18, f_denum=10, expo_num=1, expo_denum=30, iso=2000)
+offset=0x566bad1, size=808, type=7: list
+  0x566badd: size=30 tag=0x8769 offset_base=14
+    0x001e: 41990/0xa406 3*1 0/0x0
+  0x566bafb: size=766 tag=0x927c offset_base=32
+    0x003c:     1/0x1    3*53 82/0x52
+    0x0048:     4/0x4    3*34 188/0xbc
+    0x0054:    38/0x26   3*139 256/0x100
+    0x0060:   147/0x93   3*74 534/0x216
+    0x006c:   160/0xa0   3*18 682/0x2aa
+    0x0078: 16406/0x4016 4*10 718/0x2ce
+offset=0x566bdf9, size=40782, type=8: list
+  0x566be05: size=40770 tag=0x927c offset_base=14
+    0x001e: 16385/0x4001 3*1816 46/0x2e
+    0x002a: 16389/0x4005 7*32476 3678/0xe5e
+    0x0036:    13/0xd    7*4608 36154/0x8d3a
+offset=0x5675d47, size=2860, type=9: list
+  0x5675d53: size=2848 tag=0x927c offset_base=14
+    0x001e: 16405/0x4015 7*1334 58/0x3a
+    0x002a: 16435/0x4033 7*634 1392/0x570
+    0x0036: 16430/0x402e 7*290 2026/0x7ea
+    0x0042: 16453/0x4045 7*524 2316/0x90c
+raw
+b'Canon PowerShot G7 X Mark III'

@@ -311,7 +311,8 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 | 12/0xc       | short  | 1                   | width (160)                 |
 | 14/0xe       | short  | 1                   | height (120)                |
 | 16/0x10      | long   | 1                   | jpeg image size (jpeg_size) |
-| 20/0x14      | long   | 1                   | unknown, value = 0x00010000 |
+| 20/0x14      | short   | 1                   | unknown, value = 1 |
+| 22/0x16      | short   | 1                   | unknown, value = 0 |
 | 24/0x18      | byte[] | stored at offset 16 | jpeg_data = ffd8ffdb...ffd9 |
 | 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
 |              | long   | 1                   | ?                           |

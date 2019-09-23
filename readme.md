@@ -1118,7 +1118,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
 ## Samples 
 
-#### CR3 from M50 camera
+#### EOS M50
 
 - Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
 
@@ -1132,7 +1132,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
   https://raw.pixls.us/data/Canon/Canon%20EOS%20M50/
 
-#### CR3 from EOSR (lossless)
+#### EOS R
 
 - https://www.photographyblog.com/reviews/canon_eos_r/preview_images/
 
@@ -1142,7 +1142,6 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
   https://raw.pixls.us/data/Canon/Canon%20EOS%20R/
 
-
 #### Powershot SX70 HS
 
 - https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_images
@@ -1151,23 +1150,53 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
   https://raw.pixls.us/data/Canon/Canon%20PowerShot%20SX70%20HS/
 
+### PowerShot G5 X Mark II
+
+- raw.pixls.us (partial(?) coverage, 2 samples: {C-RAW, RAW} x {3:2}; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20PowerShot%20G5%20X%20Mark%20II/
+
+### PowerShot G7 X Mark III
+
+- raw.pixls.us (partial coverage, 1 sample; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20PowerShot%20G7%20X%20Mark%20III/
+
 #### EOS RP
 
 - https://www.dpreview.com/sample-galleries/0019055356/canon-eos-rp-sample-gallery/
 
 - raw.pixls.us (full(?) coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
 
-  https://raw.pixls.us/data/Canon/Canon%20EOS%20R/
+  https://raw.pixls.us/data/Canon/Canon%20EOS%20RP/
 
-https://www.photographyblog.com/reviews/canon_eos_rp_review/sample_images
+- https://www.photographyblog.com/reviews/canon_eos_rp_review/sample_images
+
+#### EOS 90D
+
+- raw.pixls.us (full(?) coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20EOS%2090D/
+
+#### EOS 250D
+
+- raw.pixls.us (full(?) coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20EOS%20250D/
 
 #### EOS 205D / Rebel SL3 / Kiss X10
 
 - https://www.imaging-resource.com/PRODS/canon-sl3/canon-sl3A7.HTM
 
+#### Kiss M
+
+- raw.pixls.us (partial coverage, 1 sample; CC0 licensed)
+
+  https://raw.pixls.us/data/Canon/Canon%20EOS%20KISS%20M/
+
 #### CRM samples (from C200)
 
-http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
+- http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
 
 ### Example Usage
 

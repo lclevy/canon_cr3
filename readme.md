@@ -675,11 +675,11 @@ This is a block of Exif records.  Each Exif record has this format:
 
 The MDAT section contains 4 or 5 parts:
 
-1. a fullsize, lossy jpeg version of the picture 
-2. a small version of the picture in raw or craw (1624x1080)
+1. a fullsize, lossy jpeg version of picture(s) 
+2. a small version of picture(s) in raw or craw (1624x1080)
 3. a fullsize version, in raw or craw 
 4. data for CTMD (Canon Time Metada)
-5. for dual pixel (delta?) picture, in raw or craw  
+5. for dual pixel (delta?) picture(s), in raw or craw  
 
 
 
@@ -802,7 +802,12 @@ size=0xa04c
 ```
 
 This is a block of CTMD (Canon Timed MetaData) records.
-
+```
+offset=0x2565b98, size=24, type=1: ctmd_timestamp(y=2018, mo=2, d=21, h=12, m=1, s=28, ms=1)
+offset=0x2565bb0, size=16, type=3: b'100000000300000000010000ffffffff'
+offset=0x2565bc0, size=24, type=4: ctmd_focal(num=45, denum=1)
+offset=0x2565bd8, size=40, type=5: ctmd_exposure(f_num=63, f_denum=10, expo_num=1, expo_denum=80, iso=12800)
+```
 
 
 ## crx codec structures
@@ -1118,54 +1123,9 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
 ## Samples 
 
-#### CR3 from M50 camera
+http://www.photographyblog.com, https://raw.pixls.us/data/Canon, https://www.dpreview.com, https://www.imaging-resource.com
 
-- Files canon_eos_m50_02.cr3, canon_eos_m50_06.cr3, canon_eos_m50_10.cr3, canon_eos_m50_23.cr3 can be downloaded from:
-
-  http://www.photographyblog.com/reviews/canon_eos_m50_review/preview_images/ (only lossless raw)
-
-- From DPReview: IMG_0482.CR3 (raw), IMG_0483.CR3 (craw)...
-
-  https://download.dpreview.com/canon_eosm50/M50_C-Raw_DPReview.zip (including lossy c-raw)
-
-- raw.pixls.us (full coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
-
-  https://raw.pixls.us/data/Canon/Canon%20EOS%20M50/
-
-#### CR3 from EOSR (lossless)
-
-- https://www.photographyblog.com/reviews/canon_eos_r/preview_images/
-
-- https://www.dpreview.com/samples/5691884265/canon-eos-r-sample-gallery-updated-with-raw-conversions
-
-- raw.pixls.us (full coverage, 16 samples: {C-RAW, RAW} x {dual pixel off, dual pixel on} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
-
-  https://raw.pixls.us/data/Canon/Canon%20EOS%20R/
-
-
-#### Powershot SX70 HS
-
-- https://www.photographyblog.com/reviews/canon_powershot_sx70_hs_review/sample_images
-
-- raw.pixls.us (full(?) coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
-
-  https://raw.pixls.us/data/Canon/Canon%20PowerShot%20SX70%20HS/
-
-#### EOS RP
-
-- https://www.dpreview.com/sample-galleries/0019055356/canon-eos-rp-sample-gallery/
-
-- raw.pixls.us (full(?) coverage, 8 samples: {C-RAW, RAW} x {16:9, 4:3, 3:2, 1:1}; CC0 licensed)
-
-  https://raw.pixls.us/data/Canon/Canon%20EOS%20R/
-
-https://www.photographyblog.com/reviews/canon_eos_rp_review/sample_images
-
-#### EOS 205D / Rebel SL3 / Kiss X10
-
-- https://www.imaging-resource.com/PRODS/canon-sl3/canon-sl3A7.HTM
-
-#### CRM samples (from C200)
+### CRM samples (from C200)
 
 http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
 

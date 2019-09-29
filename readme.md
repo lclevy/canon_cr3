@@ -492,7 +492,7 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 
 ### CDI1 ###
 
-Size=0x34 or 0x44
+size = sizeof(IAD1) + 12
 
 | Offset | type  | size | content                                 |
 | ------ | ----- | ---- | --------------------------------------- |
@@ -549,15 +549,6 @@ Big image
 | 44     | short | 1    | sensor width -1                      |
 | 46     | short | 1    | sensor height -1                     |
 
-### CDI1 ### 
-
-size = sizeof(IAD1) + 12
-
-| Offset | type  | size | content                                |
-| ------ | ----- | ---- | -------------------------------------- |
-| 0      | long   | 1           | size of this tag. 0x3c       |
-| 4      | char   | 4           | "CDI1".|
-| 8      | long? | 1?   | 0                                      |
 
 ### CMTA (Canon Metadata in Tiff)
 
@@ -570,6 +561,8 @@ unknown content
 ### CNOP (Canon Optional data)
 
 unknown content
+
+
 
 ### CTMD (Canon Timed MetaData)
 
@@ -668,6 +661,22 @@ This is a block of Exif records.  Each Exif record has this format:
 | 0      | long   | 1    | record size (N)                            |
 | 4      | long   | 1    | tag ID (0x8769=ExifIFD, 0x927c=MakerNotes) |
 | 8      | byte[] | N-8  | TIFF-format metadata                       |
+
+### CMT3
+
+#### tag 0x97 (Dust Delete Data)
+
+M50 use version 1, see http://lclevy.free.fr/cr2/#ddd
+
+#### tag 0x403f (Roll Info)
+
+```
+00740:    b'CMT3': (0xe70)
+...
+            0x000986 16447/0x403f     ulong(4)*3           3620/0xe24, 12 15 36 
+```
+
+12 is tag length (4*3), 15 is the current picture (#16 in DPP), 36 is the number of images in the roll.
 
 
 
@@ -1120,6 +1129,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 | 0x00000808 | PowerShot G7 X Mark III | 07/2019 | 1" | BSI-CMOS |Digic 8 |
 | 0x00000811 | EOS M6 Mark II  | 08/2019 | APS-C | CMOS |Digic 8 |
 | 0x80000437 | EOS 90D | 08/2019 | APS-C | CMOS |Digic 8 |
+| ? | EOS M200 | 09/2019 | APS-C | CMOS |Digic 8 |
 
 ## Samples 
 

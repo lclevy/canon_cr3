@@ -8,7 +8,7 @@ import sys
 from struct import unpack, Struct
 from binascii import hexlify, unhexlify
 from optparse import OptionParser
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
 
 def getShortBE(d, a):
  return unpack('>H',(d)[a:a+2])[0]
@@ -54,6 +54,7 @@ class TiffIfd:
   TIFF_TYPE_FLOAT8 =  12   
 
   tiffTypeLen = [ 1, 1, 2, 4, 4+4, 1, 1, 2, 4, 4+4, 4, 8 ]
+  tiffTypeStr = [ 'B', 's', 'H', 'L', 'L', 'c', 'c', 'h', 'l', 'l', 'l', 'q' ] #use with caution, might not always work. Will not with rational
   tiffTypeNames = [ "uchar", "string", "ushort", "ulong", "urational", "char", "byteseq", "short", "long", "rational", "float4", "float8" ]
 
   S_IFD_ENTRY_REC = Struct('<HHLL')  
@@ -66,7 +67,7 @@ class TiffIfd:
     self.name = name
     self.ifd = dict()
     
-    if display:
+    if not options.quiet or display:
       print( "{0}: (0x{1:x})".format(name, length) )
     #4949 2A00 08000000  
     self.order = data[0:2] #for a future MM compatible version ?
@@ -76,7 +77,7 @@ class TiffIfd:
     marker = getShortLE( data, 2 )
     if marker != 0x2a:
       print('marker != 0x2a')
-      return  
+      return
     ptr = getShortLE( data, 4 ) #8
     n = getShortLE( data, ptr )
     ptr = ptr + 2
@@ -135,7 +136,7 @@ class TiffIfd:
     else:
       print()  
   
-  def display( self, depth):
+  def display( self, depth=0):
     for entry in self.ifd.values():
       print( "     %s 0x%06lx %5d/0x%-4x %9s(%d)*%-6ld %9lu/0x%-lx, " % (depth*'  ', entry.offset, entry.tag , entry.tag, TiffIfd.tiffTypeNames[entry.type-1],entry.type,entry.length,entry.value,entry.value), end='' )
       self.print_entry( entry.type, entry.length, entry.value, 20)
@@ -145,7 +146,7 @@ class Ctmd:
   S_CTMD_INDEX_ENTRY = Struct('>LL')
   NT_CTMD_INDEX_ENTRY = namedtuple('ctmd_index_entry', 'type size')
 
-  def __init__(self, data, length, base, name):
+  def __init__(self, data, length, base, name): #parse the index, common to all ctmd in mdat if more than one (rolls)
     self.index_list = []
     _, _, nb = Ctmd.S_CTMD_INDEX_HEADER.unpack_from( data, 0)
     for i in range(nb):
@@ -169,8 +170,9 @@ class Ctmd:
   NT_CTMD_EXPOSURE = namedtuple('ctmd_exposure', 'f_num f_denum expo_num expo_denum iso')
 
   def parse(self, data ):
-    self.ctmd_list = []
-    for file_offset, ctmd_size in zip( cr3['trak4'][b'co64'], cr3['trak4'][b'stsz'] ):
+    self.ctmd_list = OrderedDict()
+    pic_num = 0
+    for file_offset, ctmd_size in zip( cr3['trak4'][b'co64'], cr3['trak4'][b'stsz'] ): #for all pictures in roll
       ctmd_data = data[ file_offset: file_offset+ctmd_size ]  
       ctmd_offset = 0
       ctmd_records = dict()
@@ -184,8 +186,8 @@ class Ctmd:
           ctmd_tiff = dict()
           while record_offset < record_size:
             payload_size, payload_tag = Ctmd.S_CTMD_TIFF_HEADER.unpack_from( ctmd_record, record_offset )
-            tiff = TiffIfd( ctmd_record[ record_offset+Ctmd.S_CTMD_TIFF_HEADER.size: ], payload_size, record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, b'CTMD%d_0x%x'%(record_type, payload_tag), False) 
-            ctmd_tiff[ payload_tag ] =  (file_offset+ctmd_offset+record_offset, payload_size, payload_tag, (record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, tiff.ifd) )  
+            tiff = TiffIfd( ctmd_record[ record_offset+Ctmd.S_CTMD_TIFF_HEADER.size: ], payload_size, file_offset+ctmd_offset+record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, b'CTMD%d_0x%x'%(record_type, payload_tag), False) 
+            ctmd_tiff[ payload_tag ] =  (file_offset+ctmd_offset+record_offset, payload_size, payload_tag, (record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, tiff) )  
             record_offset += payload_size
           ctmd_records[type] = Ctmd.NT_CTMD_RECORD(size, type, file_offset+ctmd_offset, ctmd_tiff)  #store context and TIFF entries		
         else:
@@ -201,11 +203,12 @@ class Ctmd:
           else:        
             ctmd_records[type] = Ctmd.NT_CTMD_RECORD( size, type, file_offset+ctmd_offset, None) #do not store content, but type, size and pointer for later processing
         ctmd_offset += size
-      self.ctmd_list.append( ctmd_records )  
+      self.ctmd_list[ pic_num ] =  ctmd_records  
+      pic_num += 1      
     return self.ctmd_list	
 
   def display(self):
-    for ctmd in self.ctmd_list:
+    for pic_num, ctmd in self.ctmd_list.items():
       #generic way to list CTMD entries
       for ctmd_record in ctmd.values():
         print('offset=0x%x, size=%d, type=%d: ' % (ctmd_record.offset, ctmd_record.size, ctmd_record.type ), end='' ) 
@@ -214,16 +217,34 @@ class Ctmd:
           for subdir_tag, tiff_subdir in ctmd_record.content.items():
             offset, payload_size, payload_tag, entries = tiff_subdir
             print('  0x%04x: size=%d tag=0x%x offset_base=%x' % (offset, payload_size, payload_tag, entries[0]) )
-            for tag, ifd_entry in entries[1].items():
-              print( '    0x%04x: %5d/0x%-4x %d*%d %d/0x%x' % (ifd_entry.offset, tag, tag, ifd_entry.type, ifd_entry.length, ifd_entry.value, ifd_entry.value ) )
+            entries[1].display( 1 )  
         else: #not TIFF
           if ctmd_record.type in [ Ctmd.CTMD_TYPE_TIMESTAMP, Ctmd.CTMD_TYPE_EXPOSURE, Ctmd.CTMD_TYPE_FOCAL ]:
             print( ctmd_record.content )
           else:
             ctmd_data = data[ ctmd_record.offset: ctmd_record.offset+ctmd_record.size] #we do not know how to parse it
             print('%s' % hexlify(ctmd_data) )
+      
 
-  
+def getIfd(name, details): # details is dict with 'picture', 'type', 'tag'
+  if name in { b'CMT1', b'CMT2', b'CMT3', b'CMT4', b'CMTA' }:
+    return cr3[name][1]
+  elif name== b'CTMD':   
+    if 'picture' in details:
+      pic_num = details[ 'picture' ]
+    else:
+      pic_num = 0   
+    ctmd = cr3[b'CTMD'].ctmd_list[ pic_num ]  
+    if 'type' in details:
+      if details[ 'type' ] in Ctmd.CTMD_TIFF_TYPES:
+        for ctmd_record in ctmd.values():
+          if ctmd_record.type == details[ 'type' ]:
+            for subdir_tag, tiff_subdir in ctmd_record.content.items():
+              offset, payload_size, payload_tag, entries = tiff_subdir
+              if details[ 'tag' ] == payload_tag:
+                return entries[1]
+  return None                 
+    
 #CTMD INDEX, content is in mdat
 def ctmd(d, l, depth, base, name):
   if not options.quiet:
@@ -513,7 +534,7 @@ def parse(offset, d, base, depth):
       r = tags[chunkName](base, d[o+no:o+no +l-no], l, depth+1) #return results
     elif chunkName in { b'CMT1', b'CMT2', b'CMT3', b'CMT4', b'CMTA' }:
       tiff = TiffIfd( d[o+no:o+no +l-no], l, base+o+no, chunkName, False )
-      cr3[ chunkName ] = ( base+o+no, tiff.ifd )
+      cr3[ chunkName ] = ( base+o+no, tiff )
       if options.verbose>1:
         tiff.display( depth+1 ) 
     elif chunkName == b'CTMD':
@@ -550,21 +571,14 @@ def parse(offset, d, base, depth):
     o += l  
   return o
 
-def getTiffTagData(name, tag):
-  tagEntry = cr3[name][1][tag]  
-  #print(tagEntry)
-  base = cr3[name][0]
-  #print(base)
-  size = TiffIfd.tiffTypeLen[tagEntry.type-1] * tagEntry.length
-  tagInfoData = data[ base+tagEntry.value: base+tagEntry.value+size ]
-  return tagInfoData, tagEntry
-
   
 parser = OptionParser(usage="usage: %prog [options]")
 parser.add_option("-v", "--verbose", type="int", dest="verbose", help="verbose level", default=0)
 parser.add_option("-x", "--extract", action="store_true", dest="extract", help="extract embedded images", default=False)
 parser.add_option("-m", "--model", action="store_true", dest="model", help="display model info", default=False)
 parser.add_option("-q", "--quiet", action="store_true", dest="quiet", help="do not display CR3 tree", default=False)
+parser.add_option("-c", "--ctmd", action="store_true", dest="display_ctmd", help="display CTMD", default=False)
+parser.add_option("-p", "--picture", type="int", dest="pic_num", help="specific picture, default is 0", default=0)
 (options, args) = parser.parse_args()
 
 if options.verbose>0:
@@ -619,38 +633,39 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
 
   _ctmd = cr3[b'CTMD']  
   _ctmd.parse( data )  
-  if options.verbose>0:
-    _ctmd.display()
+  if options.display_ctmd:
+    _ctmd.display( )
+    
   #print(cr3)
 
-  #now we want raw data of TIFF entry 0x4016, in subdir TIFF_MAKERNOTE, in CTMD record #7. We know it is type=4=long, little endian 32 bits
-  record_subdirs = _ctmd.ctmd_list[ 0 ][ 7 ][3] #first CTMD, type 7
-  subdir = record_subdirs[ TiffIfd.TIFF_MAKERNOTE ][3] # (offset, list)
-  subdir_offset = record_subdirs[ TiffIfd.TIFF_MAKERNOTE ][0]
-  #entry_offset, entry_type, entry_len, entry_value = subdir[1][ 0x4016 ]
-  ifd_entry = subdir[1][ TiffIfd.TIFF_CANON_VIGNETTING_CORR2 ]
-  data_offset = subdir_offset + 8 + ifd_entry.value #TIFF_BASE is 8 bytes after TIFF subdir
+
+  #now we want raw data of TIFF entry 0x4016 (TIFF_CANON_VIGNETTING_CORR2), in subdir TIFF_MAKERNOTE, in CTMD record #7. We know it is type=4=long, little endian 32 bits
+  ctmd_makernote7 = getIfd( b'CTMD', { 'type':7, 'tag':TiffIfd.TIFF_MAKERNOTE } ) #picture 0 by default
+  if TiffIfd.TIFF_CANON_VIGNETTING_CORR2 in ctmd_makernote7.ifd:
+    vignetting_corr2 = ctmd_makernote7.ifd[ TiffIfd.TIFF_CANON_VIGNETTING_CORR2 ]
+    r = Struct('<%dL' % vignetting_corr2.length).unpack_from( data, ctmd_makernote7.base+vignetting_corr2.value )
   if options.verbose>1:
-    for i in range(data_offset, data_offset + TiffIfd.tiffTypeLen[ifd_entry.type-1]*ifd_entry.length, TiffIfd.tiffTypeLen[ifd_entry.type-1]):
-      print ('%d ' % getLongLE(data, i), end='' )
-    print()  
+    print(r)
 
-
+  cmt3 = getIfd( b'CMT3', None )
+  if 0x403f in cmt3.ifd: # only in CSI_* files (raw burst mode)
+    rollInfoTag = cmt3.ifd[ 0x403f ]
+    #print( rollInfoTag )
+    length, current, total = Struct('<%d%s' % (rollInfoTag.length, TiffIfd.tiffTypeStr[rollInfoTag.type-1])).unpack_from( data, cmt3.base+rollInfoTag.value )
+    #exif IFD for current picture in the roll
+    ifd = getIfd( b'CTMD', { 'picture':current, 'type':7, 'tag':TiffIfd.TIFF_MAKERNOTE } )
+    ifd.display()
+    
   NT_SENSOR_INFO = namedtuple('sensorInfo','w h lb tb rb bb')
-  #get sensor characteristics
-  sensorInfoData, sensorInfoEntry = getTiffTagData( b'CMT3', TiffIfd.TIFF_CMT3_SENSORINFO )  
-  #for each TIFF entry, we have (offset, type, length, value). If value is a pointer, we use getTiffTagData() to get the content
-  sensorInfoList = [ getShortLE(sensorInfoData, i) for i in range( 0, sensorInfoEntry.length, TiffIfd.tiffTypeLen[sensorInfoEntry.type-1] ) ]
-  #print(sensorInfoList)
-  _, SensorWidth, SensorHeight, _, _, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder = sensorInfoList
+  sensorInfo = cmt3.ifd[ TiffIfd.TIFF_CMT3_SENSORINFO ]
+  _, SensorWidth, SensorHeight, _, _, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder, *_ = Struct('<%d%s' % (sensorInfo.length, TiffIfd.tiffTypeStr[sensorInfo.type-1])).unpack_from( data, cmt3.base+sensorInfo.value )
   sensorInfo = NT_SENSOR_INFO( SensorWidth, SensorHeight, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder )
   if options.verbose>1:
     print(sensorInfo)
-  #print(SensorWidth, SensorHeight, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder)
   
   #get camera settings to find if it is a craw (lossy) or raw (lossless)
-  cameraSettingsData, cameraSettingsEntry = getTiffTagData( b'CMT3', TiffIfd.TIFF_CMT3_CAMERASETTINGS )  
-  cameraSettingsList = [ getShortLE(cameraSettingsData, i) for i in range( 0, cameraSettingsEntry.length, TiffIfd.tiffTypeLen[cameraSettingsEntry.type-1] ) ]
+  cameraSettings = cmt3.ifd[ TiffIfd.TIFF_CMT3_CAMERASETTINGS ]
+  cameraSettingsList = Struct('<%d%s' % (cameraSettings.length, TiffIfd.tiffTypeStr[cameraSettings.type-1])).unpack_from( data, cmt3.base+cameraSettings.value )
   if options.verbose>0:
     if cameraSettingsList[3]==TiffIfd.TIFF_CAMERASETTINGS_QUALITY_CRAW:
       print('craw')
@@ -660,12 +675,47 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
       print('cameraSettingsList[3]=%d'%cameraSettingsList[3]) 
 
   #get model name and model Id
-  modelIdEntry = cr3[b'CMT3'][1][TiffIfd.TIFF_CMT3_MODELID] 
-  modelData, modelEntry = getTiffTagData( b'CMT1', TiffIfd.TIFF_CMT1_MODEL )  
+  modelId = cmt3.ifd[ TiffIfd.TIFF_CMT3_MODELID ].value 
+  if options.verbose>1:
+    print('modelId: 0x%x' % modelId)
+
+  cmt1 = getIfd( b'CMT1', None )
+  modelNameEntry = cmt1.ifd[ TiffIfd.TIFF_CMT1_MODEL ]
+  modelName = Struct('<%ds' % (modelNameEntry.length-1) ).unpack_from( data, cmt1.base+modelNameEntry.value ) [0]
   if options.verbose>0:
-    print(modelData[:modelEntry.length-1]) #use length value (modelEntry[2]) of TIFF entry for model
-  modelId = modelIdEntry.value
-  #print(cr3[b'PRVW'])
+    print(modelName) #use length value (modelEntry[2]) of TIFF entry for model
+
+  if 0x97 in cmt3.ifd:
+    dustDeleteData = cmt3.ifd[ 0x97 ]
+    dddData = data[ cmt3.base+dustDeleteData.value: cmt3.base+dustDeleteData.value+dustDeleteData.length ]
+    # http://lclevy.free.fr/cr2/#ddd
+    version = int( dddData[0] )
+    if options.verbose>1:
+      print('DDD version:', version) #m50 has version 1 
+    #print(hexlify( data[ cmt3.base+dustDeleteData.value: cmt3.base+dustDeleteData.value+dustDeleteData.length ] ) )
+    '''
+    for EOS R, version 2?
+    [DDD] Version     : %d
+    [DDD] LensInfo    : %d
+    [DDD] AVValue     : %d
+    [DDD] POValue     : %d
+    [DDD] DustCount   : %d
+    [DDD] FocalLength : %d
+    [DDD] LensID      : %d
+    [DDD] LensIDEx    : %d <----------------
+    [DDD] Width       : %d
+    [DDD] Height      : %d
+    [DDD] RAW_Width   : %d
+    [DDD] RAW_Height  : %d
+    [DDD] PixelPitch  : %d/1000 [um]
+    [DDD] LpfDistance : %d/1000 [mm]
+    [DDD] TopOffset   : %d
+    [DDD] BottomOffset: %d
+    [DDD] LeftOffset  : %d
+    [DDD] RightOffset : %d
+    [DDD] DateTime    : %4d/%02d/%02d %02d:%02d
+    [DDD] BrightDiff  : %d
+    '''
   if options.model:
  	  # modelId, SensorWidth, SensorHeight, CrxBigW, CrxBigH, CrxBigSliceW, CrxSmallW, CrwSmallH, JpegBigW, JpegBigH, JpegPrvwW, JpegPrvwH
     print('0x%08x, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d' % (modelId, SensorWidth, SensorHeight, cr3['trak3'][b'CRAW'].w,cr3['trak3'][b'CRAW'].h, 

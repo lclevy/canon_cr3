@@ -31,6 +31,8 @@ class TiffIfd:
   
   TIFF_CMT3_SENSORINFO = 0xe0  
   TIFF_CMT3_CAMERASETTINGS = 1
+  TIFF_CMT3_DUST_DELETE_DATA = 0x97
+  TIFF_CMT3_ROLLINFO = 0x403f
   TIFF_CAMERASETTINGS_QUALITY_RAW = 4
   TIFF_CAMERASETTINGS_QUALITY_CRAW = 7
   TIFF_CMT3_MODELID = 0x10
@@ -361,11 +363,11 @@ def cdi1(b, d, l, depth):
 def iad1(b, d, l, depth):    
   if not options.quiet:
     print('IAD1: (0x{:x})'.format(l) ) 
-  '''if options.verbose>0:
+  if options.verbose>0:
     print('      %s'% (depth*'  '),end='')
     for i in range(0,len(d), 2):
       print('%d,' % getShortBE(d, i),end='')
-    print()  '''
+    print()  
 
 #offset does start after name, thus +8 when including size (long) and name (4*char)	
 def cmp1(b, d, l, depth):    
@@ -648,8 +650,8 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
     print(r)
 
   cmt3 = getIfd( b'CMT3', None )
-  if 0x403f in cmt3.ifd: # only in CSI_* files (raw burst mode)
-    rollInfoTag = cmt3.ifd[ 0x403f ]
+  if TiffIfd.TIFF_CMT3_ROLLINFO in cmt3.ifd: # only in CSI_* files (raw burst mode)
+    rollInfoTag = cmt3.ifd[ TiffIfd.TIFF_CMT3_ROLLINFO ]
     #print( rollInfoTag )
     length, current, total = Struct('<%d%s' % (rollInfoTag.length, TiffIfd.tiffTypeStr[rollInfoTag.type-1])).unpack_from( data, cmt3.base+rollInfoTag.value )
     #exif IFD for current picture in the roll
@@ -685,37 +687,25 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
   if options.verbose>0:
     print(modelName) #use length value (modelEntry[2]) of TIFF entry for model
 
-  if 0x97 in cmt3.ifd:
-    dustDeleteData = cmt3.ifd[ 0x97 ]
+  if TiffIfd.TIFF_CMT3_DUST_DELETE_DATA in cmt3.ifd:
+    dustDeleteData = cmt3.ifd[ TiffIfd.TIFF_CMT3_DUST_DELETE_DATA ]
     dddData = data[ cmt3.base+dustDeleteData.value: cmt3.base+dustDeleteData.value+dustDeleteData.length ]
-    # http://lclevy.free.fr/cr2/#ddd
+    S_DDD_V1 = Struct('<BBHHHHHHHHHHHBBBBBBBBBB')     # http://lclevy.free.fr/cr2/#ddd
+    NT_DDD = namedtuple('ddd', 'version lensinfo av po count focal lensid w h rw rh pitch lpfdist toff boff loff roff y mo d ho mi diff')
+    S_DUST = Struct('<HHBB')
+    NT_DUST = namedtuple('dust', 'w h size')
     version = int( dddData[0] )
-    if options.verbose>1:
-      print('DDD version:', version) #m50 has version 1 
-    #print(hexlify( data[ cmt3.base+dustDeleteData.value: cmt3.base+dustDeleteData.value+dustDeleteData.length ] ) )
-    '''
-    for EOS R, version 2?
-    [DDD] Version     : %d
-    [DDD] LensInfo    : %d
-    [DDD] AVValue     : %d
-    [DDD] POValue     : %d
-    [DDD] DustCount   : %d
-    [DDD] FocalLength : %d
-    [DDD] LensID      : %d
-    [DDD] LensIDEx    : %d <----------------
-    [DDD] Width       : %d
-    [DDD] Height      : %d
-    [DDD] RAW_Width   : %d
-    [DDD] RAW_Height  : %d
-    [DDD] PixelPitch  : %d/1000 [um]
-    [DDD] LpfDistance : %d/1000 [mm]
-    [DDD] TopOffset   : %d
-    [DDD] BottomOffset: %d
-    [DDD] LeftOffset  : %d
-    [DDD] RightOffset : %d
-    [DDD] DateTime    : %4d/%02d/%02d %02d:%02d
-    [DDD] BrightDiff  : %d
-    '''
+    if version==1:
+      l = S_DDD_V1.unpack_from( dddData[:S_DDD_V1.size], 0)
+      ddd = NT_DDD( *l )
+      if options.verbose>1:
+        print(ddd)
+      for dust in range(ddd.count):
+        w, h, size, _ = S_DUST.unpack_from( dddData[S_DDD_V1.size:], dust*S_DUST.size )
+        if options.verbose>1:
+          print( NT_DUST(w, h, size) ) 
+          # for EOS R, version 2?
+
   if options.model:
  	  # modelId, SensorWidth, SensorHeight, CrxBigW, CrxBigH, CrxBigSliceW, CrxSmallW, CrwSmallH, JpegBigW, JpegBigH, JpegPrvwW, JpegPrvwH
     print('0x%08x, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d' % (modelId, SensorWidth, SensorHeight, cr3['trak3'][b'CRAW'].w,cr3['trak3'][b'CRAW'].h, 

@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 3nov2019 
+version: 14nov2019 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -8,11 +8,9 @@ by Laurent Clévy (@Lorenzo2472)
 
 Requested samples (via lclevy at free dot fr + dropbox or similar, please):
 
-- pictures in **raw-burst-mode** (raw and c-raw) from G7 X Mark III,  G5 X Mark II or M6 Mark II:
+- pictures in raw and black&white, as CRX handles 1 plane/8bits data
 
-  "This mode enables fast continuous shooting of RAW images. Useful when you want to choose the best shot taken at exactly the right moment from your captured images. Shots are captured as a single file (roll) with multiple images. You can extract any image from the roll to save it separately "
-
-
+  
 
 Contributors: 
 
@@ -23,8 +21,7 @@ Contributors:
 Samples:
 
 - Mark McClelland for EOS R samples (www.instagram.com/mcclellandphoto)
-
-  
+- Kostiantyn for M6 Mark II roll sample
 
 
 
@@ -283,11 +280,12 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
 
 This experimental tool allows to:
 
-* parse Canon Raw v3 file structure
+* parse Canon Raw v3, and CR2 file structure
 * display TIFF tags and Canon Timed Metadata content
-* extract the 3 jpeg pictures: THMB, PRVW and "mdat"
-* extract the sd, hd and dual pictures from 'mdat' 
-  * display first 32 bytes of each image subparts (both 'raw'/lossless and 'craw'/lossy)
+* for each roll:
+  * extract the jpeg pictures: THMB, PRVW and "mdat"
+  * extract the sd, hd and dual pictures from 'mdat' 
+    * display first 32 bytes of each image subparts (both 'raw'/lossless and 'craw'/lossy)
 
 Examples of output [here](output/)
 

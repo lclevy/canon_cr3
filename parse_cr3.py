@@ -1,4 +1,4 @@
-# parse CR3 file format from Canon (@lorenzo2472)
+# parse CR3 (and CR2) file format from Canon (@lorenzo2472)
 # from https://github.com/lclevy/canon_cr3
 # tested with Python 3.6.7
 # about ISO Base file format : https://stackoverflow.com/questions/29565068/mp4-file-format-specification
@@ -25,21 +25,133 @@ def getLongLE(d, a):
 def getLongLongBE(d, a):
  return unpack('>Q',(d)[a:a+8])[0]
 
+class Jpeg:
+  JPEG_SOI  =  0xffd8
+  JPEG_APP1 =  0xffe1
+  JPEG_DHT  =  0xffc4
+  JPEG_DQT  =  0xffdb
+  JPEG_SOF0 =  0xffc0
+  JPEG_SOF3 =  0xffc3
+  JPEG_SOS  =  0xffda
+  JPEG_EOI  =  0xffd9
 
+  def __init__(self, data):
+    self.data = data
+    val = getShortBE(self.data, 0)
+    ptr = 0
+    size = 0
+    while val != Jpeg.JPEG_SOS:
+      #print('%x' % val)
+      if val == Jpeg.JPEG_SOI:
+        pass
+      elif val == Jpeg.JPEG_DHT:
+        size = getShortBE(self.data, ptr+2)
+      elif val == Jpeg.JPEG_SOF0 or val == Jpeg.JPEG_SOF3:  
+        size = getShortBE(self.data, ptr+2)
+        self.bits, self.high, self.wide, self.n_comp = Struct('>BHHB').unpack_from(data, ptr+4)
+        print(self.bits, self.high, self.wide, self.n_comp)
+      #print('size %x' % size)
+      ptr += size+2
+      val = getShortBE(self.data, ptr)  
+
+class Cr2:
+  def __init__(self, data, length, name):
+    self.ifd_list = dict()
+    self.data = data
+    
+    ifd_num = 0
+    #IFD 0 has header
+    self.ifd_list[ ifd_num ] = TiffIfd( data, length, 0, '0', False, True, True )
+    
+    if TiffIfd.TIFF_EXIF in self.ifd_list[ 0 ].ifd:    
+      offset = self.ifd_list[ 0 ].ifd[TiffIfd.TIFF_EXIF].value
+      self.ifd_list[ TiffIfd.TIFF_EXIF ] = TiffIfd( data[offset:], length, offset, '%x' % TiffIfd.TIFF_EXIF, False, False, True )
+    if TiffIfd.TIFF_MAKERNOTE in self.ifd_list[ TiffIfd.TIFF_EXIF ].ifd:    
+      offset = self.ifd_list[ TiffIfd.TIFF_EXIF ].ifd[TiffIfd.TIFF_MAKERNOTE].value
+      self.ifd_list[ TiffIfd.TIFF_MAKERNOTE ] = TiffIfd( data[offset:], length, offset, '%x' % TiffIfd.TIFF_MAKERNOTE, False, False, True )
+    if TiffIfd.TIFF_GPS in self.ifd_list[ 0 ].ifd:    
+      offset = self.ifd_list[ 0 ].ifd[TiffIfd.TIFF_GPS].value
+      self.ifd_list[ TiffIfd.TIFF_GPS ] = TiffIfd( data[offset:], length, offset, '%x' % TiffIfd.TIFF_GPS, False, False, True )
+    #other IFD has no header
+    while self.ifd_list[ ifd_num ].next != 0:
+      next = self.ifd_list[ ifd_num ].next 
+      ifd_num += 1
+      self.ifd_list[ ifd_num ] = TiffIfd( data[next:], length, next, '%d' % ifd_num, False, False, True )
+      
+  def display(self):
+    for key, ifd in self.ifd_list.items():
+      print('0x%x:' % key)
+      ifd.display()
+      
+  def extract_pic0(self, filename): #full size, jpg
+    offset = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageStart ].value
+    length = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageLength ].value      
+    f = open(filename, 'wb')
+    f.write( self.data[offset:offset+length] )
+    f.close()
+
+  def extract_pic1(self, filename): #thumbnail, jpg
+    offset = self.ifd_list[ 1 ].ifd[ TiffIfd.TiffIfd.TIFF_EXIF_ThumbnailOffset ].value
+    length = self.ifd_list[ 1 ].ifd[ TiffIfd.TiffIfd.TIFF_EXIF_ThumbnailLength ].value      
+    f = open(filename, 'wb')
+    f.write( self.data[offset:offset+length] )
+    f.close()
+    
+  def extract_pic2(self, filename): #saved as .ppm, (RGB 16bits, little endian). no WB, no scaling
+    offset = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageStart ].value
+    length = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageLength ].value      
+    width = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_ImageWidth ].value
+    height = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_ImageHeight ].value
+    out = open(filename, 'w')
+    print ('P3\n%d %d' % (width, height), file=out)
+    print ('%s' % (1<<14), file=out)
+    pic = Struct('<%dH'%(3*width*height)).unpack_from(self.data[offset:offset+length], 0)
+    index = 0
+    for y in range(height):
+      for x in range(width):
+        print ('%4d %4d %4d ' % (pic[index], pic[index+1], pic[index+2]), end='', file=out)
+        index += 3
+      print(file=out)
+    out.close()    
+    return width, height
+  
+  def get_lossless_info(self):
+    offset = self.ifd_list[ 3 ].ifd[ TiffIfd.TIFF_EXIF_StripOffsets ].value
+    length = self.ifd_list[ 3 ].ifd[ TiffIfd.TIFF_EXIF_StripByteCounts ].value    
+    self.jpg = Jpeg( self.data[offset:offset+length] )
+    
+  def get_model_id(self):
+    return self.ifd_list[ TiffIfd.TIFF_MAKERNOTE ].ifd[ TiffIfd.TIFF_MAKERNOTE_MODELID ].value
+    
+  def get_model_name(self):
+    offset = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_Model ].value
+    length = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_Model ].length
+    return self.data[ offset: offset+length-1 ]
+    
 class TiffIfd:
   #class for Tiff IFD (Canon kind)
   
-  TIFF_CMT3_SENSORINFO = 0xe0  
-  TIFF_CMT3_CAMERASETTINGS = 1
-  TIFF_CMT3_DUST_DELETE_DATA = 0x97
-  TIFF_CMT3_ROLLINFO = 0x403f
+  TIFF_EXIF_Model = 0x110
+  TIFF_EXIF_PreviewImageStart = 0x111
+  TIFF_EXIF_PreviewImageLength = 0x117
+  TIFF_EXIF_ImageHeight = 0x101
+  TIFF_EXIF_ImageWidth = 0x100
+  TIFF_EXIF_ThumbnailOffset = 0x201
+  TIFF_EXIF_ThumbnailLength = 0x202
+  TIFF_EXIF_StripOffsets = 0x111
+  TIFF_EXIF_StripByteCounts = 0x117
+  
+  TIFF_MAKERNOTE_SENSORINFO = 0xe0  
+  TIFF_MAKERNOTE_CAMERASETTINGS = 1
+  TIFF_MAKERNOTE_DUST_DELETE_DATA = 0x97
+  TIFF_MAKERNOTE_ROLLINFO = 0x403f
   TIFF_CAMERASETTINGS_QUALITY_RAW = 4
   TIFF_CAMERASETTINGS_QUALITY_CRAW = 7
-  TIFF_CMT3_MODELID = 0x10
-  TIFF_CMT1_MODEL = 0x110
+  TIFF_MAKERNOTE_MODELID = 0x10
   
   TIFF_MAKERNOTE = 0x927c
   TIFF_EXIF = 0x8769
+  TIFF_GPS = 0x8825
   TIFF_CANON_VIGNETTING_CORR2 = 0x4016
     
   TIFF_TYPE_UCHAR = 1  
@@ -62,25 +174,30 @@ class TiffIfd:
   S_IFD_ENTRY_REC = Struct('<HHLL')  
   NT_IFD_ENTRY = namedtuple('ifd_entry', 'offset tag type length value')
 
-  def __init__(self, data, length, base, name, display=True):
+  def __init__(self, data, length, base, name, display=True, has_header=True, get_next=False):
     self.data = data
     self.length = length
     self.base = base
     self.name = name
     self.ifd = dict()
-    
-    if not options.quiet or display:
+    self.next = 0
+
+    if not options.quiet and display:
       print( "{0}: (0x{1:x})".format(name, length) )
-    #4949 2A00 08000000  
-    self.order = data[0:2] #for a future MM compatible version ?
-    if self.order!=b'II': #should raise exception
-      print('order!=II')
-      return
-    marker = getShortLE( data, 2 )
-    if marker != 0x2a:
-      print('marker != 0x2a')
-      return
-    ptr = getShortLE( data, 4 ) #8
+    if has_header:  
+      #4949 2A00 08000000  
+      self.order = data[0:2] #for a future MM compatible version ?
+      if self.order!=b'II': #should raise exception
+        print('order!=II')
+        return
+      marker = getShortLE( data, 2 )
+      if marker != 0x2a:
+        print('marker != 0x2a')
+        return
+      ptr = getShortLE( data, 4 ) #8
+    else:
+      ptr = 0    
+      
     n = getShortLE( data, ptr )
     ptr = ptr + 2
     for i in range(n):
@@ -90,6 +207,8 @@ class TiffIfd:
       ptr = ptr + TiffIfd.S_IFD_ENTRY_REC.size
       if self.base+ptr > self.base+self.length:
         print('base+ptr > base+length !')
+    if get_next:
+      self.next =  getLongLE( data, ptr )   
 
   def print_entry(self, type, length, val, max):
     #we should verify this is access after self.base+self.length in self.data
@@ -592,12 +711,25 @@ filesize = f.tell()
 f.close()
 if options.verbose>0:
   print( 'filesize 0x%x' % filesize)
-
-offset = parse(0, data, 0, 0)
-if options.verbose>0:
-  print('end of parsing offset: %05x:'%offset)
-
-
+  
+if data[4:12]==b'ftypcrx ':
+  offset = parse(0, data, 0, 0)
+  if options.verbose>0:
+    print('end of parsing offset: %05x:'%offset)
+elif data[:4]==b'II*\x00' and data[8:12]==b'CR\x02\x00':
+  print('CR2')
+  cr2 = Cr2( data, filesize, 'cr2' )
+  if options.verbose>1:
+    cr2.display()
+  if options.extract:
+    cr2.extract_pic0('ifd0.jpg')
+    cr2.extract_pic1('ifd1.jpg')
+    cr2.extract_pic2('ifd2.ppm')
+  print('modelId = 0x%x' % cr2.get_model_id() ) 
+  print('modelName = %s' % cr2.get_model_name() ) 
+  cr2.get_lossless_info()
+  sys.exit()
+    
 if cr3[b'CNCV'].find(b'CanonCRM')>=0:
   if options.verbose>0:
     print('CRM')
@@ -650,7 +782,7 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
     print(r)
 
   cmt3 = getIfd( b'CMT3', None )
-  if TiffIfd.TIFF_CMT3_ROLLINFO in cmt3.ifd: # only in CSI_* files (raw burst mode)
+  if TiffIfd.TIFF_MAKERNOTE_ROLLINFO in cmt3.ifd: # only in CSI_* files (raw burst mode)
     rollInfoTag = cmt3.ifd[ TiffIfd.TIFF_CMT3_ROLLINFO ]
     #print( rollInfoTag )
     length, current, total = Struct('<%d%s' % (rollInfoTag.length, TiffIfd.tiffTypeStr[rollInfoTag.type-1])).unpack_from( data, cmt3.base+rollInfoTag.value )
@@ -659,14 +791,14 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
     ifd.display()
     
   NT_SENSOR_INFO = namedtuple('sensorInfo','w h lb tb rb bb')
-  sensorInfo = cmt3.ifd[ TiffIfd.TIFF_CMT3_SENSORINFO ]
+  sensorInfo = cmt3.ifd[ TiffIfd.TIFF_MAKERNOTE_SENSORINFO ]
   _, SensorWidth, SensorHeight, _, _, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder, *_ = Struct('<%d%s' % (sensorInfo.length, TiffIfd.tiffTypeStr[sensorInfo.type-1])).unpack_from( data, cmt3.base+sensorInfo.value )
   sensorInfo = NT_SENSOR_INFO( SensorWidth, SensorHeight, SensorLeftBorder, SensorTopBorder, SensorRightBorder, SensorBottomBorder )
   if options.verbose>1:
     print(sensorInfo)
   
   #get camera settings to find if it is a craw (lossy) or raw (lossless)
-  cameraSettings = cmt3.ifd[ TiffIfd.TIFF_CMT3_CAMERASETTINGS ]
+  cameraSettings = cmt3.ifd[ TiffIfd.TIFF_MAKERNOTE_CAMERASETTINGS ]
   cameraSettingsList = Struct('<%d%s' % (cameraSettings.length, TiffIfd.tiffTypeStr[cameraSettings.type-1])).unpack_from( data, cmt3.base+cameraSettings.value )
   if options.verbose>0:
     if cameraSettingsList[3]==TiffIfd.TIFF_CAMERASETTINGS_QUALITY_CRAW:
@@ -677,18 +809,18 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
       print('cameraSettingsList[3]=%d'%cameraSettingsList[3]) 
 
   #get model name and model Id
-  modelId = cmt3.ifd[ TiffIfd.TIFF_CMT3_MODELID ].value 
+  modelId = cmt3.ifd[ TiffIfd.TIFF_MAKERNOTE_MODELID ].value 
   if options.verbose>1:
     print('modelId: 0x%x' % modelId)
 
   cmt1 = getIfd( b'CMT1', None )
-  modelNameEntry = cmt1.ifd[ TiffIfd.TIFF_CMT1_MODEL ]
+  modelNameEntry = cmt1.ifd[ TiffIfd.TIFF_EXIF_Model ]
   modelName = Struct('<%ds' % (modelNameEntry.length-1) ).unpack_from( data, cmt1.base+modelNameEntry.value ) [0]
   if options.verbose>0:
     print(modelName) #use length value (modelEntry[2]) of TIFF entry for model
 
-  if TiffIfd.TIFF_CMT3_DUST_DELETE_DATA in cmt3.ifd:
-    dustDeleteData = cmt3.ifd[ TiffIfd.TIFF_CMT3_DUST_DELETE_DATA ]
+  if TiffIfd.TIFF_MAKERNOTE_DUST_DELETE_DATA in cmt3.ifd:
+    dustDeleteData = cmt3.ifd[ TiffIfd.TIFF_MAKERNOTE_DUST_DELETE_DATA ]
     dddData = data[ cmt3.base+dustDeleteData.value: cmt3.base+dustDeleteData.value+dustDeleteData.length ]
     S_DDD_V1 = Struct('<BBHHHHHHHHHHHBBBBBBBBBB')     # http://lclevy.free.fr/cr2/#ddd
     NT_DDD = namedtuple('ddd', 'version lensinfo av po count focal lensid w h rw rh pitch lpfdist toff boff loff roff y mo d ho mi diff')

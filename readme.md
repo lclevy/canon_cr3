@@ -328,7 +328,7 @@ likely CaNon Codec Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
-- "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (contening several pictures in burst mode)
+- "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
 - "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200 and 250D
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies

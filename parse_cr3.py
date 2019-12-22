@@ -10,6 +10,7 @@ from binascii import hexlify, unhexlify
 from optparse import OptionParser
 from collections import namedtuple, OrderedDict
 
+
 def getShortBE(d, a):
  return unpack('>H',(d)[a:a+2])[0]
 
@@ -25,327 +26,12 @@ def getLongLE(d, a):
 def getLongLongBE(d, a):
  return unpack('>Q',(d)[a:a+8])[0]
 
-class Jpeg:
-  JPEG_SOI  =  0xffd8
-  JPEG_APP1 =  0xffe1
-  JPEG_DHT  =  0xffc4
-  JPEG_DQT  =  0xffdb
-  JPEG_SOF0 =  0xffc0
-  JPEG_SOF3 =  0xffc3
-  JPEG_SOS  =  0xffda
-  JPEG_EOI  =  0xffd9
-
-  def __init__(self, data):
-    self.data = data
-    val = getShortBE(self.data, 0)
-    ptr = 0
-    size = 0
-    while val != Jpeg.JPEG_SOS:
-      #print('%x' % val)
-      if val == Jpeg.JPEG_SOI:
-        pass
-      elif val == Jpeg.JPEG_DHT:
-        size = getShortBE(self.data, ptr+2)
-      elif val == Jpeg.JPEG_SOF0 or val == Jpeg.JPEG_SOF3:  
-        size = getShortBE(self.data, ptr+2)
-        self.bits, self.high, self.wide, self.n_comp = Struct('>BHHB').unpack_from(data, ptr+4)
-        print(self.bits, self.high, self.wide, self.n_comp)
-      #print('size %x' % size)
-      ptr += size+2
-      val = getShortBE(self.data, ptr)  
-
-class Cr2:
-  def __init__(self, data, length, name):
-    self.ifd_list = dict()
-    self.data = data
-    
-    ifd_num = 0
-    #IFD 0 has header
-    self.ifd_list[ ifd_num ] = TiffIfd( data, length, 0, '0', False, True, True )
-    
-    if TiffIfd.TIFF_EXIF in self.ifd_list[ 0 ].ifd:    
-      offset = self.ifd_list[ 0 ].ifd[TiffIfd.TIFF_EXIF].value
-      self.ifd_list[ TiffIfd.TIFF_EXIF ] = TiffIfd( data[offset:], length, offset, '%x' % TiffIfd.TIFF_EXIF, False, False, True )
-    if TiffIfd.TIFF_MAKERNOTE in self.ifd_list[ TiffIfd.TIFF_EXIF ].ifd:    
-      offset = self.ifd_list[ TiffIfd.TIFF_EXIF ].ifd[TiffIfd.TIFF_MAKERNOTE].value
-      self.ifd_list[ TiffIfd.TIFF_MAKERNOTE ] = TiffIfd( data[offset:], length, offset, '%x' % TiffIfd.TIFF_MAKERNOTE, False, False, True )
-    if TiffIfd.TIFF_GPS in self.ifd_list[ 0 ].ifd:    
-      offset = self.ifd_list[ 0 ].ifd[TiffIfd.TIFF_GPS].value
-      self.ifd_list[ TiffIfd.TIFF_GPS ] = TiffIfd( data[offset:], length, offset, '%x' % TiffIfd.TIFF_GPS, False, False, True )
-    #other IFD has no header
-    while self.ifd_list[ ifd_num ].next != 0:
-      next = self.ifd_list[ ifd_num ].next 
-      ifd_num += 1
-      self.ifd_list[ ifd_num ] = TiffIfd( data[next:], length, next, '%d' % ifd_num, False, False, True )
-      
-  def display(self):
-    for key, ifd in self.ifd_list.items():
-      print('0x%x:' % key)
-      ifd.display()
-      
-  def extract_pic0(self, filename): #full size, jpg
-    offset = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageStart ].value
-    length = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageLength ].value      
-    f = open(filename, 'wb')
-    f.write( self.data[offset:offset+length] )
-    f.close()
-
-  def extract_pic1(self, filename): #thumbnail, jpg
-    offset = self.ifd_list[ 1 ].ifd[ TiffIfd.TiffIfd.TIFF_EXIF_ThumbnailOffset ].value
-    length = self.ifd_list[ 1 ].ifd[ TiffIfd.TiffIfd.TIFF_EXIF_ThumbnailLength ].value      
-    f = open(filename, 'wb')
-    f.write( self.data[offset:offset+length] )
-    f.close()
-    
-  def extract_pic2(self, filename): #saved as .ppm, (RGB 16bits, little endian). no WB, no scaling
-    offset = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageStart ].value
-    length = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_PreviewImageLength ].value      
-    width = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_ImageWidth ].value
-    height = self.ifd_list[ 2 ].ifd[ TiffIfd.TIFF_EXIF_ImageHeight ].value
-    out = open(filename, 'w')
-    print ('P3\n%d %d' % (width, height), file=out)
-    print ('%s' % (1<<14), file=out)
-    pic = Struct('<%dH'%(3*width*height)).unpack_from(self.data[offset:offset+length], 0)
-    index = 0
-    for y in range(height):
-      for x in range(width):
-        print ('%4d %4d %4d ' % (pic[index], pic[index+1], pic[index+2]), end='', file=out)
-        index += 3
-      print(file=out)
-    out.close()    
-    return width, height
-  
-  def get_lossless_info(self):
-    offset = self.ifd_list[ 3 ].ifd[ TiffIfd.TIFF_EXIF_StripOffsets ].value
-    length = self.ifd_list[ 3 ].ifd[ TiffIfd.TIFF_EXIF_StripByteCounts ].value    
-    self.jpg = Jpeg( self.data[offset:offset+length] )
-    
-  def get_model_id(self):
-    return self.ifd_list[ TiffIfd.TIFF_MAKERNOTE ].ifd[ TiffIfd.TIFF_MAKERNOTE_MODELID ].value
-    
-  def get_model_name(self):
-    offset = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_Model ].value
-    length = self.ifd_list[ 0 ].ifd[ TiffIfd.TIFF_EXIF_Model ].length
-    return self.data[ offset: offset+length-1 ]
-    
-class TiffIfd:
-  #class for Tiff IFD (Canon kind)
-  
-  TIFF_EXIF_Model = 0x110
-  TIFF_EXIF_PreviewImageStart = 0x111
-  TIFF_EXIF_PreviewImageLength = 0x117
-  TIFF_EXIF_ImageHeight = 0x101
-  TIFF_EXIF_ImageWidth = 0x100
-  TIFF_EXIF_ThumbnailOffset = 0x201
-  TIFF_EXIF_ThumbnailLength = 0x202
-  TIFF_EXIF_StripOffsets = 0x111
-  TIFF_EXIF_StripByteCounts = 0x117
-  
-  TIFF_MAKERNOTE_SENSORINFO = 0xe0  
-  TIFF_MAKERNOTE_CAMERASETTINGS = 1
-  TIFF_MAKERNOTE_DUST_DELETE_DATA = 0x97
-  TIFF_MAKERNOTE_ROLLINFO = 0x403f
-  TIFF_CAMERASETTINGS_QUALITY_RAW = 4
-  TIFF_CAMERASETTINGS_QUALITY_CRAW = 7
-  TIFF_MAKERNOTE_MODELID = 0x10
-  
-  TIFF_MAKERNOTE = 0x927c
-  TIFF_EXIF = 0x8769
-  TIFF_GPS = 0x8825
-  TIFF_CANON_VIGNETTING_CORR2 = 0x4016
-    
-  TIFF_TYPE_UCHAR = 1  
-  TIFF_TYPE_STRING = 2
-  TIFF_TYPE_USHORT = 3
-  TIFF_TYPE_ULONG =  4 
-  TIFF_TYPE_URATIONAL =  5 
-  TIFF_TYPE_CHAR =  6 
-  TIFF_TYPE_BYTESEQ = 7
-  TIFF_TYPE_SHORT = 8 
-  TIFF_TYPE_LONG =  9 
-  TIFF_TYPE_RATIONAL =  10 
-  TIFF_TYPE_FLOAT4 =  11 
-  TIFF_TYPE_FLOAT8 =  12   
-
-  tiffTypeLen = [ 1, 1, 2, 4, 4+4, 1, 1, 2, 4, 4+4, 4, 8 ]
-  tiffTypeStr = [ 'B', 's', 'H', 'L', 'L', 'c', 'c', 'h', 'l', 'l', 'l', 'q' ] #use with caution, might not always work. Will not with rational
-  tiffTypeNames = [ "uchar", "string", "ushort", "ulong", "urational", "char", "byteseq", "short", "long", "rational", "float4", "float8" ]
-
-  S_IFD_ENTRY_REC = Struct('<HHLL')  
-  NT_IFD_ENTRY = namedtuple('ifd_entry', 'offset tag type length value')
-
-  def __init__(self, data, length, base, name, display=True, has_header=True, get_next=False):
-    self.data = data
-    self.length = length
-    self.base = base
-    self.name = name
-    self.ifd = dict()
-    self.next = 0
-
-    if not options.quiet and display:
-      print( "{0}: (0x{1:x})".format(name, length) )
-    if has_header:  
-      #4949 2A00 08000000  
-      self.order = data[0:2] #for a future MM compatible version ?
-      if self.order!=b'II': #should raise exception
-        print('order!=II')
-        return
-      marker = getShortLE( data, 2 )
-      if marker != 0x2a:
-        print('marker != 0x2a')
-        return
-      ptr = getShortLE( data, 4 ) #8
-    else:
-      ptr = 0    
-      
-    n = getShortLE( data, ptr )
-    ptr = ptr + 2
-    for i in range(n):
-      tag, type, length, val = TiffIfd.S_IFD_ENTRY_REC.unpack_from( data[ptr:ptr+TiffIfd.S_IFD_ENTRY_REC.size] )
-      ifd_entry = TiffIfd.NT_IFD_ENTRY( self.base+ptr, tag, type, length, val )
-      self.ifd[ tag ] = ifd_entry  
-      ptr = ptr + TiffIfd.S_IFD_ENTRY_REC.size
-      if self.base+ptr > self.base+self.length:
-        print('base+ptr > base+length !')
-    if get_next:
-      self.next =  getLongLE( data, ptr )   
-
-  def print_entry(self, type, length, val, max):
-    #we should verify this is access after self.base+self.length in self.data
-    typeLen = TiffIfd.tiffTypeLen[type-1] 
-    data2 = self.data[ val: val+min(length,max)*typeLen ]
-    if type == TiffIfd.TIFF_TYPE_UCHAR or type == TiffIfd.TIFF_TYPE_STRING:
-      if length < 5:
-        print('%x'%val)
-      else:  
-        zero = data2.find(b'\x00')
-        if zero!=-1:
-          data2 = self.data[ val: val+zero ]
-        print(data2)
-    elif type == TiffIfd.TIFF_TYPE_USHORT:
-      if length == 1:
-        print('%hu'%val)
-      else:
-        for i in range(0, min(length,max)*typeLen, typeLen):
-          print( '%hu '%( getShortLE(data2, i) ), end='' )
-        if length>max:
-          print('...')
-        else:
-          print()      
-    elif type == TiffIfd.TIFF_TYPE_ULONG:
-      if length == 1:
-        print('%lu'%val)
-      else:
-        for i in range(0, min(length,max)*typeLen, typeLen):
-          print( '%lu '%( getLongLE(data2, i) ), end='' )
-        if length>max:
-          print('...')
-        else:
-          print()  
-    elif type == TiffIfd.TIFF_TYPE_BYTESEQ:
-      if length < 5:
-        print()    
-      else:
-        if length>max:
-          print(hexlify(data2), '...')
-        else:
-          print(hexlify(data2))
-    elif type == TiffIfd.TIFF_TYPE_URATIONAL:
-      print('%lu / %lu' % ( getLongLE(data2, 0), getLongLE(data2, 4) ) )
-    elif type == TiffIfd.TIFF_TYPE_URATIONAL:
-      print('%ld / %ld' % ( getLongLE(data2, 0), getLongLE(data2, 4) ) )
-    else:
-      print()  
-  
-  def display( self, depth=0):
-    for entry in self.ifd.values():
-      print( "     %s 0x%06lx %5d/0x%-4x %9s(%d)*%-6ld %9lu/0x%-lx, " % (depth*'  ', entry.offset, entry.tag , entry.tag, TiffIfd.tiffTypeNames[entry.type-1],entry.type,entry.length,entry.value,entry.value), end='' )
-      self.print_entry( entry.type, entry.length, entry.value, 20)
-
-class Ctmd:
-  S_CTMD_INDEX_HEADER = Struct('>LLL')
-  S_CTMD_INDEX_ENTRY = Struct('>LL')
-  NT_CTMD_INDEX_ENTRY = namedtuple('ctmd_index_entry', 'type size')
-
-  def __init__(self, data, length, base, name): #parse the index, common to all ctmd in mdat if more than one (rolls)
-    self.index_list = []
-    _, _, nb = Ctmd.S_CTMD_INDEX_HEADER.unpack_from( data, 0)
-    for i in range(nb):
-      type, size = Ctmd.S_CTMD_INDEX_ENTRY.unpack_from( data, Ctmd.S_CTMD_INDEX_HEADER.size + i*Ctmd.S_CTMD_INDEX_ENTRY.size)
-      entry = Ctmd.NT_CTMD_INDEX_ENTRY( type, size )
-      self.index_list.append( entry )
-
-  S_CTMD_RECORD_HEADER = Struct('<LHBBHH')  
-  NT_CTMD_RECORD = namedtuple('ctmd_record', 'size type offset content')
-  CTMD_TIFF_TYPES = [ 7, 8, 9 ]
-  S_CTMD_TIFF_HEADER = Struct('<LL')  #record size, tag id
-
-  CTMD_TYPE_TIMESTAMP = 1
-  S_CTMD_TIMESTAMP = Struct('<HHBBBBBB')
-  NT_CTMD_TIMESTAMP = namedtuple('ctmd_timestamp', 'y mo d h m s ms')
-  CTMD_TYPE_FOCAL = 4
-  S_CTMD_FOCAL = Struct('<HH')
-  NT_CTMD_FOCAL = namedtuple('ctmd_focal', 'num denum')
-  CTMD_TYPE_EXPOSURE = 5
-  S_CTMD_EXPOSURE = Struct('<HHHHL')
-  NT_CTMD_EXPOSURE = namedtuple('ctmd_exposure', 'f_num f_denum expo_num expo_denum iso')
-
-  def parse(self, data ):
-    self.ctmd_list = OrderedDict()
-    pic_num = 0
-    for file_offset, ctmd_size in zip( cr3['trak4'][b'co64'], cr3['trak4'][b'stsz'] ): #for all pictures in roll
-      ctmd_data = data[ file_offset: file_offset+ctmd_size ]  
-      ctmd_offset = 0
-      ctmd_records = dict()
-      for type, size in self.index_list: #contains type and size
-        ctmd_record = ctmd_data[ ctmd_offset: ctmd_offset+size ]
-        record_size, record_type, _, _, _, _ = Ctmd.S_CTMD_RECORD_HEADER.unpack_from( ctmd_record, 0)
-        if record_size!=size or record_type!=type:
-          print('warning CMDT type:%d/%d size:0x%x/0x%x' % (type, record_type, size, record_size ) )
-        if record_type in Ctmd.CTMD_TIFF_TYPES:
-          record_offset = Ctmd.S_CTMD_RECORD_HEADER.size #inside the record
-          ctmd_tiff = dict()
-          while record_offset < record_size:
-            payload_size, payload_tag = Ctmd.S_CTMD_TIFF_HEADER.unpack_from( ctmd_record, record_offset )
-            tiff = TiffIfd( ctmd_record[ record_offset+Ctmd.S_CTMD_TIFF_HEADER.size: ], payload_size, file_offset+ctmd_offset+record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, b'CTMD%d_0x%x'%(record_type, payload_tag), False) 
-            ctmd_tiff[ payload_tag ] =  (file_offset+ctmd_offset+record_offset, payload_size, payload_tag, (record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, tiff) )  
-            record_offset += payload_size
-          ctmd_records[type] = Ctmd.NT_CTMD_RECORD(size, type, file_offset+ctmd_offset, ctmd_tiff)  #store context and TIFF entries		
-        else:
-          if record_type == Ctmd.CTMD_TYPE_TIMESTAMP:
-            _, y, mo, d, h, m, s, ms = Ctmd.S_CTMD_TIMESTAMP.unpack_from( ctmd_record, Ctmd.S_CTMD_RECORD_HEADER.size )
-            ctmd_records[type] = Ctmd.NT_CTMD_RECORD( size, type, file_offset+ctmd_offset, Ctmd.NT_CTMD_TIMESTAMP( y, mo, d, h, m, s, ms ) )
-          elif record_type == Ctmd.CTMD_TYPE_EXPOSURE:
-            f_num, f_denum, expo_num, expo_denum, iso = Ctmd.S_CTMD_EXPOSURE.unpack_from( ctmd_record, Ctmd.S_CTMD_RECORD_HEADER.size )
-            ctmd_records[type] = Ctmd.NT_CTMD_RECORD( size, type, file_offset+ctmd_offset, Ctmd.NT_CTMD_EXPOSURE ( f_num, f_denum, expo_num, expo_denum, iso ) )   
-          elif record_type == Ctmd.CTMD_TYPE_FOCAL:
-            num, denum = Ctmd.S_CTMD_FOCAL.unpack_from( ctmd_record, Ctmd.S_CTMD_RECORD_HEADER.size )
-            ctmd_records[type] = Ctmd.NT_CTMD_RECORD( size, type, file_offset+ctmd_offset, Ctmd.NT_CTMD_FOCAL ( num, denum ) )
-          else:        
-            ctmd_records[type] = Ctmd.NT_CTMD_RECORD( size, type, file_offset+ctmd_offset, None) #do not store content, but type, size and pointer for later processing
-        ctmd_offset += size
-      self.ctmd_list[ pic_num ] =  ctmd_records  
-      pic_num += 1      
-    return self.ctmd_list	
-
-  def display(self):
-    for pic_num, ctmd in self.ctmd_list.items():
-      #generic way to list CTMD entries
-      for ctmd_record in ctmd.values():
-        print('offset=0x%x, size=%d, type=%d: ' % (ctmd_record.offset, ctmd_record.size, ctmd_record.type ), end='' ) 
-        if ctmd_record.type in Ctmd.CTMD_TIFF_TYPES: #TIFF
-          print('list')
-          for subdir_tag, tiff_subdir in ctmd_record.content.items():
-            offset, payload_size, payload_tag, entries = tiff_subdir
-            print('  0x%04x: size=%d tag=0x%x offset_base=%x' % (offset, payload_size, payload_tag, entries[0]) )
-            entries[1].display( 1 )  
-        else: #not TIFF
-          if ctmd_record.type in [ Ctmd.CTMD_TYPE_TIMESTAMP, Ctmd.CTMD_TYPE_EXPOSURE, Ctmd.CTMD_TYPE_FOCAL ]:
-            print( ctmd_record.content )
-          else:
-            ctmd_data = data[ ctmd_record.offset: ctmd_record.offset+ctmd_record.size] #we do not know how to parse it
-            print('%s' % hexlify(ctmd_data) )
-      
+from CRaw3.TiffIfd import TiffIfd
+from CRaw3.Jpeg import Jpeg      
+from CRaw3.Cr2 import Cr2      
+from CRaw3.Crx import Crx
+from CRaw3.Ctmd import Ctmd      
+   
 
 def getIfd(name, details): # details is dict with 'picture', 'type', 'tag'
   if name in { b'CMT1', b'CMT2', b'CMT3', b'CMT4', b'CMTA' }:
@@ -370,7 +56,8 @@ def getIfd(name, details): # details is dict with 'picture', 'type', 'tag'
 def ctmd(d, l, depth, base, name):
   if not options.quiet:
     print('CTMD: (0x{:x})'.format(l) ) 
-  _ctmd = Ctmd(d, l, base, name) #parse index
+  _ctmd = Ctmd(d, l, base, name ) #parse index
+
   if options.verbose>0:
     print('     %s %d' % (depth*'  ',len(_ctmd.index_list)))
   for i in _ctmd.index_list:
@@ -520,98 +207,7 @@ def cnop(b, d, l, depth):
     print( "CNOP: (0x{0:x})".format(l) )
   return
 
-    
-CRX_HDR_LINE_LEN = 12  
 
-def parse_ff03(d, total):
-  offset = 0
-  ff03_list = []
-  while total > 0:
-    v1 = getLongBE( d, offset )
-    if v1!= 0xff030008: 
-      return
-    v2 = getLongBE( d, offset+4 ) 
-    v3 = getLongBE( d, offset+8 )
-    c     = (v3 & 0xf0000000)>>28
-    f     = (v3 & 0x08000000)>>27
-    val8  = (v3 & 0x07f80000)>>19
-    val13 = (v3 & 0x0007ffff)
-    #print('    %08x %08x %08x'%(v1,v2,v3))
-    #print('    %08x %08x %d %x %02x %05x'%(v1,v2,c,f,val8,val13))
-    total = total - v2
-    offset = offset + CRX_HDR_LINE_LEN
-    ff03_list.append( (v2,c,f,val8,val13) )
-  return offset, ff03_list  
-
-def parse_ff02(d, total):
-  offset = 0
-  ff02_list = []
-  while total > 0:    
-    v1 = getLongBE( d, offset )
-    if v1!= 0xff020008: 
-      return
-    _ff02 = dict()  
-    v2 = getLongBE( d, offset+4 ) #total of next ff03 group
-    v3 = getLongBE( d, offset+8 )
-    c     = (v3 & 0xf0000000)>>28
-    f     = (v3 & 0x08000000)>>27
-    val2  = (v3 & 0x06000000)>>25
-    res     = (v3 & 0x01ffffff)
-    #print('  %08x %08x %08x'%(v1,v2,v3))
-    #print('  %08x %08x %d %x %x %07x'%(v1,v2,c,f,val2, r))
-    total = total - v2
-    offset = offset + CRX_HDR_LINE_LEN
-    delta, r = parse_ff03(d[offset:], v2)
-    ff02_list.append( (v2,c,f,val2,res,r) )
-    offset = offset + delta
-  return offset, ff02_list  
-  
-#header size can be retrieved from CMP1     
-def parse_crx(d, base):
-  offset = 0 #offset inside header
-  dataOffset = 0
-  v1 = getLongBE( d, offset )
-  ff01_list = []  
-  while v1 == 0xff010008: 
-    #print('offset=%x'%offset)
-    v2 = getLongBE( d, offset+4 ) #total of next ff02 group
-    v3 = getLongBE( d, offset+8 )
-    i = (v3 & 0xff0000)>>16
-    #print('  %08x %08x %08x'%(v1,v2,v3))
-    offset = offset + CRX_HDR_LINE_LEN
-    delta, r = parse_ff02(d[offset:], v2)
-    ff01_list.append( (v2,i,r) )
-    #print('delta %x'%delta)
-    offset = offset + delta
-    v1 = getLongBE( d, offset )
-  #print('%x' % offset)
-  if len(ff01_list)<2:
-    dataOffset = offset + 4
-  else:  
-    dataOffset = offset
-  for ff01 in ff01_list:
-    if options.verbose>1:
-      print('ff01 %08x %d ' % (ff01[0], ff01[1]) )
-    in_ff01 = 0
-    for ff02 in ff01[2]: #r
-      if options.verbose>1:
-        print('  ff02 %08x %d %x %x %07x' % (ff02[0], ff02[1], ff02[2],ff02[3],ff02[4]) )
-      in_ff02 = 0
-      for ff03 in ff02[5]: #r
-        if options.verbose>1:
-          print('    ff03 %08x %d %x %02x %05x' % (ff03[0], ff03[1], ff03[2], ff03[3], ff03[4]) )
-          print('      %s (%x)' % (hexlify(d[dataOffset:dataOffset+32]), base+dataOffset) )
-        dataOffset = dataOffset + ff03[0]
-        in_ff02 = in_ff02 + ff03[0]
-      if in_ff02 != ff02[0]:
-        print('in_ff02 != ff02[0], %x != %x' % (in_ff02, ff02[0]) )      
-      in_ff01 = in_ff01 + ff02[0]
-    if in_ff01 != ff01[0]:
-      print('in_ff01 != ff01[0], %x != %x' % (in_ff01, ff01[0]) )
-
-    if options.verbose>1:
-      print('end: 0x%x' % (dataOffset+base))    
-  return dataOffset+base, dataOffset
   
 tags = { b'ftyp':ftyp, b'moov':moov, b'uuid':uuid, b'stsz':stsz, b'co64':co64, b'PRVW':prvw, b'CTBO':ctbo, b'THMB':thmb, b'CNCV':cncv,
          b'CDI1':cdi1, b'IAD1':iad1, b'CMP1':cmp1, b'CRAW':craw, b'CNOP':cnop }  
@@ -700,6 +296,8 @@ parser.add_option("-m", "--model", action="store_true", dest="model", help="disp
 parser.add_option("-q", "--quiet", action="store_true", dest="quiet", help="do not display CR3 tree", default=False)
 parser.add_option("-c", "--ctmd", action="store_true", dest="display_ctmd", help="display CTMD", default=False)
 parser.add_option("-p", "--picture", type="int", dest="pic_num", help="specific picture, default is 0", default=0)
+
+
 (options, args) = parser.parse_args()
 
 if options.verbose>0:
@@ -765,6 +363,9 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
       f.write( data[ offset+S_PRVW.size: offset+S_PRVW.size+jpegSize ] )
       f.close()
 
+  cr3[b'CTMD'].offsets = cr3['trak4'][b'co64']
+  cr3[b'CTMD'].sizes = cr3['trak4'][b'stsz']
+  
   _ctmd = cr3[b'CTMD']  
   _ctmd.parse( data )  
   if options.display_ctmd:
@@ -783,7 +384,7 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
 
   cmt3 = getIfd( b'CMT3', None )
   if TiffIfd.TIFF_MAKERNOTE_ROLLINFO in cmt3.ifd: # only in CSI_* files (raw burst mode)
-    rollInfoTag = cmt3.ifd[ TiffIfd.TIFF_CMT3_ROLLINFO ]
+    rollInfoTag = cmt3.ifd[ TiffIfd.TIFF_MAKERNOTE_ROLLINFO ]
     #print( rollInfoTag )
     length, current, total = Struct('<%d%s' % (rollInfoTag.length, TiffIfd.tiffTypeStr[rollInfoTag.type-1])).unpack_from( data, cmt3.base+rollInfoTag.value )
     #exif IFD for current picture in the roll
@@ -851,19 +452,24 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
         print( t, cr3[ t ][b'CMP1'] )
 
 
-  #to check for additionnal crx (raw burst roll). oops stored in stsz and co64
-  '''
+  #crx header parsing
   if 'trak5' in cr3: #end of main CRX data
-    crx_offset = cr3['trak5'][b'co64']+cr3['trak5'][b'stsz'][0]
+    trak = 'trak5'
   else:
-    crx_offset = cr3['trak3'][b'co64']+cr3['trak3'][b'stsz'][0]
-  crx_num = 0  
-  while crx_offset < cr3['trak4'][b'co64']: #ends at CTMD 
-    print('additionnal crx#%d at 0x%x, ' % (crx_num, crx_offset), end='')
-    crx_offset, crx_size = parse_crx( data[crx_offset:], crx_offset)
-    print('size= 0x%x' % crx_size)
-    crx_num += 1
-    '''
+    trak = 'trak3'
+  big_crx = Crx( cr3[trak][b'co64'][0], data[ cr3[trak][b'co64'][0]:cr3[trak][b'co64'][0]+cr3[trak][b'stsz'][0] ], cr3[trak][b'CMP1'] )
+  big_crx.parse_tile()
+  if options.verbose>1:
+    big_crx.display_tiles()
+    big_crx.display_planes()    
+    big_crx.display_subbands()    
+
+  small_crx = Crx( cr3['trak2'][b'co64'][0], data[ cr3['trak2'][b'co64'][0]:cr3['trak2'][b'co64'][0]+cr3['trak2'][b'stsz'][0] ], cr3['trak2'][b'CMP1'] )
+  small_crx.parse_tile()
+  if options.verbose>1:
+    small_crx.display_tiles()
+    small_crx.display_planes()    
+    small_crx.display_subbands()    
 
 
 else:

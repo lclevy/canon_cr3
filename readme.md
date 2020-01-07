@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 14nov2019 
+version: 7jan2020 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -8,7 +8,9 @@ by Laurent Clévy (@Lorenzo2472)
 
 Requested samples (via lclevy at free dot fr + dropbox or similar, please):
 
-- pictures in raw and black&white, as CRX handles 1 plane/8bits data
+- pictures in raw and black&white, as CRX codec handles 1 plane/8bits data
+
+- raw, c-raw or heif pictures from 1DX Mark III
 
   
 
@@ -480,10 +482,10 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 | 28     | long  | 1    | tile height                             |
 | 32     | bytes | 4    | bits per sample - usually 14 |
 | 33 | bits | 4 | number of planes - 4 for RGGB |
-| 33+4bits | bits | 4 | CFA layout - only valid where number of planes > 1. 0:RGGB, 1:GRBG, 2:GBRG, 3:BGGR |
-| 34 | bits | 4 | encoding type - only 1 or 3 |
-| 34+4bits | bits | 4 | number of wavelet levels (set for wavelet compressed image). |
-| 35 | bit | 1 | 1 = image has more than one tile horizontally  (set for wavelet compressed image). 1 for craw big, 0 otherwise |
+| 33+4bits | bits | 4 | CFA layout - only valid where number of planes > 1. 0:RGGB, 1:GRBG, 2:GBRG, 3:BGGR. Seen 1 for small, 0 for big (raw or craw) |
+| 34 | bits | 4 | encoding type (only 1 or 3 ?) Seen 0 for raw and craw |
+| 34+4bits | bits | 4 | number of wavelet levels (set for wavelet compressed image). 0 for raw, 3 for craw |
+| 35 | bit | 1 | 1 = image has more than one tile horizontally  (set for wavelet compressed image). Seen 1 for craw big, 0 otherwise |
 | 35+1bit | bit | 1 | 1 = image has more than one tile vertically (set for wavelet compressed image). Always 0 |
 | 35+2bits | bits | 6 | unused in current version - always 0 |
 | 36     | long  | 1    | mdat track header size (mdat bitstream data starts following that header). raw small = 0x70, raw big   = 0xd8, craw small = 0x220, craw big   = 0x438 |
@@ -1070,31 +1072,21 @@ This Canon patent https://patents.google.com/patent/US20160323602A1/en describes
 *"FIG. 7A explains an example in which wavelet transform is executed three times. LL**1**, HL**1**, LH**1**, and HH**1** represent the subbands of decomposition level **1**, LL**2**, HL**2**, LH**2**, and HH**2** represent the subbands of decomposition level **2**, and LL**3**, HL**3**, LH**3**, and HH**3** represent the subbands of decomposition level **3**.*
 *Note that a transform target of wavelet transform from the second time is subband LL obtained by immediately preceding wavelet transform, so subbands LL**1** and LL**2** are omitted, and subband LL obtained by last wavelet transform remains. Also, the horizontal and vertical resolutions of, for example, HL**2** are half those of HL**1**. Subband LH indicates a horizontal-direction frequency characteristic (a horizontal-direction component) of a local region to which wavelet transform is applied. Likewise, subband HL indicates a* *vertical-direction frequency characteristic (a vertical-direction component), and subband HH indicates an oblique-direction frequency characteristic (an oblique-direction component). Subband LL is a* *low-frequency component. An integer-type 5/3 filter is used in wavelet transform of this embodiment, but the present invention is not limited to this. It is also possible to use another wavelet transform filter* such as a real-type 9/7 filter used in JPEG2000 (ISO/IEC15444|ITU-T T. 800) as an international standard. In addition, the processing unit of wavelet transform can be either a line or image."
 
-It is very likely the ten ff03 sections of lossy cr3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, LH1 and HH1, and lossless cr3 unique ff03 sections is Adapted Rice coding only (LLx).
+Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, LH1 and HH1. 
+
+
 
 ![FIGS. 7A and 7B are views for explaining the concept of subband division by wavelet transform, and an example of a code to be generated](https://patentimages.storage.googleapis.com/a5/2f/24/6f36c0f3fdfe5f/US20160323602A1-20161103-D00007.png)
 
-*"The procedure of Golomb-Rice coding is as follows"*
+Lossless CR3 (and LL3) subbands are encoded using adapting Golomb-Rice, run length mode and Median Edge Detection prediction, similarly to JPEG-LS (ITU T.87).
 
-Each time, the first ff03 section is starting with b'00000000002', in bits 00000000 00000000 00000000 00000000 00000000 001, which is 42 in unary coding
+JPEG-LS:
 
-for canon_eos_m50_02.cr3, 
+![jpeg_ls_encoder.png](I:\dev\canon_cr3\jpeg_ls_encoder.png)
 
-small image, 
+in Canon patent:
 
-first LL data over 4 (for Red data ?) is b'00000000002027a5000004000f03e0347565417b810ded0ef68019d59085af6a', which decodes to:
-
-00000000 00000000 00000000 00000000 00000000 001 = 42
-
-00000 00100111 10100101 = 10149 (next 21th bits)
-
-for second FF03 (Green1?) : b'00000000002028ff00000', 
-
-42 and 10495 (00000 00101000 11111111)
-
-...
-
-![](https://patentimages.storage.googleapis.com/e0/58/28/42b05d26642a26/US20160323602A1-20161103-D00009.png)
+![https://patentimages.storage.googleapis.com/31/86/a3/30120d794684a5/US20160323602A1-20161103-D00000.png](https://patentimages.storage.googleapis.com/31/86/a3/30120d794684a5/US20160323602A1-20161103-D00000.png)
 
 
 
@@ -1106,6 +1098,8 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 
 - ISO base media file format : [ISO/IEC 14496-12:2015](https://mpeg.chiariglione.org/standards/mpeg-4/iso-base-media-file-format/text-isoiec-14496-12-5th-edition "ISO IEC 14496-12:2015")
 - MP4 file format : [ISO/IEC 14496-14:2003](https://mpeg.chiariglione.org/standards/mpeg-4/mp4-file-format "ISO/IEC 14496-14:2003")
+- ITU-T Rec T.87 / ISO 14495-1 (JPEG-LS, 1998) : https://www.itu.int/rec/T-REC-T.87/en
+- ITU-T Rec T.800 / ISO 15444 (JPEG 2000, 1996) : https://www.itu.int/rec/T-REC-T.800-201511-S/en
 - [ISO 14496-1 Media Format](http://xhelmboyx.tripod.com/formats/mp4-layout.txt "ISO 14496-1 Media Format")
 - Software support:
    - Canon DPP 4.8.20 supports M50 CR3: [DPP](http://support-sg.canon-asia.com/contents/SG/EN/0200544802.html "DPP")
@@ -1131,6 +1125,7 @@ for second FF03 (Green1?) : b'00000000002028ff00000',
 | 0x00000811 | EOS M6 Mark II  | 08/2019 | APS-C | CMOS |Digic 8 |
 | 0x80000437 | EOS 90D | 08/2019 | APS-C | CMOS |Digic 8 |
 | 0x00000812 | EOS M200 | 09/2019 | APS-C | CMOS |Digic 8 |
+| 0x80000428 | EOS 1DX Mark III | 01/2020 | FF | CMOS |Digic X |
 
 ## Samples 
 

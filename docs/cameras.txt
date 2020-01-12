@@ -9,3 +9,4 @@ modelId, name, release, size, technology, processor
 0x00000811, EOS M6 Mark II, 08/2019, APS-C, CMOS, Digic 8
 0x80000437, EOS 90D, 08/2019, APS-C, CMOS, Digic 8
 0x00000812, EOS M200, 09/2019, APS-C, CMOS, Digic 8
+0x80000428, EOS 1DX Mark III, 01/2020, FF, CMOS, Digic X

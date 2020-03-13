@@ -146,23 +146,24 @@ Properties are numbered inside 'ipco' container, starting with 1. Properties #1 
 
 
 
-### References documents
+### Reference documents
 
 - ISO/IEC 14496-12 (ISO Base media file format) : https://mpeg.chiariglione.org/standards/mpeg-4/iso-base-media-file-format/text-isoiec-14496-12-5th-edition
 
 
 - ISO/IEC 23008-12:2017: HEIF : https://standards.iso.org/ittf/PubliclyAvailableStandards/c066067_ISO_IEC_23008-12_2017.zip
 
+- 
+  Nokia HEIF site:  https://nokiatech.github.io/heif/technical.html
 
-
-
-https://nokiatech.github.io/heif/technical.html
 
 ### Other links
 
-Apple WWDC 2017 HEIF (jun 2017) : https://developer.apple.com/videos/play/wwdc2017/513/
+- Apple WWDC 2017 HEIF (jun 2017) : https://developer.apple.com/videos/play/wwdc2017/513/
 
-Monkey takes a .heic (oct 2017): http://cheeky4n6monkey.blogspot.com/2017/10/monkey-takes-heic.html
+
+- Monkey takes a .heic (oct 2017): http://cheeky4n6monkey.blogspot.com/2017/10/monkey-takes-heic.html
+
 
 
 

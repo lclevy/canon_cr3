@@ -163,7 +163,7 @@ Properties are numbered inside 'ipco' container, starting with 1. Properties #1 
 
 
 - Monkey takes a .heic (oct 2017): http://cheeky4n6monkey.blogspot.com/2017/10/monkey-takes-heic.html
-
+- Exiftool, Quicktime, HEVCConfig tag : https://exiftool.org/TagNames/QuickTime.html#HEVCConfig
 
 
 

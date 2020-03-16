@@ -2,7 +2,7 @@
 
 # Canon High Efficiency Image File format
 
-13mar2020
+16mar2020
 
 
 
@@ -14,9 +14,9 @@ Samples:
 
 ### Introduction
 
-Canon released the 1DX Mark III camera with the ability to store HDR pictures in HEIF file format. Such pictures have 10 bits per color depth.
+Canon released the 1DX Mark III camera with the ability to store HDR pictures in HEIF file format. Such pictures have 10 bits per color depth. HDR PQ must be enabled in settings. Filename extension is .HIF
 
-HEIF is based on ISO base file format (ISO/IEC 14496-12) and defined mainly in ISO/IEC 23008-12.
+HEIF container is ISO base file format (ISO/IEC 14496-12) and defined mainly in ISO/IEC 23008-12. Compression details (like HEVCDecoderConfigurationRecord) are defined in ISO/IEC 14496-15
 
 Canon is using the "heix" major type, derived "grid" image for tiling and embeds "Exif" metadata (Exif, GPS and Makernotes) in "mdat" section. 
 
@@ -146,6 +146,14 @@ Properties are numbered inside 'ipco' container, starting with 1. Properties #1 
 
 
 
+### Canon cameras creating HEIF images
+
+| modelId | name | releaseData | sensorSize | sensorType | ImageProc |
+| ------- | ---- | ----------- | ---------- | ---------- | --------- |
+| 0x80000428 | EOS 1DX Mark III | 01/2020 | FF | CMOS |Digic X |
+
+
+
 ### Reference documents
 
 - ISO/IEC 14496-12 (ISO Base media file format) : https://mpeg.chiariglione.org/standards/mpeg-4/iso-base-media-file-format/text-isoiec-14496-12-5th-edition
@@ -153,9 +161,9 @@ Properties are numbered inside 'ipco' container, starting with 1. Properties #1 
 
 - ISO/IEC 23008-12:2017: HEIF : https://standards.iso.org/ittf/PubliclyAvailableStandards/c066067_ISO_IEC_23008-12_2017.zip
 
-- 
-  Nokia HEIF site:  https://nokiatech.github.io/heif/technical.html
+- Nokia HEIF site:  https://nokiatech.github.io/heif/technical.html
 
+  
 
 ### Other links
 

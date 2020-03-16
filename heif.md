@@ -161,6 +161,8 @@ Properties are numbered inside 'ipco' container, starting with 1. Property #1 is
 
 - ISO/IEC 23008-12:2017: HEIF : https://standards.iso.org/ittf/PubliclyAvailableStandards/c066067_ISO_IEC_23008-12_2017.zip
 
+- WD2 of ISO/IEC 14496-15 2013/AMD1 Enhanced support of HEVC and MVC+D : https://mpeg.chiariglione.org/standards/mpeg-4/carriage-nal-unit-structured-video-iso-base-media-file-format/wd-isoiec-14496
+
 - Nokia HEIF site:  https://nokiatech.github.io/heif/technical.html
 
   

@@ -140,9 +140,9 @@ modelId=0x80000428
 
 
 
-Properties are numbered inside 'ipco' container, starting with 1. Properties #1 if 'hvcC', property #2 is 'ispe', ... property #0x10 is 'irot'.
+Properties are numbered inside 'ipco' container, starting with 1. Property #1 is 'hvcC', property #2 is 'ispe', ... property #0x10 is 'irot'.
 
-'ipma' links item and their properties, for example dimension ('ispe') of main image (**0x0001**) is property #5 (ispe: v0 flags:000000 5472x3648) , because of **0x0001**:0x04/0, **0x05**/0, 0x06/1 association list.
+'ipma' links each item with their properties, for example dimension ('ispe') of main image (**0x0001**) is property #5 (ispe: v0 flags:000000 5472x3648) , because of **0x0001**:0x04/0, **0x05**/0, 0x06/1 association list.
 
 
 

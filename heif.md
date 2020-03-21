@@ -1,6 +1,6 @@
 
 
-# Canon High Efficiency Image File format
+# Inside Canon High Efficiency Image File format
 
 16mar2020
 

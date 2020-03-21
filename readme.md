@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 7jan2020 
+version: 21mar2020 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -74,6 +74,8 @@ The CRX codec has been reverse engineered by Alexey Danilchenko, implemented in 
 'craw' means 'compact raw'. The CR3 format also supports dual pixel pictures, sequence of images ("roll" created using Raw burst mode) and movie (CRM).
 
 Roll files (CSI_*.CR3) can contains up to 70 pictures (for M6 Mark II).
+
+Starting with 1DX Mark III, Canon is using another file format for 10 bits HDR pictures : HEIF, see https://github.com/lclevy/canon_cr3/blob/master/heif.md
 
 
 
@@ -1125,6 +1127,8 @@ in Canon patent:
 | 0x80000437 | EOS 90D | 08/2019 | APS-C | CMOS |Digic 8 |
 | 0x00000812 | EOS M200 | 09/2019 | APS-C | CMOS |Digic 8 |
 | 0x80000428 | EOS 1DX Mark III | 01/2020 | FF | CMOS |Digic X |
+|  | 850D / T8i / Kiss X10i | 02/2020 | APS-C | CMOS |Digic 8 |
+
 
 ## Samples 
 

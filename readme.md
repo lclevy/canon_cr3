@@ -1,6 +1,7 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 21mar2020 
+version: 22mar2020 
+#StayAtHome
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -48,6 +49,10 @@ Samples:
     * [CDI1](#cdi1) 
     * [CTMD (Canon Timed Metadata)](#ctmd-(canon-timed-metadata))
     * [MDAT (main data)](#mdat-(main-data))
+  * [HDR](#hdr) tags description
+      * [CISZ](#CISZ)
+      * [IMGD](#IMGD)
+      * [GRID](#GRID)
   * [Crx codec structures](#crx-codec-structures)
     * [Lossless compression (raw)](#lossless-compression-(raw))
     * [Lossy compression (craw)](#lossy-compression-(craw))
@@ -75,7 +80,7 @@ The CRX codec has been reverse engineered by Alexey Danilchenko, implemented in 
 
 Roll files (CSI_*.CR3) can contains up to 70 pictures (for M6 Mark II).
 
-Starting with 1DX Mark III, Canon is using another file format for 10 bits HDR pictures : HEIF, see https://github.com/lclevy/canon_cr3/blob/master/heif.md
+Starting with 1DX Mark III, Canon is using another file format for 10 bits HDR pictures : HEIF, see https://github.com/lclevy/canon_cr3/blob/master/heif.md. CR3 can also store HDR images (with HEVC), see HDR section below.
 
 
 
@@ -311,15 +316,26 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 | ------------ | ------ | ------------------- | --------------------------- |
 | 0            | long   | 1                   | size of this tag            |
 | 4            | char   | 4                   | "THMB"                      |
-| 8            | long   | 1                   | unknown, value = 0          |
+| 8            | byte   | 1                   | likely version, value=0 or 1    |
+| 9            | bytes  | 3                   | likely flags, value = 0          |
+for version 0:
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
 | 12/0xc       | short  | 1                   | width (160)                 |
 | 14/0xe       | short  | 1                   | height (120)                |
 | 16/0x10      | long   | 1                   | jpeg image size (jpeg_size) |
 | 20/0x14      | short   | 1                   | unknown, value = 1 |
 | 22/0x16      | short   | 1                   | unknown, value = 0 |
 | 24/0x18      | byte[] | stored at offset 16 | jpeg_data = ffd8ffdb...ffd9 |
-| 24+jpeg_size | byte[] | ?                   | padding to next 4 bytes?    |
+| **24+jpeg_size** | byte[] | ?                   | padding to next 4 bytes?    |
 |              | long   | 1                   | ?                           |
+for version 1:
+| Offset       | type   | size                | content                     |
+| ------------ | ------ | ------------------- | --------------------------- |
+| 12/0xc       | short  | 1                   | width (160)                 |
+| 14/0xe       | short  | 1                   | height (120)                |
+| 16/0x10      | long   | 1                   | jpeg image size (jpeg_size) |
+
 ### CNCV ### 
 likely CaNon Codec Version
 
@@ -330,6 +346,8 @@ likely CaNon Codec Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
+- "Canon**HEIF001/10**.00.00/**00**.00.00" for HEIF of 1DX Mark III
+- "Canon**CR3_002/00.10**.00/00.00.00" for CR3 of 1DX Mark III
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
 - "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200 and 250D
@@ -823,7 +841,140 @@ offset=0x2565bd8, size=40, type=5: ctmd_exposure(f_num=63, f_denum=10, expo_num=
 ```
 
 
-## crx codec structures
+
+## HDR
+
+CR3 files storing HDR pictures contains HEVC data and metadata. Such files are created by 1DX Mark III.
+
+"THMB" and "CRAW" entries contains Canon specific tags and HEVC metadata.
+
+Example values are for 1DX Mark III.
+
+HDR images in CR3 are stored in 4:2:2 sub-sampling and 10bits, based on 'hvcC' and 'pixi' content.
+
+### Canon HEVC like tags
+
+#### CISZ
+
+likelike "Canon Image SiZe". Inside THMB or CRAW metadata.
+| Offset | type   | size | content                                    |
+| ------ | ------ | ---- | ------------------------------------------ |
+| 0      | long   | 1    | size (0x14)                            |
+| 4      | char[] | 4    | "CISZ" |
+| 8      | byte | 1  | likely version                       |
+| 9      | bytes | 3  | likely flags                       |
+| 12/0xc | short | 1  | width ? (320 for THMB)                       |
+| 16/0x10| short | 1  | height ? (320 for THMB)                    |
+
+
+#### IMGD
+
+IMaGe Data. Inside THMB or CRAW metadata.
+| Offset | type   | size | content                                    |
+| ------ | ------ | ---- | ------------------------------------------ |
+| 0      | long   | 1    | size (N bytes)                            |
+| 4      | char[] | 4    | "IMGD" |
+| 8      | long  | 1  | inner size1 (N-12)                       |
+| 12      | long | 1  | inner size2 (N-16)                       |
+| 16/0x10| bytes[] | 1  | height ? (x0140 for THMB)                    |
+| 16+inner size2|  |   | end of image data                    |
+
+#### GRID
+
+Inside CRAW metadata. To describe number and size of tiles.
+
+| Offset | type   | size | content                                    |
+| ------ | ------ | ---- | ------------------------------------------ |
+| 0      | long   | 1    | size (0x18)                            |
+| 4      | char[] | 4    | "GRID" |
+| 8      | byte | 1  | likely version                       |
+| 9      | bytes | 3  | likely flags                       |
+| 12/0xc | long | 1  | number of tiles (4)     |
+| 16/0x10| long | 1  | unknown, value is 0x00000101                |
+| 20/0x14| short | 1  | width (5472)                    |
+| 22/0x16| short | 1  | height (3648)                    |
+
+For main CRAW image, GRID dimensions are 5472x3648 and CISZ dimensions are 2752x1856, likely for each of 4 tiles. But 2752 x 2 = 5504 (not 5472), and 1856 x 2 = 3712 (not 3648). This must be for black level measurement on the borders.
+
+For THMB (thumbnail) image, THMB dimensions are 320x214, whereas CISZ dimensions are 320x320.
+
+
+
+### Standard HEVC tags
+
+"pixi", "colr" and "hvcC" tags are used, see https://github.com/lclevy/canon_cr3/blob/master/heif.md and related ISO standards.
+
+
+
+### Example
+
+```
+python parse_cr3.py -v 1 93FG5559.CR3
+filesize 0x17dbc58
+00000:ftyp: major_brand=b'crx ', minor_version=1, [b'crx ', b'isom'] (0x18)
+00018:moov: (0xacf0)
+00020:  uuid: b'85c0b687820f11e08111f4ce462b6a48' (0xa310)
+00038:    CNCV: b'CanonCR3_002/00.10.00/00.00.00' (0x26)
+0005e:    b'CCTP' b'000000000000000100000003000000184343445400000000' (0x5c)
+0003a:      b'CCDT' b'00000000000000200000000000000001' (0x18)
+00052:      b'CCDT' b'00000000000000010000000000000002' (0x18)
+0006a:      b'CCDT' b'00000000000000000000000000000003' (0x18)
+000ba:    CTBO: (0x70)
+            1    ad08   10018
+            2   1ad20   66388
+            3   811f0 175aa68
+            4       0       0
+            5       0       0
+0012a:    b'free' b'000000000000' (0xe)
+00138:    b'CMT1': (0x208)
+00340:    b'CMT2': (0x608)
+00948:    b'CMT3': (0x2608)
+02f50:    b'CMT4': (0x808)
+03758:    THMB: version=1, width=320, height=214, size=0x6bc0 (0x6bd8)
+03770:      CISZ: v0 320x320
+03784:      hvcC: (0xaf)
+              v1 4 8000000 b'9d2000000000' lvl=60, seg=0 para=0 chrF=4:2:2 lum=10 chr=10, fr=0, f, n=3
+                type=0xa0 n=1:len=0x16,
+                type=0xa1 n=1:len=0x64,
+                type=0xa2 n=1:len=0x7,
+03833:      colr: b'nclx' 9 10 9 80
+03846:      pixi: 3, 10 10 10
+03856:      b'IMGD' b'00006ac000006abc2601ac18c0f9558525640207952fbd1c' (0x6acc)
+0a330:  b'mvhd' b'00000000da72f103da72f103000000010000000100010000' (0x6c)
+0a39c:  b'trak' b'0000005c746b686400000007da72f103da72f10300000001' (0x2f4)
+0a3a4:    b'tkhd' b'00000007da72f103da72f103000000010000000000000001' (0x5c)
+0a400:    b'mdia' b'000000206d64686400000000da72f103da72f10300000001' (0x290)
+0a408:      b'mdhd' b'00000000da72f103da72f103000000010000000115c70000' (0x20)
+0a428:      hdlr: b'vide' (0x21)
+0a449:      b'minf' b'00000014766d686400000001000000000000000000000024' (0x247)
+0a451:        b'vmhd' b'000000010000000000000000' (0x14)
+0a465:        b'dinf' b'0000001c6472656600000000000000010000000c75726c20' (0x24)
+0a46d:          b'dref' b'00000000000000010000000c75726c2000000001' (0x1c)
+00010:            b'url ' b'00000001' (0xc)
+0a489:        b'stbl' b'000001807374736400000000000000010000017043524157' (0x207)
+0a491:          b'stsd' b'000000000000000100000170435241570000000000000001' (0x180)
+00010:            CRAW: (0x170)
+                    width=5472, height=3648, bits=24
+0005a:              b'HEVC' b'000000010000001847524944000000000000000400000101' (0x10c)
+0000c:                GRID: v0 n=4 5472x3648
+00024:                CISZ: v0 2752x1856
+00038:                hvcC: (0xb1)
+                        v1 24 8000000 b'9d2000000000' lvl=153, seg=0 para=0 chrF=4:2:2 lum=10 chr=10, fr=0, f, n=3
+                          type=0xa0 n=1:len=0x16,
+                          type=0xa1 n=1:len=0x66,
+                          type=0xa2 n=1:len=0x7,
+000e9:                colr: b'nclx' 9 10 9 80
+000fc:                pixi: 3, 10 10 10
+00166:              b'free' b'0000' (0xa)
+0a611:          b'stts' b'00000000000000010000000100000001' (0x18)
+0a629:          b'stsc' b'0000000000000001000000010000000100000001' (0x1c)
+```
+
+
+
+
+
+## CRX codec structures
 
 ### Lossless compression (raw)
 

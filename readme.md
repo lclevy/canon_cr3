@@ -1234,7 +1234,7 @@ Lossless CR3 (and LL3) subbands are encoded using adapting Golomb-Rice, run leng
 
 JPEG-LS:
 
-![jpeg_ls_encoder.png](I:\dev\canon_cr3\jpeg_ls_encoder.png)
+![https://github.com/lclevy/canon_cr3/blob/master/jpeg_ls_encoder.png](https://github.com/lclevy/canon_cr3/blob/master/jpeg_ls_encoder.png)
 
 in Canon patent:
 

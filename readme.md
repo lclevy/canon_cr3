@@ -1,7 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 22mar2020 
-#StayAtHome
+version: 22jul2020 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -9,9 +8,11 @@ by Laurent Clévy (@Lorenzo2472)
 
 Requested samples (via lclevy at free dot fr + dropbox or similar, please):
 
-- pictures in raw and black&white, as CRX codec handles 1 plane/8bits data
+- craw and HEIF for R6
 
-- raw, c-raw or heif pictures from 1DX Mark III
+- craw and HEIF for R5 
+
+  
 
   
 
@@ -346,8 +347,9 @@ likely CaNon Codec Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
-- "Canon**HEIF001/10**.00.00/**00**.00.00" for HEIF of 1DX Mark III
-- "Canon**CR3_002/00.10**.00/00.00.00" for CR3 of 1DX Mark III
+- "Canon**HEIF001/10**.00.00/00.00.00" for HEIF of 1DX Mark III
+- "Canon**CR3_002/00.10**.00/00.00.00" for CR3 of 1DX Mark III (craw)
+- "CanonCR3_001/**00.10**.00/00.00.00" for EOS R5, R6 and 1DX Mark III (raw)
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
 - "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200 and 250D
@@ -976,6 +978,8 @@ filesize 0x17dbc58
 
 ## CRX codec structures
 
+update: the following is true codec version starting with "**CanonCR3_001**". With "CanonCR3_002", tile start with marker 0xff11, plane with 0xff12 and subband with 0xff13 (seen with 1DX Mark III craw).
+
 ### Lossless compression (raw)
 
 (using canon_eos_m50_02.cr3, by analysing hex data)
@@ -1182,19 +1186,19 @@ ff01 005a42e0 1
 ```
 
 ### Tile header format
-| Offset | type  | size | content                                                      |
+| Offset | type  | size | content (codec v1 / v2)                                      |
 | ------ | ----- | ---- | ------------------------------------------------------------ |
-| 0      | short | 1    | ff01                                                         |
-| 2      | short | 1    | 8 (size)                                                     |
-| 4      | long  | 1    | size of ff01 data. One ff01 for small picture, two ff01 for big picture |
+| 0      | short | 1    | ff01 / ff11                                                  |
+| 2      | short | 1    | 8 (size)  / 16              |
+| 4      | long  | 1    | size of ff01 data. v1: One tile for small picture, two tiles for big picture<br />v2 : one tile for small and big pictures |
 | 8      | bits | 4    | counter (0 to 1)                                                    |
 
 ### Plane header format 
-| Offset in bytes | type  | size | content                                                      |
+| Offset in bytes | type  | size | content (v1 / v2)                                            |
 | --------------- | ----- | ---- | ------------------------------------------------------------ |
-| 0               | short | 1    | ff02                                                         |
+| 0               | short | 1    | ff02 / ff12                                                  |
 | 2               | short | 1    | 8 (size)                                                     |
-| 4               | long  | 1    | size of ff02 data. Sum of ff02 data equals size of parent ff01 |
+| 4               | long  | 1    | size of plane data. Sum of plane data equals size of parent tile |
 | 8               | bits  | 4    | counter (always 0 to 3). c for RGGB components               |
 | 8+4bits         | bits  | 1    | supportsPartial flag (f)                                     |
 | 8+5bits         | bits  | 2    | RoundedBits (x)                                              |
@@ -1203,11 +1207,11 @@ last long format is (in bits): ccccfxx0 00000000 00000000 00000000
 
 ### Subband header format (LL3 HL3... HH1)
 
-| Offset  | type  | size  | content                                                      |
+| Offset  | type  | size  | content (v1 / v2)                                            |
 | ------- | ----- | ----- | ------------------------------------------------------------ |
-| 0       | short | 1     | ff03                                                         |
-| 2       | short | 1     | 8 (size)                                                     |
-| 4       | long  | 1     | size of ff03 data. Sum of ff03 data equals size of parent ff02 |
+| 0       | short | 1     | ff03 / ff13                                                  |
+| 2       | short | 1     | 8 (size) / 16                                                |
+| 4       | long  | 1     | size of subband data. Sum of subband data equals size of parent plane data |
 | 8       | bits  | 4     | counter (0 to 9 for lossy/craw, only one for lossless/raw). c |
 | 8+4bits | bits  | 1     | supportsPartial  flag (f)                                    |
 | 8+5bits | bits  | 3+4+1 | quantValue (3 right most bits of byte#8 + 5 left most bits of byte#9). x |
@@ -1278,7 +1282,9 @@ in Canon patent:
 | 0x80000437 | EOS 90D | 08/2019 | APS-C | CMOS |Digic 8 |
 | 0x00000812 | EOS M200 | 09/2019 | APS-C | CMOS |Digic 8 |
 | 0x80000428 | EOS 1DX Mark III | 01/2020 | FF | CMOS |Digic X |
-|  | 850D / T8i / Kiss X10i | 02/2020 | APS-C | CMOS |Digic 8 |
+| 0x80000435 | 850D / T8i / Kiss X10i | 02/2020 | APS-C | CMOS |Digic 8 |
+| 0x80000453 | EOS R6 | 07/2020 | FF | CMOS |DigicX |
+| 0x80000421 | EOS R5 | 07/2020 | FF | CMOS |DigicX |
 
 
 ## Samples 
@@ -1289,6 +1295,4 @@ http://www.photographyblog.com, https://raw.pixls.us/data/Canon, https://www.dpr
 
 http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
 
-### Example Usage
 
-update 19sep2019: canon_cr3 library is obsolete compared to parse_cr3.py

@@ -2,13 +2,14 @@
 
 # Inside Canon High Efficiency Image File format
 
-16mar2020
+9aug2020
 
 
 
 Samples:
 
 - Special thanks to Damon Lynch for 1DX Mark III HEIF and CR3 HDR samples.
+- Thanks to https://github.com/FunMiles for R5 HEIF and CR3 samples
 
 
 
@@ -22,7 +23,7 @@ Canon is using the "heix" major type, derived "grid" image for tiling and embeds
 
 
 
-### Structure
+### Structure (1DX Mark III)
 
 - ftyp (major='heix')
 - meta
@@ -60,7 +61,7 @@ Canon is using the "heix" major type, derived "grid" image for tiling and embeds
 
 
 
-### Example
+### Example (1DX Mark III)
 
 ```
 00000:ftyp: major_brand=b'heix', minor_version=0, [b'mif1', b'heix'] (0x18)
@@ -146,11 +147,117 @@ Properties are numbered inside 'ipco' container, starting with 1. Property #1 is
 
 
 
+### EOS R5
+
+```
+00000:ftyp: major_brand=b'heix', minor_version=0, [b'mif1', b'heix'] (0x18)
+00018:b'meta' b'000000000000002168646c72000000000000000070696374' (0x611)
+00024:  hdlr: b'pict' (0x21)
+00045:  uuid: b'85c0b687820f11e08111f4ce462b6a48' (0x3e)
+0005d:    CNCV: b'CanonHEIF001/10.00.00/00.00.00' (0x26)
+00083:  b'dinf' b'0000001c6472656600000000000000010000000c75726c20' (0x24)
+0008b:    b'dref' b'00000000000000010000000c75726c2000000001' (0x1c)
+00010:      b'url ' b'00000001' (0xc)
+000a7:  pitm: v0, flags:000000 0x0001
+000b5:  b'iinf' b'00000000000b00000015696e666502000000000100006772' (0x10a)
+0009f:    infe: v2, flags:000000 0x0001 0x0000 b'grid'
+000b4:    infe: v2, flags:000001 0x0100 0x0000 b'hvc1'
+000c9:    infe: v2, flags:000001 0x0101 0x0000 b'hvc1'
+000de:    infe: v2, flags:000001 0x0102 0x0000 b'hvc1'
+000f3:    infe: v2, flags:000001 0x0103 0x0000 b'hvc1'
+00108:    infe: v2, flags:000001 0x0104 0x0000 b'hvc1'
+0011d:    infe: v2, flags:000001 0x0105 0x0000 b'hvc1'
+00132:    infe: v2, flags:000000 0x0200 0x0000 b'hvc1'
+00147:    infe: v2, flags:000000 0x0201 0x0000 b'hvc1'
+0015c:    infe: v2, flags:000001 0x0300 0x0000 b'Exif'
+00171:    infe: v2, flags:000001 0x0301 0x0000 b'mime' b'application/rdf+xml\x00\x00'
+001bf:  b'iref' b'000000000000001864696d67000100060100010101020103' (0x5c)
+001a7:    dimg: 0x0001 6 0x100,0x101,0x102,0x103,0x104,0x105,
+001bf:    thmb: id=0x200
+001cd:    thmb: id=0x201
+001db:    cdsc: id=0x300
+001e9:    cdsc: id=0x301
+0021b:  b'iprp' b'000002ec6970636f000000b1687663430124080000009d20' (0x33e)
+00223:    b'ipco' b'000000b1687663430124080000009d200000000099f000fc' (0x2ec)
+0022b:      hvcC: (0xb1)
+              v1 24 8000000 b'9d2000000000' lvl=153, seg=0 para=0 chrF=4:2:2 lum=10 chr=10, fr=0, f, n=3
+                type=0xa0 n=1:len=0x16,
+                type=0xa1 n=1:len=0x66,
+                type=0xa2 n=1:len=0x7,
+002dc:      ispe: v0 flags:000000 4096x1856
+002f0:      colr: b'nclx' 9 10 9 80
+00303:      pixi: 3, 10 10 10
+00313:      ispe: v0 flags:000000 8192x5464
+00327:      b'irot' b'01' (0x9)
+00330:      hvcC: (0xaf)
+              v1 4 8000000 b'9d2000000000' lvl=60, seg=0 para=0 chrF=4:2:2 lum=10 chr=10, fr=0, f, n=3
+                type=0xa0 n=1:len=0x16,
+                type=0xa1 n=1:len=0x64,
+                type=0xa2 n=1:len=0x7,
+003df:      ispe: v0 flags:000000 320x214
+003f3:      colr: b'nclx' 9 10 9 80
+00406:      pixi: 3, 10 10 10
+00416:      b'irot' b'01' (0x9)
+0041f:      hvcC: (0xb0)
+              v1 24 8000000 b'9d2000000000' lvl=120, seg=0 para=0 chrF=4:2:2 lum=10 chr=10, fr=0, f, n=3
+                type=0xa0 n=1:len=0x16,
+                type=0xa1 n=1:len=0x65,
+                type=0xa2 n=1:len=0x7,
+004cf:      ispe: v0 flags:000000 1620x1080
+004e3:      colr: b'nclx' 9 10 9 80
+004f6:      pixi: 3, 10 10 10
+00506:      b'irot' b'01' (0x9)
+0050f:    ipma:
+            0x0001:0x04/0, 0x05/0, 0x06/1,
+            0x0100:0x01/1, 0x02/1, 0x03/1,
+            0x0101:0x01/1, 0x02/1, 0x03/1,
+            0x0102:0x01/1, 0x02/1, 0x03/1,
+            0x0103:0x01/1, 0x02/1, 0x03/1,
+            0x0104:0x01/1, 0x02/1, 0x03/1,
+            0x0105:0x01/1, 0x02/1, 0x03/1,
+            0x0200:0x07/1, 0x08/1, 0x09/1, 0x0a/0, 0x0b/1,
+            0x0201:0x0c/1, 0x0d/1, 0x0e/1, 0x0f/0, 0x10/1,
+00559:  idat: 8192x5464
+00569:  iloc: v1 flags:000000 params:4400 count:11
+          0001 0001 00000000 00000008
+          0100 0000 0007ce00 002d6e18
+          0101 0000 00353c18 002e8284
+          0102 0000 0063be9c 0031a0db
+          0103 0000 00955f77 002ffa46
+          0104 0000 00c559bd 002e2c96
+          0105 0000 00f38653 002b048f
+          0200 0000 00008000 00006821
+          0201 0000 0000f600 0006d7f3
+          0300 0000 00000800 000076fb
+          0301 0000 0000ea00 00000c00
+00629:b'mdat' b'000000000000000000000000000000000000000000000000' (0x11e84b9)
+end of parsing offset: 0x11e8ae2:
+HEIF
+Main 0x0001 at offset 0x000000 (size=0x8) b'grid' (8192x5464)
+Tile 0x0100 at offset 0x07ce00 (size=0x2d6e18) b'hvc1' (4096x1856)
+Tile 0x0101 at offset 0x353c18 (size=0x2e8284) b'hvc1' (4096x1856)
+Tile 0x0102 at offset 0x63be9c (size=0x31a0db) b'hvc1' (4096x1856)
+Tile 0x0103 at offset 0x955f77 (size=0x2ffa46) b'hvc1' (4096x1856)
+Tile 0x0104 at offset 0xc559bd (size=0x2e2c96) b'hvc1' (4096x1856)
+Tile 0x0105 at offset 0xf38653 (size=0x2b048f) b'hvc1' (4096x1856)
+b'Exif' at 0x800 (size=0x76fb)
+b'thmb' id=0x200 at offset 0x008000 (size 0x6821) b'hvc1' (320x214)
+b'thmb' id=0x201 at offset 0x00f600 (size 0x6d7f3) b'hvc1' (1620x1080)
+modelId=0x80000421
+sensorInfo(w=8352, h=5586, lb=144, tb=112, rb=8335, bb=5575)
+```
+
+R5 has 6 tiles (0x100 to 0x105).
+
+
+
 ### Canon cameras creating HEIF images
 
 | modelId | name | releaseData | sensorSize | sensorType | ImageProc |
 | ------- | ---- | ----------- | ---------- | ---------- | --------- |
 | 0x80000428 | EOS 1DX Mark III | 01/2020 | FF | CMOS |Digic X |
+| 0x80000453 | EOS R6 | 07/2020 | FF | CMOS |Digic X |
+| 0x80000421 | EOS R5 | 07/2020 | FF | CMOS |Digic X |
 
 
 

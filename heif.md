@@ -2,14 +2,15 @@
 
 # Inside Canon High Efficiency Image File format
 
-9aug2020
+20aug2020
 
 
 
 Samples:
 
 - Special thanks to Damon Lynch for 1DX Mark III HEIF and CR3 HDR samples.
-- Thanks to https://github.com/FunMiles for R5 HEIF and CR3 samples
+- Thanks to Michel Lesoinne for R5 HEIF and CR3 HDR samples
+- Thanks to Gordon Laing from Cameralabs for R6 HEIF
 
 
 
@@ -249,7 +250,21 @@ sensorInfo(w=8352, h=5586, lb=144, tb=112, rb=8335, bb=5575)
 
 R5 has 6 tiles (0x100 to 0x105).
 
+### EOS R6
 
+```
+HEIF
+Main 0x0001 at offset 0x000000 (size=0x8) b'grid' (5472x3648)
+Tile 0x0100 at offset 0x0e2400 (size=0xe930d) b'hvc1' (2752x1856)
+Tile 0x0101 at offset 0x1cb70d (size=0x185da1) b'hvc1' (2752x1856)
+Tile 0x0102 at offset 0x3514ae (size=0x2fa74b) b'hvc1' (2752x1856)
+Tile 0x0103 at offset 0x64bbf9 (size=0x2febe6) b'hvc1' (2752x1856)
+b'Exif' at 0x600 (size=0x76fb)
+b'thmb' id=0x200 at offset 0x007e00 (size 0xbd76) b'hvc1' (320x214)
+b'thmb' id=0x201 at offset 0x014800 (size 0xcdaaa) b'hvc1' (1620x1080)
+modelId=0x80000453
+sensorInfo(w=5568, h=3708, lb=84, tb=50, rb=5555, bb=3697)
+```
 
 ### Canon cameras creating HEIF images
 

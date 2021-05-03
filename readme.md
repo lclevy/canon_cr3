@@ -6,11 +6,16 @@ by Laurent Clévy (@Lorenzo2472)
 
 
 
-wanted samples:
 
-R3 raw, craw, dpraw and heif, please 8-)
 
-R6 or R5 raw, heif or craw with dust correction information
+Wanted samples:
+
+- R3 raw, craw, dpraw and heif, please 8-)
+
+- R6 or R5 raw, heif or craw with dust correction information
+
+
+
 
 
 

@@ -1,31 +1,35 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 22jul2020 
+version: 3may2021 
 
 by Laurent Clévy (@Lorenzo2472)
 
 
 
-Requested samples (via lclevy at free dot fr + dropbox or similar, please):
+wanted samples:
 
-- craw and HEIF for R6
+R3 raw, craw, dpraw and heif, please 8-)
 
-- craw and HEIF for R5 
+R6 or R5 raw, heif or craw with dust correction information
 
-  
 
-  
+
 
 Contributors: 
 
 - Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD, File structure
 - Alexey Danilchenko (https://github.com/Alexey-Danilchenko): CMP1, CRX open source decoder
-- Kyle Kowalczyk (https://github.com/superadm1n): Restructure, Package, Test
 
-Samples:
+  
+
+Thanks for samples to:
 
 - Mark McClelland for EOS R samples (www.instagram.com/mcclellandphoto)
 - Kostiantyn for M6 Mark II roll sample
+- Aaron Seilis for R5 samples (raw, craw, dpraw)
+- Mathias / Matze for R5 samples (jpeg, heif, craw, raw)
+- Gordon Laing / Cameralabs for R6 (heif)
+- Väinö Leppänen for R6 (craw, heif)
 
 
 
@@ -319,7 +323,11 @@ from **uuid** = 85c0b687 820f 11e0 8111 f4ce462b6a48
 | 4            | char   | 4                   | "THMB"                      |
 | 8            | byte   | 1                   | likely version, value=0 or 1    |
 | 9            | bytes  | 3                   | likely flags, value = 0          |
+
+
+
 for version 0:
+
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
 | 12/0xc       | short  | 1                   | width (160)                 |
@@ -330,7 +338,11 @@ for version 0:
 | 24/0x18      | byte[] | stored at offset 16 | jpeg_data = ffd8ffdb...ffd9 |
 | **24+jpeg_size** | byte[] | ?                   | padding to next 4 bytes?    |
 |              | long   | 1                   | ?                           |
+
+
+
 for version 1:
+
 | Offset       | type   | size                | content                     |
 | ------------ | ------ | ------------------- | --------------------------- |
 | 12/0xc       | short  | 1                   | width (160)                 |
@@ -347,12 +359,14 @@ likely CaNon Codec Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
-- "Canon**HEIF001/10**.00.00/00.00.00" for HEIF of 1DX Mark III
-- "Canon**CR3_002/00.10**.00/00.00.00" for CR3 of 1DX Mark III (craw)
-- "CanonCR3_001/**00.10**.00/00.00.00" for EOS R5, R6 and 1DX Mark III (raw)
+- "Canon**HEIF001/10**.00.**01**/00.00.00" for R6 FW 1.2.0 (with b'miaf' and b'MiHA')
+- "Canon**HEIF001/10**.00.00/00.00.00" for HEIF of 1DX Mark III, R5 and R6 FW 1.0
+- "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0)
+- "Canon**CR3_002/00.10**.00/00.00.00" for 1DX Mark III (craw w/ HDR FW 1.0) and R5 (craw/craw HDR FW 1.0)
+- "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw) and R6 (craw/raw) 
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
-- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200 and 250D
+- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200, M50m2 and 250D
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies
 
 
@@ -1285,6 +1299,7 @@ in Canon patent:
 | 0x80000435 | 850D / T8i / Kiss X10i | 02/2020 | APS-C | CMOS |Digic 8 |
 | 0x80000453 | EOS R6 | 07/2020 | FF | CMOS |DigicX |
 | 0x80000421 | EOS R5 | 07/2020 | FF | CMOS |DigicX |
+| 0x80000468 | EOS M50 Mark II / Kiss M2 | 10/2020 | APS-C | CMOS |Digic8 |
 
 
 ## Samples 
@@ -1294,5 +1309,4 @@ http://www.photographyblog.com, https://raw.pixls.us/data/Canon, https://www.dpr
 ### CRM samples (from C200)
 
 http://www.4kshooters.net/2017/10/04/canon-c200-raw-footage-workflow-free-samples-for-download/
-
 

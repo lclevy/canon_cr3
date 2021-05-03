@@ -73,7 +73,7 @@ Thanks for samples to:
 
 The Canon CR3 format is mainly based on the ISO Base Media File Format (ISO/IEC 14496-12), with custom tags, and the new 'crx' codec. Some tags contains TIFF structures (like IFDs, Makernotes...)
 
-Phil Harvey, the author of ExifTool, already identified some custom TIFF tags: [Canon CR3 tags](http://https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#uuid "Canon CR3 tags")
+Phil Harvey, the author of ExifTool, already identified some custom TIFF tags: [Canon CR3 tags](https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#uuid "Canon CR3 tags")
 
 Canon Raw v2 is described here: http://lclevy.free.fr/cr2/ and Canon CRW here: https://sno.phy.queensu.ca/~phil/exiftool/canon_raw.html
 

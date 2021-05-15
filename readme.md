@@ -467,12 +467,14 @@ size = 1620x1080
 
 see also https://sno.phy.queensu.ca/~phil/exiftool/TagNames/QuickTime.html#ImageDesc
 
+CRAW is derived from ISOBMFF SampleEntry box.
+
 | Offset | type  | size | content                                 |
 | ------ | ----- | ---- | --------------------------------------- |
 | 0      | long   | 1           | size of this tag.        |
 | 4      | bytes | 4    | "CRAW"                                  |
-| 8      | long? | 1    | 0. VendorId?                            |
-| 12      | long? | 1    | 1                                       |
+| 8      | byte[] | 6    | 0. SampleEntry.reserved                |
+| 12      | ushort | 1    | 1. SampleEntry.data_reference_index   |
 | 16     | bytes?| 16?  | 0                                       |
 | 32     | short | 1    | width                                   |
 | 34     | short | 1    | height                                  |
@@ -537,11 +539,13 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 
 size = sizeof(IAD1) + 12
 
+CDI1 is a ISOBMFF FullBox, containing other boxes
+
 | Offset | type  | size | content                                 |
 | ------ | ----- | ---- | --------------------------------------- |
 | 0      | long   | 1           | size of this tag. 0x3c       |
 | 4      | char   | 4           | "CDI1"|
-| 8      | long  | 1    | 0               |
+| 8      | long  | 1    | FullBox Version and flags               |
 
 ### IAD1 (Image Area Dimensions ?) ###
 
@@ -581,12 +585,12 @@ Big image
 | 22     | short | 1    | sensor bottom border (sensorInfo[8]) |
 | 24     | short | 1    | 0                                    |
 | 26     | short | 1    | 0                                    |
-| 28     | short | 1    | sensor left border -13               |
+| 28     | short | 1    | sensor left border -13 (black area left?)  |
 | 30     | short | 1    | sensor height -1                     |
 | 32     | short | 1    | sensor left border -12               |
 | 34     | short | 1    | 0                                    |
 | 36     | short | 1    | sensor width -1                      |
-| 38     | short | 1    | sensor top border -13                |
+| 38     | short | 1    | sensor top border -13 (black area top?)  |
 | 40     | short | 1    | sensor left border -12               |
 | 42     | short | 1    | sensor top border -13                |
 | 44     | short | 1    | sensor width -1                      |

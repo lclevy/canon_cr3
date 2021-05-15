@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 14may2021 
+version: 15may2021 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -23,7 +23,10 @@ Wanted samples:
 Contributors: 
 
 - Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD, File structure
+
 - Alexey Danilchenko (https://github.com/Alexey-Danilchenko): CMP1, CRX open source decoder
+
+- Daniel "cytrinox" Vogelbacher: IAD1
 
   
 
@@ -545,57 +548,59 @@ CDI1 is a ISOBMFF FullBox, containing other boxes
 | ------ | ----- | ---- | --------------------------------------- |
 | 0      | long   | 1           | size of this tag. 0x3c       |
 | 4      | char   | 4           | "CDI1"|
-| 8      | long  | 1    | FullBox Version and flags               |
+| 8      | byte | 1    | FullBox Version       |
+| 9 | bytes[] | 3 | FullBox flags |
 
 ### IAD1 (Image Area Dimensions ?) ###
 
 Size=0x28 for small picture, 0x38 for big picture. All values are in big endian
 
-| Offset | type  | size | content                                   |
-| ------ | ----- | ---- | ----------------------------------------- |
-| 0      | short | 1    | 0                                         |
-| 2      | short | 1    | 0                                         |
-| 4      | short | 1    | sensor width (like sensorInfo[1] in CMT3) |
-| 6      | short | 1    | sensor height (like sensorInfo[2])        |
-| 8      | short | 1    | 1                                         |
-| 10/0xa | short | 1    | 0 (small), 2 (big) = flag for sliced ?    |
-| 12     | short | 1    | 1                                         |
-| 14     | short | 1    | 0                                         |
+| Offset | type  | size | content (EOS R full size)              | cropped image (x1.6) |
+| ------ | ----- | ---- | -------------------------------------- | -------------------- |
+| 0      | short | 1    | 0                                      |                      |
+| 2      | short | 1    | 0                                      |                      |
+| 4      | short | 1    | image width (6888 with EOS R)          | 4352                 |
+| 6      | short | 1    | image height (4546 with EOS R)         | 2850                 |
+| 8      | short | 1    | 1                                      |                      |
+| 10/0xa | short | 1    | 0 (small), 2 (big) = flag for sliced ? |                      |
+| 12     | short | 1    | 1                                      |                      |
+| 14     | short | 1    | 0                                      |                      |
 
 Small image (1024x1080)
 
-| Offset | type  | size | content                                |
-| ------ | ----- | ---- | -------------------------------------- |
-| 16     | short | 1    | 1 |
-| 18     | short | 1    | 0 |
-| 20     | short | 1    | width -4 (1620)                        |
-| 22     | short | 1    | height -1 (1079)                       |
-| 24     | short | 1    | 0                                      |
-| 26     | short | 1    | 0                                      |
-| 28     | short | 1    | width -1 (1623)                        |
-| 30     | short | 1    | height -1 (1079)                       |
+| Offset | type  | size | content (no crop)                     | cropped                       |
+| ------ | ----- | ---- | -------------------------------------- | -------------------------------------- |
+| 16     | short | 1    | 1 | **3** |
+| 18     | short | 1    | 0 | 0 |
+| 20     | short | 1    | width -4 (1620)                        | **1622**               |
+| 22     | short | 1    | height (1079)                   | 1079               |
+| 24     | short | 1    | 0                                      | 0                                     |
+| 26     | short | 1    | 0                                      | 0                                     |
+| 28     | short | 1    | width -1 (1623)                        | 1623                    |
+| 30     | short | 1    | height -1 (1079)                       | 1079                |
 
-Big image
+Big image (dimensions example is for EOS R)
 
-| Offset | type  | size | content                              |
-| ------ | ----- | ---- | ------------------------------------ |
-| 16     | short | 1    | sensor left border (sensorInfo[5])   |
-| 18     | short | 1    | sensor top border (sensorInfo[6])    |
-| 20     | short | 1    | sensor right border (sensorInfo[7])  |
-| 22     | short | 1    | sensor bottom border (sensorInfo[8]) |
-| 24     | short | 1    | 0                                    |
-| 26     | short | 1    | 0                                    |
-| 28     | short | 1    | sensor left border -13 (black area left?)  |
-| 30     | short | 1    | sensor height -1                     |
-| 32     | short | 1    | sensor left border -12               |
-| 34     | short | 1    | 0                                    |
-| 36     | short | 1    | sensor width -1                      |
-| 38     | short | 1    | sensor top border -13 (black area top?)  |
-| 40     | short | 1    | sensor left border -12               |
-| 42     | short | 1    | sensor top border -13                |
-| 44     | short | 1    | sensor width -1                      |
-| 46     | short | 1    | sensor height -1                     |
+| Offset | type  | size | content (full size)                             | cropped (x1.6) |
+| ------ | ----- | ---- | ----------------------------------------------- | -------------- |
+| 16     | short | 1    | sensor left border (sensorInfo[5] = 156         | 164            |
+| 18     | short | 1    | sensor top border (sensorInfo[6]) = 158         | 158            |
+| 20     | short | 1    | sensor right border (sensorInfo[7]) = 6875      | 4339           |
+| 22     | short | 1    | sensor bottom border (sensorInfo[8]) = 4537     | 2841           |
+| 24     | short | 1    | 0                                               |                |
+| 26     | short | 1    | 0                                               |                |
+| 28     | short | 1    | sensor left border -13 (black area left?) = 143 | 151            |
+| 30     | short | 1    | sensor height -1 = 4545                         | 2849           |
+| 32     | short | 1    | sensor left border -12 = 144                    | 152            |
+| 34     | short | 1    | 0                                               |                |
+| 36     | short | 1    | sensor width -1 = 6887                          | 4351           |
+| 38     | short | 1    | sensor top border -13 (black area top?) = 45    | 45             |
+| 40     | short | 1    | sensor left border -12 = 144                    | 152            |
+| 42     | short | 1    | sensor top border -13 = 46                      | 46             |
+| 44     | short | 1    | sensor width -1 = 6887                          | 4351           |
+| 46     | short | 1    | sensor height -1 = 4545                         | 2849           |
 
+​                      
 
 ### CMTA (Canon Metadata in Tiff)
 

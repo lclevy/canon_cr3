@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 3may2021 
+version: 14may2021 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -503,7 +503,7 @@ sizes:
 | 4      | char   | 4           | "JPEG"|
 | 8      | long  | 1    | 0               |
 
-### CMP1 ###
+### CMP1 (Compression?) ###
 
 Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36): 
 
@@ -533,7 +533,7 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 | 40     | long  | 1    | 0                                       |
 | 44     | bytes | 16   | ? 4 times "01 01 00 00"                 |
 
-### CDI1 ###
+### CDI1 (Canon Dimensions?) ###
 
 size = sizeof(IAD1) + 12
 
@@ -543,7 +543,7 @@ size = sizeof(IAD1) + 12
 | 4      | char   | 4           | "CDI1"|
 | 8      | long  | 1    | 0               |
 
-### IAD1 ###
+### IAD1 (Image Area Dimensions ?) ###
 
 Size=0x28 for small picture, 0x38 for big picture. All values are in big endian
 
@@ -1283,6 +1283,8 @@ in Canon patent:
    - EDSDK 3.8.0 (Canon)
    - FastRawViewer 1.5.1 (libraw CR3 support by Alexey Danilchenko). 
      - https://github.com/LibRaw/LibRaw/blob/master/src/decoders/crx.cpp
+   - Darktable (11may2021)
+     - https://github.com/darktable-org/rawspeed/pull/271 (Daniel "cytrinox" Vogelbacher)
 
 
 

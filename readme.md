@@ -583,23 +583,26 @@ Big image (dimensions example is for EOS R)
 
 | Offset | type  | size | content (full size)                             | cropped (x1.6) |
 | ------ | ----- | ---- | ----------------------------------------------- | -------------- |
-| 16     | short | 1    | sensor left border (sensorInfo[5] = 156         | 164            |
-| 18     | short | 1    | sensor top border (sensorInfo[6]) = 158         | 158            |
-| 20     | short | 1    | sensor right border (sensorInfo[7]) = 6875      | 4339           |
-| 22     | short | 1    | sensor bottom border (sensorInfo[8]) = 4537     | 2841           |
-| 24     | short | 1    | 0                                               |                |
-| 26     | short | 1    | 0                                               |                |
-| 28     | short | 1    | sensor left border -13 (black area left?) = 143 | 151            |
-| 30     | short | 1    | sensor height -1 = 4545                         | 2849           |
-| 32     | short | 1    | sensor left border -12 = 144                    | 152            |
-| 34     | short | 1    | 0                                               |                |
-| 36     | short | 1    | sensor width -1 = 6887                          | 4351           |
-| 38     | short | 1    | sensor top border -13 (black area top?) = 45    | 45             |
-| 40     | short | 1    | sensor left border -12 = 144                    | 152            |
-| 42     | short | 1    | sensor top border -13 = 46                      | 46             |
-| 44     | short | 1    | sensor width -1 = 6887                          | 4351           |
-| 46     | short | 1    | sensor height -1 = 4545                         | 2849           |
+| 16     | short | 1    | crop left offset (sensorInfo[5]) = 156          | 164            |
+| 18     | short | 1    | crop top offset (sensorInfo[6]) = 158           | 158            |
+| 20     | short | 1    | crop right offset (sensorInfo[7]) = 6875        | 4339           |
+| 22     | short | 1    | crop bottom offset (sensorInfo[8]) = 4537       | 2841           |
+| 24     | short | 1    | left optical black left offset = 0              |                |
+| 26     | short | 1    | left optical black top offset = 0               |                |
+| 28     | short | 1    | left optical black right offset = 143           | 151            |
+| 30     | short | 1    | left optical black bottom offset = 4545         | 2849           |
+| 32     | short | 1    | top optical black left offset = 144             | 152            |
+| 34     | short | 1    | top optical black top offset = 0                |                |
+| 36     | short | 1    | top optical black right offset = 6887           | 4351           |
+| 38     | short | 1    | top optical black bottom offset = 45            | 45             |
+| 40     | short | 1    | active area left offset = 144                   | 152            |
+| 42     | short | 1    | active area top offset = 46                     | 46             |
+| 44     | short | 1    | active area right offset = 6887                 | 4351           |
+| 46     | short | 1    | active area bottom offset = 4545                | 2849           |
 
+*active area* is the rectangle containing valid pixel data. It has same meaning as ActiveArea DNG tag.
+But for final crop, the *crop* rectangle must be used. This crops a little bit more pixels as *active area*.
+Values are given as offsets (from zero), so you must + 1 if you want the amount of pixels.
 ​                      
 
 ### CMTA (Canon Metadata in Tiff)

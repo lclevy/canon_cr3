@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 15may2021 
+version: 23aug2021 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -12,7 +12,7 @@ Wanted samples:
 
 - R3 raw, craw, dpraw and heif, please 8-)
 
-- R6 or R5 raw, heif or craw with dust correction information
+- R6 raw, heif or craw with dust correction information
 
 
 
@@ -38,6 +38,8 @@ Thanks for samples to:
 - Mathias / Matze for R5 samples (jpeg, heif, craw, raw)
 - Gordon Laing / Cameralabs for R6 (heif)
 - Väinö Leppänen for R6 (craw, heif)
+- piratenpanda for R5 dust samples (heif, raw, version 3)
+- Kitor for R dust samples
 
 
 
@@ -79,7 +81,7 @@ Thanks for samples to:
 
 ## Introduction ##
 
-The Canon CR3 format is mainly based on the ISO Base Media File Format (ISO/IEC 14496-12), with custom tags, and the new 'crx' codec. Some tags contains TIFF structures (like IFDs, Makernotes...)
+The Canon CR3 format is based the ISO Base Media File Format (ISO/IEC 14496-12), with custom tags, and the Canon 'crx' codec: a mix of JPEG-LS (Rice-Golomb + RLE coding) and JPEG-2000 (LeGall 5/3 DWT + quantification). Some tags contains TIFF structures (like IFDs, Makernotes...)
 
 Phil Harvey, the author of ExifTool, already identified some custom TIFF tags: [Canon CR3 tags](https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#uuid "Canon CR3 tags")
 
@@ -1251,18 +1253,9 @@ last long format is (in bits): ccccfxxx xxxxxyyy yyyyyyyy yyyyyyyy
 
 ## Crx compression
 
-This Canon patent https://patents.google.com/patent/US20160323602A1/en describes a 3 levels Wavelet transform and Adapting Rice encoding.
+### Raw (lossless)
 
-*"FIG. 7A explains an example in which wavelet transform is executed three times. LL**1**, HL**1**, LH**1**, and HH**1** represent the subbands of decomposition level **1**, LL**2**, HL**2**, LH**2**, and HH**2** represent the subbands of decomposition level **2**, and LL**3**, HL**3**, LH**3**, and HH**3** represent the subbands of decomposition level **3**.*
-*Note that a transform target of wavelet transform from the second time is subband LL obtained by immediately preceding wavelet transform, so subbands LL**1** and LL**2** are omitted, and subband LL obtained by last wavelet transform remains. Also, the horizontal and vertical resolutions of, for example, HL**2** are half those of HL**1**. Subband LH indicates a horizontal-direction frequency characteristic (a horizontal-direction component) of a local region to which wavelet transform is applied. Likewise, subband HL indicates a* *vertical-direction frequency characteristic (a vertical-direction component), and subband HH indicates an oblique-direction frequency characteristic (an oblique-direction component). Subband LL is a* *low-frequency component. An integer-type 5/3 filter is used in wavelet transform of this embodiment, but the present invention is not limited to this. It is also possible to use another wavelet transform filter* such as a real-type 9/7 filter used in JPEG2000 (ISO/IEC15444|ITU-T T. 800) as an international standard. In addition, the processing unit of wavelet transform can be either a line or image."
-
-Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, LH1 and HH1. 
-
-
-
-![FIGS. 7A and 7B are views for explaining the concept of subband division by wavelet transform, and an example of a code to be generated](https://patentimages.storage.googleapis.com/a5/2f/24/6f36c0f3fdfe5f/US20160323602A1-20161103-D00007.png)
-
-Lossless CR3 (and LL3) subbands are encoded using adapting Golomb-Rice, run length mode and Median Edge Detection prediction, similarly to JPEG-LS (ITU T.87).
+Lossless CR3 (and LL3) subbands are encoded using Golomb-Rice, Run length mode and Median Edge Detection prediction, similarly to JPEG-LS (ITU T.87). Crx uses <u>Adaptive</u> Golomb-Rice coding.
 
 JPEG-LS:
 
@@ -1273,6 +1266,23 @@ in Canon patent:
 ![https://patentimages.storage.googleapis.com/31/86/a3/30120d794684a5/US20160323602A1-20161103-D00000.png](https://patentimages.storage.googleapis.com/31/86/a3/30120d794684a5/US20160323602A1-20161103-D00000.png)
 
 
+
+### C-Raw (lossy)
+
+Crx lossy type is close to JPEG-2000 : using Le Gall 5/3 wavelet transformation, which is lossless. Canon uses  quantification (loss of information ) to compress better. DWT coefficients are then encoded using Adaptive Rice-Golomb and RLE, like in lossless mode.
+
+
+
+This Canon patent https://patents.google.com/patent/US20160323602A1/en describes a 3 levels Wavelet transform and Adapting Rice encoding.
+
+*"FIG. 7A explains an example in which wavelet transform is executed three times. LL**1**, HL**1**, LH**1**, and HH**1** represent the subbands of decomposition level **1**, LL**2**, HL**2**, LH**2**, and HH**2** represent the subbands of decomposition level **2**, and LL**3**, HL**3**, LH**3**, and HH**3** represent the subbands of decomposition level **3**.*
+*Note that a transform target of wavelet transform from the second time is subband LL obtained by immediately preceding wavelet transform, so subbands LL**1** and LL**2** are omitted, and subband LL obtained by last wavelet transform remains. Also, the horizontal and vertical resolutions of, for example, HL**2** are half those of HL**1**. Subband LH indicates a horizontal-direction frequency characteristic (a horizontal-direction component) of a local region to which wavelet transform is applied. Likewise, subband HL indicates a* *vertical-direction frequency characteristic (a vertical-direction component), and subband HH indicates an oblique-direction frequency characteristic (an oblique-direction component). Subband LL is a* *low-frequency component. An integer-type 5/3 filter is used in wavelet transform of this embodiment, but the present invention is not limited to this. It is also possible to use another wavelet transform filter* such as a real-type 9/7 filter used in JPEG2000 (ISO/IEC15444|ITU-T T. 800) as an international standard. In addition, the processing unit of wavelet transform can be either a line or image."
+
+Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, LH1 and HH1. 
+
+
+
+![FIGS. 7A and 7B are views for explaining the concept of subband division by wavelet transform, and an example of a code to be generated](https://patentimages.storage.googleapis.com/a5/2f/24/6f36c0f3fdfe5f/US20160323602A1-20161103-D00007.png)
 
 
 
@@ -1294,6 +1304,8 @@ in Canon patent:
      - https://github.com/LibRaw/LibRaw/blob/master/src/decoders/crx.cpp
    - Darktable (11may2021)
      - https://github.com/darktable-org/rawspeed/pull/271 (Daniel "cytrinox" Vogelbacher)
+   - DNGLab (Daniel "cytrinox" Vogelbacher)
+     - https://github.com/dnglab/dnglab/tree/main/rawler/src/decompressors/crx (16aug2021)
 
 
 

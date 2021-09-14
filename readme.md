@@ -1,14 +1,12 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-version: 23aug2021 
+##### version: 19sep2021 
 
 by Laurent Clévy (@Lorenzo2472)
 
 
 
-
-
-Wanted samples:
+##### Wanted samples:
 
 - R3 raw, craw, dpraw and heif, please 8-)
 
@@ -16,11 +14,7 @@ Wanted samples:
 
 
 
-
-
-
-
-Contributors: 
+##### Contributors: 
 
 - Phil Harvey (https://www.sno.phy.queensu.ca/~phil/exiftool/): CTMD, File structure
 
@@ -30,7 +24,7 @@ Contributors:
 
   
 
-Thanks for samples to:
+##### Thanks for samples to:
 
 - Mark McClelland for EOS R samples (www.instagram.com/mcclellandphoto)
 - Kostiantyn for M6 Mark II roll sample
@@ -81,7 +75,7 @@ Thanks for samples to:
 
 ## Introduction ##
 
-The Canon CR3 format is based the ISO Base Media File Format (ISO/IEC 14496-12), with custom tags, and the Canon 'crx' codec: a mix of JPEG-LS (Rice-Golomb + RLE coding) and JPEG-2000 (LeGall 5/3 DWT + quantification). Some tags contains TIFF structures (like IFDs, Makernotes...)
+The Canon CR3 format is based the ISO Base Media File Format (ISO/IEC 14496-12), with custom tags, and the Canon 'crx' codec: a mix of JPEG-LS (Rice-Golomb + RLE coding) and JPEG-2000 (LeGall 5/3 DWT + quantification). Some tags contains TIFF structures : IFDs, Makernotes.
 
 Phil Harvey, the author of ExifTool, already identified some custom TIFF tags: [Canon CR3 tags](https://sno.phy.queensu.ca/~phil/exiftool/TagNames/Canon.html#uuid "Canon CR3 tags")
 
@@ -93,9 +87,9 @@ The CRX codec has been reverse engineered by Alexey Danilchenko, implemented in 
 
 'craw' means 'compact raw'. The CR3 format also supports dual pixel pictures, sequence of images ("roll" created using Raw burst mode) and movie (CRM).
 
-Roll files (CSI_*.CR3) can contains up to 70 pictures (for M6 Mark II).
+Roll files (CSI_*.CR3) can contains up to 70 pictures (from M6 Mark II, G7X Mark II). Extracted pictures have encoding type 3, likely YCrCb format and 10 bits  (see https://github.com/LibRaw/LibRaw/blob/master/src/decoders/crx.cpp#L1710). Using Sony BSI sensor.
 
-Starting with 1DX Mark III, Canon is using another file format for 10 bits HDR pictures : HEIF, see https://github.com/lclevy/canon_cr3/blob/master/heif.md. CR3 can also store HDR images (with HEVC), see HDR section below.
+Starting with 1DX Mark III, Canon is using an additional file format to store 10 bits HDR pictures : HEIF, see https://github.com/lclevy/canon_cr3/blob/master/heif.md. CR3 can also store HDR images (with HEVC), see HDR section below.
 
 
 
@@ -531,7 +525,7 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 | 32     | bytes | 4    | bits per sample - usually 14 |
 | 33 | bits | 4 | number of planes - 4 for RGGB |
 | 33+4bits | bits | 4 | CFA layout - only valid where number of planes > 1. 0:RGGB, 1:GRBG, 2:GBRG, 3:BGGR. Seen 1 for small, 0 for big (raw or craw) |
-| 34 | bits | 4 | encoding type (only 1 or 3 ?) Seen 0 for raw and craw |
+| 34 | bits | 4 | encoding type. Always 0 for raw and craw, 3 for raw extracted from roll burst |
 | 34+4bits | bits | 4 | number of wavelet levels (set for wavelet compressed image). 0 for raw, 3 for craw |
 | 35 | bit | 1 | 1 = image has more than one tile horizontally  (set for wavelet compressed image). Seen 1 for craw big, 0 otherwise |
 | 35+1bit | bit | 1 | 1 = image has more than one tile vertically (set for wavelet compressed image). Always 0 |
@@ -1331,6 +1325,7 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 | 0x80000453 | EOS R6 | 07/2020 | FF | CMOS |DigicX |
 | 0x80000421 | EOS R5 | 07/2020 | FF | CMOS |DigicX |
 | 0x80000468 | EOS M50 Mark II / Kiss M2 | 10/2020 | APS-C | CMOS |Digic8 |
+| 0x80000450 | EOS R3 | 09/2021 | FF | CMOS |DigicX |
 
 
 ## Samples 

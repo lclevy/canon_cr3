@@ -531,8 +531,19 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 | 35+1bit | bit | 1 | 1 = image has more than one tile vertically (set for wavelet compressed image). Always 0 |
 | 35+2bits | bits | 6 | unused in current version - always 0 |
 | 36     | long  | 1    | mdat track header size (mdat bitstream data starts following that header). raw small = 0x70, raw big   = 0xd8, craw small = 0x220, craw big   = 0x438 |
-| 40     | long  | 1    | 0                                       |
-| 44     | bytes | 16   | ? 4 times "01 01 00 00"                 |
+| 40     | bit   | 1    | 1 = has extended header, has extended header size |
+| 40+1bit | bits | 7    | ? 0                                     |
+| 41     | byte  | 1    | ? 0                                     |
+| 42     | short | 1    | ? 0                                     |
+| 44     | bytes | 16   | ? plane count (4) times "01 01 00 00"   |
+| 60     | long  | 1    | extended header size, only present and everything after if extended header bit set |
+| 64     | bit   | 1    | ? always seems to be 1                  |
+| 64+1bit | bit  | 1    | 1 = has median bit depth                |
+| 64+2bits | bits | 6   | ? 0                                     |
+| 65     | byte  | 1    | ? 0                                     |
+| 66     | short | 1    | ? 0                                     |
+| 68     | long  | 6    | ? 6 items                               |
+| 92     | byte  | 1    | median bit depth, usually 14, only present if has median bit set. an alternative bit depth to use with type 3 encoding when combining intermediate buffers |
 
 ### CDI1 (Canon Dimensions?) ###
 

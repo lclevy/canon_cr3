@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 19sep2021 
+##### version: 26feb2022 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -8,9 +8,8 @@ by Laurent Clévy (@Lorenzo2472)
 
 ##### Wanted samples:
 
-- R3 raw, craw, dpraw and heif, please 8-)
+- R3 heif
 
-- R6 raw, heif or craw with dust correction information
 
 
 
@@ -21,6 +20,8 @@ by Laurent Clévy (@Lorenzo2472)
 - Alexey Danilchenko (https://github.com/Alexey-Danilchenko): CMP1, CRX open source decoder
 
 - Daniel "cytrinox" Vogelbacher: IAD1
+
+- Mark Reid : extended header in CMP1
 
   
 
@@ -34,6 +35,7 @@ by Laurent Clévy (@Lorenzo2472)
 - Väinö Leppänen for R6 (craw, heif)
 - piratenpanda for R5 dust samples (heif, raw, version 3)
 - Kitor for R dust samples
+- oguruma1218 for a lot of R3 raw and craw !
 
 
 

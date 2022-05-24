@@ -9,7 +9,7 @@ by Laurent Clévy (@Lorenzo2472)
 ##### Wanted samples:
 
 - R3 heif
-- R6 craw and heif
+- R10 craw and heif
 - R7 craw, dpraw or heif
 
 

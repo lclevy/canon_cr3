@@ -611,10 +611,15 @@ Big image (dimensions example is for EOS R)
 | 44     | short | 1    | active area right offset = 6887                 | 4351           |
 | 46     | short | 1    | active area bottom offset = 4545                | 2849           |
 
-*active area* is the rectangle containing valid pixel data. It has same meaning as ActiveArea DNG tag.
-But for final crop, the *crop* rectangle must be used. This crops a little bit more pixels as *active area*.
 Values are given as offsets (from zero), so you must + 1 if you want the amount of pixels.
-​                      
+
+*active area* is the rectangle containing valid pixel data. It has same meaning as ActiveArea DNG tag.
+These values sometimes are not accurate, especially in 1.6x crop files. The bottom or right offsets are
+sometimes few pixels overflowing the width/height of raw image. Maybe a glitch in the firmware.
+
+*crop* is the rectangle for the recommended crop. The dimension is usually exactly the size of the
+official camera resolution and full size JPEGs.
+
 
 ### CMTA (Canon Metadata in Tiff)
 

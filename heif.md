@@ -2,7 +2,7 @@
 
 # Inside Canon High Efficiency Image File format
 
-20aug2020
+04nov2022
 
 
 
@@ -273,8 +273,10 @@ sensorInfo(w=5568, h=3708, lb=84, tb=50, rb=5555, bb=3697)
 | 0x80000428 | EOS 1DX Mark III | 01/2020 | FF | CMOS |Digic X |
 | 0x80000453 | EOS R6 | 07/2020 | FF | CMOS |Digic X |
 | 0x80000421 | EOS R5 | 07/2020 | FF | CMOS |Digic X |
-
-
+| 0x80000450 | EOS R3 | 09/2021 | FF | BSI-CMOS |Digic X |
+| 0x80000465 | EOS R10 | 05/2022 | APS-C | CMOS |Digic X |
+| 0x80000464 | EOS R7 | 05/2022 | FF | CMOS |Digic X |
+| 0x80000481 | EOS R6 Mark II | 11/2022 | FF | CMOS |Digic X |
 
 ### Reference documents
 

@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 24may2022 
+##### version: 11nov2022 
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -9,8 +9,9 @@ by Laurent Clévy (@Lorenzo2472)
 ##### Wanted samples:
 
 - R3 heif
-- R10 craw and heif
-- R7 craw, dpraw or heif
+- R10 craw
+- R7 heif
+- R6 Mark II craw, dpraw or heif
 
 
 
@@ -364,11 +365,12 @@ likely CaNon Codec Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
+- "Canon**HEIF001**/**11**.00.01/00.00.00" for R10 FW 1.0.1
 - "Canon**HEIF001/10**.00.**01**/00.00.00" for R6 FW 1.2.0 (with b'miaf' and b'MiHA')
 - "Canon**HEIF001/10**.00.00/00.00.00" for HEIF of 1DX Mark III, R5 and R6 FW 1.0
 - "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0)
 - "Canon**CR3_002/00.10**.00/00.00.00" for 1DX Mark III (craw w/ HDR FW 1.0) and R5 (craw/craw HDR FW 1.0)
-- "CanonCR3_001/**00.11**.00/00.00.00" for R7 and R10 (raw with FW 1.0.1)
+- "CanonCR3_001/**00.11**.00/00.00.00" for R7 (raw and craw)  and R10 (raw with FW 1.0.1)
 - "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw) and R6 (craw/raw) 
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
@@ -1341,6 +1343,7 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 | 0x80000450 | EOS R3 | 09/2021 | FF | BSI-CMOS |DigicX |
 | 0x80000464 | EOS R7 | 05/2022 | APS-C | CMOS |DigicX |
 | 0x80000465 | EOS R10 | 05/2022 | APS-C | CMOS |DigicX |
+| 0x80000481 | EOS R6 Mark II | 11/2022 | FF | CMOS |DigicX |
 
 
 ## Samples 

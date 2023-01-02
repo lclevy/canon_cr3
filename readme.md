@@ -1,6 +1,7 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 4nov2022 
+##### version: 2jan2023 
+
 
 by Laurent Clévy (@Lorenzo2472)
 
@@ -10,10 +11,7 @@ by Laurent Clévy (@Lorenzo2472)
 
 - R3 heif
 - R10 craw
-- R7 heif
 - R6 Mark II craw, dpraw or heif
-
-
 
 
 ##### Contributors: 
@@ -23,7 +21,6 @@ by Laurent Clévy (@Lorenzo2472)
 - Daniel "cytrinox" Vogelbacher: IAD1
 - Mark Reid : extended header in CMP1
 
-  
 
 ##### Thanks for samples to:
 
@@ -36,7 +33,7 @@ by Laurent Clévy (@Lorenzo2472)
 - piratenpanda for R5 dust samples (heif, raw, version 3)
 - Kitor for R dust samples
 - oguruma1218 for a lot of R3 raw and craw !
-
+- medemander for R7 heif, dualpixel and raw+hdr
 
 
 
@@ -365,12 +362,13 @@ likely CaNon Codec Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
-- "Canon**HEIF001**/**11**.00.01/00.00.00" for R10 FW 1.0.1
+- "Canon**HEIF001**/**11**.00.01/00.00.00" for R10 FW 1.0.1 and R7 FW 1.0.1 
 - "Canon**HEIF001/10**.00.**01**/00.00.00" for R6 FW 1.2.0 (with b'miaf' and b'MiHA')
 - "Canon**HEIF001/10**.00.00/00.00.00" for HEIF of 1DX Mark III, R5 and R6 FW 1.0
+- "CanonCR3_003/00.**11**.00/00.00.00" for R7 FW 1.0.1 (raw+HDR)
 - "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0)
 - "Canon**CR3_002/00.10**.00/00.00.00" for 1DX Mark III (craw w/ HDR FW 1.0) and R5 (craw/craw HDR FW 1.0)
-- "CanonCR3_001/**00.11**.00/00.00.00" for R7 (raw and craw)  and R10 (raw with FW 1.0.1)
+- "CanonCR3_001/**00.11**.00/00.00.00" for R7 (raw, craw and dualpixel)  and R10 (raw with FW 1.0.1)
 - "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw) and R6 (craw/raw) 
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 

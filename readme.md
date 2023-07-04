@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 8feb2023 
+##### version: 2jun2023 
 
 
 by Laurent Clévy (@Lorenzo2472)
@@ -9,10 +9,9 @@ by Laurent Clévy (@Lorenzo2472)
 
 ##### Wanted samples:
 
-- R3 heif
-- R10 craw
 - R6 Mark II craw, dpraw or heif
-- R8 and R50 heif
+- R10 craw 
+- R100 raw, craw, jpg, heif, raw+hdr
 
 
 ##### Contributors: 
@@ -35,6 +34,8 @@ by Laurent Clévy (@Lorenzo2472)
 - Kitor for R dust samples
 - oguruma1218 for a lot of R3 raw and craw !
 - medemander for R7 heif, dualpixel and raw+hdr
+- pdejl (https://github.com/pdejl) for R8 raw, craw, dp, heif
+- John Baro for R3 heif, raw and craw
 
 
 
@@ -127,6 +128,7 @@ The Cinema Raw Light file format with extension .crm, also uses the crx codec.
 
 Cinema Raw Light (from C200) file format is very similar to CR3, and also uses the crx codec.
 CNCV value is 'CanonCRM0001/02.09.00/00.00.00'
+
 ```
 > python parse_cr3.py -v 2 A003C013_170923CU_CANON.CRM
 filesize 0x21a36e70
@@ -195,6 +197,7 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
           - **dref** (Data Reference box)
         - **stbl** (Sample table box)
           - **stsd** (Sample descriptions, codec types, init...)
+            
             - **CRAW** (size=0x70)
               - W=6000, H=4000, D=24bit
               - **JPEG** (size=0xc)
@@ -202,13 +205,13 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
           - **stts** (decoding, time-to-sample)
           - **stsc** (sample-to-chunk, partial data offset info)
           - **stsz** (sample sizes, framing)
-
+          
             size of jpeg picture #1 in mdat
           - **free**
           - **co64** : pointer to picture #1 inside mdat
-
+  
   - **trak** (sd crx)
-
+  
     - **tkhd**
     - **mdia**
       - **mdhd**
@@ -230,9 +233,9 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
           - **stsz** : size of picture #2 in mdat
           - **free**
           - **co64** : pointer to picture #2 in mdat
-
+  
   - **trak** (hd image in crx)
-
+  
     - **tkhd**
     - **mdia**
       - **mdhd**
@@ -254,9 +257,9 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
           - **stsz** : size of picture #3 in mdat
           - **free**
           - **co64** : pointer to picture #3 in mdat
-
+  
   - **trak** (metadata at end of mdat)
-
+  
     - **tkhd**
     - **mdia**
       - **mdhd**
@@ -273,7 +276,7 @@ See http://learn.usa.canon.com/resources/articles/2017/eos-c200-post-production-
           - **stsz** : size of metadata in mdat
           - **free**
           - **co64** : pointer to metadata in mdat
-
+  
 - **uuid** = be7acfcb 97a9 42e8 9c71 999491e3afac (xpacket data)
 
 - **uuid** = eaf42b5e 1c98 4b88 b9fb b7dc406e4d16 (preview data)
@@ -363,13 +366,13 @@ likely CaNon Codec Version
 | 8            | char   | 30          | version string |
 
 Observed values for version string:
-- "Canon**HEIF001**/**11**.00.01/00.00.00" for R10 FW 1.0.1 and R7 FW 1.0.1 
-- "Canon**HEIF001/10**.00.**01**/00.00.00" for R6 FW 1.2.0 (with b'miaf' and b'MiHA')
+- "Canon**HEIF001**/**11**.00.01/00.00.00" for R10 FW 1.0.1, R8 FW 1.0.0, R50 and R7 FW 1.0.1 
+- "Canon**HEIF001/10**.00.**01**/00.00.00" for R6 FW 1.2.0 (with b'miaf' and b'MiHA'), R3 1.4.1
 - "Canon**HEIF001/10**.00.00/00.00.00" for HEIF of 1DX Mark III, R5 and R6 FW 1.0
-- "CanonCR3_003/00.**11**.00/00.00.00" for R7 FW 1.0.1 (raw+HDR)
-- "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0)
+- "CanonCR3_003/00.**11**.00/00.00.00" for R7 FW 1.0.1 (raw+HDR), R50 (raw+hdr)
+- "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0), R3 craw/raw
 - "Canon**CR3_002/00.10**.00/00.00.00" for 1DX Mark III (craw w/ HDR FW 1.0) and R5 (craw/craw HDR FW 1.0)
-- "CanonCR3_001/**00.11**.00/00.00.00" for R7 (raw, craw and dualpixel)  and R10 (raw with FW 1.0.1). R50 and R8 (FW 1.0.0 craw)
+- "CanonCR3_001/**00.11**.00/00.00.00" for R7 (raw, craw and dualpixel), R10 (raw and dualp with FW 1.0.1), R50 (craw, raw) and R8 (FW 1.0.0 raw and craw)
 - "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw) and R6 (craw/raw) 
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
@@ -1330,9 +1333,9 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 | modelId | name | releaseData | sensorSize | sensorType | ImageProc |
 | ------- | ---- | ----------- | ---------- | ---------- | --------- |
 | 0x00000412 | EOS M50 / Kiss M | 04/2018 | APS-C | CMOS | Digic 8 |
-| 0x80000424 | EOS R                      |09/2018| FF| CMOS| Digic 8 |
+| 0x80000424 | EOS R                      |5/09/2018| FF| CMOS| Digic 8 |
 | 0x00000805 | PowerShot SX70 HS | 09/2018| 1/2.3"| BSI-CMOS|Digic 8 |
-| 0x80000433 | EOS RP | 02/2019 | FF | CMOS |Digic 8 |
+| 0x80000433 | EOS RP | 14/02/2019 | FF | CMOS |Digic 8 |
 | 0x80000436 | EOS Rebel SL3 / 250D / Kiss X10 | 04/2019 | APS-C | CMOS |Digic 8 |
 | 0x00000804 | Powershot G5 X Mark II | 07/2019 | 1" | BSI-CMOS |Digic 8 |
 | 0x00000808 | PowerShot G7 X Mark III | 07/2019 | 1" | BSI-CMOS |Digic 8 |
@@ -1341,15 +1344,16 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 | 0x00000812 | EOS M200 | 09/2019 | APS-C | CMOS |Digic 8 |
 | 0x80000428 | EOS 1DX Mark III | 01/2020 | FF | CMOS |Digic X |
 | 0x80000435 | 850D / T8i / Kiss X10i | 02/2020 | APS-C | CMOS |Digic 8 |
-| 0x80000453 | EOS R6 | 07/2020 | FF | CMOS |DigicX |
-| 0x80000421 | EOS R5 | 07/2020 | FF | CMOS |DigicX |
+| 0x80000421 | EOS R5 | 13/02/2020 | FF | CMOS |DigicX |
+| 0x80000453 | EOS R6 | 9/07/2020 | FF | CMOS |DigicX |
 | 0x80000468 | EOS M50 Mark II / Kiss M2 | 10/2020 | APS-C | CMOS |Digic8 |
-| 0x80000450 | EOS R3 | 09/2021 | FF | BSI-CMOS |DigicX |
-| 0x80000464 | EOS R7 | 05/2022 | APS-C | CMOS |DigicX |
-| 0x80000465 | EOS R10 | 05/2022 | APS-C | CMOS |DigicX |
-| 0x80000481 | EOS R6 Mark II | 11/2022 | FF | CMOS |DigicX |
-| 0x80000487 | EOS R8 | 02/2023 | FF | CMOS |DigicX |
-| 0x80000480 | EOS R50 | 02/2023 | APS-C | CMOS |DigicX |
+| 0x80000450 | EOS R3 | 14/04/2021 | FF | BSI-CMOS |DigicX |
+| 0x80000464 | EOS R7 | 24/05/2022 | APS-C | CMOS |DigicX |
+| 0x80000465 | EOS R10 | 24/05/2022 | APS-C | CMOS |DigicX |
+| 0x80000481 | EOS R6 Mark II | 2/11/2022 | FF | CMOS |DigicX |
+| 0x80000487 | EOS R8 | 8/02/2023 | FF | CMOS |DigicX |
+| 0x80000480 | EOS R50 | 8/02/2023 | APS-C | CMOS |DigicX |
+|  | EOS R100 | 24/05/2023 | APS-C | CMOS |Digic8 |
 
 
 ## Samples 

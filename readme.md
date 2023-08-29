@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 2jun2023 
+##### version: 28aug2023 
 
 
 by Laurent Clévy (@Lorenzo2472)
@@ -10,8 +10,10 @@ by Laurent Clévy (@Lorenzo2472)
 ##### Wanted samples:
 
 - R6 Mark II craw, dpraw or heif
+
 - R10 craw 
-- R100 raw, craw, jpg, heif, raw+hdr
+
+  
 
 
 ##### Contributors: 
@@ -376,7 +378,7 @@ Observed values for version string:
 - "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw) and R6 (craw/raw) 
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
-- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200, M50m2 and 250D
+- "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200, M50m2 and 250D, R100 (raw/craw)
 - "CanonCR**M0001**/**02**.09.00/00.00.00" for CRM movies
 
 
@@ -1328,7 +1330,9 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 
 
 
-### Cameras creating CR3 / CRX images
+
+
+### Cameras creating CR3 images
 
 | modelId | name | releaseData | sensorSize | sensorType | ImageProc |
 | ------- | ---- | ----------- | ---------- | ---------- | --------- |
@@ -1353,7 +1357,7 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 | 0x80000481 | EOS R6 Mark II | 2/11/2022 | FF | CMOS |DigicX |
 | 0x80000487 | EOS R8 | 8/02/2023 | FF | CMOS |DigicX |
 | 0x80000480 | EOS R50 | 8/02/2023 | APS-C | CMOS |DigicX |
-|  | EOS R100 | 24/05/2023 | APS-C | CMOS |Digic8 |
+| 0x80000498 | EOS R100 | 24/05/2023 | APS-C | CMOS |Digic8 |
 
 
 ## Samples 

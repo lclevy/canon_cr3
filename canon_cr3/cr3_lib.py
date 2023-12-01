@@ -144,11 +144,11 @@ class Cr3FileParser:
     def stsz(self, d, l, depth):
         version = self.get_long_be(d, 0)
         if l==0x14:
-          size = getLongBE(d, 4)
-          count = getLongBE(d, 8)
+          size = self.get_long_be(d, 4)
+          count = self.get_long_be(d, 8)
         else:  #0x18
-          size = getLongBE(d, 12)
-          count = getLongBE(d, 8)
+          size = self.get_long_be(d, 12)
+          count = self.get_long_be(d, 8)
         return size
 
     def uuid(self, d, l, depth):

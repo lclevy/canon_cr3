@@ -2,7 +2,7 @@
 
 # Inside Canon High Efficiency Image File format
 
-04nov2022
+2jan2023
 
 
 
@@ -11,7 +11,6 @@ Samples:
 - Special thanks to Damon Lynch for 1DX Mark III HEIF and CR3 HDR samples.
 - Thanks to Michel Lesoinne for R5 HEIF and CR3 HDR samples
 - Thanks to Gordon Laing from Cameralabs for R6 HEIF
-
 
 
 ### Introduction
@@ -277,11 +276,12 @@ sensorInfo(w=5568, h=3708, lb=84, tb=50, rb=5555, bb=3697)
 | 0x80000465 | EOS R10 | 05/2022 | APS-C | CMOS |Digic X |
 | 0x80000464 | EOS R7 | 05/2022 | FF | CMOS |Digic X |
 | 0x80000481 | EOS R6 Mark II | 11/2022 | FF | CMOS |Digic X |
+| 0x80000487 | EOS R8 | 8/02/2023 | FF | CMOS |Digic X |
+| 0x80000480 | EOS R50 | 8/02/2023 | APS-C | CMOS |Digic X |
 
 ### Reference documents
 
 - ISO/IEC 14496-12 (ISO Base media file format) : https://mpeg.chiariglione.org/standards/mpeg-4/iso-base-media-file-format/text-isoiec-14496-12-5th-edition
-
 
 - ISO/IEC 23008-12:2017: HEIF : https://standards.iso.org/ittf/PubliclyAvailableStandards/c066067_ISO_IEC_23008-12_2017.zip
 
@@ -294,7 +294,6 @@ sensorInfo(w=5568, h=3708, lb=84, tb=50, rb=5555, bb=3697)
 ### Other links
 
 - Apple WWDC 2017 HEIF (jun 2017) : https://developer.apple.com/videos/play/wwdc2017/513/
-
 
 - Monkey takes a .heic (oct 2017): http://cheeky4n6monkey.blogspot.com/2017/10/monkey-takes-heic.html
 - Exiftool, Quicktime, HEVCConfig tag : https://exiftool.org/TagNames/QuickTime.html#HEVCConfig

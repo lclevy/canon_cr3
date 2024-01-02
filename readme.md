@@ -313,6 +313,14 @@ Examples of output [here](output/)
 
 
 
+You can also use Exiftool to get detailed analysis, for example using these options:
+
+`exiftool.exe -a -U -H -v4 -b image.cr3`
+
+-a : allow duplicates, -U : unknown binary tags, -H : tag ID in hex, -b : metadata in binary format, -v4 : verbose level 4
+
+
+
 ## Canon tags description
 
 values are in big endian

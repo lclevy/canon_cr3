@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 1jan2024 
+##### version: 24jul2024 
 
 
 by Laurent Clévy (@Lorenzo2472)
@@ -9,7 +9,9 @@ by Laurent Clévy (@Lorenzo2472)
 
 ##### Wanted samples:
 
-- R10 craw 
+- R1 raw/dpraw/heif
+
+- R5 Mark II raw/dpraw/heif
 
   
 
@@ -382,7 +384,7 @@ Observed values for version string:
 - "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0), R3 craw/raw
 - "Canon**CR3_002/00.10**.00/00.00.00" for 1DX Mark III (craw w/ HDR FW 1.0) and R5 (craw/craw HDR FW 1.0)
 - "CanonCR3_001/**00.11**.00/00.00.00" for R7 (raw, craw and dualpixel), R10 (raw and dualp with FW 1.0.1), R50 (craw, raw), R6 Mark II (raw, dpraw and craw FW 1.2.0) and R8 (FW 1.0.0 raw and craw)
-- "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw) and R6 (craw/raw) 
+- "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw), R5m2 (craw), R1 (craw)  and R6 (craw/raw) 
 - "CanonCR3_001/01.09.00/**01**.00.00" for raw burst mode roll (containing several pictures in burst mode)
 - "CanonCR3_001/**01**.09.00/00.00.00" for SX70 HS, G5 Mark II and G7 Mark III 
 - "CanonCR3_001/**00**.09.00/00.00.00" for EOS R, EOS RP, M50, 250D, 90D, M6 Mark II, M200, M50m2 and 250D, R100 (raw/craw)
@@ -409,7 +411,7 @@ size=0x5c for 3 CCDT lines, 0x74 for 4 lines (dual pixel).
 | ------------ | ------ | ----------- | --------------------------- |
 | 0            | long   | 1           | size of this tag. 0x18        |
 | 4            | char   | 4           | "CCDT". Canon CR3 definition of tracks ? |
-| 8            | longlong   | 1           | image type? |
+| 8            | longlong   | 1           | image type? 0x10, 1 or 0 |
 | 16            | long   | 1           | 0 or 1 for dual pixel |
 | 20            | long   | 1           | Trak index. 1, 2, 3 or 5 |
 
@@ -428,14 +430,14 @@ type values:
 | ------------ | ------ | ----------- | --------------------------- |
 | 0            | long   | 1           | size of this tag. 0x5c       |
 | 4            | char   | 4           | "CTBO". Canon tracks base offsets ? |
-| 8            | long   | 1           | number of records. 4 |
+| 8            | long   | 1           | number of records. 4 or 5. |
 
 for each records (20 bytes):
 
 
 | Offset       | type   | size        | content                     |
 | ------------ | ------ | ----------- | --------------------------- |
-| 0            | long   | 1           | index|
+| 0            | long   | 1           | index (first is 1) |
 | 4            | longlong   | 1           | offset |
 | 12            | longlong   | 1           | size |
 
@@ -1365,6 +1367,8 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 | 0x80000487 | EOS R8 | 8/02/2023 | FF | CMOS |DigicX |
 | 0x80000480 | EOS R50 | 8/02/2023 | APS-C | CMOS |DigicX |
 | 0x80000498 | EOS R100 | 24/05/2023 | APS-C | CMOS |Digic8 |
+| 0x80000495 | EOS R1 | 19/07/2024 | FF | BSI-CMOS |DigicX+Digic Accelerator |
+| 0x80000496 | EOS R5 Mark II | 19/07/2024 | FF | BSI-CMOS |DigicX+Digic Accelerator |
 
 
 ## Samples 

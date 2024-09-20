@@ -1,6 +1,6 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 24jul2024 
+##### version: 20sep2024 
 
 
 by Laurent Clévy (@Lorenzo2472)
@@ -10,10 +10,6 @@ by Laurent Clévy (@Lorenzo2472)
 ##### Wanted samples:
 
 - R1 raw/dpraw/heif
-
-- R5 Mark II raw/dpraw/heif
-
-  
 
 
 ##### Contributors: 
@@ -39,7 +35,7 @@ by Laurent Clévy (@Lorenzo2472)
 - pdejl (https://github.com/pdejl) for R8 raw, craw, dp, heif
 - John Baro for R3 heif, raw and craw
 - Stephan Wesemeyer for R6 Mark II samples (raw/craw/dpraw/heif/burst)
-
+- https://github.com/piratenpanda for R5 Mark II raw/craw/heif/burst/dust
 
 
 
@@ -381,7 +377,7 @@ Observed values for version string:
 - "Canon**HEIF001/10**.00.**01**/00.00.00" for R6 FW 1.2.0 (with b'miaf' and b'MiHA'), R3 1.4.1
 - "Canon**HEIF001/10**.00.00/00.00.00" for HEIF of 1DX Mark III, R5 and R6 FW 1.0
 - "CanonCR3_003/00.**11**.00/00.00.00" for R7 FW 1.0.1 (raw+HDR), R50 (raw+hdr)
-- "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0), R3 craw/raw
+- "Canon**CR3_003/00.10**.00/00.00.00" for R6 (craw with HDR preview), R5 (craw HDR, FW 1.2.0), R3 craw/raw, R5 MArk II raw/craw
 - "Canon**CR3_002/00.10**.00/00.00.00" for 1DX Mark III (craw w/ HDR FW 1.0) and R5 (craw/craw HDR FW 1.0)
 - "CanonCR3_001/**00.11**.00/00.00.00" for R7 (raw, craw and dualpixel), R10 (raw and dualp with FW 1.0.1), R50 (craw, raw), R6 Mark II (raw, dpraw and craw FW 1.2.0) and R8 (FW 1.0.0 raw and craw)
 - "CanonCR3_001/**00.10**.00/00.00.00" for 1DX Mark III (raw/craw FW 1.0) , EOS R5 (raw), R5m2 (craw), R1 (craw)  and R6 (craw/raw) 
@@ -539,7 +535,7 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 | 20     | long  | 1    | image height                           |
 | 24     | long  | 1    | tile width (image width /2 for big picture) |
 | 28     | long  | 1    | tile height                             |
-| 32     | bytes | 4    | bits per sample - usually 14 |
+| 32     | byte | 1    | bits per sample - usually 14 |
 | 33 | bits | 4 | number of planes - 4 for RGGB |
 | 33+4bits | bits | 4 | CFA layout - only valid where number of planes > 1. 0:RGGB, 1:GRBG, 2:GBRG, 3:BGGR. Seen 1 for small, 0 for big (raw or craw) |
 | 34 | bits | 4 | encoding type. Always 0 for raw and craw, 3 for raw extracted from roll burst |
@@ -547,7 +543,7 @@ Thanks to Alexey Danilchenko for his contributions (bytes 10 to 36):
 | 35 | bit | 1 | 1 = image has more than one tile horizontally  (set for wavelet compressed image). Seen 1 for craw big, 0 otherwise |
 | 35+1bit | bit | 1 | 1 = image has more than one tile vertically (set for wavelet compressed image). Always 0 |
 | 35+2bits | bits | 6 | unused in current version - always 0 |
-| 36     | long  | 1    | mdat track header size (mdat bitstream data starts following that header). raw small = 0x70, raw big   = 0xd8, craw small = 0x220, craw big   = 0x438 |
+| 36     | long  | 1    | mdat track header size (mdat bitstream data starts following that header). raw small = 0x70, raw big = 0xd8, craw small = 0x220, craw big = 0x438 |
 | 40     | bit   | 1    | 1 = has extended header, has extended header size |
 | 40+1bit | bits | 7    | ? 0                                     |
 | 41     | byte  | 1    | ? 0                                     |
@@ -669,7 +665,8 @@ For each record (size=8 bytes):
 
 | Offset | type  | size | content                                |
 | ------ | ----- | ---- | -------------------------------------- |
-| 0      | long   | 1           | type. 1,3,4,5,7,8 or 9|
+| 0      | short   | 1           | unknown (issue #36, thanks DrCQ)|
+| 2      | short   | 1           | type. 1,3,4,5,7,8 or 9|
 | 4      | long   | 1           | size|
 
 
@@ -1343,7 +1340,7 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 
 ### Cameras creating CR3 images
 
-| modelId | name | releaseData | sensorSize | sensorType | ImageProc |
+| modelId | name | releaseDate | sensorSize | sensorType | ImageProc |
 | ------- | ---- | ----------- | ---------- | ---------- | --------- |
 | 0x00000412 | EOS M50 / Kiss M | 04/2018 | APS-C | CMOS | Digic 8 |
 | 0x80000424 | EOS R                      |5/09/2018| FF| CMOS| Digic 8 |

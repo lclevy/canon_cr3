@@ -310,7 +310,7 @@ f.close()
 if options.verbose>0:
   print( 'filesize 0x%x' % filesize)
   
-if data[4:12]==b'ftypcrx ':
+if data[4:12]==b'ftypheix' or data[4:12]==b'ftypcrx ':
   offset = parse(0, data, 0, 0)
   if options.verbose>0:
     print('end of parsing offset: %05x:'%offset)
@@ -327,6 +327,12 @@ elif data[:4]==b'II*\x00' and data[8:12]==b'CR\x02\x00':
   print('modelName = %s' % cr2.get_model_name() ) 
   cr2.get_lossless_info()
   sys.exit()
+elif data[:4]==b'II*\x00':
+  pass
+  #tiff = Tiff( data, filesize, 'tiff' )
+
+if b'CNCV' not in cr3:
+  sys.exit() #heif parsing is broken yet   
     
 if cr3[b'CNCV'].find(b'CanonCRM')>=0:
   if options.verbose>0:
@@ -376,20 +382,21 @@ elif cr3[b'CNCV'].find(b'CanonCR3')>=0:
 
   #now we want raw data of TIFF entry 0x4016 (TIFF_CANON_VIGNETTING_CORR2), in subdir TIFF_MAKERNOTE, in CTMD record #7. We know it is type=4=long, little endian 32 bits
   ctmd_makernote7 = getIfd( b'CTMD', { 'type':7, 'tag':TiffIfd.TIFF_MAKERNOTE } ) #picture 0 by default
-  if TiffIfd.TIFF_CANON_VIGNETTING_CORR2 in ctmd_makernote7.ifd:
+  if ctmd_makernote7 and TiffIfd.TIFF_CANON_VIGNETTING_CORR2 in ctmd_makernote7.ifd:
     vignetting_corr2 = ctmd_makernote7.ifd[ TiffIfd.TIFF_CANON_VIGNETTING_CORR2 ]
     r = Struct('<%dL' % vignetting_corr2.length).unpack_from( data, ctmd_makernote7.base+vignetting_corr2.value )
-  if options.verbose>1:
-    print(r)
+    if options.verbose>1:
+      print(r)
 
   cmt3 = getIfd( b'CMT3', None )
-  if TiffIfd.TIFF_MAKERNOTE_ROLLINFO in cmt3.ifd: # only in CSI_* files (raw burst mode)
+  if cmt3 and TiffIfd.TIFF_MAKERNOTE_ROLLINFO in cmt3.ifd: # only in CSI_* files (raw burst mode)
     rollInfoTag = cmt3.ifd[ TiffIfd.TIFF_MAKERNOTE_ROLLINFO ]
     #print( rollInfoTag )
     length, current, total = Struct('<%d%s' % (rollInfoTag.length, TiffIfd.tiffTypeStr[rollInfoTag.type-1])).unpack_from( data, cmt3.base+rollInfoTag.value )
     #exif IFD for current picture in the roll
     ifd = getIfd( b'CTMD', { 'picture':current, 'type':7, 'tag':TiffIfd.TIFF_MAKERNOTE } )
-    ifd.display()
+    if ifd:   
+      ifd.display()
     
   NT_SENSOR_INFO = namedtuple('sensorInfo','w h lb tb rb bb')
   sensorInfo = cmt3.ifd[ TiffIfd.TIFF_MAKERNOTE_SENSORINFO ]

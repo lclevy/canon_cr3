@@ -2,18 +2,20 @@
 from struct import Struct
 from collections import namedtuple, OrderedDict
 from CRaw3.TiffIfd import TiffIfd
+from binascii import hexlify
 
 class Ctmd:
   S_CTMD_INDEX_HEADER = Struct('>LLL')
-  S_CTMD_INDEX_ENTRY = Struct('>LL')
+  S_CTMD_INDEX_ENTRY = Struct('>HHL')
   NT_CTMD_INDEX_ENTRY = namedtuple('ctmd_index_entry', 'type size')
 
   def __init__(self, data, length, base, name): #parse the index, common to all ctmd in mdat if more than one (rolls)
     self.index_list = []
+    self.data = data
     
     _, _, nb = Ctmd.S_CTMD_INDEX_HEADER.unpack_from( data, 0)
     for i in range(nb):
-      type, size = Ctmd.S_CTMD_INDEX_ENTRY.unpack_from( data, Ctmd.S_CTMD_INDEX_HEADER.size + i*Ctmd.S_CTMD_INDEX_ENTRY.size)
+      _, type, size = Ctmd.S_CTMD_INDEX_ENTRY.unpack_from( data, Ctmd.S_CTMD_INDEX_HEADER.size + i*Ctmd.S_CTMD_INDEX_ENTRY.size)
       entry = Ctmd.NT_CTMD_INDEX_ENTRY( type, size )
       self.index_list.append( entry )
 
@@ -49,6 +51,7 @@ class Ctmd:
           ctmd_tiff = dict()
           while record_offset < record_size:
             payload_size, payload_tag = Ctmd.S_CTMD_TIFF_HEADER.unpack_from( ctmd_record, record_offset )
+            #print("size %x tag %x" % (payload_size, payload_tag) )
             tiff = TiffIfd( ctmd_record[ record_offset+Ctmd.S_CTMD_TIFF_HEADER.size: ], payload_size, file_offset+ctmd_offset+record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, b'CTMD%d_0x%x'%(record_type, payload_tag), False) 
             ctmd_tiff[ payload_tag ] =  (file_offset+ctmd_offset+record_offset, payload_size, payload_tag, (record_offset+Ctmd.S_CTMD_TIFF_HEADER.size, tiff) )  
             record_offset += payload_size
@@ -85,5 +88,5 @@ class Ctmd:
           if ctmd_record.type in [ Ctmd.CTMD_TYPE_TIMESTAMP, Ctmd.CTMD_TYPE_EXPOSURE, Ctmd.CTMD_TYPE_FOCAL ]:
             print( ctmd_record.content )
           else:
-            ctmd_data = data[ ctmd_record.offset: ctmd_record.offset+ctmd_record.size] #we do not know how to parse it
+            ctmd_data = self.data[ ctmd_record.offset: ctmd_record.offset+ctmd_record.size] #we do not know how to parse it
             print('%s' % hexlify(ctmd_data) )

@@ -96,8 +96,8 @@ class Crx:
     while offset+Crx.S_CRXTILE.size <= self.cmp1.hsize: #header size from cmp1, bug in Canon code: for small crx, header size in cmp1 is 4 bytes too big for parsing
       sign, length, tsize, tindex, _ = Crx.S_CRXTILE.unpack_from(self.data, offset)
       #print('%8x %d %8x %d' % (sign, length, tsize, tindex))
-      if sign != Crx.TILE_MARKER or length != 8:  
-        print('error: 0x%08x, sign != Crx.TILE_MARKER or length != 8' % (self.base+offset))
+      if sign != Crx.TILE_MARKER or length != 8:   #r3 craw, r5m2 craw
+        print('not supported: 0x%08x, sign (0x%04x) != Crx.TILE_MARKER or length (%d) != 8' % (self.base+offset, sign, length))
         return
       self.tiles[tindex] = Crx.NT_CRXTILE(tindex, dataOffset, tsize)
       offset = offset + Crx.S_CRXTILE.size

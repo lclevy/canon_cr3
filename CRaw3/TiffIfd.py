@@ -108,9 +108,10 @@ class TiffIfd:
       if length == 1:
         print('%hu'%val)
       else:
-        for i in range(0, min(length,max)*typeLen, typeLen):
-          print( '%hu '%( getShortLE(data2, i) ), end='' )
-        if length>max:
+        if length*typeLen > 4: #do not fit in long (tag 0x404b)
+          for i in range(0, min(length,max)*typeLen, typeLen):
+            print( '%hu '%( getShortLE(data2, i) ), end='' )
+        if length > max:
           print('...')
         else:
           print()      

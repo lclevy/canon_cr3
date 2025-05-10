@@ -1,15 +1,17 @@
 # Describing the Canon Raw v3 (CR3) file format #
 
-##### version: 20sep2024 
+##### version: 10may2025 
 
 
-by Laurent Clévy (@Lorenzo2472)
+by Laurent Clévy (@Lorenzo2472.bsky.social)
 
 
 
 ##### Wanted samples:
 
-- R1 raw/dpraw/heif
+- R1 craw/dpraw/heif
+- R50 V raw/craw/heif
+- V1 raw/craw/heif
 
 
 ##### Contributors: 
@@ -1317,8 +1319,8 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 
 ## References ##
 
-- ISO base media file format : [ISO/IEC 14496-12:2015](https://mpeg.chiariglione.org/standards/mpeg-4/iso-base-media-file-format/text-isoiec-14496-12-5th-edition "ISO IEC 14496-12:2015")
-- MP4 file format : [ISO/IEC 14496-14:2003](https://mpeg.chiariglione.org/standards/mpeg-4/mp4-file-format "ISO/IEC 14496-14:2003")
+- ISO base media file format : [ISO/IEC 14496-12:2015](https://mpeg.chiariglione.org/standards/mpeg-4/iso-base-media-file-format.html)
+- MP4 file format : [ISO/IEC 14496-14:2003](https://mpeg.chiariglione.org/standards/mpeg-4/mp4-file-format.html)
 - ITU-T Rec T.87 / ISO 14495-1 (JPEG-LS, 1998) : https://www.itu.int/rec/T-REC-T.87/en
 - ITU-T Rec T.800 / ISO 15444 (JPEG 2000, 1996) : https://www.itu.int/rec/T-REC-T.800-201511-S/en
 - [ISO 14496-1 Media Format](http://xhelmboyx.tripod.com/formats/mp4-layout.txt "ISO 14496-1 Media Format")
@@ -1364,10 +1366,11 @@ Subband data (0xff03) of lossy CR3 are LL3, HL3, LH3, HH3, HL2, LH2, HH2, HL1, L
 | 0x80000487 | EOS R8 | 8/02/2023 | FF | CMOS |DigicX |
 | 0x80000480 | EOS R50 | 8/02/2023 | APS-C | CMOS |DigicX |
 | 0x80000498 | EOS R100 | 24/05/2023 | APS-C | CMOS |Digic8 |
-| 0x80000495 | EOS R1 | 19/07/2024 | FF | BSI-CMOS |DigicX+Digic Accelerator |
-| 0x80000496 | EOS R5 Mark II | 19/07/2024 | FF | BSI-CMOS |DigicX+Digic Accelerator |
-
-
+| 0x80000495 | EOS R1 | 19/07/2024 | FF | BSI-CMOS |DigicX+Digic Acc. |
+| 0x80000496 | EOS R5 Mark II | 19/07/2024 | FF | BSI-CMOS |DigicX+Digic Acc. |
+| 0x80000497 | PowerShot V1 | 26/03/2025 | APS-C | CMOS |DigicX |
+| 0x80000516 | Canon EOS R50 V | 26/03/2025 | APS-C | CMOS |DigicX |
+ 
 ## Samples 
 
 http://www.photographyblog.com, https://raw.pixls.us/data/Canon, https://www.dpreview.com, https://www.imaging-resource.com
